@@ -1,0 +1,3 @@
+﻿interface JQueryStatic {
+    attr: any;
+};

@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+//
+// Dropdown menus
+// --------------------------------------------------
+
+
+// Dropdown arrow/caret
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top:   nth($caret-width,1) dashed;
+    border-top:   nth($caret-width,1) solid \9; // IE8
+    border-right: nth($caret-width,1) solid transparent;
+    border-left:  nth($caret-width,1) solid transparent;
+}
+
+// The dropdown wrapper (div)
+.dropup, .dropdown {
+    position: relative;
+}
+
+// Prevent the focus on the dropdown toggle when closing dropdowns
+.dropdown-toggle:focus {
+    outline: 0;
+}
+
+// The dropdown menu (ul)
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  // z-index: $zindex-dropdown;
+  display: none; // none by default, but block on "open" of the menu
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0; // override default ul
+  list-style: none;
+  font-size: $font-size-base;
+  text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+  background-color: color('dropdown','bg');
+  border: 1px solid color('dropdown','fallback-border'); // IE8 fallback
+  border: 1px solid color('dropdown','border');
+  border-radius: nth($border-radius,1);
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  background-clip: padding-box;
+
+  // Aligns the dropdown menu to right
+  //
+  // Deprecated as of 3.1.0 in favor of `.dropdown-menu-[dir]`
+  &.pull-right {
+    right: 0;
+    left: auto;
+  }
+
+  // Dividers (basically an hr) within the dropdown
+  // .divider {
+  //   @include nav-divider($dropdown-divider-bg);
+  // }
+
+  // // Links within the dropdown menu
+  // > li > a {
+  //   display: block;
+  //   padding: 3px 20px;
+  //   clear: both;
+  //   font-weight: normal;
+  //   line-height: $line-height-base;
+  //   color: $dropdown-link-color;
+  //   white-space: nowrap; // prevent links from randomly breaking onto new lines
+  // }
+}
+
+@include media(sm-min) {
+    .navbar-right {
+        .dropdown-menu {
+            right: 0; left: auto;
+        }
+        // Necessary for overrides of the default right aligned menu.
+        // Will remove come v4 in all likelihood.
+        .dropdown-menu-left {
+            left: 0; right: auto;
+        }
+    }
+}

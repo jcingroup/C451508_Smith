@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "首頁";
+    ViewBag.IsFirstPage = true;
+    ViewBag.BodyClass = "index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section Scripts {
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 2,
+        paginationClickable: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 70,
+        autoplay: 2500
+    });
+</script>
+}
+
+<ul class="info wrap">
+    <li><a href="~/Products">專業接著劑</a></li>
+    <li><a href="~/Products">環保綠材</a></li>
+    <li><a href="~/Products">高分子材料</a></li>
+</ul>
+
+<section class="news">
+    <header>NEWS & EVENTS</header>
+    <div class="swiper-container">
+
+        <ol class="swiper-wrapper">
+            <li class="swiper-slide">
+                <div class="cover"><img src="~/Content/images/News/pic.jpg" alt="NEWS圖"></div>
+                <h3>敬邀 2014 第十七屆中國國際膠黏劑及密封劑展</h3>
+                <p>今年富利源推出新綠色節能概念之環保膠水 - 一液型水性PU膠, 水性硫化膠, 水性CR膠及生質TPU樹脂,現場將會展示新產品樣品及應用產品, 包括: 品牌運動...</p>
+                <a href="~/News/content" class="btn">READ MORE</a>
+            </li>
+            <li class="swiper-slide">
+                <div class="cover"><img src="~/Content/images/News/pic2.jpg" alt="NEWS圖"></div>
+                <h3>敬邀 2014 第十七屆中國國際膠黏劑及密封劑展</h3>
+                <p>今年富利源推出新綠色節能概念之環保膠水 - 一液型水性PU膠, 水性硫化膠, 水性CR膠及生質TPU樹脂,現場將會展示新產品樣品及應用產品, 包括: 品牌運動...</p>
+                <a href="~/News/content" class="btn">READ MORE</a>
+            </li>
+            <li class="swiper-slide">
+                <div class="cover"><img src="~/Content/images/News/pic.jpg" alt="NEWS圖"></div>
+                <h3>testtset</h3>
+                <p>今年富利源推出新綠色節能概念之環保膠水 - 一液型水性PU膠, 水性硫化膠, 水性CR膠及生質TPU樹脂,現場將會展示新產品樣品及應用產品, 包括: 品牌運動...</p>
+                <a href="~/News/content" class="btn">READ MORE</a>
+            </li>
+            <li class="swiper-slide">
+                <div class="cover"><img src="~/Content/images/News/pic2.jpg" alt="NEWS圖"></div>
+                <h3>testtset</h3>
+                <p>今年富利源推出新綠色節能概念之環保膠水 - 一液型水性PU膠, 水性硫化膠, 水性CR膠及生質TPU樹脂,現場將會展示新產品樣品及應用產品, 包括: 品牌運動...</p>
+                <a href="~/News/content" class="btn">READ MORE</a>
+            </li>
+            <li class="swiper-slide">
+                <div class="cover"><img src="~/Content/images/News/pic.jpg" alt="NEWS圖"></div>
+                <h3>aaaaa</h3>
+                <p>今年富利源推出新綠色節能概念之環保膠水 - 一液型水性PU膠, 水性硫化膠, 水性CR膠及生質TPU樹脂,現場將會展示新產品樣品及應用產品, 包括: 品牌運動...</p>
+                <a href="~/News/content" class="btn">READ MORE</a>
+            </li>
+            <li class="swiper-slide">
+                <div class="cover"><img src="~/Content/images/News/pic2.jpg" alt="NEWS圖"></div>
+                <h3>bbb</h3>
+                <p>今年富利源推出新綠色節能概念之環保膠水 - 一液型水性PU膠, 水性硫化膠, 水性CR膠及生質TPU樹脂,現場將會展示新產品樣品及應用產品, 包括: 品牌運動...</p>
+                <a href="~/News/content" class="btn">READ MORE</a>
+            </li>
+        </ol>
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>

@@ -1,0 +1,36 @@
+
+// 情境
+@mixin state($color, $types: false) {
+    // @extend %state;
+    $selector: &;
+
+    @if($types == false) {
+        color: $color;
+
+        @at-root {
+            a#{$selector}:hover,
+            a#{$selector}:focus {
+                color: darken($color, 10%);
+            }
+        }
+    }
+    @if $types == "bg" {
+        background: $color;
+        border-color: darken(adjust-hue($color, -10), 6%);
+
+        @at-root {
+            a#{$selector}:hover,
+            a#{$selector}:focus {
+                background-color: darken($color, 10%);
+            }
+        }
+    }
+    @if $types == "bg-light" {
+        background: lighten($color, 38%);
+        border-color: lighten(adjust-hue($color, -10), 20%);
+    }
+    @if $types == "btn" {
+        background: $color;
+        border-color: darken($color, 5%);
+    }
+}

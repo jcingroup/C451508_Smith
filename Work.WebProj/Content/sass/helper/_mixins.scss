@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+// utils
+// -----------------------------------------------------------------
+@import "mixins/text";
+@import "mixins/state";
+@import "mixins/tab-focus";
+@import "mixins/table";
+@import "mixins/form";
+@import "mixins/media";
+
+// css3 前綴(動畫.漸層)
+@import "mixins/prefix";
+@import "mixins/prefix-animation";
+@import "mixins/prefix-gradient";
+
+
+// var Maps
+// -----------------------------------------------------------------
+// colors
+@function color($map, $key) {
+    @return map-get(map-get($color, $map), $key);
+}
+
+// z-index
+@function z($key) {
+    @return map-get($z-index, $key);
+}
+
+// 範例 background: m-get($color-theme, 'default', 'background');
+@function m-get($map, $keys...) {
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
+    @return $map;
+}
+
+// 換算百分比
+@function calc-percent($target, $container) {
+    @return ($target / $container) * 100%;
+}
+
+// 範例 background: m-set($color-theme, 'default', 'background', #080808);
+@function m-set($map, $keys.../*, $value*/) {
+    $map-list: ($map,);
+    $result: null;
+
+    @if length($keys) == 2 {
+        @return map-merge($map, (nth($keys, 1): nth($keys, -1)));
+    }
+
+    @for $i from 1 through length($keys) - 2 {
+        $map-list: append($map-list, map-get(nth($map-list, -1), nth($keys, $i)));
+    }
+
+    @for $i from length($map-list) through 1 {
+        $result: map-merge(nth($map-list, $i), (nth($keys, $i): if($i == length($map-list), nth($keys, -1), $result)));
+    }
+
+    @return $result;
+}

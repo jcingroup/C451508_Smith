@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+// prefixes
+// -----------------------------------------------------------------
+@mixin prefix($property, $value...) {
+    -webkit-#{$property}: unquote('#{$value}');
+    // -moz-#{$property}: unquote('#{$value}');
+    // -o-#{$property}: unquote('#{$value}');
+    #{$property}: unquote('#{$value}');
+}

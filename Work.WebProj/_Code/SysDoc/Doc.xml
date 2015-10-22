@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<document>
+  <file>
+    <sort>2</sort>
+    <name>申報進度與統計.docx</name>
+    <!--須和檔名相同*/-->
+    <memo>文件說明，補充說明2。</memo>
+  </file>
+
+  <file>
+    <name>資料庫使用說明.docx</name>
+    <sort>1</sort>
+    <memo>文件說明，補充說明1testtest。</memo>
+  </file>
+
+</document>

@@ -1,0 +1,151 @@
+/*  Layout
+----------------------------------------------*/
+#container {
+  min-width: 600px; }
+
+.navbar-header, .navbar-collapse {
+  margin-left: 0 !important;
+  margin-right: 0 !important; }
+
+.navbar-brand {
+  margin-left: 0 !important;
+  padding: 0;
+  line-height: 45px; }
+  @media (max-width: 480px) {
+    .navbar-brand {
+      height: auto;
+      line-height: 140%; } }
+  .navbar-brand h4 {
+    margin-top: 0;
+    margin-bottom: 0; }
+    @media (max-width: 480px) {
+      .navbar-brand h4 {
+        margin-top: 8px; } }
+  .navbar-brand .list-inline {
+    margin-bottom: 0; }
+
+h4.navbar-brand {
+  margin-top: 0;
+  margin-bottom: 0; }
+  @media (max-width: 480px) {
+    h4.navbar-brand {
+      height: 50px;
+      line-height: 50px; } }
+
+.navbar-right {
+  line-height: 45px; }
+  .navbar-right .user {
+    margin-right: 10px; }
+
+.login-form {
+  margin-top: 20px; }
+
+.main-menu li {
+  margin-bottom: 10px; }
+  .main-menu li .btn {
+    padding-top: 20px;
+    padding-bottom: 20px; }
+    .main-menu li .btn i {
+      font-size: 2em;
+      margin-bottom: 10px; }
+
+/*  Component - bootstrap
+----------------------------------------------*/
+.tab-content {
+  overflow: hidden;
+  padding-top: 10px; }
+
+.alert {
+  margin-bottom: 5px; }
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.table {
+  margin-bottom: 10px; }
+
+.panel {
+  margin-bottom: 10px; }
+
+.pager, .pagination {
+  margin: 0 0 10px 0; }
+
+.list-inline li {
+  margin-left: -4px; }
+
+.alert ul, .alert ol {
+  margin-bottom: 0; }
+
+/*  Component - customized
+----------------------------------------------*/
+button + button {
+  margin-left: 5px; }
+
+.table-form {
+  margin-bottom: 10px; }
+  .table-form.pull-left {
+    margin-top: 6px;
+    margin-bottom: 6px; }
+  .table-form .form-group {
+    margin-left: 5px; }
+
+.center-block[class*="col-"] {
+  float: none; }
+
+.nav-tabs > li > a {
+  color: #999; }
+  .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
+    color: #666; }
+
+.panel .form-group {
+  margin-bottom: 5px; }
+  .panel .form-group:last-child {
+    margin-bottom: 0; }
+
+.pagination .input-group .form-control {
+  width: 50px; }
+
+/*  RWD - customized
+----------------------------------------------*/
+@media (min-width: 1200px) {
+  .col-lg-margin-bottom {
+    margin-bottom: 10px; }
+
+  .col-lg-margin-right {
+    margin-right: 10px; } }
+@media (min-width: 992px) {
+  .col-md-margin-bottom {
+    margin-bottom: 10px; }
+
+  .col-md-margin-right {
+    margin-right: 10px; } }
+@media (min-width: 768px) {
+  .col-sm-margin-bottom {
+    margin-bottom: 10px; }
+
+  .col-sm-margin-right {
+    margin-right: 10px; } }
+@media (max-width: 767px) {
+  .col-xs-margin-bottom {
+    margin-bottom: 10px; }
+
+  .col-xs-margin-right {
+    margin-right: 10px; }
+
+  .table-form .form-group, .pager .form-group, .pagination .form-group {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 5px; }
+  .table-form .form-control, .pager .form-control, .pagination .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle; }
+  .table-form .input-group, .pager .input-group, .pagination .input-group {
+    display: inline-table;
+    vertical-align: middle; }
+  .table-form .input-group-addon, .pager .input-group-addon, .pagination .input-group-addon {
+    width: auto; }
+
+  .control-label {
+    text-align: right; } }

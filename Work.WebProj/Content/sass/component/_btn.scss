@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+$btn-color:          #D5E8C2 !default;
+$btn-hover-color:    $brand-primary !default;
+$btn-bg-color:       #406947 !default;
+$btn-border:         none !default;
+$btn-border-radius:  25px !default;
+
+$btn-disabled:       $gray-light !default;
+$btn-padding:        14px 30px !default;
+
+$btn-font-size:      13px !default;
+$btn-line-height:    1.01 !default;
+
+$btn-state-color:    #fff !default;
+
+
+// button
+// ----------------------------------------------
+//
+
+@if $states {
+    [class*="btn-"] {
+        color: $btn-state-color;
+    }
+    @each $type, $color in $state-type {
+        .btn-#{$type} {
+            @include state($color, btn)
+        }
+    }
+}
+
+.btn {
+    display: inline-block;
+    padding: $btn-padding;
+
+    background: $btn-bg-color;
+    border-radius: $btn-border-radius;
+
+    color: $btn-color;
+    font-family: AnjaEliane, $font-family-base;
+    font-size: em($btn-font-size);
+    line-height: $btn-line-height;
+
+    &, &:active, &.active {
+        &:focus, &.focus {
+            @include tab-focus;
+        }
+    }
+    &:hover, &:focus, &.focus {
+        background: $btn-color;
+        color: $btn-bg-color;
+    }
+    &:active, &.active {
+        outline: 0;
+    }
+    &.disabled, &[disabled], fieldset[disabled] & {
+        cursor: $cursor-disabled;
+        opacity: .65;
+    }
+}

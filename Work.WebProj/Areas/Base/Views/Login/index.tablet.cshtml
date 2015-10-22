@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/Manage/RLayout.cshtml";
+}
+@section Scripts{
+    @Html.Partial("Manage/JSGlobalVar")
+    <script src="~/Scripts/build/comminc.js"></script>
+    <script src="~/Scripts/build/func/t-login.js"></script>
+    <script>
+        /* Scripts/src/jsx/t-login.jsx */
+        var rootParm = {
+            systemName: '管理系統登入',
+            webRoot: '@Url.Content("~")'
+        };
+        var getRootDOM = document.getElementById('main');
+        var reactElement = React.createElement(LoginForm, rootParm);
+        var compObject = React.render(reactElement, getRootDOM);
+    </script>
+}

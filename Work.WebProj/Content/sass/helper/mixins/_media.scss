@@ -1,0 +1,15 @@
+
+// RWD
+@mixin media($screen) {
+    @if map-has-key($medias, $screen) {
+        @media #{inspect(map-get($medias, $screen))} {
+            @content;
+        }
+    }
+    @else {
+        // @warn "無此值，請至 var.scss '$medias' 新增";
+        @media (#{$screen}) {
+            @content;
+        }
+    }
+}

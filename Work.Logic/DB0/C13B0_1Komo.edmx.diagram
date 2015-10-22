@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="513db050b7af4711b9eac33f81eccda5" Name="Diagram1" ZoomLevel="143">
+        <EntityTypeShape EntityType="C13B0_1KomoModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.Department" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.i_Currency" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.i_IDX" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.i_Lang" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.i_Parm" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.i_SN" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.i_UserLoginLog" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.Menu" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.Product" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="C13B0_1KomoModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="C13B0_1KomoModel.MenuRole" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.ProductCategory" Width="1.5" PointX="7.5" PointY="12" />
+        <AssociationConnector Association="C13B0_1KomoModel.FK_Product_ProducrCategory" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.Sales" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.Purchase" Width="1.5" PointX="9.75" PointY="11" />
+        <EntityTypeShape EntityType="C13B0_1KomoModel.PurchaseDetail" Width="1.5" PointX="12" PointY="3.875" />
+        <AssociationConnector Association="C13B0_1KomoModel.FK_PurchaseDetail_Product" />
+        <AssociationConnector Association="C13B0_1KomoModel.FK_Purchase_Sales" />
+        <AssociationConnector Association="C13B0_1KomoModel.FK_PurchaseDetail_Purchase" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

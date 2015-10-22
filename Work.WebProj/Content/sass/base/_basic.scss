@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+@import "basic/normalize"; // 重置復位
+@import "basic/print";  // 列印樣式
+
+/*      basic elements
+-----------------------------------------------------------------------*/
+// 自定Reset
+h1,h2,h3,h4,h5,h6,p,figure,form,blockquote{margin:0;}
+ul,ol,li,dl,dt,dd{margin:0;padding:0;}
+button{outline: none;}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    text-align: center;
+    height: 100%;
+}
+
+body {
+    @extend html;
+    background: $body-bg;
+    color: $text-color;
+    font-family: $font-family-base;
+    line-height: $line-height-base;
+}
+
+a {
+    color: $link-color;
+    text-decoration: none;
+    transition: all .35s ease;
+
+    &:hover,
+    &.active {
+        color: $link-hover-color;
+    }
+
+    &:focus {
+        @include tab-focus;
+    }
+}
+
+hr {
+    margin-top:    $line-height-computed;
+    margin-bottom: $line-height-computed;
+    border: 0;
+    border-top: 1px solid $gray-lighter;
+}
+
+img {
+    vertical-align: middle;
+}
+
+@font-face {
+    font-family: MElleHK;
+    src: local('蒙纳繁雅丽'),
+         local('MElleHK-Medium'),
+         url(#{$font-path}MElleHK.woff) format('woff'),
+         url(#{$font-path}MElleHK.otf) format('opentype'),
+         url(#{$font-path}MElleHK.ttf) format('opentype');
+}
+
+// Headings
+// -----------------------------------------------
+h2, h3, h4, h5, h6 {
+    font-weight: m-get($heading,'font-weight');
+    line-height: m-get($heading,'line-height');
+    color: m-get($heading,'color');
+
+    small {
+        font-weight: normal;
+        line-height: 1;
+        color: m-get($heading,'small-color');
+    }
+}
+h2, h3 {
+    margin-top: em($line-height-computed);
+    margin-bottom: em($line-height-computed / 2);
+
+    small {
+        font-size: 65%;
+    }
+}
+h4, h5, h6 {
+    margin-top: em($line-height-computed / 2);
+    margin-bottom: em($line-height-computed / 2);
+
+    small {
+        font-size: 75%;
+    }
+}
+@for $i from 2 through 6 {
+   h#{$i} {
+      font-size: em(m-get($heading, h#{$i}));
+   }
+}
+
+
+// Body text
+// -----------------------------------------------
+p {
+    margin: 0 0 em($line-height-computed / 2);
+    line-height: 1.5;
+}
+
+
+// 副標題 Ex: (12px small font / 14px base font) * 100% = about 85%
+small {
+    font-size: floor((100% * $font-size-sm / $font-size-base));
+}
+
+// 螢光筆註記
+mark {
+    background-color: lighten($warning, 30%);
+    padding: .2em;
+}
+
+
+// Lists
+// -----------------------------------------------
+ul, ol {
+    margin-bottom: ($line-height-computed / 2);
+    ul, ol {
+        margin-bottom: 0;
+    }
+}
+
+dl {
+    margin-bottom: $line-height-computed;
+}
+dt, dd {
+    line-height: $line-height-base;
+}
+dt {
+    font-weight: bold;
+}
+
+address {
+    margin-bottom: $line-height-computed;
+    font-style: normal;
+    line-height: $line-height-base;
+}

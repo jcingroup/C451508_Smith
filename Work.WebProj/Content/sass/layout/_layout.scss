@@ -1,0 +1,254 @@
+
+// wrapper
+$wrapper-bg:            #fff url(#{$img-path}/bg.gif) center 0 repeat-y !default;
+$content-spacing:       70px !default;
+
+// header
+$header-bg:             #315400 !default;
+$header-height:         395px !default;
+
+$menu:                  (top, 55px), (right, 1.5%) !default;
+$menu-link:             #C2D217 !default;
+$menu-link-hover:       #D5E8C2 !default;
+
+$banner-bg:             url(#{$img-path}/banner.png) center 0 no-repeat !default;
+$banner-height:         270px !default;
+
+// footer
+$footer-height:         178px !default;
+$footer-bg:             #E5E6DE !default;
+$goTop:                 (bottom, 10px), (right, 15px) !default;
+$footer-height2:        140px !default;
+$footer-contact-color:  #406947 !default;
+
+
+
+// Grid/ var.scss> $grid-col-switch = true 時才會輸出
+// -----------------------------------------------------------------------
+@if $grid-col-switch {
+
+    .container {
+        @extend %clearfix;
+        @include row;
+
+        padding: 0 ($gutter / 2);
+    }
+
+    .row {
+        @include row(true);
+        & + & {
+            margin-top: $gutter;
+        }
+    }
+
+    [class*="col-"] {
+        @extend .float-l;
+
+        padding: 0 ($gutter / 2);
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+
+    @include make-col; // 預設: md
+    @include media(sm) { @include make-col(sm); }
+    @include media(xs) { @include make-col(xs); }
+    @include media(lg) { @include make-col(lg); }
+}
+
+/*      layout
+-----------------------------------------------------------------------*/
+#wrapper, section, main {
+    position: relative;
+    min-width: $min-width;
+}
+
+// 有寬度限制，非滿版
+.wrap {
+    @extend .text-left;
+
+    min-width: $min-width;
+    max-width: $max-width;
+    margin: 0 auto;
+}
+
+.wrap, section, main {
+    @extend %clearfix;
+
+    @include media(sm) {
+        padding: 0 ($gutter / 2);
+        width: 100%;
+    }
+}
+
+#wrapper {
+    @if $lte7 {
+        _height: 100%;
+    }
+    min-height: 100%;
+    padding-bottom: $footer-height + $content-spacing; // 內容與footer間距
+    background: $wrapper-bg;
+}
+
+main {
+    z-index: z(main);
+}
+
+
+// header
+// ----------------------------------------------------------------------
+#header {
+    height: $header-height;
+    z-index: z(header);
+
+    &::before {
+        content: '';
+        background: $header-bg;
+        height: 125px;
+        width: 100%;
+        position: absolute;
+        z-index: z(banner)-1;
+    }
+}
+
+h1, #menu, .top-nav {
+    position: absolute;
+}
+
+h1 {
+    @include text-pic('logo.gif',305px,125px);
+
+    left: 0;
+    z-index: z(logo);
+}
+
+#menu {
+    @extend %clearfix;
+
+    @each $attr, $value in $menu {
+        #{$attr}: $value;
+    };
+
+    z-index: z(menu);
+
+    a {
+        background-position: center 5px;
+        color: $menu-link;
+        font-size: em(18px);
+        font-weight: bold;
+        text-align: center;
+
+        display: block;
+        float: left;
+        padding-top: 24px;
+        width: 135px;
+
+        &:hover,
+        .index &:nth-child(1),
+        .AboutUs &:nth-child(2),
+        .Products &:nth-child(3),
+        .News &:nth-child(4),
+        .contactUs &:nth-child(5) {
+            background: url(#{$img-path}/icon-menu.png) center 0 no-repeat;
+            color: $menu-link-hover;
+        }
+    }
+}
+
+.top-nav {
+    font-size: em(12px);
+
+    right: 20px;
+    top: 10px;
+    z-index: z(menu)+1;
+
+    a {
+        color: #C8C190;
+        margin-right: 5px;
+    }
+}
+
+#banner {
+    background: $banner-bg;
+    height: $banner-height;
+    z-index: z(banner);
+}
+
+
+// footer
+// ----------------------------------------------------------------------
+#footer {
+    margin-top: -($footer-height);
+    height: $footer-height;
+    z-index: z(footer);
+
+    .list-inline {
+        background: $footer-bg;
+        color: $footer-contact-color;
+        line-height: $footer-height2;
+        padding: 20px 0;
+
+        a {
+            color: $footer-contact-color;
+
+            &:hover {
+                color: $brand-secondary;
+            }
+        }
+        em {
+            font-style: normal;
+
+            display: inline-block;
+            vertical-align: top;
+            min-width: 45px;
+            margin-right: 5px;
+        }
+        li {
+            background-attachment: fixed;
+            background: url(#{$img-path}/icon-contact.png) 0 0 no-repeat;
+            font-size: em(20px);
+            font-weight: 500;
+            line-height: nth($line-height,2);
+            text-align: left;
+            vertical-align: middle;
+
+            width: 300px; min-height: 33px;
+            padding-left: 48px;
+
+            &:nth-child(1) {
+                width: 370px;
+            }
+            &:nth-child(2) {
+                background-position: 0 -100px;
+            }
+            &:nth-child(3) {
+                background-position: 0 -210px;
+
+                em {
+                    display: block;
+                    margin-bottom: -5px;
+                }
+            }
+        }
+    }
+}
+
+.goTop {
+    display: none;
+    transition: all .5s ease;
+    opacity: .8;
+
+    z-index: z(goTop);
+    position: fixed;
+
+    @each $attr, $value in $goTop {
+        #{$attr}: $value;
+    }
+    @include text-pic('gotop.png', 50px, 30px);
+
+    &:hover {
+        background-image: url(#{$img-path}/gotop2.png);
+        opacity: 1
+    }
+}

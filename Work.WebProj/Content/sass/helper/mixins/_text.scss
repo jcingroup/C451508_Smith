@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+// px換算至em
+@function em($px, $context: $font-size-base) {
+    @if (unitless($px)) {
+        $px: $px * 1px;
+    }
+
+    @if (unitless($context)) {
+        $context: $context * 1px;
+    }
+
+    @return $px / $context * 1em;
+}
+
+// 文字隱藏
+@mixin text-hide {
+    font: 0/0 a;
+    text-indent: -9999px;
+}
+
+// 字換圖
+@mixin text-pic($img, $width, $height, $position: 0 0) {
+    @include text-hide;
+
+    background: url(#{$img-path}/#{$img}) $position no-repeat;
+    width: $width;
+    height: $height;
+}
+
+// 文字溢位出現省略號,要設寬度
+@mixin text-overflow($width:100%) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: $width;
+}
+
+// 文字邊框 ex. @include stroke(2,#fff);
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke*-1;
+  @for $i from $from through $stroke {
+   @for $j from $from through $stroke {
+      $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+    }
+  }
+  @return $shadow;
+}
+@mixin stroke($stroke, $color) {
+  text-shadow: stroke($stroke, $color);
+}

@@ -1,0 +1,192 @@
+@charset "UTF-8";
+
+// == config
+// ----------------------------------------------------------------------
+$img-path:              '../images' !default;
+$font-path:             '../font' !default;
+$grid-col-switch:       false !default;           // 網格是否輸出 true/false
+$lte7:                  false !default;           // 是否兼容IE6-7
+$states:                false !default;           // 情境文字是否輸出
+
+
+// == color
+// ----------------------------------------------------------------------
+// 語義色
+$gray-base:             #000;
+$gray-darker:           lighten($gray-base, 13.5%);   // #222
+$gray-dark:             lighten($gray-base, 20%);     // #333
+$gray:                  lighten($gray-base, 33.5%);   // #555
+$gray-light:            lighten($gray-base, 46.7%);   // #777
+$gray-lighter:          lighten($gray-base, 93.5%);   // #eee
+
+// 抽象色
+$brand-primary:         #2F5304 !default;             // 主色
+$brand-secondary:       #94BC1B !default;             // 輔色
+$success:               #019740 !default;             // 綠
+$info:                  #0180CC !default;             // 藍
+$warning:               #FABE01 !default;             // 黃
+$error:                 #E60112 !default;             // 紅
+
+
+// == basic
+// ----------------------------------------------------------------------
+// <body> 背景 & 文字色
+$body-bg:               #fff !default;
+$text-color:            #323232 !default;
+
+$link-color:            $brand-secondary !default;             // 文字鏈結色
+$link-hover-color:      darken($link-color, 15%) !default;     // 滑鼠移過色
+
+// layout
+$columns:               12 !default;         // grid 預設格數
+$gutter:                20px !default;       // grid 間距
+$min-width:             1007px !default;     // 網頁最小尺寸
+$max-width:             1440px !default;     // 網頁最寬尺寸: .wrap
+
+
+// == font
+// ----------------------------------------------------------------------
+// 微軟正黑體
+$font-family-base:      'Microsoft Jhenghei', \5FAE\8EDF\6B63\9ED1\9AD4, Georgia, Arial, sans-serif !default;
+
+$font-size-base:        16px !default;
+$font-size-lg:          $font-size-base * 1.25 !default;     // 20px
+$font-size-sm:          $font-size-base * 0.85 !default;     // 13px
+
+$line-height-base:      1.25 !default;                                // 20px/16px
+$line-height-computed:  $font-size-base * $line-height-base; // 20px 用在 margin, padding, etc.
+
+$heading: (
+    h1:                 $font-size-base * 2.25,
+    h2:                 $font-size-base * 1.875,
+    h3:                 $font-size-base * 1.5,
+    h4:                 $font-size-base * 1.125,
+    h5:                 $font-size-base,
+    h6:                 $font-size-base * 0.875,
+
+    font-family:        inherit,
+    font-weight:        600,
+    line-height:        1.1,
+
+    color:              #254202,
+    small-color:        lighten($brand-primary, 21),
+);
+
+
+// == Components
+// ----------------------------------------------------------------------
+// 情境狀態
+$state-type: (
+    primary:            $brand-primary,
+    muted:              $gray-light,
+    success:            $success,
+    info:               $info,
+    warn:               $warning,
+    error:              $error
+);
+
+// 垂直v 水平h
+$padding-base:          2px 4px;
+$padding-large:         5px 10px;
+$padding-small:         1px 3px;
+
+// large small
+$line-height:           1.3333333 1.5;
+
+// base large small
+$border-radius:         5px 15px 3px;
+
+// text bg
+$common-active:         #fff $brand-primary;
+$caret-width:           4px 5px;
+
+
+// 配色
+// 三顏色值分別為: 本文色 背景色 邊框色
+$color: (
+    table: (
+        bg:              transparent,
+        bg-accent:       #f9f9f9,
+        bg-hover:        #f5f5f5,
+        bg-active:       #f5f5f5,
+        border:          #F29B1A,
+    ),
+
+    input: (
+        bg:              #fff,
+        bg-disabled:     $gray-lighter,
+        color:           $gray,
+        border:          #ccc,
+        border-focus:    #66afe9,
+        placeholder:     #999,
+        addon-bg:        $gray-lighter,
+        addon-border:    #ccc
+    ),
+    legend: (
+        color:           $gray-dark,
+        border:          #e5e5e5
+    ),
+    dropdown: (
+        bg:              #fff,
+        border:          rgba(0,0,0,.15),
+        fallback-border: #ccc,
+        divider-bg:      #e5e5e5,
+        link: (
+            color:       $gray-dark,
+            hover:       darken($gray-dark, 5%),
+            hover-bg:    #f5f5f5,
+            active:      nth($common-active,1),
+            active-bg:   nth($common-active,2),
+            disabled:    $gray-light
+        ),
+        header:          $gray-light,
+        caret:           #000
+    )
+);
+
+
+// == Tables
+// ----------------------------------------------------------------------
+// cell condensed(緊縮表格)
+$table-padding: 12px 15px;
+
+
+//== Forms
+// ----------------------------------------------------------------------
+// base large small
+$input-radius: nth($border-radius,1) nth($border-radius,2) nth($border-radius,3);
+$input-height: ($line-height-computed + (nth($padding-base,1) * 2)) (ceil($font-size-lg * nth($line-height,1)) + (nth($padding-large,1) * 2)) (floor($font-size-sm * nth($line-height,2)) + (nth($padding-small,1) * 2));
+
+$form-group-margin-bottom: 10px; // '.form-group' 邊距
+
+$cursor-disabled: not-allowed; // 表單元素(停用)上的滑鼠樣式
+
+
+// == media RWD
+// ----------------------------------------------------------------------
+$medias: (
+    xs:                 (max-width: 480px),    // phone
+    sm:                 (max-width: 768px),    // tablet
+    md:                 (min-width: 992px),    // desktop
+    lg:                 (min-width: 1220px),   // wide desktop
+    sm-min:             (min-width: 767px),
+    md-max-tablet:      (max-width: 960px),
+    md-max-pc:          (max-width: 1024px)
+);
+
+
+// == z-index
+// ----------------------------------------------------------------------
+$z-index: (
+    header:     1,
+    main:       2,
+    footer:     3,
+    banner:     1,
+    logo:       50,
+    menu:       60,
+    goTop:      70,
+    dropdown:   80,
+    tooltip:    90,
+    modal:      1000,
+    overlay:    1001
+);

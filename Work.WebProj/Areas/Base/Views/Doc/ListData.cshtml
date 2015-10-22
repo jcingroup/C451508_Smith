@@ -1,0 +1,98 @@
+﻿@model  IEnumerable<DotWeb.DocInfo>
+
+@using DotWeb;
+@section IncludeScript{
+    @Html.Partial("Manage/includeScript_Comm")
+    <style>
+        h3
+        {
+            padding: 4px 2px;
+            text-align: left;
+        }
+
+        ul
+        {
+            overflow: hidden;
+        }
+
+        li.ui-state-default
+        {
+            float: left;
+            width: 86px;
+            margin-right: -1px;
+            padding: 5px;
+            font-size: .9em;
+        }
+
+        li.title
+        {
+            width: 250px;
+        }
+
+        li.description
+        {
+            width: 390px;
+        }
+
+        dl
+        {
+            margin-top: -1px;
+            padding-bottom: 50px;
+            border: 1px solid #A5CEE7;
+            border-radius: 0 0 5px 5px;
+            clear: both;
+            overflow: hidden;
+        }
+
+        dt
+        {
+            float: left;
+            width: 357px;
+            height: 28px;
+            margin: -1px 5px 0 -1px;
+            text-align: left;
+            line-height: 28px;
+            border: 1px solid #A5CEE7;
+            clear: both;
+        }
+
+            dt em
+            {
+                display: inline-block;
+                width: 86px;
+                margin-right: 5px;
+                padding: 0 5px;
+                text-align: center;
+                border-right: 1px solid #A5CEE7;
+            }
+
+        dd
+        {
+            height: 28px;
+            margin: -1px -1px 0 0;
+            padding: 0 5px;
+            text-align: left;
+            line-height: 28px;
+            border: 1px solid #A5CEE7;
+            border-left: 0;
+        }
+    </style>
+}
+@section menu{
+    @Html.Raw(Session["MenuHtmlString"].ToString())
+}
+
+<h3 class="ui-widget-header ui-corner-top">@Html.Lang("t1")</h3>
+<ul>
+    <li class="ui-state-default">@Html.Lang("t2")</li>
+    <li class="ui-state-default title">@Html.Lang("t3")</li>
+    <li class="ui-state-default description">@Html.Lang("t4")</li>
+</ul>
+
+<dl>
+    @foreach (DocInfo doc in Model)
+    { 
+        <dt><em>@doc.Sort</em><a href="@doc.Link" target="new">@doc.Name</a></dt>
+        <dd>@doc.Momo</dd>
+    }
+</dl>

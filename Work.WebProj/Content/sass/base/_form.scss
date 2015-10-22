@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+//
+// Forms
+// --------------------------------------------------
+
+// Normalize non-controls
+legend {
+    display: block;
+    width: 100%;
+    margin-bottom: $line-height-computed;
+    font-size: em($font-size-base * 1.5);
+    line-height: inherit;
+    color: color('legend', 'color');
+    border-bottom: 1px solid color('legend', 'border');
+}
+
+label {
+    display: inline-block;
+    max-width: 100%; // 強制 IE8 能容納長元素
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+// Normalize form controls
+#{text-inputs(search)} {
+    box-sizing: border-box;
+}
+
+#{text-inputs(radio checkbox)} {
+    margin: 4px 0 0;
+    margin-top: 1px \9; // IE8-9
+    line-height: normal;
+}
+
+#{text-inputs(file range)} {
+    display: block;
+}
+
+#{text-inputs(range)} {
+    width: 100%;
+}
+
+#{text-inputs(file radio checkbox)} {
+    &:focus {
+        @include tab-focus;
+    }
+}
+
+select[multiple],
+select[size] {
+    height: auto;
+}
+
+
+// 調整輸出元素
+output {
+    display: block;
+    padding-top: (nth($padding-base,1) + 1);
+    font-size: em($font-size-base);
+    line-height: $line-height-base;
+    color: color('input', 'color');
+}
+
+.form-element {
+    display: block;
+    width: 100%;
+    height: nth($input-height,1); // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+    padding: nth($padding-base,1) nth($padding-base,2);
+    color: color('input', 'color');
+    background-color: color('input', 'bg');
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid color('input', 'border-color');
+    border-radius: nth($input-radius,1); // Note: This has no effect on <select>s in some browsers, due to the limited stylability of <select>s in CSS.
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
+    @include placeholder;
+
+    @include form-control-focus;
+
+    &[disabled],
+    &[readonly],
+    fieldset[disabled] & {
+        background-color: color('input', 'bg')-disabled;
+        opacity: 1; // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655
+    }
+
+    &[disabled],
+    fieldset[disabled] & {
+        cursor: $cursor-disabled;
+    }
+}
+
+input:not([type]), #{text-inputs(all)} {
+    @extend .form-element;
+}
+
+// iOS 的時間欄位垂直對齊 - safari
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    #{text-inputs(date time datetime-local month)} {
+        line-height: nth($input-height,1);
+
+        &.input-sm,
+        .input-group-sm & {
+            line-height: nth($input-height,3);
+        }
+
+        &.input-lg,
+        .input-group-lg & {
+            line-height: nth($input-height,2);
+        }
+    }
+}
+
+// Checkboxes and radios
+
+
+// 禁用元素的滑鼠樣式(含label)
+*[disabled],
+.disabled {
+    cursor: $cursor-disabled;
+}

@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+// table情景色設定
+
+@mixin table-row-variant($state, $background) {
+    .table {
+        .#{$state},
+        .#{$state} td,
+        .#{$state} th {
+            background-color: $background;
+        }
+    }
+
+    .table-hover {
+        .#{$state}:hover,
+        .#{$state}:hover td,
+        .#{$state}:hover th,
+        tr:hover .#{$state} {
+            background-color: darken($background, 5%);
+        }
+    }
+}

@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/Manage/RLayout.cshtml";
+}
+@section breadCrumb {
+    <li><a href="~/Active/Product/ProductRecord"><i class="fa-list-alt"></i> @ViewBag.MenuName</a></li>
+    <li>@ViewBag.Caption</li>
+}
+@section IncludeCSS{
+    <link rel="stylesheet" href="~/Content/css/bootstrap-datetimepicker-build.css" />
+}
+@section IncludeScript{
+    @Html.Partial("Manage/JSGlobalVar")
+    <script>
+        var gb_menuname = '@ViewBag.MenuName';
+        var gb_caption = '@ViewBag.Caption';
+    </script>
+    <script src="~/Scripts/build/commincx.js"></script>
+    <script src="~/Scripts/app/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/build/func/m-sales.js"></script>
+}
+@section sidebar{
+    @Html.Partial("Manage/vucMenu")
+}

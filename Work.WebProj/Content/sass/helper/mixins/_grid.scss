@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+// Grid system
+// -----------------------------------------------------------------
+//
+// Row
+@mixin row($inside) {
+    @extend .clearfix;
+
+    @if($inside == true) {
+        margin-left: -$gutter/2;
+        margin-right: -$gutter/2;
+    }
+    @else {
+        width: 100%;
+        max-width: $max-width;
+        margin: 0 auto;
+    }
+}
+// Column
+@mixin col($width: 1, $padding: true) {
+    float: left;
+    width: percentage($width);
+    @if($padding == true) {
+        padding-left: $gutter/2;
+        padding-right: $gutter/2;
+    }
+}
+@mixin push($width: 0) {
+    position: relative;
+    left: percentage($width);
+}
+@mixin pull($width: 0) {
+    position: relative;
+    right: percentage($width);
+}
+
+@mixin make-col($class) {
+    @for $i from 1 through $columns {
+        @if($class == false) {
+            .col-#{$i} { width: percentage($i / $columns); }
+        }
+        @else {
+            .col-#{$class}-#{$i} { width: percentage($i / $columns); }
+        }
+    }
+}

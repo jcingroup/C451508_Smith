@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/Manage/RLayout.cshtml";
+}
+@section IncludeCSS{
+
+}
+@section IncludeScript{
+    @Html.Partial("Manage/JSGlobalVar")
+    <script>
+        var a = '@Html.Lang("customer_name")';
+    </script>
+    <script src="~/Scripts/build/comminc.js"></script>
+    <script src="~/Scripts/build/func/m-Users.js"></script>
+    <script>
+        var getRootDOM = document.getElementById('content');
+        var rootParm = { MenuName: '@ViewBag.MenuName', Caption: '@ViewBag.Caption' };
+        var compObject = React.render(React.createElement(GirdForm, rootParm), getRootDOM);
+    </script>
+}
+@section sidebar{
+    @Html.Partial("Manage/vucMenu")
+}

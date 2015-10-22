@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+// gradient
+// -----------------------------------------------------------------
+//
+@mixin linear-gradient($deg, $color-stops...) {
+    // Direction has been omitted and happens to be a color-stop
+    @if is-direction($deg) == false {
+        $color-stops: $deg, $color-stops;
+        $deg: 180deg;
+    }
+    background: nth(nth($color-stops, 1), 1);
+    background: -webkit-linear-gradient(legacy-direction($deg), $color-stops);
+    background: linear-gradient($deg, $color-stops);
+}
+
+@mixin radial-gradient($deg, $colors...) {
+    @if is-direction($deg) == false {
+        $colors: $deg, $colors;
+        $deg: center;
+    }
+    background: nth(nth($colors, 1), 1);
+    background: -webkit-radial-gradient($deg, $colors);
+    background: -o-radial-gradient($deg, $colors);
+    background: -ms-radial-gradient($deg, $colors);
+    background: radial-gradient($deg, $colors);
+}

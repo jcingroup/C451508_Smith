@@ -1,0 +1,89 @@
+﻿@{
+    var LastLoginDateTime = Request.Cookies[CommWebSetup.Cookie_LastLogin];
+    LastLoginDateTime = new HttpCookie(CommWebSetup.Cookie_LastLogin, DateTime.Now.ToString());
+
+    var Cookie_UserName = Request.Cookies[CommWebSetup.Cookie_UserName];
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@Resources.Res.System_Name:@ViewBag.Title</title>
+    <link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap/css/page.css" rel="stylesheet" />
+    <link href="~/Content/css/toastr.css" rel="stylesheet" />
+    @RenderSection("css", false)
+</head>
+<body class="@ViewBag.BodyClass">
+    <div id="container">
+        @* 登錄頁面不需下面標頭 *@
+        @if (ViewBag.BodyClass != "Login")
+        {
+            <div id="header" class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        @if (ViewBag.BodyClass == "Menu")
+                        {
+                            <h4 class="navbar-brand">@Resources.Res.System_Name :: @ViewBag.Caption</h4>
+                        }
+                        else if (ViewBag.BodyClass == "Visit_content")
+                        {
+                            @* 拜訪中或是檢視中都不可以回主選單 *@
+                            <div class="navbar-brand">
+                                <ul class="list-inline">
+                                    <li class="menu-btn"><span class="btn btn-primary btn-lg" disabled><i class="glyphicon glyphicon-home"></i> 回主選單</span></li>
+                                    <li><h4>@Resources.Res.System_Name :: @ViewBag.Caption</h4></li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="navbar-brand">
+                                <ul class="list-inline">
+                                    <li class="menu-btn"><a href="~/Active/Tablet/Menu" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-home"></i> 回主選單</a></li>
+                                    <li><h4>@Resources.Res.System_Name :: @ViewBag.Caption</h4></li>
+                                </ul>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                已登入為 <strong class="user text-danger">
+                                    @Cookie_UserName.Value
+                                </strong>
+                                @if (ViewBag.BodyClass == "Visit_content")
+                                {
+                                    <button type="button"
+                                            class="btn btn-default btn-lg"
+                                            disabled>
+                                        登出
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="button"
+                                            class="btn btn-default btn-lg"
+                                            onclick="document.location.href = gb_approot + 'Login/Logout'">
+                                        登出
+                                    </button>
+                                }
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+        <div id="main" class="container">
+            @RenderBody()
+        </div><!-- main //-->
+    </div><!-- container //-->
+    <script>
+        var gb_approot = '@Url.Content("~")';
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
