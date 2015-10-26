@@ -1,6 +1,7 @@
-﻿    interface RowProduct {
+﻿namespace Product {
+    interface Rows {
         check_del: boolean,
-        product_id: number;
+        product_no: string;
         product_type: number;
         product_name: string;
         price: number;
@@ -9,8 +10,18 @@
         memo: string;
         kvalue: number;
     }
+    interface ProductCategory {
+        product_category_id: number
+        category_name: string
+    }
+    interface ComponentState<G, F> extends BaseDefine.GirdFormStateBase<G, F> {
+        category_option?: Array<ProductCategory>
+    }
+    interface CallResult extends IResultBase {
+        product_no: string
+    }
 
-    class GridRow extends React.Component<BaseDefine.GridRowPropsBase<RowProduct>, BaseDefine.GridRowStateBase> {
+    class GridRow extends React.Component<BaseDefine.GridRowPropsBase<Rows>, BaseDefine.GridRowStateBase> {
         constructor() {
             super();
             this.delCheck = this.delCheck.bind(this);
@@ -35,25 +46,14 @@
                     <td className="text-center">
                         <GridButtonModify modify={this.modify}/>
                         </td>
+                    <td>{this.props.itemData.product_no}</td>
                     <td>{this.props.itemData.product_name}</td>
                     <td>{this.props.itemData.price}</td>
                     <td>{this.props.itemData.kvalue}</td>
                 </tr>;
         }
     }
-
-    interface ProductCategory {
-        product_category_id: number
-        category_name: string
-    }
-    interface ProductState<G, F> extends BaseDefine.GirdFormStateBase<G, F> {
-        category_option?: Array<ProductCategory>
-    }
-    interface ProductResult extends IResultBase {
-        product_id:number
-    }
-
-    class GirdForm extends React.Component<BaseDefine.GridFormPropsBase, ProductState<RowProduct, server.Product>>{
+    export class GirdForm extends React.Component<BaseDefine.GridFormPropsBase, ComponentState<Rows, server.Product>>{
 
         constructor() {
 
@@ -73,7 +73,7 @@
         static defaultProps: BaseDefine.GridFormPropsBase = {
             fdName: 'fieldData',
             gdName: 'searchData',
-            apiPathName: gb_approot + 'api/Product'
+            apiPath: gb_approot + 'api/Product'
         }
         componentDidMount() {
 
@@ -104,7 +104,7 @@
 
             $.extend(parms, this.state.searchData);
 
-            return jqGet(this.props.apiPathName, parms);
+            return jqGet(this.props.apiPath, parms);
         }
         queryGridData(page: number) {
             this.gridData(page)
@@ -119,29 +119,29 @@
 
             e.preventDefault();
             if (this.state.edit_type == 1) {
-                jqPost(this.props.apiPathName, this.state.fieldData)
-                    .done((data: ProductResult, textStatus, jqXHRdata)=> {
+                jqPost(this.props.apiPath, this.state.fieldData)
+                    .done((data: CallResult, textStatus, jqXHRdata) => {
                         if (data.result) {
                             tosMessage(null, '新增完成', 1);
-                            this.updateType(data.product_id);
+                            this.updateType(data.product_no);
                         } else {
                             alert(data.message);
                         }
                     })
-                    .fail((jqXHR, textStatus, errorThrown)=> {
+                    .fail((jqXHR, textStatus, errorThrown) => {
                         showAjaxError(errorThrown);
                     });
             }
             else if (this.state.edit_type == 2) {
-                jqPut(this.props.apiPathName, this.state.fieldData)
-                    .done((data, textStatus, jqXHRdata)=> {
+                jqPut(this.props.apiPath, this.state.fieldData)
+                    .done((data, textStatus, jqXHRdata) => {
                         if (data.result) {
                             tosMessage(null, '修改完成', 1);
                         } else {
                             alert(data.message);
                         }
                     })
-                    .fail((jqXHR, textStatus, errorThrown)=> {
+                    .fail((jqXHR, textStatus, errorThrown) => {
                         showAjaxError(errorThrown);
                     });
             };
@@ -156,7 +156,7 @@
             var ids = [];
             for (var i in this.state.gridData.rows) {
                 if (this.state.gridData.rows[i].check_del) {
-                    ids.push('ids=' + this.state.gridData.rows[i].product_id);
+                    ids.push('ids=' + this.state.gridData.rows[i].product_no);
                 }
             }
 
@@ -165,7 +165,7 @@
                 return;
             }
 
-            jqDelete(this.props.apiPathName + '?' + ids.join('&'), {})
+            jqDelete(this.props.apiPath + '?' + ids.join('&'), {})
                 .done(function (data, textStatus, jqXHRdata) {
                     if (data.result) {
                         tosMessage(null, '刪除完成', 1);
@@ -198,15 +198,15 @@
             this.setState(newState);
         }
         insertType() {
-            this.setState({ edit_type: 1, fieldData: { product_id: 0,product_category_id:1}});
+            this.setState({ edit_type: 1, fieldData: { product_no: '', product_category_id: 1 } });
         }
         updateType(id: number | string) {
 
-            jqGet(this.props.apiPathName, { id: id })
-                .done((data, textStatus, jqXHRdata)=> {
+            jqGet(this.props.apiPath, { no: id })
+                .done((data, textStatus, jqXHRdata) => {
                     this.setState({ edit_type: 2, fieldData: data.data });
                 })
-                .fail((jqXHR, textStatus, errorThrown)=> {
+                .fail((jqXHR, textStatus, errorThrown) => {
                     showAjaxError(errorThrown);
                 });
         }
@@ -280,8 +280,9 @@
                                 </label>
                             </th>
                         <th className="col-xs-1 text-center">修改</th>
+                        <th className="col-xs-2">品號</th>
                         <th className="col-xs-4">品名</th>
-                        <th className="col-xs-4">單價</th>
+                        <th className="col-xs-2">單價</th>
                         <th className="col-xs-3">KV</th>
                         </tr>
                     </thead>
@@ -291,7 +292,7 @@
                         (itemData, i) =>
                             <GridRow key={i}
                                 ikey={i}
-                                primKey={itemData.product_id}
+                                primKey={itemData.product_no}
                                 itemData={itemData}
                                 delCheck={this.delCheck}
                                 updateType={this.updateType} />
@@ -328,6 +329,21 @@
                 <p><strong className="text-danger">紅色標題</strong> 為必填欄位。</p>
                 </div>
 
+
+            <div className="form-group">
+                <label className="col-xs-1 control-label text-danger">品號</label>
+                <div className="col-xs-5">
+                    <input type="text"
+                        className="form-control"
+                        onChange={this.changeFDValue.bind(this, 'product_no') }
+                        value={fieldData.product_no}
+                        maxLength={256}
+                        disabled={this.state.edit_type == 2}
+                        required />
+                    </div>
+                </div>
+
+
             <div className="form-group">
                 <label className="col-xs-1 control-label text-danger">品名</label>
                 <div className="col-xs-5">
@@ -351,8 +367,11 @@
                     </div>
                 </div>
 
+
+
+
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">KV</label>
+                <label className="col-xs-1 control-label text-danger">KV</label>
                 <div className="col-xs-6">
                     <input type="number"
                         className="form-control"
@@ -363,7 +382,7 @@
                 </div>
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">產品分類</label>
+                <label className="col-xs-1 control-label text-danger">產品分類</label>
                 <div className="col-xs-6">
                     <select className="form-control"
                         value={fieldData.product_category_id}
@@ -378,7 +397,7 @@
                 </div>
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">規格</label>
+                <label className="col-xs-1 control-label text-danger">規格</label>
                 <div className="col-xs-6">
                     <textarea className="form-control"
                         onChange={this.changeFDValue.bind(this, 'standard') }
@@ -401,6 +420,6 @@
             return outHtml;
         }
     }
-
-    var dom = document.getElementById('page_content');
-    React.render(<GirdForm caption={gb_caption} menuName={gb_menuname} iconClass="fa-list-alt" />, dom);
+}
+var dom = document.getElementById('page_content');
+React.render(<Product.GirdForm caption={gb_caption} menuName={gb_menuname} iconClass="fa-list-alt" />, dom);

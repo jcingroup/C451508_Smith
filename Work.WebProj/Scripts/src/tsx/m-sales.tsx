@@ -1,29 +1,41 @@
-﻿interface RowSales {
-    check_del: boolean,
-    sales_id: number;
-    sales_no: string;
-    sales_name: string;
-    join_date: Date;
-    sales_state: number;
-}
+﻿namespace Sales {
 
-class GridRowSales extends React.Component<BaseDefine.GridRowPropsBase<RowSales>, BaseDefine.GridRowStateBase> {
-    constructor() {
-        super();
-        this.delCheck = this.delCheck.bind(this);
-        this.modify = this.modify.bind(this);
+    interface Rows {
+        check_del: boolean,
+        sales_id: number;
+        sales_no: string;
+        sales_name: string;
+        join_date: Date;
+        sales_state: number;
     }
-    static defaultProps = {
+    interface FormState<G, F> extends BaseDefine.GirdFormStateBase<G, F> {
+        isShowModalSales?: boolean;
+        ModalDataSales?: {
+            search?: { keyword: string }
+            queryItems?: Array<{ sales_id: number, sales_no: string, sales_name: string }>;
+        }
     }
-    delCheck(i, chd) {
-        this.props.delCheck(i, chd);
-    }
-    modify() {
-        this.props.updateType(this.props.primKey)
+    interface FormResult extends IResultBase {
+        sales_id: number
     }
 
-    render() {
-        return <tr>
+    class GridRow extends React.Component<BaseDefine.GridRowPropsBase<Rows>, BaseDefine.GridRowStateBase> {
+        constructor() {
+            super();
+            this.delCheck = this.delCheck.bind(this);
+            this.modify = this.modify.bind(this);
+        }
+        static defaultProps = {
+        }
+        delCheck(i, chd) {
+            this.props.delCheck(i, chd);
+        }
+        modify() {
+            this.props.updateType(this.props.primKey)
+        }
+
+        render() {
+            return <tr>
                     <td className="text-center">
                          <GridCheckDel iKey={this.props.ikey}
                              chd={this.props.itemData.check_del}
@@ -36,258 +48,252 @@ class GridRowSales extends React.Component<BaseDefine.GridRowPropsBase<RowSales>
                     <td>{this.props.itemData.sales_name}</td>
                     <td>{moment(this.props.itemData.join_date).format(dt.dateFT) }</td>
                     <td>{this.props.itemData.sales_state}</td>
-            </tr>;
-    }
-}
-
-interface SalesState<G, F> extends BaseDefine.GirdFormStateBase<G, F> {
-    isShowModalSales?: boolean;
-    ModalDataSales?: {
-        search?: { keyword: string }
-        queryItems?: Array<{ sales_id: number, sales_no: string, sales_name: string }>;
-    }
-}
-interface SalesResult extends IResultBase {
-    sales_id: number
-}
-
-class GirdFormSales extends React.Component<BaseDefine.GridFormPropsBase, SalesState<RowSales, server.Sales>>{
-
-    constructor() {
-
-        super();
-        this.updateType = this.updateType.bind(this);
-        this.noneType = this.noneType.bind(this);
-        this.queryGridData = this.queryGridData.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.deleteSubmit = this.deleteSubmit.bind(this);
-        this.delCheck = this.delCheck.bind(this);
-        this.checkAll = this.checkAll.bind(this);
-        this.componentDidMount = this.componentDidMount.bind(this);
-        this.insertType = this.insertType.bind(this);
-        this.changeGDValue = this.changeGDValue.bind(this);
-        this.changeFDValue = this.changeFDValue.bind(this);
-        this.setInputValue = this.setInputValue.bind(this);
-        this.closeModalSales = this.closeModalSales.bind(this);
-        this.openModalSales = this.openModalSales.bind(this);
-        this.queryModalSales = this.queryModalSales.bind(this);
-        this.setModalSalesKeyword = this.setModalSalesKeyword.bind(this);
-        this.render = this.render.bind(this);
-
-        this.state = {
-            fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0,
-            isShowModalSales: false,
-            ModalDataSales: { queryItems: [], search: { keyword: null } }
+                </tr>;
         }
-
     }
-    static defaultProps: BaseDefine.GridFormPropsBase = {
-        fdName: 'fieldData',
-        gdName: 'searchData',
-        apiPathName: gb_approot + 'api/Sales'
-    }
-    componentDidMount() {
-        this.queryGridData(1);
-    }
-
-    gridData(page: number) {
-
-        var parms = {
-            page: 0
-        };
-
-        if (page == 0) {
-            parms.page = this.state.gridData.page;
-        } else {
-            parms.page = page;
+    class QueryForm extends React.Component<any, any>{
+        render() {
+            return <div></div>
         }
-
-        $.extend(parms, this.state.searchData);
-
-        return jqGet(this.props.apiPathName, parms);
     }
-    queryGridData(page: number) {
-        this.gridData(page)
-            .done(function (data, textStatus, jqXHRdata) {
-                this.setState({ gridData: data });
-            }.bind(this))
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                showAjaxError(errorThrown);
-            });
-    }
-    handleSubmit(e: React.FormEvent) {
 
-        e.preventDefault();
-        if (this.state.edit_type == 1) {
-            jqPost(this.props.apiPathName, this.state.fieldData)
-                .done((data: ProductResult, textStatus, jqXHRdata) => {
-                    if (data.result) {
-                        tosMessage(null, '新增完成', 1);
-                        this.updateType(data.product_id);
-                    } else {
-                        alert(data.message);
-                    }
-                })
-                .fail((jqXHR, textStatus, errorThrown) => {
-                    showAjaxError(errorThrown);
-                });
-        }
-        else if (this.state.edit_type == 2) {
-            jqPut(this.props.apiPathName, this.state.fieldData)
-                .done((data, textStatus, jqXHRdata) => {
-                    if (data.result) {
-                        tosMessage(null, '修改完成', 1);
-                    } else {
-                        alert(data.message);
-                    }
-                })
-                .fail((jqXHR, textStatus, errorThrown) => {
-                    showAjaxError(errorThrown);
-                });
-        };
-        return;
-    }
-    deleteSubmit() {
+    export class GridForm extends React.Component<BaseDefine.GridFormPropsBase, FormState<Rows, server.Sales>>{
 
-        if (!confirm('確定是否刪除?')) {
-            return;
-        }
+        constructor() {
 
-        var ids = [];
-        for (var i in this.state.gridData.rows) {
-            if (this.state.gridData.rows[i].check_del) {
-                ids.push('ids=' + this.state.gridData.rows[i].sales_id);
+            super();
+            this.updateType = this.updateType.bind(this);
+            this.noneType = this.noneType.bind(this);
+            this.queryGridData = this.queryGridData.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+            this.deleteSubmit = this.deleteSubmit.bind(this);
+            this.delCheck = this.delCheck.bind(this);
+            this.checkAll = this.checkAll.bind(this);
+            this.componentDidMount = this.componentDidMount.bind(this);
+            this.insertType = this.insertType.bind(this);
+            this.changeGDValue = this.changeGDValue.bind(this);
+            this.changeFDValue = this.changeFDValue.bind(this);
+            this.setInputValue = this.setInputValue.bind(this);
+            this.closeModalSales = this.closeModalSales.bind(this);
+            this.openModalSales = this.openModalSales.bind(this);
+            this.queryModalSales = this.queryModalSales.bind(this);
+            this.setModalSalesKeyword = this.setModalSalesKeyword.bind(this);
+            this.render = this.render.bind(this);
+
+            this.state = {
+                fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0,
+                isShowModalSales: false,
+                ModalDataSales: { queryItems: [], search: { keyword: null } }
             }
+
+        }
+        static defaultProps: BaseDefine.GridFormPropsBase = {
+            fdName: 'fieldData',
+            gdName: 'searchData',
+            apiPath: gb_approot + 'api/Sales'
+        }
+        componentDidMount() {
+            this.queryGridData(1);
         }
 
-        if (ids.length == 0) {
-            tosMessage(null, '未選擇刪除項', 2);
+        gridData(page: number) {
+
+            var parms = {
+                page: 0
+            };
+
+            if (page == 0) {
+                parms.page = this.state.gridData.page;
+            } else {
+                parms.page = page;
+            }
+
+            $.extend(parms, this.state.searchData);
+
+            return jqGet(this.props.apiPath, parms);
+        }
+        queryGridData(page: number) {
+            this.gridData(page)
+                .done(function (data, textStatus, jqXHRdata) {
+                    this.setState({ gridData: data });
+                }.bind(this))
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    showAjaxError(errorThrown);
+                });
+        }
+        handleSubmit(e: React.FormEvent) {
+
+            e.preventDefault();
+            if (this.state.edit_type == 1) {
+                jqPost(this.props.apiPath, this.state.fieldData)
+                    .done((data: FormResult, textStatus, jqXHRdata) => {
+                        if (data.result) {
+                            tosMessage(null, '新增完成', 1);
+                            this.updateType(data.sales_id);
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .fail((jqXHR, textStatus, errorThrown) => {
+                        showAjaxError(errorThrown);
+                    });
+            }
+            else if (this.state.edit_type == 2) {
+                jqPut(this.props.apiPath, this.state.fieldData)
+                    .done((data, textStatus, jqXHRdata) => {
+                        if (data.result) {
+                            tosMessage(null, '修改完成', 1);
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .fail((jqXHR, textStatus, errorThrown) => {
+                        showAjaxError(errorThrown);
+                    });
+            };
             return;
         }
+        deleteSubmit() {
 
-        jqDelete(this.props.apiPathName + '?' + ids.join('&'), {})
-            .done(function (data, textStatus, jqXHRdata) {
-                if (data.result) {
-                    tosMessage(null, '刪除完成', 1);
-                    this.queryGridData(0);
-                } else {
-                    alert(data.message);
+            if (!confirm('確定是否刪除?')) {
+                return;
+            }
+
+            var ids = [];
+            for (var i in this.state.gridData.rows) {
+                if (this.state.gridData.rows[i].check_del) {
+                    ids.push('ids=' + this.state.gridData.rows[i].sales_id);
                 }
-            }.bind(this))
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                showAjaxError(errorThrown);
-            });
-    }
-    handleSearch(e: React.FormEvent) {
-        e.preventDefault();
-        this.queryGridData(0);
-        return;
-    }
-    delCheck(i: number, chd: boolean) {
-        let newState = this.state;
-        this.state.gridData.rows[i].check_del = !chd;
-        this.setState(newState);
-    }
-    checkAll() {
+            }
 
-        let newState = this.state;
-        newState.checkAll = !newState.checkAll;
-        for (var prop in this.state.gridData.rows) {
-            this.state.gridData.rows[prop].check_del = newState.checkAll;
+            if (ids.length == 0) {
+                tosMessage(null, '未選擇刪除項', 2);
+                return;
+            }
+
+            jqDelete(this.props.apiPath + '?' + ids.join('&'), {})
+                .done(function (data, textStatus, jqXHRdata) {
+                    if (data.result) {
+                        tosMessage(null, '刪除完成', 1);
+                        this.queryGridData(0);
+                    } else {
+                        alert(data.message);
+                    }
+                }.bind(this))
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    showAjaxError(errorThrown);
+                });
         }
-        this.setState(newState);
-    }
-    insertType() {
-        this.setState({ edit_type: 1, fieldData: { sales_id: 0 } });
-    }
-    updateType(id: number | string) {
-
-        jqGet(this.props.apiPathName, { id: id })
-            .done((data, textStatus, jqXHRdata) => {
-                this.setState({ edit_type: 2, fieldData: data.data });
-            })
-            .fail((jqXHR, textStatus, errorThrown) => {
-                showAjaxError(errorThrown);
-            });
-    }
-    noneType() {
-        this.gridData(0)
-            .done(function (data, textStatus, jqXHRdata) {
-                this.setState({ edit_type: 0, gridData: data });
-            }.bind(this))
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                showAjaxError(errorThrown);
-            });
-    }
-
-    changeFDValue(name: string, e: React.SyntheticEvent) {
-        this.setInputValue(this.props.fdName, name, e);
-    }
-    changeGDValue(name: string, e: React.SyntheticEvent) {
-        this.setInputValue(this.props.gdName, name, e);
-    }
-    setInputValue(collentName: string, name: string, e: React.SyntheticEvent) {
-        let input: HTMLInputElement = e.target as HTMLInputElement;
-        let obj = this.state[collentName];
-
-        if (input.value == 'true') {
-            obj[name] = true;
-        } else if (input.value == 'false') {
-            obj[name] = false;
-        } else {
-            obj[name] = input.value;
+        handleSearch(e: React.FormEvent) {
+            e.preventDefault();
+            this.queryGridData(0);
+            return;
         }
-        this.setState({ fieldData: obj });
-    }
+        delCheck(i: number, chd: boolean) {
+            let newState = this.state;
+            this.state.gridData.rows[i].check_del = !chd;
+            this.setState(newState);
+        }
+        checkAll() {
 
-    openModalSales() {
-        this.setState({ isShowModalSales: true });
-    }
-    closeModalSales() {
-        this.setState({ isShowModalSales: false });
-    }
-    queryModalSales() {
-        jqGet(gb_approot + 'api/GetAction/GetModalQuerySales', { keyword: this.state.ModalDataSales.search.keyword })
-            .done((data, textStatus, jqXHRdata) => {
+            let newState = this.state;
+            newState.checkAll = !newState.checkAll;
+            for (var prop in this.state.gridData.rows) {
+                this.state.gridData.rows[prop].check_del = newState.checkAll;
+            }
+            this.setState(newState);
+        }
+        insertType() {
+            this.setState({ edit_type: 1, fieldData: { sales_id: 0 } });
+        }
+        updateType(id: number | string) {
 
-                var getObj = this.state.ModalDataSales;
-                getObj.queryItems = data;
-                this.setState({ ModalDataSales: getObj });
-            })
-            .fail((jqXHR, textStatus, errorThrown) => {
-                showAjaxError(errorThrown);
+            jqGet(this.props.apiPath, { id: id })
+                .done((data, textStatus, jqXHRdata) => {
+                    this.setState({ edit_type: 2, fieldData: data.data });
+                })
+                .fail((jqXHR, textStatus, errorThrown) => {
+                    showAjaxError(errorThrown);
+                });
+        }
+        noneType() {
+            this.gridData(0)
+                .done(function (data, textStatus, jqXHRdata) {
+                    this.setState({ edit_type: 0, gridData: data });
+                }.bind(this))
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    showAjaxError(errorThrown);
+                });
+        }
+
+        changeFDValue(name: string, e: React.SyntheticEvent) {
+            this.setInputValue(this.props.fdName, name, e);
+        }
+        changeGDValue(name: string, e: React.SyntheticEvent) {
+            this.setInputValue(this.props.gdName, name, e);
+        }
+        setInputValue(collentName: string, name: string, e: React.SyntheticEvent) {
+            let input: HTMLInputElement = e.target as HTMLInputElement;
+            let obj = this.state[collentName];
+
+            if (input.value == 'true') {
+                obj[name] = true;
+            } else if (input.value == 'false') {
+                obj[name] = false;
+            } else {
+                obj[name] = input.value;
+            }
+            this.setState({ fieldData: obj });
+        }
+
+        openModalSales() {
+            this.setState({ isShowModalSales: true });
+        }
+        closeModalSales() {
+            this.setState({ isShowModalSales: false });
+        }
+        queryModalSales() {
+            jqGet(gb_approot + 'api/GetAction/GetModalQuerySales', { keyword: this.state.ModalDataSales.search.keyword })
+                .done((data, textStatus, jqXHRdata) => {
+
+                    var getObj = this.state.ModalDataSales;
+                    getObj.queryItems = data;
+                    this.setState({ ModalDataSales: getObj });
+                })
+                .fail((jqXHR, textStatus, errorThrown) => {
+                    showAjaxError(errorThrown);
+                });
+        }
+        setModalSalesKeyword(e: React.SyntheticEvent) {
+
+            let input: HTMLInputElement = e.target as HTMLInputElement;
+            let getObj = this.state.ModalDataSales;
+            getObj.search.keyword = input.value;
+            this.setState({ ModalDataSales: getObj });
+        }
+        selectModalSales(sales_id: number, e: React.SyntheticEvent) {
+
+            let getQueryItems = this.state.ModalDataSales.queryItems;
+
+            getQueryItems.map((value, index, ary) => {
+
+                if (value.sales_id == sales_id) {
+                    let getFieldObj = this.state.fieldData;
+                    getFieldObj.recommend_id = value.sales_id;
+                    getFieldObj.recommend_name = value.sales_name;
+                    this.setState({ fieldData: getFieldObj, isShowModalSales: false });
+                }
             });
-    }
-    setModalSalesKeyword(e: React.SyntheticEvent) {
+        }
 
-        let input: HTMLInputElement = e.target as HTMLInputElement;
-        let getObj = this.state.ModalDataSales;
-        getObj.search.keyword = input.value;
-        this.setState({ ModalDataSales: getObj });
-    }
-    selectModalSales(sales_id: number, e: React.SyntheticEvent) {
+        render() {
+            var outHtml: JSX.Element = null;
 
-        let getQueryItems = this.state.ModalDataSales.queryItems;
-
-        getQueryItems.map((value, index, ary) => {
-
-            if (value.sales_id == sales_id) {
-                let getFieldObj = this.state.fieldData;
-                getFieldObj.recommend_id = value.sales_id;
-                getFieldObj.recommend_name = value.sales_name;
-                this.setState({ fieldData: getFieldObj, isShowModalSales: false });
-            } 
-        });
-    }
-
-    render() {
-        var outHtml: JSX.Element = null;
-
-        if (this.state.edit_type == 0) {
-            var searchData = this.state.searchData;
-            outHtml =
-            (
-                <div>
+            if (this.state.edit_type == 0) {
+                var searchData = this.state.searchData;
+                outHtml =
+                (
+                    <div>
     <ul className="breadcrumb">
         <li><i className="fa-list-alt"></i> {this.props.menuName}</li>
         </ul>
@@ -329,7 +335,7 @@ class GirdFormSales extends React.Component<BaseDefine.GridFormPropsBase, SalesS
                     {
                     this.state.gridData.rows.map(
                         (itemData, i) =>
-                            <GridRowSales key={i}
+                            <GridRow key={i}
                                 ikey={i}
                                 primKey={itemData.sales_id}
                                 itemData={itemData}
@@ -349,18 +355,18 @@ class GirdFormSales extends React.Component<BaseDefine.GridFormPropsBase, SalesS
             InsertType={this.insertType}
             deleteSubmit={this.deleteSubmit} />
         </form>
-                    </div>
-            );
-        }
-        else if (this.state.edit_type == 1 || this.state.edit_type == 2) {
+                        </div>
+                );
+            }
+            else if (this.state.edit_type == 1 || this.state.edit_type == 2) {
 
-            let ModalSales = ReactBootstrap.Modal;
-            let fieldData = this.state.fieldData;
-            let out_ModalSales: JSX.Element = null;
+                let ModalSales = ReactBootstrap.Modal;
+                let fieldData = this.state.fieldData;
+                let out_ModalSales: JSX.Element = null;
 
-            if (this.state.isShowModalSales) {
-                out_ModalSales = (
-                    <ModalSales bsSize="large" title="選擇推薦人" onRequestHide={this.closeModalSales}>
+                if (this.state.isShowModalSales) {
+                    out_ModalSales = (
+                        <ModalSales bsSize="large" title="選擇推薦人" onRequestHide={this.closeModalSales}>
     <div className="modal-body">
         <div className="table-header">
             <div className="table-filter">
@@ -384,7 +390,7 @@ class GirdFormSales extends React.Component<BaseDefine.GridFormPropsBase, SalesS
                 <tr>
                     <th className="col-xs-3">會員編號</th>
                     <th className="col-xs-3">姓名</th>
-                </tr>
+                    </tr>
                 {
                 this.state.ModalDataSales.queryItems.map((itemData, i) => {
 
@@ -401,12 +407,12 @@ class GirdFormSales extends React.Component<BaseDefine.GridFormPropsBase, SalesS
                 </tbody>
             </table>
         </div>
-                        </ModalSales>
-                );
-            }
+                            </ModalSales>
+                    );
+                }
 
-            outHtml = (
-                <div>
+                outHtml = (
+                    <div>
     <ul className="breadcrumb">
         <li><i className="fa-list-alt"></i> {this.props.menuName}</li>
         </ul>
@@ -427,7 +433,7 @@ class GirdFormSales extends React.Component<BaseDefine.GridFormPropsBase, SalesS
                         onChange={this.changeFDValue.bind(this, 'sales_no') }
                         value={fieldData.sales_no}
                         maxLength={16}
-                        disabled={this.state.edit_type==2}
+                        disabled={this.state.edit_type == 2}
                         required />
                     </div>
                 </div>
@@ -499,13 +505,14 @@ class GirdFormSales extends React.Component<BaseDefine.GridFormPropsBase, SalesS
             </div>
         </form>
     {out_ModalSales}
-                    </div>
-            );
-        }
+                        </div>
+                );
+            }
 
-        return outHtml;
+            return outHtml;
+        }
     }
 }
 
 var dom = document.getElementById('page_content');
-React.render(<GirdFormSales caption={gb_caption} menuName={gb_menuname} iconClass="fa-list-alt" />, dom);
+React.render(<Sales.GridForm caption={gb_caption} menuName={gb_menuname} iconClass="fa-list-alt" />, dom);

@@ -10,13 +10,14 @@ module BaseDefine {
         itemData: R,
         chd?: boolean,
         delCheck(p1: number, p2: boolean): void,
-        updateType(p1: number): void,
-        primKey: number
+        updateType(p1: number|string): void,
+        primKey: number|string
     }
     export interface GridRowStateBase { }
 
     export interface GridFormPropsBase {
-        apiPathName?: string,
+        apiPath?: string,
+        apiPathDetail?: string,
         gdName?: string,
         fdName?: string,
         menuName?: string,
