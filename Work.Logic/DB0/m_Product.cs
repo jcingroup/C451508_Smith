@@ -13,11 +13,11 @@ namespace ProcCore.Business.DB0
     using System.Collections.Generic;
     public partial class m_Product :BaseEntityTable {
     public int product_id { get; set; }
+    public int category_id { get; set; }
     public string product_name { get; set; }
+    public string product_content { get; set; }
     public double price { get; set; }
-    public string standard { get; set; }
     public Nullable<int> sort { get; set; }
-    public string memo { get; set; }
     public bool i_Hide { get; set; }
     public string i_InsertUserID { get; set; }
     public Nullable<int> i_InsertDeptID { get; set; }
@@ -26,7 +26,5 @@ namespace ProcCore.Business.DB0
     public Nullable<int> i_UpdateDeptID { get; set; }
     public Nullable<System.DateTime> i_UpdateDateTime { get; set; }
     public string i_Lang { get; set; }
-    public int product_category_id { get; set; }
-    public int kvalue { get; set; }
     }
 }

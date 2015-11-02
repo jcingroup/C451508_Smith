@@ -60,6 +60,7 @@
         sort?: number;
         memo?: string;
         kvalue?: number;
+        product_no?: string;
     }
     interface ProductCategory extends BaseEntityTable {
         product_category_id: number;
@@ -100,6 +101,8 @@
         qty?: number;
         price?: number;
         sub_total?: number;
+        product_no?: string;
+        purchase_no?: string
     }
 
 

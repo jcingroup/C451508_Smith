@@ -39,7 +39,6 @@ namespace DotWeb.Api
                         product_id = x.product_id,
                         product_name = x.product_name,
                         price = x.price,
-                        kvalue = x.kvalue,
                         sort = x.sort
                     }).Where(x => x.product_id > 0);
 
@@ -68,11 +67,8 @@ namespace DotWeb.Api
 
                 item = await db0.Product.FindAsync(md.product_id);
                 item.product_name = md.product_name;
-                item.product_category_id = md.product_category_id;
-                item.kvalue = md.kvalue;
+                item.category_id = md.category_id;
                 item.price = md.price;
-                item.standard = md.standard;
-                item.memo = md.memo;
                 item.sort = md.sort;
 
                 md.i_UpdateDateTime = DateTime.Now;

@@ -14,6 +14,15 @@ namespace ProcCore.Business.DB0
     public partial class m_ProductCategory :BaseEntityTable {
     public int product_category_id { get; set; }
     public string category_name { get; set; }
-    public int sort { get; set; }
+    public Nullable<int> sort { get; set; }
+    public string memo { get; set; }
+    public bool i_Hide { get; set; }
+    public string i_InsertUserID { get; set; }
+    public Nullable<int> i_InsertDeptID { get; set; }
+    public Nullable<System.DateTime> i_InsertDateTime { get; set; }
+    public string i_UpdateUserID { get; set; }
+    public Nullable<int> i_UpdateDeptID { get; set; }
+    public Nullable<System.DateTime> i_UpdateDateTime { get; set; }
+    public string i_Lang { get; set; }
     }
 }

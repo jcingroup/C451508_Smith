@@ -37,6 +37,8 @@ namespace ProcCore.Business.DB0
         public int sort { get; set; }
     
     	[JsonIgnore]
+        public virtual Department Department { get; set; }
+    	[JsonIgnore]
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
     }
 }

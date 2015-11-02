@@ -15,8 +15,16 @@ namespace ProcCore.Business.DB0
     using Newtonsoft.Json;
     public partial class Department : BaseEntityTable
     {
+        public Department()
+        {
+            this.AspNetUsers = new HashSet<AspNetUsers>();
+        }
+    
         public int department_id { get; set; }
         public string department_name { get; set; }
         public bool i_Hide { get; set; }
+    
+    	[JsonIgnore]
+        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
     }
 }

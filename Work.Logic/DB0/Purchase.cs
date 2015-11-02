@@ -15,17 +15,10 @@ namespace ProcCore.Business.DB0
     using Newtonsoft.Json;
     public partial class Purchase : BaseEntityTable
     {
-        public Purchase()
-        {
-            this.PurchaseDetail = new HashSet<PurchaseDetail>();
-        }
-    
         public int purchase_id { get; set; }
-        public string purchase_no { get; set; }
         public System.DateTime set_date { get; set; }
-        public int sales_id { get; set; }
         public int total { get; set; }
-        public int state { get; set; }
+        public bool i_Hide { get; set; }
         public string i_InsertUserID { get; set; }
         public Nullable<int> i_InsertDeptID { get; set; }
         public Nullable<System.DateTime> i_InsertDateTime { get; set; }
@@ -33,10 +26,6 @@ namespace ProcCore.Business.DB0
         public Nullable<int> i_UpdateDeptID { get; set; }
         public Nullable<System.DateTime> i_UpdateDateTime { get; set; }
         public string i_Lang { get; set; }
-    
-    	[JsonIgnore]
-        public virtual Sales Sales { get; set; }
-    	[JsonIgnore]
-        public virtual ICollection<PurchaseDetail> PurchaseDetail { get; set; }
     }
 }
+

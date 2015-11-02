@@ -13,10 +13,10 @@ namespace ProcCore.Business.DB0
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class C13B0_1KomoEntities : DbContext
+    public partial class C45A0_SmithEntities : DbContext
     {
-        public C13B0_1KomoEntities()
-            : base("name=C13B0_1KomoEntities")
+        public C45A0_SmithEntities()
+            : base("name=C45A0_SmithEntities")
         {
         }
     
@@ -35,10 +35,8 @@ namespace ProcCore.Business.DB0
         public virtual DbSet<i_SN> i_SN { get; set; }
         public virtual DbSet<i_UserLoginLog> i_UserLoginLog { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductCategory> ProductCategory { get; set; }
-        public virtual DbSet<Sales> Sales { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Purchase> Purchase { get; set; }
-        public virtual DbSet<PurchaseDetail> PurchaseDetail { get; set; }
     }
 }

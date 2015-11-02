@@ -143,9 +143,9 @@ namespace ProcCore.Business.DB0
     }
     #endregion
 
-    public partial class C13B0_1KomoEntities : DbContext
+    public partial class C45A0_SmithEntities : DbContext
     {
-        public C13B0_1KomoEntities(string connectionstring)
+        public C45A0_SmithEntities(string connectionstring)
             : base(connectionstring)
         {
         }

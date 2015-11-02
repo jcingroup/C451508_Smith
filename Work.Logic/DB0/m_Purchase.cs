@@ -13,11 +13,9 @@ namespace ProcCore.Business.DB0
     using System.Collections.Generic;
     public partial class m_Purchase :BaseEntityTable {
     public int purchase_id { get; set; }
-    public string purchase_no { get; set; }
     public System.DateTime set_date { get; set; }
-    public int sales_id { get; set; }
     public int total { get; set; }
-    public int state { get; set; }
+    public bool i_Hide { get; set; }
     public string i_InsertUserID { get; set; }
     public Nullable<int> i_InsertDeptID { get; set; }
     public Nullable<System.DateTime> i_InsertDateTime { get; set; }
@@ -27,3 +25,4 @@ namespace ProcCore.Business.DB0
     public string i_Lang { get; set; }
     }
 }
+

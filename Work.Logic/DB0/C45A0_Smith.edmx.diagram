@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0492de1f06644aada70d545a3d2d0341" Name="Diagram1">
+        <EntityTypeShape EntityType="C45A0_SmithModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.AspNetUsers" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.Department" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.i_Currency" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.i_IDX" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.i_Lang" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.i_Parm" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.i_SN" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.i_UserLoginLog" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.Menu" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="C45A0_SmithModel.FK_AspNetUsers_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="C45A0_SmithModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="C45A0_SmithModel.MenuRole" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.ProductCategory" Width="1.5" PointX="8.375" PointY="7.125" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.Product" Width="1.5" PointX="10.625" PointY="6.875" />
+        <AssociationConnector Association="C45A0_SmithModel.FK_Product_ProductCategory" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.Purchase" Width="1.5" PointX="10.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

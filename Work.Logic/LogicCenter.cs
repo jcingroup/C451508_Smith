@@ -54,9 +54,9 @@ namespace ProcCore.Business.LogicConect
     public class LogicCenter
     {
         private static string db0_connectionstring;
-        protected C13B0_1KomoEntities db0;
+        protected C45A0_SmithEntities db0;
         protected TransactionScope tx;
-        private const string DatabaseName = "C13B0_1Komo";
+        private const string DatabaseName = "C45A0_Smith";
         public int DepartmentId { get; set; }
         public string Lang { get; set; }
         public string IP { get; set; }
@@ -99,11 +99,11 @@ namespace ProcCore.Business.LogicConect
             db0_connectionstring = LogicCenter.GetDB0EntityString(db0_configstring);
         }
 
-        public static C13B0_1KomoEntities getDB0
+        public static C45A0_SmithEntities getDB0
         {
             get
             {
-                return new C13B0_1KomoEntities(db0_connectionstring);
+                return new C45A0_SmithEntities(db0_connectionstring);
             }
         }
         public int GetNewId(ProcCore.Business.CodeTable tab)
