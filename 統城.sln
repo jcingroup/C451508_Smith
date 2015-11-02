@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Work.WebProj.Yourname", "Work.WebProj\Work.WebProj.Yourname.csproj", "{821195B6-1744-4E05-B003-7DA64385CFB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Work.WebProj.Smith", "Work.WebProj\Work.WebProj.Smith.csproj", "{821195B6-1744-4E05-B003-7DA64385CFB6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Work.BusinessLogic", "Work.Logic\Work.BusinessLogic.csproj", "{81F31D0B-5D7A-44F7-BA5B-362BF27FCC8D}"
 EndProject
