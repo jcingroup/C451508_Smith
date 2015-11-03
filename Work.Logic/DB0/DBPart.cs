@@ -197,6 +197,10 @@ namespace ProcCore.Business.DB0
 
     }
     #region Model Expand
+    public partial class m_Product : BaseEntityTable
+    {
+        public string category_name { get; set; }
+    }
     #endregion
 
     #region q_Model_Define

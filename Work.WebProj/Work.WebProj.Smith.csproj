@@ -199,11 +199,12 @@
     <Compile Include="Areas\Active\ActiveAreaRegistration.cs" />
     <Compile Include="Areas\Active\Controllers\PurchaseController.cs" />
     <Compile Include="Areas\Active\Controllers\SalesController.cs" />
-    <Compile Include="Areas\Active\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Active\Controllers\ProductDataController.cs" />
     <Compile Include="Areas\Base\Controllers\LoginController.cs" />
-    <Content Include="Areas\Active\Views\Product\Main.cshtml" />
+    <Content Include="Areas\Active\Views\ProductData\Main.cshtml" />
     <Content Include="Areas\Active\Views\Sales\Main.cshtml" />
     <Content Include="Areas\Active\Views\Purchase\Main.cshtml" />
+    <Content Include="Areas\Active\Views\ProductData\Category.cshtml" />
     <None Include="Areas\Base\Controllers\ReportChartController.cs" />
     <Compile Include="Areas\Base\Controllers\RolesController.cs" />
     <Compile Include="Areas\Base\Controllers\UsersController.cs" />
@@ -807,6 +808,7 @@
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <TypeScriptCompile Include="Scripts\es6ts.ts" />
     <TypeScriptCompile Include="Scripts\src\tsx\c-comm.tsx" />
+    <TypeScriptCompile Include="Scripts\src\tsx\m-category.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-product.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-purchase.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-sales.tsx" />
@@ -886,7 +888,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Active\Views\Product\App_LocalResources\Main.cshtml.resx" />
+    <Content Include="Areas\Active\Views\ProductData\App_LocalResources\Main.cshtml.resx" />
     <Content Include="Areas\Active\Views\Sales\App_LocalResources\Main.cshtml.resx" />
     <Content Include="Areas\Active\Views\Purchase\App_LocalResources\Main.cshtml.resx" />
     <EmbeddedResource Include="_Code\RPTFile\MemeberLabel.rdlc" />

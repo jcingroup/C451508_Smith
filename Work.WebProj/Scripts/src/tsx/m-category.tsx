@@ -1,27 +1,23 @@
-﻿namespace Sales {
-
+﻿namespace ProductCategory {
     interface Rows {
         check_del: boolean,
-        sales_id: number;
-        sales_no: string;
-        sales_name: string;
-        join_date: Date;
-        sales_state: number;
-    }
-    interface FormState<G, F, S> extends BaseDefine.GirdFormStateBase<G, F, S> {
-        isShowModalSales?: boolean;
-        ModalDataSales?: {
-            search?: { keyword: string }
-            queryItems?: Array<{ sales_id: number, sales_no: string, sales_name: string }>;
-        }
-    }
-    interface FormResult extends IResultBase {
-        sales_id: number
+        product_category_id: number;
+        category_name: string;
+        sort: number;
+        memo: string;
+        i_Hide: boolean;
     }
     interface SearchData {
-        name?: string;
+        //搜尋 參數
+        category_name?: string
     }
-
+    interface ProductCategoryState<G, F, S> extends BaseDefine.GirdFormStateBase<G, F, S> {
+       //額外擴充 表單 State參數
+    }
+    interface CallResult extends IResultBase {
+        //定義 回傳結果參數
+        id: string
+    }
     class GridRow extends React.Component<BaseDefine.GridRowPropsBase<Rows>, BaseDefine.GridRowStateBase> {
         constructor() {
             super();
@@ -47,20 +43,13 @@
                     <td className="text-center">
                         <GridButtonModify modify={this.modify}/>
                         </td>
-                    <td>{this.props.itemData.sales_no}</td>
-                    <td>{this.props.itemData.sales_name}</td>
-                    <td>{moment(this.props.itemData.join_date).format(dt.dateFT) }</td>
-                    <td>{this.props.itemData.sales_state}</td>
+                    <td>{this.props.itemData.category_name}</td>
+                    <td>{this.props.itemData.sort}</td>
+                    <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
                 </tr>;
         }
     }
-    class QueryForm extends React.Component<any, any>{
-        render() {
-            return <div></div>
-        }
-    }
-
-    export class GridForm extends React.Component<BaseDefine.GridFormPropsBase, FormState<Rows, server.Sales, SearchData>>{
+    export class GirdForm extends React.Component<BaseDefine.GridFormPropsBase, ProductCategoryState<Rows, server.ProductCategory, SearchData>>{
 
         constructor() {
 
@@ -70,30 +59,18 @@
             this.queryGridData = this.queryGridData.bind(this);
             this.handleSubmit = this.handleSubmit.bind(this);
             this.deleteSubmit = this.deleteSubmit.bind(this);
+            this.handleSearch = this.handleSearch.bind(this);
             this.delCheck = this.delCheck.bind(this);
             this.checkAll = this.checkAll.bind(this);
             this.componentDidMount = this.componentDidMount.bind(this);
             this.insertType = this.insertType.bind(this);
-            this.changeGDValue = this.changeGDValue.bind(this);
-            this.changeFDValue = this.changeFDValue.bind(this);
-            this.setInputValue = this.setInputValue.bind(this);
-            this.closeModalSales = this.closeModalSales.bind(this);
-            this.openModalSales = this.openModalSales.bind(this);
-            this.queryModalSales = this.queryModalSales.bind(this);
-            this.setModalSalesKeyword = this.setModalSalesKeyword.bind(this);
-            this.render = this.render.bind(this);
-
-            this.state = {
-                fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0,
-                isShowModalSales: false,
-                ModalDataSales: { queryItems: [], search: { keyword: null } }
-            }
+            this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, searchData: {} }
 
         }
         static defaultProps: BaseDefine.GridFormPropsBase = {
             fdName: 'fieldData',
             gdName: 'searchData',
-            apiPath: gb_approot + 'api/Sales'
+            apiPath: gb_approot + 'api/ProductCategory'
         }
         componentDidMount() {
             this.queryGridData(1);
@@ -129,10 +106,10 @@
             e.preventDefault();
             if (this.state.edit_type == 1) {
                 jqPost(this.props.apiPath, this.state.fieldData)
-                    .done((data: FormResult, textStatus, jqXHRdata) => {
+                    .done((data: CallResult, textStatus, jqXHRdata) => {
                         if (data.result) {
                             tosMessage(null, '新增完成', 1);
-                            this.updateType(data.sales_id);
+                            this.updateType(data.id);
                         } else {
                             alert(data.message);
                         }
@@ -165,7 +142,7 @@
             var ids = [];
             for (var i in this.state.gridData.rows) {
                 if (this.state.gridData.rows[i].check_del) {
-                    ids.push('ids=' + this.state.gridData.rows[i].sales_id);
+                    ids.push('ids=' + this.state.gridData.rows[i].product_category_id);
                 }
             }
 
@@ -207,7 +184,7 @@
             this.setState(newState);
         }
         insertType() {
-            this.setState({ edit_type: 1, fieldData: { sales_id: 0 } });
+            this.setState({ edit_type: 1, fieldData: {} });
         }
         updateType(id: number | string) {
 
@@ -249,47 +226,8 @@
             this.setState({ fieldData: obj });
         }
 
-        openModalSales() {
-            this.setState({ isShowModalSales: true });
-        }
-        closeModalSales() {
-            this.setState({ isShowModalSales: false });
-        }
-        queryModalSales() {
-            jqGet(gb_approot + 'api/GetAction/GetModalQuerySales', { keyword: this.state.ModalDataSales.search.keyword })
-                .done((data, textStatus, jqXHRdata) => {
-
-                    var getObj = this.state.ModalDataSales;
-                    getObj.queryItems = data;
-                    this.setState({ ModalDataSales: getObj });
-                })
-                .fail((jqXHR, textStatus, errorThrown) => {
-                    showAjaxError(errorThrown);
-                });
-        }
-        setModalSalesKeyword(e: React.SyntheticEvent) {
-
-            let input: HTMLInputElement = e.target as HTMLInputElement;
-            let getObj = this.state.ModalDataSales;
-            getObj.search.keyword = input.value;
-            this.setState({ ModalDataSales: getObj });
-        }
-        selectModalSales(sales_id: number, e: React.SyntheticEvent) {
-
-            let getQueryItems = this.state.ModalDataSales.queryItems;
-
-            getQueryItems.map((value, index, ary) => {
-
-                if (value.sales_id == sales_id) {
-                    let getFieldObj = this.state.fieldData;
-                    getFieldObj.recommend_id = value.sales_id;
-                    getFieldObj.recommend_name = value.sales_name;
-                    this.setState({ fieldData: getFieldObj, isShowModalSales: false });
-                }
-            });
-        }
-
         render() {
+
             var outHtml: JSX.Element = null;
 
             if (this.state.edit_type == 0) {
@@ -297,9 +235,6 @@
                 outHtml =
                 (
                     <div>
-    <ul className="breadcrumb">
-        <li><i className="fa-list-alt"></i> {this.props.menuName}</li>
-        </ul>
     <h3 className="title">
         {this.props.caption}
         </h3>
@@ -309,9 +244,10 @@
                 <div className="table-filter">
                     <div className="form-inline">
                         <div className="form-group">
-                            <label>使用者名稱</label> { }
+                            <label>產品分類名稱</label> { }
                             <input type="text" className="form-control"
-                                onChange={this.changeGDValue.bind(this, 'UserName') }
+                                value={searchData.category_name}
+                                onChange={this.changeGDValue.bind(this, 'category_name') }
                                 placeholder="請輸入關鍵字..." /> { }
                             <button className="btn-primary" type="submit"><i className="fa-search"></i> 搜尋</button>
                             </div>
@@ -328,9 +264,8 @@
                                 </label>
                             </th>
                         <th className="col-xs-1 text-center">修改</th>
-                        <th className="col-xs-3">會員編號</th>
-                        <th className="col-xs-3">姓名</th>
-                        <th className="col-xs-3">加入日期</th>
+                        <th className="col-xs-2">分類名稱</th>
+                        <th className="col-xs-2">排序</th>
                         <th className="col-xs-2">狀態</th>
                         </tr>
                     </thead>
@@ -340,7 +275,7 @@
                         (itemData, i) =>
                             <GridRow key={i}
                                 ikey={i}
-                                primKey={itemData.sales_id}
+                                primKey={itemData.product_category_id}
                                 itemData={itemData}
                                 delCheck={this.delCheck}
                                 updateType={this.updateType} />
@@ -363,151 +298,88 @@
             }
             else if (this.state.edit_type == 1 || this.state.edit_type == 2) {
 
-                let ModalSales = ReactBootstrap.Modal;
                 let fieldData = this.state.fieldData;
-                let out_ModalSales: JSX.Element = null;
-
-                if (this.state.isShowModalSales) {
-                    out_ModalSales = (
-                        <ModalSales bsSize="large" title="選擇推薦人" onRequestHide={this.closeModalSales}>
-    <div className="modal-body">
-        <div className="table-header">
-            <div className="table-filter">
-                <div className="form-inline">
-                    <div className="form-group">
-                        <label>會員姓名或編號</label> { }
-                        <input type="text" className="form-control input-sm"
-                            onChange={this.setModalSalesKeyword}
-                            value={this.state.ModalDataSales.search.keyword}
-                            />
-                        </div>
-
-                    <div className="form-group">
-                        <button className="btn-primary btn-sm" onClick={this.queryModalSales}><i className="fa-search"></i> 搜尋</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <table className="table-condensed">
-            <tbody>
-                <tr>
-                    <th className="col-xs-3">會員編號</th>
-                    <th className="col-xs-3">姓名</th>
-                    </tr>
-                {
-                this.state.ModalDataSales.queryItems.map((itemData, i) => {
-
-                    var out_html =
-                        <tr key={itemData.sales_id}>
-        <td>
-            <button type="button" className="btn btn-link" onClick={this.selectModalSales.bind(this, itemData.sales_id) }>{itemData.sales_no}</button></td>
-        <td>{itemData.sales_name}</td>
-                            </tr>
-                        ;
-                    return out_html;
-                })
-                }
-                </tbody>
-            </table>
-        </div>
-                            </ModalSales>
-                    );
-                }
 
                 outHtml = (
                     <div>
-    <ul className="breadcrumb">
-        <li><i className="fa-list-alt"></i> {this.props.menuName}</li>
-        </ul>
-    <h4 className="title"> { this.props.caption } 基本資料維護</h4>
+    <h3 className="title"> { this.props.caption } 基本資料維護</h3>
     <form className="form-horizontal" onSubmit={this.handleSubmit}>
         <div className="col-xs-12">
             <div className="alert alert-warning">
                 <p><strong className="text-danger">紅色標題</strong> 為必填欄位。</p>
                 </div>
-            </div>
-        <div className="col-xs-6">
+
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">會員編號</label>
-                <div className="col-xs-10">
+                <label className="col-xs-2 control-label text-danger">分類名稱</label>
+                <div className="col-xs-4">
                     <input type="text"
                         className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'sales_no') }
-                        value={fieldData.sales_no}
-                        maxLength={16}
-                        disabled={this.state.edit_type == 2}
+                        onChange={this.changeFDValue.bind(this, 'category_name') }
+                        value={fieldData.category_name}
+                        maxLength={64}
                         required />
                     </div>
+                   <small className="help-inline col-xs-6">最多64個字<span className="text-danger">(必填) </span></small>
                 </div>
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">姓名</label>
-                <div className="col-xs-10">
-                    <input type="text"
+                <label className="col-xs-2 control-label">排序</label>
+                <div className="col-xs-4">
+                    <input type="number"
                         className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'sales_name') }
-                        value={fieldData.sales_name}
-                        maxLength={32}
-                        required />
+                        onChange={this.changeFDValue.bind(this, 'sort') }
+                        value={fieldData.sort} />
                     </div>
+                <small className="col-xs-2 help-inline">數字越大越前面</small>
                 </div>
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">加入日期</label>
-                <div className="col-xs-10">
-                    <InputDate id="join_date"
-                        onChange={this.changeFDValue}
-                        field_name="join_date"
-                        value={fieldData.join_date}
-                        disabled={false} required={true} ver={1} />
+                <label className="col-xs-2 control-label">狀態</label>
+                <div className="col-xs-4">
+                   <div className="radio-inline">
+                       <label>
+                            <input type="radio"
+                                name="i_Hide"
+                                value={true}
+                                checked={fieldData.i_Hide === true}
+                                onChange={this.changeFDValue.bind(this, 'i_Hide') }
+                                />
+                            <span>隱藏</span>
+                           </label>
+                       </div>
+                   <div className="radio-inline">
+                       <label>
+                            <input type="radio"
+                                name="i_Hide"
+                                value={false}
+                                checked={fieldData.i_Hide === false}
+                                onChange={this.changeFDValue.bind(this, 'i_Hide') }
+                                />
+                            <span>顯示</span>
+                           </label>
+                       </div>
                     </div>
                 </div>
 
-            </div>
-        <div className="col-xs-6">
-
-            <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">生日</label>
-                <div className="col-xs-10">
-                    <InputDate id="birthday"
-                        onChange={this.changeFDValue}
-                        field_name="birthday"
-                        value={fieldData.birthday}
-                        disabled={false} required={true} ver={1} />
-
+                <div className="form-group">
+                     <label className="col-xs-2 control-label">備註</label>
+                        <div className="col-xs-6">
+                            <textarea cols={30} rows={3} className="form-control"
+                                value={fieldData.memo}
+                                onChange={this.changeFDValue.bind(this, 'memo') }
+                                maxLength={256}></textarea>
+                            </div>
                     </div>
-                </div>
 
-            <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">推薦人</label>
-                <div className="col-xs-10">
-                    <div className="input-group">
-                        <input type="text"
-                            className="form-control"
-                            onChange={this.changeFDValue.bind(this, 'recommend_name') }
-                            value={fieldData.recommend_name}
-                            maxLength={32}
-                            required />
-                        <span className="input-group-btn">
-                            <a className="btn" onClick={this.openModalSales}
-                                disabled={false}><i className="fa fa-search"></i></a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        <div className="col-xs-12">
-            <div className="form-action">
-                <div className="col-xs-10 col-xs-offset-2">
+            <div className="form-action text-right">
+                <div className="col-xs-5">
                     <button type="submit" className="btn-primary"><i className="fa-check"></i> 儲存</button> { }
                     <button type="button" onClick={this.noneType}><i className="fa-times"></i> 回前頁</button>
                     </div>
                 </div>
             </div>
         </form>
-    {out_ModalSales}
                         </div>
                 );
             }
@@ -516,6 +388,5 @@
         }
     }
 }
-
 var dom = document.getElementById('page_content');
-React.render(<Sales.GridForm caption={gb_caption} menuName={gb_menuname} iconClass="fa-list-alt" />, dom);
+React.render(<ProductCategory.GirdForm caption={gb_caption} menuName={gb_menuname} iconClass="fa-list-alt" />, dom);

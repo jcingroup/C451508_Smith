@@ -38,9 +38,15 @@ namespace DotWeb.Api
                     {
                         product_id = x.product_id,
                         product_name = x.product_name,
+                        category_name = x.ProductCategory.category_name,
                         price = x.price,
                         sort = x.sort
-                    }).Where(x => x.product_id > 0);
+                    }).Where(x => x.product_id > 0).AsQueryable();
+
+                if (q.name != null)
+                {
+                    items = items.Where(x => x.product_name.Contains(q.name));
+                }
 
                 int page = (q.page == null ? 1 : (int)q.page);
                 int startRecord = PageCount.PageInfo(page, this.defPageSize, items.Count());
@@ -67,6 +73,7 @@ namespace DotWeb.Api
 
                 item = await db0.Product.FindAsync(md.product_id);
                 item.product_name = md.product_name;
+                item.product_content = md.product_content;
                 item.category_id = md.category_id;
                 item.price = md.price;
                 item.sort = md.sort;
@@ -179,5 +186,8 @@ namespace DotWeb.Api
         }
 
     }
-    public class q_Product : QueryBase { }
+    public class q_Product : QueryBase
+    {
+        public string name { get; set; }
+    }
 }

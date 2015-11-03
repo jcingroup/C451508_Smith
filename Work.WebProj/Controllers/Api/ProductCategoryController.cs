@@ -1,6 +1,8 @@
-﻿using ProcCore.Business;
+﻿using DotWeb.Helpers;
+using ProcCore.Business;
 using ProcCore.Business.DB0;
 using ProcCore.HandleResult;
+using ProcCore.WebCore;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -35,8 +37,26 @@ namespace DotWeb.Api
                         product_category_id = x.product_category_id,
                         category_name = x.category_name,
                         sort = x.sort
-                    }).OrderBy(x => x.sort);
-                return Ok(await items.ToListAsync());
+                    }).OrderByDescending(x => x.sort).AsQueryable();
+
+                if (q.category_name != null)
+                {
+                    items = items.Where(x => x.category_name.Contains(q.category_name));
+                }
+
+                int page = (q.page == null ? 1 : (int)q.page);
+                int startRecord = PageCount.PageInfo(page, this.defPageSize, items.Count());
+                var resultItems = await items.Skip(startRecord).Take(this.defPageSize).ToListAsync();
+
+                return Ok(new GridInfo<m_ProductCategory>()
+                {
+                    rows = resultItems,
+                    total = PageCount.TotalPage,
+                    page = PageCount.Page,
+                    records = PageCount.RecordCount,
+                    startcount = PageCount.StartCount,
+                    endcount = PageCount.EndCount
+                });
             }
             #endregion
         }
@@ -49,6 +69,10 @@ namespace DotWeb.Api
 
                 item = await db0.ProductCategory.FindAsync(md.product_category_id);
 
+
+                item.category_name = md.category_name;
+                item.memo = md.memo;
+                item.i_Hide = md.i_Hide;
                 item.sort = md.sort;
 
                 await db0.SaveChangesAsync();
@@ -67,13 +91,17 @@ namespace DotWeb.Api
         }
         public async Task<IHttpActionResult> Post([FromBody]ProductCategory md)
         {
-            md.product_category_id = GetNewId(CodeTable.Base);
-            ResultInfo rAjaxResult = new ResultInfo();
+            md.product_category_id = GetNewId(CodeTable.ProductCategory);
+            md.i_InsertDateTime = DateTime.Now;
+            md.i_InsertDeptID = this.departmentId;
+            md.i_InsertUserID = this.UserId;
+            md.i_Lang = "zh-TW";
+            r = new ResultInfo<ProductCategory>();
             if (!ModelState.IsValid)
             {
-                rAjaxResult.message = ModelStateErrorPack();
-                rAjaxResult.result = false;
-                return Ok(rAjaxResult);
+                r.message = ModelStateErrorPack();
+                r.result = false;
+                return Ok(r);
             }
 
             try
@@ -84,16 +112,16 @@ namespace DotWeb.Api
                 db0.ProductCategory.Add(md);
                 await db0.SaveChangesAsync();
 
-                rAjaxResult.result = true;
-                rAjaxResult.id = md.product_category_id;
-                return Ok(rAjaxResult);
+                r.result = true;
+                r.id = md.product_category_id;
+                return Ok(r);
                 #endregion
             }
             catch (Exception ex)
             {
-                rAjaxResult.result = false;
-                rAjaxResult.message = ex.Message;
-                return Ok(rAjaxResult);
+                r.result = false;
+                r.message = ex.Message;
+                return Ok(r);
             }
             finally
             {
@@ -145,5 +173,8 @@ namespace DotWeb.Api
             }
         }
     }
-    public class q_ProductCategory : QueryBase { }
+    public class q_ProductCategory : QueryBase
+    {
+        public string category_name { get; set; }
+    }
 }
