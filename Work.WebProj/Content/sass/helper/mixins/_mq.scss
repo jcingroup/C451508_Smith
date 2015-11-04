@@ -1,0 +1,156 @@
+@charset "UTF-8";
+
+// == var
+// ----------------------------------------------------------------------
+$mq-base-font-size:    $font-size-base !default;
+
+// Set to `false` to enable support for browsers that do not support @media queries,
+// (IE <= 8, Firefox <= 3, Opera <= 9)
+$mq-responsive:        true !default;
+
+// Breakpoint list
+$mq-breakpoints: (
+    mobile:            320px,
+    phone:             480px,
+    tablet:            768px,
+    desktop:           980px,
+    desktop2:          1200px,
+    wide:              1400px
+) !default;
+
+$mq-static-breakpoint: desktop !default;
+
+$mq-show-breakpoints:  () !default;
+
+// Customize the media type (e.g. `@media screen` or `@media print`)
+$mq-media-type:        all !default;
+
+
+// == function
+// ----------------------------------------------------------------------
+// Convert pixels to ems
+@function mq-px2em($px, $base-font-size: $mq-base-font-size) {
+    @if unitless($px) {
+        @warn "Assuming #{$px} to be in pixels, attempting to convert it into pixels.";
+        @return mq-px2em($px * 1px, $base-font-size);
+    } @else if unit($px) == em {
+        @return $px;
+    }
+    @return ($px / $base-font-size) * 1em;
+}
+
+// Get a breakpoint's width
+@function mq-get-breakpoint-width($name, $breakpoints: $mq-breakpoints) {
+    @if map-has-key($breakpoints, $name) {
+        @return map-get($breakpoints, $name);
+    } @else {
+        @warn "Breakpoint #{$name} wasn't found in $breakpoints.";
+    }
+}
+
+
+// == mixin
+// ----------------------------------------------------------------------
+// Media Query mixin
+// @example scss
+//  .element {
+//    @include mq($min: mobile) {
+//      color: red;
+//    }
+//    @include mq($max: tablet) {
+//      color: blue;
+//    }
+//    @include mq(mobile, tablet) {
+//      color: green;
+//    }
+//    @include mq($min: tablet, $and: '(orientation: landscape)') {
+//      color: teal;
+//    }
+//    @include mq(950px) {
+//      color: hotpink;
+//    }
+//    @include mq(tablet, $media-type: screen) {
+//      color: hotpink;
+//    }
+//    // Advanced use:
+//    $my-breakpoints: ( L: 900px, XL: 1200px );
+//    @include mq(L, $breakpoints: $my-breakpoints, $static-breakpoint: L) {
+//      color: hotpink;
+//    }
+//  }
+
+@mixin mq(
+    $min: false,
+    $max: false,
+    $and: false,
+    $media-type: $mq-media-type,
+    $breakpoints: $mq-breakpoints,
+    $responsive: $mq-responsive,
+    $static-breakpoint: $mq-static-breakpoint
+) {
+    $min-width: 0;
+    $max-width: 0;
+    $media-query: '';
+
+    // From: this breakpoint (inclusive)
+    @if $min {
+        @if type-of($min) == number {
+            $min-width: mq-px2em($min);
+        } @else {
+            $min-width: mq-px2em(mq-get-breakpoint-width($min, $breakpoints));
+        }
+    }
+
+    // Until: that breakpoint (exclusive)
+    @if $max {
+        @if type-of($max) == number {
+            $max-width: mq-px2em($max);
+        } @else {
+            $max-width: mq-px2em(mq-get-breakpoint-width($max, $breakpoints)) - .01em;
+        }
+    }
+
+    // Responsive support is disabled, rasterize the output outside @media blocks
+    // The browser will rely on the cascade itself.
+    @if $responsive == false {
+        $static-breakpoint-width: mq-get-breakpoint-width($static-breakpoint, $breakpoints);
+        $target-width: mq-px2em($static-breakpoint-width);
+
+        // Output only rules that start at or span our target width
+        @if (
+            $and == false
+            and $min-width <= $target-width
+            and (
+                $max == false or $max-width >= $target-width
+            )
+        ) {
+            @content;
+        }
+    }
+
+    // Responsive support is enabled, output rules inside @media queries
+    @else {
+        @if $min-width != 0 { $media-query: '#{$media-query} and (min-width: #{$min-width})'; }
+        @if $max-width != 0 { $media-query: '#{$media-query} and (max-width: #{$max-width})'; }
+        @if $and            { $media-query: '#{$media-query} and #{$and}'; }
+
+        // Remove unnecessary media query prefix 'all and '
+        @if ($media-type == 'all' and $media-query != '') {
+            $media-type: '';
+            $media-query: str-slice(unquote($media-query), 6);
+        }
+
+        @media #{$media-type + $media-query} {
+            @content;
+        }
+    }
+}
+
+// Add a breakpoint
+// @example scss
+//  @include mq-add-breakpoint(tvscreen, 1920px);
+//  @include mq(tvscreen) {}
+@mixin mq-add-breakpoint($name, $width) {
+    $new-breakpoint: ($name: $width);
+    $mq-breakpoints: map-merge($mq-breakpoints, $new-breakpoint) !global;
+}

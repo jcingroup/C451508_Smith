@@ -254,16 +254,16 @@
     <Compile Include="_Code\Ashx\ValidateCode.ashx.cs">
       <DependentUpon>ValidateCode.ashx</DependentUpon>
     </Compile>
-    <Content Include="Content\css\bootstrap-datetimepicker-build.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\page.css" />
     <Content Include="Content\css\swiper.min.css" />
-    <Content Include="Content\css\toastr.css" />
     <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\fontAwesome\fontawesome-webfont.svg" />
     <Content Include="Content\font\MElleHK.otf" />
     <Content Include="Content\font\MElleHK.ttf" />
     <Content Include="Content\font\MElleHK.woff" />
+    <Content Include="Content\images\bg.gif" />
+    <Content Include="Content\images\logo.gif" />
     <Content Include="Content\sass\base\basic\_normalize.scss" />
     <Content Include="Content\sass\base\basic\_print.scss" />
     <Content Include="Content\sass\base\_basic.scss" />
@@ -271,14 +271,11 @@
     <Content Include="Content\sass\base\_table.scss" />
     <Content Include="Content\sass\component\_animate.scss" />
     <Content Include="Content\sass\component\_btn.scss" />
-    <Content Include="Content\sass\component\_classes.scss" />
     <Content Include="Content\sass\component\_dropdown.scss" />
     <Content Include="Content\sass\component\_label.scss" />
     <Content Include="Content\sass\component\_magnific.scss" />
     <Content Include="Content\sass\component\_tooltip.scss" />
     <Content Include="Content\sass\helper\mixins\_form.scss" />
-    <Content Include="Content\sass\helper\mixins\_grid.scss" />
-    <Content Include="Content\sass\helper\mixins\_map-get.scss" />
     <Content Include="Content\sass\helper\mixins\_media.scss" />
     <Content Include="Content\sass\helper\mixins\_prefix-animation.scss" />
     <Content Include="Content\sass\helper\mixins\_prefix-gradient.scss" />
@@ -303,6 +300,10 @@
     <Content Include="Content\sass\helper\mixins\_shape.scss" />
     <Content Include="Content\sass\helper\_function.scss" />
     <Content Include="Content\sass\layout\_grid.scss" />
+    <Content Include="Content\sass\base\_classes.scss" />
+    <Content Include="Content\sass\base\_extend.scss" />
+    <Content Include="Content\sass\grid.scss" />
+    <Content Include="Content\sass\helper\mixins\_mq.scss" />
     <None Include="gulpfile.js" />
     <Content Include="Content\images\noIE\bg.gif" />
     <Content Include="Content\images\noIE\brow.gif" />

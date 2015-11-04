@@ -14,10 +14,10 @@ namespace DotWeb.Controllers
 {
     public class IndexController : WebUserController
     {
-        public RedirectResult Index()
+        public ActionResult Index()
         {
 
-            return Redirect("~/Base/Login");
+            return View();
         }
 
         public RedirectResult Login()

@@ -19,8 +19,8 @@ $gray-light:            lighten($gray-base, 46.7%);   // #777
 $gray-lighter:          lighten($gray-base, 93.5%);   // #eee
 
 // 抽象色
-$brand-primary:         #56901B;             // 主色
-$brand-secondary:       #6DB831;             // 輔色
+$brand-primary:         #068BAE;             // 主色
+$brand-secondary:       #0662A3;             // 輔色
 $success:               #CAD72F !default;             // 綠
 $info:                  #37BCEE !default;             // 藍
 $warning:               #F2B63D !default;             // 黃
@@ -30,20 +30,17 @@ $error:                 #E75375 !default;             // 紅
 // == basic
 // ----------------------------------------------------------------------
 // <body> 背景 & 文字色
-$body-bg:               #2b5114 !default;
-$text-color:            #5A5B5B !default;
+$body-bg:               #F6F6F6 url(#{$img-path}/bg.gif) center 0 no-repeat !default;
+$text-color:            #191919 !default;
 
 // 文字鏈結色&滑鼠移過色
-$link-color:            $info;
-$link-hover-color:      $brand-secondary !default;
+$link-color:            $brand-primary;
+$link-hover-color:      $gray-light !default;
 
 // layout
 $min-width:             1008px !default;     // 網頁最小尺寸
 $max-width:             1440px !default;     // 網頁最寬尺寸: .wrap
-$pages:                 'index';
-
-// gird
-$cols:                  12 !default;
+$pages:                 'index' 'AboutUs' 'News' 'Products' 'FAQ' 'Service' 'ContactUs';
 $gutter:                15px !default;
 
 
@@ -94,14 +91,11 @@ $border-radius:             5px 15px 3px;
 // 配色- 三值分別為: 本文色 背景色 邊框色
 // 情境狀態 + 配色
 $state-type: (
-    // primary:                $brand-primary,
-    grays:                  lighten($gray,27%),
+    primary:                $brand-primary,
     // success:                $success,
     // info:                   $info,
     // warn:                   $warning,
     // error:                  $error,
-    green:                  #6DB831,
-    white:                  #fff
 );
 
 $table-color: (
@@ -127,52 +121,7 @@ $form-color:(
 );
 
 // 合併配色
-// $color: map-merge($state-type, $table-color);
 $color: map-extend($state-type, $table-color, $form-color);
-
-
-
-// == media RWD
-// ----------------------------------------------------------------------
-
-// 中斷點
-$breakpoints: (
-    xs:  320px,     // Extra small screen / phone
-    sm:  544px,   // Small screen / phone
-    md:  768px,   // Medium screen / tablet
-    lg:  992px,   // Large screen / desktop
-    lg2: 1280px,  // Large screen / desktop
-    xl:  1400px   // Extra large screen / wide desktop
-);
-
-// 容器寬度
-$wrap-widths: (
-    xxs: 320px,
-    xs:  480px,
-    sm:  720px,
-    md:  960px,
-    lg:  1008px,
-    xl:  1440px
-);
-
-// media queries
-$medias: (
-    xss:      (max-width: break(xs)),
-    xs:       (max-width: break(sm)),
-
-    sm:       (max-width: break(md)),
-    sm-min:   (min-width: break(sm)),
-
-    md:       (max-width: break(lg)-1),
-    md-min:   (min-width: break(md)),
-
-    lg:       (max-width: break(xl)-1),
-    lg-min:   (min-width: break(lg)),
-
-    xl:       (min-width: break(xl)),
-
-    md2:      (max-width: break(lg2)-1),
-);
 
 
 // == z-index

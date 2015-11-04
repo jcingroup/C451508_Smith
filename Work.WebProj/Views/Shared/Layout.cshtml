@@ -1,220 +1,83 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-TW">
 <!-- saved from url=(0014)about:internet -->
-
-<head>
+ <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>@Resources.Res.System_Name:@ViewBag.Title</title>
+    <!--[if lt IE 9]><script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script><![endif]-->
+    <link href="~/Content/css/grid.css" rel="stylesheet">
+    @if (ViewBag.IsFirstPage)
+        {
+            <link href="~/Content/css/index.css" rel="stylesheet"> }
+        else
+        {
+            <link href="~/Content/css/page.css" rel="stylesheet"> }
     @RenderSection("CSS", required: false)
-    <link rel="stylesheet" href="~/_Code/css/css/page.css">
-    <!--[if IE 9]><link rel="stylesheet" href="@Url.Content("~/_Code/css/css/ie9-page.css")"><![endif]-->
 </head>
+
 <body class="@ViewBag.BodyClass">
 
-    <div id="container">
+    <div id="wrapper">
 
-        @if (ViewBag.IsFirstPage) {}
-        else {
-        <div id="header">
-            <div class="wrap">
+        <header id="header">
                 
-                <h1><a href="">@Resources.Res.System_Name</a></h1>
+            @* <h1 onclick="location.href='@Url.Content("~/index")'" title="回首頁">@Resources.Res.WebLayoutHome</h1> *@
+            <h1 onclick="location.href='@Url.Content("~/index")'" title="回首頁">統城科技股份有限公司</h1>
 
-                <div id="menu">
-                    <ul class="menu">
-                        <li class="dropdown user">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa-user"></i>登入身分: manager
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="~/Base/Users/ChangePassword" tabindex="-1">
-                                        <i class="fa-lock"></i> 修改密碼
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown activity">
-                            <a href="#" class="dropdown-toggle"><i class="fa-power-off"></i>登出</a>
-                        </li>
-                    </ul>
-                </div>
+            <nav class="top-nav">
+                <a href="~/index">HOME 首頁</a>
+                <a href="">LOGIN 登入</a>
+            </nav>
 
-            </div>
-        </div><!-- header //-->
+            <nav id="menu">
+                <a href="~/AboutUs">公司簡介</a>
+                <a href="~/News">最新消息</a>
+                <a href="~/Products">產品介紹</a>
+                <a href="~/FAQ">常見問題</a>
+                <a href="~/Service">線上諮詢</a>
+                <a href="~/ContactUs">聯絡我們</a>
+            </nav>
+
+        </header>
+
+        @if (ViewBag.IsFirstPage) {
+            @RenderBody()
         }
-
-        <div id="main">
-
-            @if (ViewBag.IsFirstPage) {
-                @RenderBody()
-            }
-            
-            else {
-
-            <div id="content">
-
+        
+        else {
+            <main>
+                <header>@ViewBag.Title</header>
+                
                 <ul class="breadcrumb">
-                    <li><a href=""><i class="fa-home"></i> @Resources.Res.System_Name</a></li>
+                    <li><a href="">@Resources.Res.System_Name</a></li>
                     @RenderSection("breadCrumb", required: false)
                     <li>@ViewBag.Title</li>
                 </ul>
-
+            
                 @RenderBody()
+                
+            </main><!-- main //-->
+        }
 
-            </div><!-- content //-->
+    </div><!-- wrapper //-->
 
-            <div id="sidebar">
-                <h3 class="title">
-                    <span class="icon">
-                        <i class="fa-square text-success"></i>
-                        <i class="fa-square text-info"></i>
-                        <i class="fa-square text-warning"></i>
-                        <i class="fa-square text-danger"></i>
-                    </span>
-                    功能選單 MENU
-                </h3>
-
-                <div id="submenu">
-                    <ul class="panel">
-
-                        <li id="submenu-1" class="panel-heading">
-                            <a class="panel-title collapsed" data-toggle="collapse" data-parent="#submenu" href="#submenu-1-list">
-                                <i class="fa-list-alt"></i> A. 生產紀錄
-                            </a>
-                        </li>
-                        <li id="submenu-1-list" class="panel-collapse collapse">
-                            <ul class="panel-body">
-                                <li><a href="~/Fake/Birth"><i class="fa-caret-right"></i>01. 客戶基本資料 管理</a></li>
-                                <li><a href="~/Fake/Birth2"><i class="fa-caret-right"></i>02. 客戶生產紀錄 管理</a></li>
-                                <li><a href="~/Fake/Birth3"><i class="fa-caret-right"></i>03. 用餐編號 管理</a></li>
-                            </ul>
-                        </li>
-
-                        <li id="submenu-2" class="panel-heading">
-                            <a class="panel-title collapsed" data-toggle="collapse" data-parent="#submenu" href="#submenu-2-list">
-                                <i class="fa-list-alt"></i> B. 銷售紀錄
-                            </a>
-                        </li>
-                        <li id="submenu-2-list" class="panel-collapse collapse">
-                            <ul class="panel-body">
-                                <li><a href="~/Fake/Sell"><i class="fa-caret-right"></i>01. 產品基本資料 管理</a></li>
-                                <li><a href="~/Fake/Sell2"><i class="fa-caret-right"></i>02. 產品銷售資料 管理</a></li>
-                            </ul>
-                        </li>
-
-                        <li id="submenu-3" class="panel-heading">
-                            <a class="panel-title collapsed" data-toggle="collapse" data-parent="#submenu" href="#submenu-3-list">
-                                <i class="fa-list-alt"></i> C. 需求表
-                            </a>
-                        </li>
-                        <li id="submenu-3-list" class="panel-collapse collapse">
-                            <ul class="panel-body">
-                                <li><a href="~/Fake/Require"><i class="fa-caret-right"></i>01. 需求元素 管理</a></li>
-                                <li><a href="~/Fake/Require2"><i class="fa-caret-right"></i>02. 客戶需求 管理</a></li>
-                            </ul>
-                        </li>
-
-                        <li id="submenu-4" class="panel-heading">
-                            <a class="panel-title collapsed"  href="~/Fake/Schedule">
-                                <i class="fa-list-alt"></i> D. 用餐紀錄 管理
-                            </a>
-                        </li>
-
-                        <li id="submenu-5" class="panel-heading">
-                            <a class="panel-title collapsed" data-toggle="collapse" data-parent="#submenu" href="#submenu-5-list">
-                                <i class="fa-list-alt"></i> E. 菜單管理
-                            </a>
-                        </li>
-                        <li id="submenu-5-list" class="panel-collapse collapse">
-                            <ul class="panel-body">
-                                <li><a href="~/Fake/Dishes"><i class="fa-caret-right"></i>01. 基礎菜單 管理</a></li>
-                                <li><a href="~/Fake/Dishes2"><i class="fa-caret-right"></i>02. 基礎菜單分類 管理</a></li>
-                                <li><a href="~/Fake/Dishes3"><i class="fa-caret-right"></i>03. 組合菜單 管理</a></li>
-                                <li><a href="~/Fake/Dishes4"><i class="fa-caret-right"></i>04. 每日菜單 管理</a></li>
-                            </ul>
-                        </li>
-
-                        <li id="submenu-6" class="panel-heading">
-                            <a class="panel-title collapsed" data-toggle="collapse" data-parent="#submenu" href="#submenu-6-list">
-                                <i class="fa-list-alt"></i> F. 禮品發放
-                            </a>
-                        </li>
-                        <li id="submenu-6-list" class="panel-collapse collapse">
-                            <ul class="panel-body">
-                                <li><a href="~/Fake/Gift"><i class="fa-caret-right"></i>01. 活動基本資料 管理</a></li>
-                                <li><a href="~/Fake/Gift2"><i class="fa-caret-right"></i>02. 禮品贈送紀錄 管理</a></li>
-                            </ul>
-                        </li>
-
-                        <li id="submenu-7" class="panel-heading">
-                            <a class="panel-title collapsed" data-toggle="collapse" data-parent="#submenu" href="#submenu-7-list">
-                                <i class="fa-list-alt"></i> G. 通訊系統
-                            </a>
-                        </li>
-                        <li id="submenu-7-list" class="panel-collapse collapse">
-                            <ul class="panel-body">
-                                <li><a href="~/Fake/Tel"><i class="fa-caret-right"></i>01. 每日電訪名單 管理</a></li>
-                                <li><a href="~/Fake/Tel2"><i class="fa-caret-right"></i>02. 電訪名單 管理</a></li>
-                                <li><a href="~/Fake/Tel3"><i class="fa-caret-right"></i>03. 發送訊息 管理</a></li>
-                                <li><a href="~/Fake/Tel4"><i class="fa-caret-right"></i>04. 發送條件 管理</a></li>
-                                <li><a href="~/Fake/Tel5"><i class="fa-caret-right"></i>05. 文案內容 管理</a></li>
-                            </ul>
-                        </li>
-
-                        <li id="submenu-8" class="panel-heading">
-                            <a class="panel-title collapsed"  href="~/Fake/Check">
-                                <i class="fa-list-alt"></i> H. 結帳作業
-                            </a>
-                        </li>
-
-                        <li id="submenu-9" class="panel-heading">
-                            <a class="panel-title collapsed" data-toggle="collapse" data-parent="#submenu" href="#submenu-9-list">
-                                <i class="fa-list-alt"></i> I. 報表列印作業
-                            </a>
-                        </li>
-                        <li id="submenu-9-list" class="panel-collapse collapse">
-                            <ul class="panel-body">
-                                <li><a href="~/Fake/Report"><i class="fa-caret-right"></i>01. 每日菜單報表</a></li>
-                                <li><a href="~/Fake/Report2"><i class="fa-caret-right"></i>02. 產品銷售報表</a></li>
-                                <li><a href="~/Fake/Report3"><i class="fa-caret-right"></i>03. 應收帳款明細</a></li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </div>
-            </div><!-- sidebar //-->
-
-            }
-
-        </div><!-- main //-->
-
-    </div><!-- container //-->
-
-    <div id="footer">
-
-        <a href="#content" class="goTop"><i class="fa-angle-double-up"></i></a>
-
-    </div><!-- footer //-->
+    <a href="#header" class="goTop">T</a>
+    
+    <footer id="footer">
+        <div class="wrap">
+            <div class="copyright"><em>Smith 史密斯</em>&copy; 2015</div>
+            <ul class="list-unstyled">
+                <li>桃園市中壢區龍興路401巷26號</li>
+                <li><em>T</em>03-4369557</li>
+                <li><em>F</em>03-4364677</li>
+            </ul>
+        </div>
+    </footer>
 
     <script src="~/Scripts/jquery/jquery-2.1.4.min.js"></script>
-    <script src="~/Scripts/app/bootstrap.min.js"></script>
-    <script>
-        //左選單的當前頁標示
-        var ch = $('body').attr('class').match(/\d+/);
-        $("#submenu-"+ch).each(function() {
-            $(this).children('.panel-title').removeClass('collapsed');
-            if ( $(this).next(".panel-collapse").length ) {}
-            else {
-                $(this).children('.panel-title').addClass('current'); //沒有子選單的項目要加 current
-            }
-        });
-        var p = $('body').attr('class').match(/\d+$/);
-        $("#submenu-"+ch+"-list").addClass("in").find('.panel-body li:nth-child('+p+') a').addClass('current');
-    </script>
-
+    
     @RenderSection("Scripts", required: false)
 
 </body>

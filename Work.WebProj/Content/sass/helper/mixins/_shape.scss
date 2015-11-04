@@ -14,7 +14,7 @@
     @include size($size);
 
     @if $align == "center" {
-        @extend %text-center;
+        text-align: center;
         line-height: $size;
     }
 }
@@ -22,16 +22,16 @@
 // 做三角形
 @mixin caret($direction, $width, $height:$width/2, $color: inherit, $display:inline-block) {
     display: $display;
-    border: $width/2 solid transparent;
-
+    border: $width/2 solid;
+    
     @include size(0);
 
-    @if $direction == "up" {
+    @if ($direction == "top" or $direction =="up") {
         border-bottom-color:$color;
         border-bottom-width:$height;
         border-top-width:$width - $height;
     }
-    @else if $direction == "down" {
+    @else if ($direction == "bottom" or $direction == "down") {
         border-top-color:$color;
         border-top-width:$height;
         border-bottom-width:$width - $height;

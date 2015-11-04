@@ -1,22 +1,23 @@
 @charset "UTF-8";
 // wrapper
-$wrapper-bg:            #fff;
-$content-spacing:       75px !default;
+$wrapper-bg:            #F2F2F3;
+$content-spacing:       50px !default;
 
 // header
-$header-height:         112px;
-$logo-img:              'logo.png' !default;
-$logo-size:             235px, 83px !default;
+$header-height:         172px;
+$logo-img:              'logo.gif' !default;
+$logo-size:             309px 72px !default;
 
-$menu-height:           70px;
+$menu-height:           51px;
 $menu-height-sm:        100%;
-$menu-link:             transparent;
-$menu-link-hover:       $brand-secondary;
+$menu-link:             #001B23;
+$menu-link-hover:       #fff;
 
 // footer
-$footer-height:         50px !default;
+$footer-height:         102px !default;
 $footer-height-sm:      100px;
-$footer-bg:             #656565;
+$footer-bg:             #EDEFF1;
+$footer-color:          $text-color;
 $goTop:                 (bottom 10px), (right 15px) !default;
 
 
@@ -27,47 +28,40 @@ $goTop:                 (bottom 10px), (right 15px) !default;
     position: relative;
 }
 
+// 最大寬度限制 (非滿版才需要)
 %center {
-    max-width: wrap-width(xl); // 最大寬度限制 (非滿版才需要)
+    max-width: $max-width; 
     margin: 0 auto;
 }
 
 // 容器-header、wrap、main、footer等
 %contain {
     @extend %clearfix;
-
-    // 最小寬度限制 (無 RWD - 至少 lg 的寬度)
-    @include media(lg-min) {
-        min-width: wrap-width(lg);
-    }
-
-    // 最小寬度限制 (有 RWD - 至少 xxs 的寬度)
-    // @include media(md) {
-    //     min-width: 100%;
-    //     max-width: 100%;
-    // }
+    
+    padding-left: $gutter;
+    padding-right: $gutter;
+    
+    @include mq(wide) { padding: 0; }
 }
 
 #wrapper {
     @extend %container;
-    @extend %center;
     @if $lte7 {
         _height: 100%;
     }
     min-height: 100%;
+    
     padding-bottom: $footer-height + $content-spacing; // 內容與footer間距
-    background: $wrapper-bg;
+    // background: $wrapper-bg;
 
-    @include media(sm) {
+    @include mq($max: phone) {
         padding-bottom: $footer-height-sm + $content-spacing;
     }
 }
 
 .wrap {
-    @extend %container;
     @extend %center;
-    @extend %clearfix;
-    // @extend .text-left;
+    @extend %contain;
 }
 
 #header, footer, main, section {
@@ -79,6 +73,8 @@ $goTop:                 (bottom 10px), (right 15px) !default;
 // header
 // ----------------------------------------------------------------------
 #header {
+    @extend %center;
+    height: $header-height;
     z-index: z(header);
 
     h1 {
@@ -86,48 +82,61 @@ $goTop:                 (bottom 10px), (right 15px) !default;
         z-index: z(logo);
 
         @include text-pic($logo-img, nth($logo-size,1),  nth($logo-size,2));
-        @include absolute(left cp(70px) top 28px);
+        @include absolute(left 0 top 55px);
 
-        @include media(xs) {
+        @include mq($max: mobile) {
             top: 15px; left: 10px;
             background-size: contain;
-            @include size(150px,70px);
+            width: 150px; height: 70px;
         }
     }
 }
 
-.lan-nav {
-    font-size: em(26px);
-    color: #fff;
-    line-height: 34px;
-    z-index: z(logo)+1;
-    @include absolute(right 116px top 40px);
-    @include media(xs) { font-size: em(14px); right: 100px; top: 15px; }
-}
 .top-nav {
-    text-align: right;
+    background: #CBCBCB;
+    border-radius: 5px;
+    padding: 7px $gutter;
+    
     z-index: z(logo)-1;
 
-    @include absolute(right 20px top 38px);
-    @include media(xs) {
-        font-size: em(12px);
-        right: 10px; top: 12px;
+    @include absolute(right 0 top 0);
+    @include mq($max: mobile) {
     }
 
     a {
         display: inline-block;
-        vertical-align: middle;
-        margin-left: 8px;
-
-        &.club { @include text-pic('icon_club.png', 35px, 35px, fixed); }
-        &:last-of-type { background-position: -92px 0; }
-    }
-    span {
-        display: block;
-        clear: both;
         color: #fff;
-        font-size: em(20px);
-        margin-top: 8px;
+        font-size: em(12px);
+        border-right: 1px solid #fff;
+        padding-right: 10px;
+        margin-right: 10px;
+        
+        &:last-child {
+            border-right: none;
+            padding-right: 0;
+            margin-right: 0;
+        }
+        &:hover, &:active {
+            color: $brand-primary;
+        }
+    }
+}
+
+#menu {
+    font-size: em(21px);
+    font-weight: bold;
+    @include absolute(right 0 top 80px);
+    
+    a {
+        display: inline-block;
+        padding: 12px 30px;
+        color: $menu-link;
+        
+        &:hover, &:active {
+            background: #028BA4;
+            border-radius: 5px;
+            color: $menu-link-hover;
+        }
     }
 }
 
@@ -135,73 +144,25 @@ $goTop:                 (bottom 10px), (right 15px) !default;
 // footer
 // ----------------------------------------------------------------------
 footer {
-    @extend %center;
     background: $footer-bg;
     margin-top: -($footer-height);
     height: $footer-height;
     z-index: z(footer);
 
-    color: #fff;
-    padding: $gutter;
+    color: $footer-color;
 
-    @include media(sm) {
+    @include mq($max: phone) {
         margin-top: -($footer-height-sm);
         height: $footer-height-sm;
     }
 }
 
-.explain {
-    float: right;
-
-    @include media(sm) {
-        float: none;
-        text-align: center;
-        padding-top: 10px;
-    }
-
-    a {
-        color: #fff;
-        font-size: em(17px);
-    }
-}
-
 .copyright {
     float: left;
-    font-size: em(17px);
+    font-size: em(12px);
     text-align: left;
 }
-.bottom, .goTop {
-    @include media(sm) {
-        @include prefix(transform,scale(0.6) translateX(40%));
-    }
-}
-.bottom {
-    @include fixed(bottom cp(230px) right 0);
-    width: 115px;
-    padding: 15px 3px;
-    background: #fff;
-    border-radius: 15px 0 0 15px;
-    box-shadow: -10px 15px 0 rgba(#CBC9C8, 0.5);
-    z-index: z(goTop)+1;
-    a {
-        display: block;
-        font-size: em(31px);
 
-        &:first-child {
-            @include circle(92px);
-            background: $info;
-            color: #F5F199;
-
-            &:hover, &:active { background: $brand-secondary; }
-        }
-        &:last-child {
-            border-top: 1px solid #878787;
-            line-height: 1.1;
-            padding-top: 12px;
-            margin: 12px 10px 0 10px;
-        }
-    }
-}
 .goTop {
     @include fixed(bottom cp(55px) right cp(10px));
     @include circle(100px);

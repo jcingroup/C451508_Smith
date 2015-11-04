@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+%clearfix {
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+    @if $lte7 { zoom: 1 }
+}
+
+%full   { width: 100%; max-width: 100%; }
+%half   { width: 46.9% }
+%clear  { clear: both }
+%hidden { display: none; }
+%circle { border-radius: 50%; } // 圓形
+
+%list-unstyled {
+    list-style: none;
+}
+
+%list-inline {
+    @extend %list-unstyled;
+
+    margin-left: -5px;
+
+    > li {
+        display: inline-block;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}

@@ -1,5 +1,54 @@
 @charset "UTF-8";
 
+// 中斷點
+$breakpoints: (
+    xs:  320px,     // Extra small screen / phone
+    sm:  544px,   // Small screen / phone
+    md:  768px,   // Medium screen / tablet
+    lg:  992px,   // Large screen / desktop
+    lg2: 1280px,  // Large screen / desktop
+    xl:  1400px   // Extra large screen / wide desktop
+);
+
+// 容器寬度
+$wrap-widths: (
+    xxs: 320px,
+    xs:  480px,
+    sm:  720px,
+    md:  960px,
+    lg:  1008px,
+    xl:  1440px
+);
+
+// media queries
+$medias: (
+    xss:      (max-width: break(xs)),
+    xs:       (max-width: break(sm)),
+
+    sm:       (max-width: break(md)),
+    sm-min:   (min-width: break(sm)),
+
+    md:       (max-width: break(lg)-1),
+    md-min:   (min-width: break(md)),
+
+    lg:       (max-width: break(xl)-1),
+    lg-min:   (min-width: break(lg)),
+
+    xl:       (min-width: break(xl)),
+
+    md2:      (max-width: break(lg2)-1),
+);
+
+// breakpoints
+@function break($key) {
+    @return map-get($breakpoints, $key);
+}
+
+// max-widths
+@function wrap-width($key) {
+    @return map-get($wrap-widths, $key);
+}
+
 // RWD
 @mixin media($screen) {
     @if map-has-key($medias, $screen) {
