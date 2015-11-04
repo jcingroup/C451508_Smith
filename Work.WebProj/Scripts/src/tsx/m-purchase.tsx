@@ -41,7 +41,7 @@
         }
     }
 
-    interface PurchaseState<G, F> extends BaseDefine.GirdFormStateBase<G, F> {
+    interface PurchaseState<G, F, S> extends BaseDefine.GirdFormStateBase<G, F, S> {
 
         detailData?: Array<server.PurchaseDetail>;
         isShowModalSales?: boolean;
@@ -53,7 +53,9 @@
     interface PurchaseResult extends IResultBase {
         purchase_no: string
     }
-
+    interface SearchData {
+        name?: string
+    }
     interface ModalSalesProps {
         isShow: boolean,
         fieldSalesId: number,
@@ -170,7 +172,7 @@
         }
     }
 
-    export class GirdForm extends React.Component<BaseDefine.GridFormPropsBase, PurchaseState<Rows, server.Purchase>>{
+    export class GirdForm extends React.Component<BaseDefine.GridFormPropsBase, PurchaseState<Rows, server.Purchase, SearchData>>{
 
         constructor() {
 

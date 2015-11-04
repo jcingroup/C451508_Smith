@@ -18,26 +18,26 @@ namespace DotWeb.Api
             return Ok(obj);
         }
 
-        public async Task<IHttpActionResult> GetModalQuerySales(string keyword)
-        {
-            using (db0 = getDB0())
-            {
-                if (keyword != null)
-                {
-                    var items = await db0.Sales.Where(x => x.sales_name.Contains(keyword))
-                        .Select(x => new { x.sales_id, x.sales_no, x.sales_name })
-                        .ToListAsync();
-                    return Ok(items);
-                }
-                else
-                {
-                    var items = await db0.Sales
-                        .Select(x => new { x.sales_id, x.sales_no, x.sales_name })
-                        .ToListAsync();
-                    return Ok(items);
-                }
-            }
-        }
+        //public async Task<IHttpActionResult> GetModalQuerySales(string keyword)
+        //{
+        //    using (db0 = getDB0())
+        //    {
+        //        if (keyword != null)
+        //        {
+        //            var items = await db0.Sales.Where(x => x.sales_name.Contains(keyword))
+        //                .Select(x => new { x.sales_id, x.sales_no, x.sales_name })
+        //                .ToListAsync();
+        //            return Ok(items);
+        //        }
+        //        else
+        //        {
+        //            var items = await db0.Sales
+        //                .Select(x => new { x.sales_id, x.sales_no, x.sales_name })
+        //                .ToListAsync();
+        //            return Ok(items);
+        //        }
+        //    }
+        //}
     }
     #region Parm
 

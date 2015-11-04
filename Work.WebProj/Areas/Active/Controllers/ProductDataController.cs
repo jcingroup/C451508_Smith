@@ -9,10 +9,15 @@ using System.Linq;
 
 namespace DotWeb.Areas.Active.Controllers
 {
-    public class ProductController : AdminController
+    public class ProductDataController : AdminController
     {
         #region Action and function section
         public ActionResult Main()
+        {
+            ActionRun();
+            return View();
+        }
+        public ActionResult Category()
         {
             ActionRun();
             return View();
@@ -23,12 +28,11 @@ namespace DotWeb.Areas.Active.Controllers
 
         public string aj_Init()
         {
+
             using (var db0 = getDB0())
             {
-                return defJSON(new
-                {
-
-                });
+                var category_option = db0.ProductCategory.Where(x => !x.i_Hide).OrderByDescending(x => x.sort).Select(x => new { x.category_name, x.product_category_id });
+                return defJSON(category_option);
             }
         }
         #endregion

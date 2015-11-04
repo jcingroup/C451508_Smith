@@ -81,6 +81,10 @@ var GridNavPage = (function (_super) {
     __extends(GridNavPage, _super);
     function GridNavPage(props) {
         _super.call(this, props);
+        this.nextPage = this.nextPage.bind(this);
+        this.prvePage = this.prvePage.bind(this);
+        this.firstPage = this.firstPage.bind(this);
+        this.lastPage = this.lastPage.bind(this);
     }
     GridNavPage.prototype.firstPage = function () {
         this.props.onQueryGridData(1);

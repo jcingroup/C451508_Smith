@@ -53,18 +53,28 @@
 
     interface Product extends BaseEntityTable {
         product_id?: number;
-        product_category_id?: number;
+        category_id: number;
         product_name?: string;
+        product_content?: string;
         price?: number;
-        standard?: string;
         sort?: number;
-        memo?: string;
-        kvalue?: number;
+        i_Hide?: boolean;
+        productCategory?: {
+            product_category_id: number;
+            category_name: string;
+            sort: number;
+            memo: string;
+            i_Hide: boolean;
+            product: server.Product[];
+        };
     }
     interface ProductCategory extends BaseEntityTable {
-        product_category_id: number;
-        category_name: string;
-        sort: number;
+        product_category_id?: number;
+        category_name?: string;
+        sort?: number;
+        memo?: string;
+        i_Hide?: boolean;
+        product?: server.Product[];
     }
     interface Sales extends BaseEntityTable {
         sales_id?: number;
@@ -100,6 +110,8 @@
         qty?: number;
         price?: number;
         sub_total?: number;
+        product_no?: string;
+        purchase_no?: string
     }
 
 

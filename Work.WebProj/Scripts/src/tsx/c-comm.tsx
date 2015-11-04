@@ -10,14 +10,15 @@ module BaseDefine {
         itemData: R,
         chd?: boolean,
         delCheck(p1: number, p2: boolean): void,
-        updateType(p1: number|string): void,
-        primKey: number|string
+        updateType(p1: number | string): void,
+        primKey: number | string
     }
     export interface GridRowStateBase { }
 
     export interface GridFormPropsBase {
         apiPath?: string,
         apiPathDetail?: string,
+        InitPath?: string;
         gdName?: string,
         fdName?: string,
         menuName?: string,
@@ -25,7 +26,7 @@ module BaseDefine {
         iconClass?: string,
         showAdd?: boolean
     }
-    export interface GirdFormStateBase<G, F> {
+    export interface GirdFormStateBase<G, F, S> {
         gridData?: {
             rows: Array<G>,
             page: number,
@@ -35,7 +36,7 @@ module BaseDefine {
             records?: number
         },
         fieldData?: F,
-        searchData?: { UserName?: string },
+        searchData?: S,
         edit_type?: number,
         checkAll?: boolean
     }
@@ -76,7 +77,7 @@ class GridCheckDel extends React.Component<
 }
 
 class InputDate extends React.Component<{
-    id:string,
+    id: string,
     value: Date,
     onChange(p1: string, e: React.SyntheticEvent): void,
     field_name: string,
@@ -125,16 +126,16 @@ class InputDate extends React.Component<{
             out_html = (
                 <div>
                     <input
-                    type="date"
-                    className="form-control datetimepicker"
-                    id={this.props.id}
-                    name={this.props.field_name}
-                    value={this.props.value != undefined ? moment(this.props.value).format(dt.dateFT) : ''}
-                    onChange={this.onChange}
-                    required={this.props.required}
-                    disabled={this.props.disabled} />
+                        type="date"
+                        className="form-control datetimepicker"
+                        id={this.props.id}
+                        name={this.props.field_name}
+                        value={this.props.value != undefined ? moment(this.props.value).format(dt.dateFT) : ''}
+                        onChange={this.onChange}
+                        required={this.props.required}
+                        disabled={this.props.disabled} />
                     <i className="fa-calendar form-control-feedback"></i>
-                 </div>
+                    </div>
             );
         } else if (this.props.ver == 2) {
             out_html = (
@@ -149,7 +150,7 @@ class InputDate extends React.Component<{
                         required={this.props.required}
                         disabled={this.props.disabled} />
                         <i className="fa-calendar form-control-feedback"></i>
-                </div>
+                    </div>
             );
         }
 
@@ -174,8 +175,11 @@ class GridNavPage extends React.Component<GridNavPageProps, any> {
 
     constructor(props) {
         super(props)
+        this.nextPage = this.nextPage.bind(this);
+        this.prvePage = this.prvePage.bind(this);
+        this.firstPage = this.firstPage.bind(this);
+        this.lastPage = this.lastPage.bind(this);
     }
-
     static defaultProps = {
         showAdd: true,
         showDelete: true
