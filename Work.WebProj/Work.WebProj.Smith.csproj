@@ -210,12 +210,14 @@
     <Content Include="Areas\Active\Views\IssueData\Category.cshtml" />
     <Content Include="Areas\Active\Views\IssueData\Main.cshtml" />
     <None Include="Areas\Base\Controllers\ReportChartController.cs" />
+    <Compile Include="Areas\Base\Controllers\MenuController.cs" />
     <Compile Include="Areas\Base\Controllers\RolesController.cs" />
     <Compile Include="Areas\Base\Controllers\UsersController.cs" />
     <Compile Include="Areas\Base\BaseAreaRegistration.cs" />
     <Content Include="Areas\Base\Views\Login\index.tablet.cshtml" />
     <Compile Include="Controllers\Api\GetActionController.cs" />
     <Compile Include="Controllers\Api\IssueCategoryController.cs" />
+    <Compile Include="Controllers\Api\MenuController.cs" />
     <Compile Include="Controllers\Api\ProductCategoryController.cs" />
     <Compile Include="Controllers\Api\IssueController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
@@ -293,6 +295,7 @@
     <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\fontAwesome\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Base\Views\Menu\Main.cshtml" />
     <None Include="gulpfile.js" />
     <Content Include="Content\images\noIE\bg.gif" />
     <Content Include="Content\images\noIE\brow.gif" />
@@ -813,6 +816,7 @@
     <Content Include="Areas\Active\Views\Sales\App_LocalResources\Main.cshtml.resx" />
     <Content Include="Areas\Active\Views\Purchase\App_LocalResources\Main.cshtml.resx" />
     <Content Include="Areas\Active\Views\IssueData\App_LocalResources\Main.cshtml.resx" />
+    <Content Include="Areas\Base\Views\Menu\App_LocalResources\Main.cshtml.resx" />
     <EmbeddedResource Include="_Code\RPTFile\MemeberLabel.rdlc" />
   </ItemGroup>
   <PropertyGroup>

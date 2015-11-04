@@ -205,6 +205,22 @@ namespace ProcCore.Business.DB0
     {
         public string category_name { get; set; }
     }
+    public partial class Menu : BaseEntityTable
+    {
+
+        public IList<MenuRoleArray> role_array { get; set; }
+    }
+    public class MenuRoleArray
+    {
+        public string role_id { get; set; }
+        public bool role_use { get; set; }
+        public string role_name { get; set; }
+    }
+    public class option
+    {
+        public int val { get; set; }
+        public string Lname { get; set; }
+    }
     #endregion
 
     #region q_Model_Define
