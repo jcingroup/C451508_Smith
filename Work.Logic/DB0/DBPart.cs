@@ -201,6 +201,10 @@ namespace ProcCore.Business.DB0
     {
         public string category_name { get; set; }
     }
+    public partial class m_Issue : BaseEntityTable
+    {
+        public string category_name { get; set; }
+    }
     #endregion
 
     #region q_Model_Define

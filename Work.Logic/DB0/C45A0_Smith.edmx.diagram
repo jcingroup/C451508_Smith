@@ -22,6 +22,9 @@
         <EntityTypeShape EntityType="C45A0_SmithModel.Product" Width="1.5" PointX="10.625" PointY="6.875" />
         <AssociationConnector Association="C45A0_SmithModel.FK_Product_ProductCategory" />
         <EntityTypeShape EntityType="C45A0_SmithModel.Purchase" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.Issue" Width="1.5" PointX="7.625" PointY="12" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.IssueCategory" Width="1.5" PointX="5.375" PointY="12.25" />
+        <AssociationConnector Association="C45A0_SmithModel.FK_Issue_IssueCategory" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

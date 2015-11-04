@@ -59,14 +59,7 @@
         price?: number;
         sort?: number;
         i_Hide?: boolean;
-        productCategory?: {
-            product_category_id: number;
-            category_name: string;
-            sort: number;
-            memo: string;
-            i_Hide: boolean;
-            product: server.Product[];
-        };
+        productCategory?: server.ProductCategory;
     }
     interface ProductCategory extends BaseEntityTable {
         product_category_id?: number;
@@ -75,6 +68,25 @@
         memo?: string;
         i_Hide?: boolean;
         product?: server.Product[];
+    }
+
+    interface Issue extends BaseEntityTable {
+        issue_id?: number;
+        issue_category_id?: number;
+        issue_title?: string;
+        issue_content?: string;
+        issue_date?: Date;
+        issue_ans?: string;
+        i_Hide?: boolean;
+        issueCategory?: server.IssueCategory;
+    }
+    interface IssueCategory extends BaseEntityTable {
+        issue_category_id?: number;
+        category_name?: string;
+        sort?: number;
+        memo?: string;
+        i_Hide?: boolean;
+        issue?: server.Issue[];
     }
     interface Sales extends BaseEntityTable {
         sales_id?: number;

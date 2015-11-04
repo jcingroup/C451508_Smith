@@ -59,7 +59,7 @@ var InputDate = (function (_super) {
     InputDate.prototype.render = function () {
         var out_html = null;
         if (this.props.ver == 1) {
-            out_html = (React.createElement("div", null, React.createElement("input", {"type": "date", "className": "form-control datetimepicker", "id": this.props.id, "name": this.props.field_name, "value": this.props.value != undefined ? moment(this.props.value).format(dt.dateFT) : '', "onChange": this.onChange, "required": this.props.required, "disabled": this.props.disabled}), React.createElement("i", {"className": "fa-calendar form-control-feedback"})));
+            out_html = (React.createElement("div", null, React.createElement("input", {"type": "date", "className": "form-control datetimepicker", "id": this.props.id, "name": this.props.field_name, "value": this.props.value != undefined ? moment(this.props.value).format('YYYY-MM-DD') : '', "onChange": this.onChange, "required": this.props.required, "disabled": this.props.disabled}), React.createElement("i", {"className": "fa-calendar form-control-feedback"})));
         }
         else if (this.props.ver == 2) {
             out_html = (React.createElement("div", null, React.createElement("input", {"type": "date", "className": "form-control input-sm datetimepicker", "id": this.props.id, "name": this.props.field_name, "value": this.props.value != undefined ? moment(this.props.value).format(dt.dateFT) : '', "onChange": this.onChange, "required": this.props.required, "disabled": this.props.disabled}), React.createElement("i", {"className": "fa-calendar form-control-feedback"})));

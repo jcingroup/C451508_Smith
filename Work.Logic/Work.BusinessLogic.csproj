@@ -98,6 +98,12 @@
     <Compile Include="DB0\Department.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB0\Issue.cs">
+      <DependentUpon>C45A0_Smith.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB0\IssueCategory.cs">
+      <DependentUpon>C45A0_Smith.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB0\i_Currency.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
@@ -126,6 +132,12 @@
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
     <Compile Include="DB0\m_Department.cs">
+      <DependentUpon>C45A0_Smith.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB0\m_Issue.cs">
+      <DependentUpon>C45A0_Smith.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB0\m_IssueCategory.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
     <Compile Include="DB0\m_i_Currency.cs">

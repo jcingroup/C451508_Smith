@@ -12,29 +12,29 @@ using System.Web.Http;
 
 namespace DotWeb.Api
 {
-    public class ProductCategoryController : ajaxApi<ProductCategory, q_ProductCategory>
+    public class IssueCategoryController : ajaxApi<IssueCategory, q_IssueCategory>
     {
         public async Task<IHttpActionResult> Get(int id)
         {
             using (db0 = getDB0())
             {
-                item = await db0.ProductCategory.FindAsync(id);
-                r = new ResultInfo<ProductCategory>() { data = item };
+                item = await db0.IssueCategory.FindAsync(id);
+                r = new ResultInfo<IssueCategory>() { data = item };
             }
 
             return Ok(r);
         }
-        public async Task<IHttpActionResult> Get([FromUri]q_ProductCategory q)
+        public async Task<IHttpActionResult> Get([FromUri]q_IssueCategory q)
         {
             #region working
 
             using (db0 = getDB0())
             {
-                var items = db0.ProductCategory
+                var items = db0.IssueCategory
                     .OrderBy(x => x.sort)
-                    .Select(x => new m_ProductCategory()
+                    .Select(x => new m_IssueCategory()
                     {
-                        product_category_id = x.product_category_id,
+                        issue_category_id = x.issue_category_id,
                         category_name = x.category_name,
                         sort = x.sort,
                         i_Hide=x.i_Hide
@@ -49,7 +49,7 @@ namespace DotWeb.Api
                 int startRecord = PageCount.PageInfo(page, this.defPageSize, items.Count());
                 var resultItems = await items.Skip(startRecord).Take(this.defPageSize).ToListAsync();
 
-                return Ok(new GridInfo<m_ProductCategory>()
+                return Ok(new GridInfo<m_IssueCategory>()
                 {
                     rows = resultItems,
                     total = PageCount.TotalPage,
@@ -61,14 +61,14 @@ namespace DotWeb.Api
             }
             #endregion
         }
-        public async Task<IHttpActionResult> Put([FromBody]ProductCategory md)
+        public async Task<IHttpActionResult> Put([FromBody]IssueCategory md)
         {
             ResultInfo rAjaxResult = new ResultInfo();
             try
             {
                 db0 = getDB0();
 
-                item = await db0.ProductCategory.FindAsync(md.product_category_id);
+                item = await db0.IssueCategory.FindAsync(md.issue_category_id);
 
 
                 item.category_name = md.category_name;
@@ -90,14 +90,14 @@ namespace DotWeb.Api
             }
             return Ok(rAjaxResult);
         }
-        public async Task<IHttpActionResult> Post([FromBody]ProductCategory md)
+        public async Task<IHttpActionResult> Post([FromBody]IssueCategory md)
         {
-            md.product_category_id = GetNewId(CodeTable.ProductCategory);
+            md.issue_category_id = GetNewId(CodeTable.ProductCategory);
             md.i_InsertDateTime = DateTime.Now;
             md.i_InsertDeptID = this.departmentId;
             md.i_InsertUserID = this.UserId;
             md.i_Lang = "zh-TW";
-            r = new ResultInfo<ProductCategory>();
+            r = new ResultInfo<IssueCategory>();
             if (!ModelState.IsValid)
             {
                 r.message = ModelStateErrorPack();
@@ -110,11 +110,11 @@ namespace DotWeb.Api
                 #region working
                 db0 = getDB0();
 
-                db0.ProductCategory.Add(md);
+                db0.IssueCategory.Add(md);
                 await db0.SaveChangesAsync();
 
                 r.result = true;
-                r.id = md.product_category_id;
+                r.id = md.issue_category_id;
                 return Ok(r);
                 #endregion
             }
@@ -138,9 +138,9 @@ namespace DotWeb.Api
 
                 foreach (var id in ids)
                 {
-                    item = new ProductCategory() { product_category_id = id };
-                    db0.ProductCategory.Attach(item);
-                    db0.ProductCategory.Remove(item);
+                    item = new IssueCategory() { issue_category_id = id };
+                    db0.IssueCategory.Attach(item);
+                    db0.IssueCategory.Remove(item);
                 }
 
                 await db0.SaveChangesAsync();
@@ -174,7 +174,7 @@ namespace DotWeb.Api
             }
         }
     }
-    public class q_ProductCategory : QueryBase
+    public class q_IssueCategory : QueryBase
     {
         public string category_name { get; set; }
     }

@@ -130,7 +130,7 @@ class InputDate extends React.Component<{
                         className="form-control datetimepicker"
                         id={this.props.id}
                         name={this.props.field_name}
-                        value={this.props.value != undefined ? moment(this.props.value).format(dt.dateFT) : ''}
+                        value={this.props.value != undefined ? moment(this.props.value).format('YYYY-MM-DD') : ''}
                         onChange={this.onChange}
                         required={this.props.required}
                         disabled={this.props.disabled} />

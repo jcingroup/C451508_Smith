@@ -1,27 +1,21 @@
-﻿namespace Product {
+﻿namespace IssueCategory {
     interface Rows {
         check_del: boolean,
-        product_id: string;
-        category_id: number;
+        issue_category_id: number;
         category_name: string;
-        product_name: string;
-        price: number;
         sort: number;
+        memo: string;
         i_Hide: boolean;
     }
     interface SearchData {
         //搜尋 參數
-        name?: string
+        category_name?: string
     }
-    interface ProductCategory {
-        product_category_id: number
-        category_name: string
-    }
-    interface ProductState<G, F, S> extends BaseDefine.GirdFormStateBase<G, F, S> {
+    interface IssueCategoryState<G, F, S> extends BaseDefine.GirdFormStateBase<G, F, S> {
         //額外擴充 表單 State參數
-        category_option?: Array<ProductCategory>
     }
     interface CallResult extends IResultBase {
+        //定義 回傳結果參數
         id: string
     }
     class GridRow extends React.Component<BaseDefine.GridRowPropsBase<Rows>, BaseDefine.GridRowStateBase> {
@@ -50,18 +44,16 @@
                         <GridButtonModify modify={this.modify}/>
                         </td>
                     <td>{this.props.itemData.category_name}</td>
-                    <td>{this.props.itemData.product_name}</td>
-                    <td>{this.props.itemData.price}</td>
+                    <td>{this.props.itemData.sort}</td>
                     <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
                 </tr>;
         }
     }
-    export class GirdForm extends React.Component<BaseDefine.GridFormPropsBase, ProductState<Rows, server.Product, SearchData>>{
+    export class GirdForm extends React.Component<BaseDefine.GridFormPropsBase, IssueCategoryState<Rows, server.IssueCategory, SearchData>>{
 
         constructor() {
 
             super();
-            this.getInitData = this.getInitData.bind(this);
             this.updateType = this.updateType.bind(this);
             this.noneType = this.noneType.bind(this);
             this.queryGridData = this.queryGridData.bind(this);
@@ -72,32 +64,18 @@
             this.checkAll = this.checkAll.bind(this);
             this.componentDidMount = this.componentDidMount.bind(this);
             this.insertType = this.insertType.bind(this);
-            this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, category_option: null, searchData: {} }
+            this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, searchData: {} }
 
         }
         static defaultProps: BaseDefine.GridFormPropsBase = {
             fdName: 'fieldData',
             gdName: 'searchData',
-            apiPath: gb_approot + 'api/Product',
-            InitPath: gb_approot + 'Active/ProductData/aj_Init'
+            apiPath: gb_approot + 'api/IssueCategory'
         }
         componentDidMount() {
             this.queryGridData(1);
-            this.getInitData();
         }
 
-        getInitData() {
-            jqGet(this.props.InitPath, {})
-                .done((data: Array<ProductCategory>, textStatus, jqXHRdata) => {
-                    this.setState({
-                        category_option: data
-                    });
-                })
-                .fail((jqXHR, textStatus, errorThrown) => {
-                    showAjaxError(errorThrown);
-                });
-
-        }
         gridData(page: number) {
 
             var parms = {
@@ -164,7 +142,7 @@
             var ids = [];
             for (var i in this.state.gridData.rows) {
                 if (this.state.gridData.rows[i].check_del) {
-                    ids.push('ids=' + this.state.gridData.rows[i].product_id);
+                    ids.push('ids=' + this.state.gridData.rows[i].issue_category_id);
                 }
             }
 
@@ -206,7 +184,7 @@
             this.setState(newState);
         }
         insertType() {
-            this.setState({ edit_type: 1, fieldData: { category_id: this.state.category_option[0].product_category_id,price:0 } });
+            this.setState({ edit_type: 1, fieldData: {} });
         }
         updateType(id: number | string) {
 
@@ -257,9 +235,7 @@
                 outHtml =
                 (
                     <div>
-
-    <h3 className="title">
-        {this.props.caption}
+    <h3 className="title" dangerouslySetInnerHTML={{ __html: this.props.caption }}>
         </h3>
     <form onSubmit={this.handleSearch}>
         <div className="table-responsive">
@@ -267,10 +243,10 @@
                 <div className="table-filter">
                     <div className="form-inline">
                         <div className="form-group">
-                            <label>產品名稱</label> { }
+                            <label>Q & A分類名稱</label> { }
                             <input type="text" className="form-control"
-                                value={searchData.name}
-                                onChange={this.changeGDValue.bind(this, 'name') }
+                                value={searchData.category_name}
+                                onChange={this.changeGDValue.bind(this, 'category_name') }
                                 placeholder="請輸入關鍵字..." /> { }
                             <button className="btn-primary" type="submit"><i className="fa-search"></i> 搜尋</button>
                             </div>
@@ -287,9 +263,8 @@
                                 </label>
                             </th>
                         <th className="col-xs-1 text-center">修改</th>
-                        <th className="col-xs-2">產品分類</th>
-                        <th className="col-xs-2">產品名稱</th>
-                        <th className="col-xs-2">單價</th>
+                        <th className="col-xs-2">分類名稱</th>
+                        <th className="col-xs-2">排序</th>
                         <th className="col-xs-2">狀態</th>
                         </tr>
                     </thead>
@@ -299,7 +274,7 @@
                         (itemData, i) =>
                             <GridRow key={i}
                                 ikey={i}
-                                primKey={itemData.product_id}
+                                primKey={itemData.issue_category_id}
                                 itemData={itemData}
                                 delCheck={this.delCheck}
                                 updateType={this.updateType} />
@@ -326,51 +301,25 @@
 
                 outHtml = (
                     <div>
-
-    <h3 className="title"> { this.props.caption } 基本資料維護</h3>
+    <h3 className="title" dangerouslySetInnerHTML={{ __html: this.props.caption + ' 基本資料維護' }}></h3>
     <form className="form-horizontal" onSubmit={this.handleSubmit}>
         <div className="col-xs-12">
             <div className="alert alert-warning">
                 <p><strong className="text-danger">紅色標題</strong> 為必填欄位。</p>
                 </div>
 
-            <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">產品分類</label>
-                <div className="col-xs-4">
-                    <select className="form-control"
-                        value={fieldData.category_id}
-                        onChange={this.changeFDValue.bind(this, 'category_id') }>
-                        {
-                        this.state.category_option.map((itemData, i) =>
-                            <option key={itemData.product_category_id} value={itemData.product_category_id.toString() }>{itemData.category_name}</option>
-                        )
-                        }
-                        </select>
-                    </div>
-                </div>
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">產品名稱</label>
+                <label className="col-xs-2 control-label text-danger">分類名稱</label>
                 <div className="col-xs-4">
                     <input type="text"
                         className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'product_name') }
-                        value={fieldData.product_name}
+                        onChange={this.changeFDValue.bind(this, 'category_name') }
+                        value={fieldData.category_name}
                         maxLength={64}
                         required />
                     </div>
-                    <small className="help-inline col-xs-6">最多64個字<span className="text-danger">(必填) </span></small>
-                </div>
-
-            <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">單價</label>
-                <div className="col-xs-4">
-                    <input type="number"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'price') }
-                        value={fieldData.price}
-                        required />
-                    </div>
+                   <small className="help-inline col-xs-6">最多64個字<span className="text-danger">(必填) </span></small>
                 </div>
 
             <div className="form-group">
@@ -413,16 +362,14 @@
                 </div>
 
                 <div className="form-group">
-                     <label className="col-xs-2 control-label">產品內容</label>
+                     <label className="col-xs-2 control-label">備註</label>
                         <div className="col-xs-6">
                             <textarea cols={30} rows={3} className="form-control"
-                                value={fieldData.product_content}
-                                onChange={this.changeFDValue.bind(this, 'product_content') }
+                                value={fieldData.memo}
+                                onChange={this.changeFDValue.bind(this, 'memo') }
                                 maxLength={256}></textarea>
                             </div>
                     </div>
-
-
 
             <div className="form-action text-right">
                 <div className="col-xs-5">
@@ -441,4 +388,4 @@
     }
 }
 var dom = document.getElementById('page_content');
-React.render(<Product.GirdForm caption={gb_caption} menuName={gb_menuname} iconClass="fa-list-alt" />, dom);
+React.render(<IssueCategory.GirdForm caption={gb_caption} menuName={gb_menuname} iconClass="fa-list-alt" />, dom);

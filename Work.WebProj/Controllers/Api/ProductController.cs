@@ -40,7 +40,8 @@ namespace DotWeb.Api
                         product_name = x.product_name,
                         category_name = x.ProductCategory.category_name,
                         price = x.price,
-                        sort = x.sort
+                        sort = x.sort,
+                        i_Hide=x.i_Hide
                     }).Where(x => x.product_id > 0).AsQueryable();
 
                 if (q.name != null)
@@ -98,7 +99,7 @@ namespace DotWeb.Api
         }
         public async Task<IHttpActionResult> Post([FromBody]Product md)
         {
-            md.product_id = GetNewId(CodeTable.Base);
+            md.product_id = GetNewId(CodeTable.Product);
             md.i_Hide = false;
             md.i_InsertDateTime = DateTime.Now;
             md.i_InsertDeptID = this.departmentId;
