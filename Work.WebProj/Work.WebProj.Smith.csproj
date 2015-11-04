@@ -201,6 +201,7 @@
     <Compile Include="Areas\Active\Controllers\PurchaseController.cs" />
     <Compile Include="Areas\Active\Controllers\SalesController.cs" />
     <Compile Include="Areas\Active\Controllers\ProductDataController.cs" />
+    <Compile Include="Areas\Base\Controllers\DocController.cs" />
     <Compile Include="Areas\Base\Controllers\LoginController.cs" />
     <Content Include="Areas\Active\Views\ProductData\Category.cshtml" />
     <Content Include="Areas\Active\Views\ProductData\Main.cshtml" />
@@ -673,6 +674,8 @@
     <Content Include="Scripts\src\jsx\m-Users.jsx" />
     <Content Include="Scripts\src\jsx\m-Roles.jsx" />
     <Content Include="Scripts\src\tsx\xformat.jsx" />
+    <Content Include="Scripts\src\jsx\m-ChangePassword.jsx" />
+    <Content Include="Scripts\src\jsx\m-Menu.jsx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

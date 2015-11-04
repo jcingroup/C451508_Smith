@@ -1,17 +1,14 @@
-﻿using System;
+﻿using DotWeb.Controller;
+using ProcCore.Business.DB0;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Xml;
-using System.Xml.Linq;
-using ProcCore.WebCore;
-using ProcCore.JqueryHelp.JQGridScript;
-using ProcCore.ReturnAjaxResult;
-using Newtonsoft.Json;
 
-namespace DotWeb.Areas.Sys_Base.Controllers
+namespace DotWeb.Areas.Base.Controllers
 {
-    public class DocController : BaseController
+    public class DocController : AdminController
     {
         public RedirectResult Index()
         {
@@ -30,16 +27,26 @@ namespace DotWeb.Areas.Sys_Base.Controllers
                 String f_sort = f.GetElementsByTagName("sort").Item(0).FirstChild.Value;
                 String f_memo = f.GetElementsByTagName("memo").Item(0).FirstChild.Value;
 
-                if (System.IO.File.Exists( Server.MapPath("~/_Code/SysDoc/" + f_name)))
+                if (System.IO.File.Exists(Server.MapPath("~/_Code/SysDoc/" + f_name)))
                 {
                     DocInfo d = new DocInfo()
                     {
-                        Name = f_name, Sort = int.Parse(f_sort),Momo=f_memo,Link = Url.Content("~/_Code/SysDoc/" + f_name)
+                        Name = f_name,
+                        Sort = int.Parse(f_sort),
+                        Momo = f_memo,
+                        Link = Url.Content("~/_Code/SysDoc/" + f_name)
                     };
                     l.Add(d);
                 }
             }
             return View("ListData", l.ToArray().OrderBy(x => x.Sort));
         }
+    }
+    public class DocInfo
+    {
+        public String Name { get; set; }
+        public int Sort { get; set; }
+        public String Momo { get; set; }
+        public String Link { get; set; }
     }
 }

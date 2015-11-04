@@ -1,98 +1,33 @@
-﻿@model  IEnumerable<DotWeb.DocInfo>
+﻿@model  IEnumerable<DotWeb.Areas.Base.Controllers.DocInfo>
 
-@using DotWeb;
+@using DotWeb.Areas.Base.Controllers;
+@{
+    Layout = "~/Views/Shared/Manage/RLayout.cshtml";
+    ViewBag.MenuName = "系統設定";
+    ViewBag.Caption = "教學影片";
+}
+@section breadCrumb {
+    <li><a href="~/Base/Doc/ListGrid"><i class="fa-cogs"></i> @ViewBag.MenuName</a></li>
+    <li>@ViewBag.Caption</li>
+}
 @section IncludeScript{
-    @Html.Partial("Manage/includeScript_Comm")
-    <style>
-        h3
-        {
-            padding: 4px 2px;
-            text-align: left;
-        }
-
-        ul
-        {
-            overflow: hidden;
-        }
-
-        li.ui-state-default
-        {
-            float: left;
-            width: 86px;
-            margin-right: -1px;
-            padding: 5px;
-            font-size: .9em;
-        }
-
-        li.title
-        {
-            width: 250px;
-        }
-
-        li.description
-        {
-            width: 390px;
-        }
-
-        dl
-        {
-            margin-top: -1px;
-            padding-bottom: 50px;
-            border: 1px solid #A5CEE7;
-            border-radius: 0 0 5px 5px;
-            clear: both;
-            overflow: hidden;
-        }
-
-        dt
-        {
-            float: left;
-            width: 357px;
-            height: 28px;
-            margin: -1px 5px 0 -1px;
-            text-align: left;
-            line-height: 28px;
-            border: 1px solid #A5CEE7;
-            clear: both;
-        }
-
-            dt em
-            {
-                display: inline-block;
-                width: 86px;
-                margin-right: 5px;
-                padding: 0 5px;
-                text-align: center;
-                border-right: 1px solid #A5CEE7;
-            }
-
-        dd
-        {
-            height: 28px;
-            margin: -1px -1px 0 0;
-            padding: 0 5px;
-            text-align: left;
-            line-height: 28px;
-            border: 1px solid #A5CEE7;
-            border-left: 0;
-        }
-    </style>
+    @Html.Partial("Manage/JSGlobalVar")
+    <script src="~/Scripts/build/comminc.js"></script>
 }
-@section menu{
-    @Html.Raw(Session["MenuHtmlString"].ToString())
+@section sidebar{
+    @Html.Partial("Manage/vucMenu")
 }
+<h3 class="title">
+    <span>操作教學影片</span>
+</h3>
+<div class="alert alert-warning" role="alert">
+    <p>1. 如無法觀看操作教學影片，請<a class="alert-link" href="http://get.adobe.com/shockwave/" target="new">按此下載 Flash 播放器</a>並安裝。</p>
+    <p>2. 影片開啟後，可點選 <i class="fa-arrows-alt"></i> 圖示，以全螢幕方式觀看。</p>
+</div>
 
-<h3 class="ui-widget-header ui-corner-top">@Html.Lang("t1")</h3>
-<ul>
-    <li class="ui-state-default">@Html.Lang("t2")</li>
-    <li class="ui-state-default title">@Html.Lang("t3")</li>
-    <li class="ui-state-default description">@Html.Lang("t4")</li>
-</ul>
-
-<dl>
+<ul class="list-link list-unstyled">
     @foreach (DocInfo doc in Model)
-    { 
-        <dt><em>@doc.Sort</em><a href="@doc.Link" target="new">@doc.Name</a></dt>
-        <dd>@doc.Momo</dd>
+    {
+        <li><a href="@doc.Link" target="new"><i>@doc.Sort</i>@doc.Momo</a></li>
     }
-</dl>
+</ul>
