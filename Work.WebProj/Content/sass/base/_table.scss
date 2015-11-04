@@ -1,91 +1,58 @@
 @charset "UTF-8";
 
+$table-padding: 10px 15px;
+$font-size-caption: 30px;
+$font-size-td: 24px;
+
+
 /*      table
 -----------------------------------------------------------------------*/
 table {
-    background-color: color('table', 'bg');
-    margin-bottom: $line-height-computed;
+    // margin: $line-height-computed 0;
 }
-th,
-td {
-    padding: nth($table-padding,1);
+th, td {
+    padding: nth($table-padding, 2);
+    border: 1px solid color(table-border);
+
+    color: color(table-td);
+    font-size: em($font-size-td);
     line-height: $line-height-base;
+
+    font-weight: bold;
+    text-align: center;
     vertical-align: top;
-    border-top: 1px solid color('table', 'border');
 }
-// Bottom align for column headings
-thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid color('table', 'border');
+
+// 滑鼠移過變色
+tr:hover {
+    background-color: color(table-bg-hover);
 }
-// Remove top border from thead by default
-caption,
-thead:first-child {
-    tr:first-child {
-        th,
-        td {
-            border-top: 0;
-        }
-    }
-}
-// Account for multiple tbody instances
-tbody + tbody {
-    border-top: 2px solid color('table', 'border');
-}
+
 caption {
-    padding-top: nth($table-padding,1);
-    padding-bottom: nth($table-padding,1);
-    color: $gray-light;
-    text-align: left;
-}
-th {
-    text-align: left;
+    background: color(table-bg);
+    padding-top: nth($table-padding, 1);
+    padding-bottom: nth($table-padding, 1);
+
+    color: color(table-caption);
+    font-size: em($font-size-caption);
+    line-height: $line-height-sm;
+    text-align: center;
 }
 
 // 固定欄寬度
 .fixed {
-    table-layout:fixed;
-    word-wrap:break-word;
-    word-break:break-all;
+    table-layout: fixed;
+    word-wrap: break-word;
+    word-break: break-all;
 }
-
-
-// 緊縮表格 w/ padding 減半
-.table-condensed {
-    th,
-    td {
-        padding: nth($table-padding,2);
-    }
-}
-
-
-// 有外框的表格
-.table-bordered {
-    border: 1px solid color('table', 'border');
-    th,
-    td {
-        border: 1px solid color('table', 'border');
-    }
-}
-
 
 // 斑馬紋條列式表格
-.table-striped {
-    tr:nth-of-type(odd) {
-        background-color: color('table', 'bg-accent');
-    }
-}
-
-
-// 滑鼠移過變色
-.table-hover {
-    tr:hover {
-        background-color: color('table', 'bg-hover');
-    }
-}
+// tr:nth-of-type(odd) {
+//     background-color: color(table-bg-accent);
+// }
 
 // 背景色
-@include table-row-variant('active', color('table','bg-active'));
+// @include table-row-variant('active', color(table-bg-active));
 // @include table-row-variant('green', $green-bg);
 // @include table-row-variant('blue', $blue-bg);
 // @include table-row-variant('yellow', $yellow-bg);
@@ -96,46 +63,44 @@ th {
 //
 // '.table-responsive' < 768 時會出現水平卷軸
 
-.table-responsive {
-    overflow-x: auto;
-    min-height: 0.01%; // Workaround for IE9 bug (see https://github.com/twbs/bootstrap/issues/14837)
+// .table-responsive {
+//     overflow-x: auto;
+//     min-height: 0.01%; // Workaround for IE9 bug (see https://github.com/twbs/bootstrap/issues/14837)
 
-    @include media(sm) {
-        width: 100%;
-        margin-bottom: ($line-height-computed * 0.75);
-        overflow-y: hidden;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-        border: 1px solid color('table', 'border');
+//     @include media(sm) {
+//         width: 100%;
+//         margin-bottom: ($line-height-computed * 0.75);
+//         overflow-y: hidden;
+//         -ms-overflow-style: -ms-autohiding-scrollbar;
+//         border: 1px solid color(table-border);
 
-        table {
-            margin-bottom: 0;
-            th,
-            td {
-                white-space: nowrap;
-            }
-        }
+//         table {
+//             margin-bottom: 0;
+//             th, td {
+//                 white-space: nowrap;
+//             }
+//         }
 
-        .table-bordered {
-            border: 0;
+//         .table-bordered {
+//             border: 0;
 
-            > tr {
-                > th:first-child,
-                > td:first-child {
-                    border-left: 0;
-                }
-                > th:last-child,
-                > td:last-child {
-                    border-right: 0;
-                }
-            }
+//             > tr {
+//                 > th:first-child,
+//                 > td:first-child {
+//                     border-left: 0;
+//                 }
+//                 > th:last-child,
+//                 > td:last-child {
+//                     border-right: 0;
+//                 }
+//             }
 
-            > tr:last-child {
-                > th,
-                > td {
-                    border-bottom: 0;
-                }
-            }
-        }
-    }
-}
+//             > tr:last-child {
+//                 > th, > td {
+//                     border-bottom: 0;
+//                 }
+//             }
+//         }
+//     }
+// }
 

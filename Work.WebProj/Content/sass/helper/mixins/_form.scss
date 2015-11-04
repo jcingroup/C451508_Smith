@@ -5,7 +5,7 @@
 
     $return: ();
 
-    $all-text-input-types: (
+    $all-text-types: (
         text,
         password,
         date,
@@ -22,7 +22,25 @@
         color,
         textarea);
 
-    @if $types == all { $types: $all-text-input-types; }
+    $all-text-input-types: (
+        text,
+        password,
+        date,
+        datetime,
+        datetime-local,
+        month,
+        week,
+        email,
+        number,
+        search,
+        tel,
+        time,
+        url,
+        color);
+
+    @if $types == all { $types: $all-text-types; }
+
+    @if $types == input { $types: $all-text-input-types; }
 
     @each $type in $types {
         @if $type == textarea {
@@ -41,7 +59,7 @@
 }
 
 // 聚焦樣式(WebKit)
-@mixin form-control-focus($color: color('input', 'border-focus')) {
+@mixin form-control-focus($color: color(input-border-focus)) {
     $color-rgba: rgba(red($color), green($color), blue($color), .6);
     &:focus {
         border-color: $color;
@@ -51,7 +69,7 @@
 }
 
 //  輸入欄未輸入資料時顯示的文字顏色
-@mixin placeholder($color: color('input', 'placeholder')) {
+@mixin placeholder($color: color(input-placeholder)) {
     // Firefox
     &::-moz-placeholder,
     &:-ms-input-placeholder,

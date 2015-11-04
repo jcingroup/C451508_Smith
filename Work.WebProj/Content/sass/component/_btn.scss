@@ -1,55 +1,52 @@
 @charset "UTF-8";
 
-$btn-color:          #D5E8C2 !default;
-$btn-hover-color:    $brand-primary !default;
-$btn-bg-color:       #406947 !default;
-$btn-border:         none !default;
-$btn-border-radius:  25px !default;
+$btn-color:          $link-color !default;
+$btn-hover-color:    $link-hover-color !default;
+$btn-bg-color:       $brand-primary !default;
+$btn-bg-hover:       $brand-secondary;
+$btn-shadow:         0px 2px 2px hsla(0,0,0,0.2);
 
-$btn-disabled:       $gray-light !default;
-$btn-padding:        14px 30px !default;
+$btn-padding:        7px 35px !default;
+$btn-border:         2px solid $link-color;
+$btn-border-radius:  50px !default;
 
-$btn-font-size:      13px !default;
+$btn-font-size:      25px !default;
 $btn-line-height:    1.01 !default;
 
+$btn-disabled:       $gray-light !default;
 $btn-state-color:    #fff !default;
 
 
 // button
 // ----------------------------------------------
-//
-
-@if $states {
-    [class*="btn-"] {
-        color: $btn-state-color;
-    }
-    @each $type, $color in $state-type {
-        .btn-#{$type} {
-            @include state($color, btn)
-        }
-    }
-}
 
 .btn {
     display: inline-block;
     padding: $btn-padding;
 
-    background: $btn-bg-color;
+    // background: $btn-bg-color;
     border-radius: $btn-border-radius;
+    border: $btn-border;
+    // box-shadow: $btn-shadow;
 
     color: $btn-color;
-    font-family: AnjaEliane, $font-family-base;
+    // font-family: $font-family-base;
     font-size: em($btn-font-size);
+    font-weight: bold;
     line-height: $btn-line-height;
+
+    transition: all 0.3s;
 
     &, &:active, &.active {
         &:focus, &.focus {
             @include tab-focus;
         }
     }
-    &:hover, &:focus, &.focus {
-        background: $btn-color;
-        color: $btn-bg-color;
+    &:hover, &:active {
+    // &:hover, &:focus, &.focus {
+        background: $btn-state-color;
+        border-color: $btn-hover-color;
+        color: $btn-hover-color;
     }
     &:active, &.active {
         outline: 0;
@@ -57,5 +54,16 @@ $btn-state-color:    #fff !default;
     &.disabled, &[disabled], fieldset[disabled] & {
         cursor: $cursor-disabled;
         opacity: .65;
+    }
+}
+
+@if $states {
+    // [class*="btn-"] {
+    //     color: $btn-state-color;
+    // }
+    @each $type, $color in $state-type {
+        .btn-#{$type} {
+            @include state($color, btn)
+        }
     }
 }

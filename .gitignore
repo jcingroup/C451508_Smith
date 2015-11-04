@@ -213,3 +213,8 @@ ModelManifest.xml
 
 Scripts/ts-def/*.js
 Scripts/src/ts-controller/*.js
+Work.WebProj/Scripts/es6ts.js
+Work.WebProj/Scripts/src/tsx/m-issue_category.js
+Work.WebProj/Scripts/ts-def/commfunc.js
+Work.WebProj/Scripts/ts-def/ConsoleIe8.js
+Work.WebProj/Scripts/ts-def/commupload.js

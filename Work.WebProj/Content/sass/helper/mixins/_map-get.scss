@@ -3,8 +3,11 @@
 // var Maps
 // -----------------------------------------------------------------
 // colors
-@function color($map, $key) {
-    @return map-get(map-get($color, $map), $key);
+// @function color($map, $key) {
+//     @return map-get(map-get($color, $map), $key);
+// }
+@function color($key) {
+    @return map-get($color, $key);
 }
 
 // z-index

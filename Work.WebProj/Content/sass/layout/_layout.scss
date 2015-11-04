@@ -1,254 +1,230 @@
-
+@charset "UTF-8";
 // wrapper
-$wrapper-bg:            #fff url(#{$img-path}/bg.gif) center 0 repeat-y !default;
-$content-spacing:       70px !default;
+$wrapper-bg:            #fff;
+$content-spacing:       75px !default;
 
 // header
-$header-bg:             #315400 !default;
-$header-height:         395px !default;
+$header-height:         112px;
+$logo-img:              'logo.png' !default;
+$logo-size:             235px, 83px !default;
 
-$menu:                  (top, 55px), (right, 1.5%) !default;
-$menu-link:             #C2D217 !default;
-$menu-link-hover:       #D5E8C2 !default;
-
-$banner-bg:             url(#{$img-path}/banner.png) center 0 no-repeat !default;
-$banner-height:         270px !default;
+$menu-height:           70px;
+$menu-height-sm:        100%;
+$menu-link:             transparent;
+$menu-link-hover:       $brand-secondary;
 
 // footer
-$footer-height:         178px !default;
-$footer-bg:             #E5E6DE !default;
-$goTop:                 (bottom, 10px), (right, 15px) !default;
-$footer-height2:        140px !default;
-$footer-contact-color:  #406947 !default;
+$footer-height:         50px !default;
+$footer-height-sm:      100px;
+$footer-bg:             #656565;
+$goTop:                 (bottom 10px), (right 15px) !default;
 
-
-
-// Grid/ var.scss> $grid-col-switch = true 時才會輸出
-// -----------------------------------------------------------------------
-@if $grid-col-switch {
-
-    .container {
-        @extend %clearfix;
-        @include row;
-
-        padding: 0 ($gutter / 2);
-    }
-
-    .row {
-        @include row(true);
-        & + & {
-            margin-top: $gutter;
-        }
-    }
-
-    [class*="col-"] {
-        @extend .float-l;
-
-        padding: 0 ($gutter / 2);
-
-        &:last-child {
-            padding-right: 0;
-        }
-    }
-
-    @include make-col; // 預設: md
-    @include media(sm) { @include make-col(sm); }
-    @include media(xs) { @include make-col(xs); }
-    @include media(lg) { @include make-col(lg); }
-}
 
 /*      layout
 -----------------------------------------------------------------------*/
-#wrapper, section, main {
+// 外層-內容有絕對定位
+%container {
     position: relative;
-    min-width: $min-width;
 }
 
-// 有寬度限制，非滿版
-.wrap {
-    @extend .text-left;
-
-    min-width: $min-width;
-    max-width: $max-width;
+%center {
+    max-width: wrap-width(xl); // 最大寬度限制 (非滿版才需要)
     margin: 0 auto;
 }
 
-.wrap, section, main {
+// 容器-header、wrap、main、footer等
+%contain {
     @extend %clearfix;
 
-    @include media(sm) {
-        padding: 0 ($gutter / 2);
-        width: 100%;
+    // 最小寬度限制 (無 RWD - 至少 lg 的寬度)
+    @include media(lg-min) {
+        min-width: wrap-width(lg);
     }
+
+    // 最小寬度限制 (有 RWD - 至少 xxs 的寬度)
+    // @include media(md) {
+    //     min-width: 100%;
+    //     max-width: 100%;
+    // }
 }
 
 #wrapper {
+    @extend %container;
+    @extend %center;
     @if $lte7 {
         _height: 100%;
     }
     min-height: 100%;
     padding-bottom: $footer-height + $content-spacing; // 內容與footer間距
     background: $wrapper-bg;
+
+    @include media(sm) {
+        padding-bottom: $footer-height-sm + $content-spacing;
+    }
 }
 
-main {
-    z-index: z(main);
+.wrap {
+    @extend %container;
+    @extend %center;
+    @extend %clearfix;
+    // @extend .text-left;
+}
+
+#header, footer, main, section {
+    @extend %container;
+    @extend %contain;
 }
 
 
 // header
 // ----------------------------------------------------------------------
 #header {
-    height: $header-height;
     z-index: z(header);
 
-    &::before {
-        content: '';
-        background: $header-bg;
-        height: 125px;
-        width: 100%;
-        position: absolute;
-        z-index: z(banner)-1;
-    }
-}
+    h1 {
+        cursor: pointer; cursor: hand; // for ie
+        z-index: z(logo);
 
-h1, #menu, .top-nav {
-    position: absolute;
-}
+        @include text-pic($logo-img, nth($logo-size,1),  nth($logo-size,2));
+        @include absolute(left cp(70px) top 28px);
 
-h1 {
-    @include text-pic('logo.gif',305px,125px);
-
-    left: 0;
-    z-index: z(logo);
-}
-
-#menu {
-    @extend %clearfix;
-
-    @each $attr, $value in $menu {
-        #{$attr}: $value;
-    };
-
-    z-index: z(menu);
-
-    a {
-        background-position: center 5px;
-        color: $menu-link;
-        font-size: em(18px);
-        font-weight: bold;
-        text-align: center;
-
-        display: block;
-        float: left;
-        padding-top: 24px;
-        width: 135px;
-
-        &:hover,
-        .index &:nth-child(1),
-        .AboutUs &:nth-child(2),
-        .Products &:nth-child(3),
-        .News &:nth-child(4),
-        .contactUs &:nth-child(5) {
-            background: url(#{$img-path}/icon-menu.png) center 0 no-repeat;
-            color: $menu-link-hover;
+        @include media(xs) {
+            top: 15px; left: 10px;
+            background-size: contain;
+            @include size(150px,70px);
         }
     }
 }
 
+.lan-nav {
+    font-size: em(26px);
+    color: #fff;
+    line-height: 34px;
+    z-index: z(logo)+1;
+    @include absolute(right 116px top 40px);
+    @include media(xs) { font-size: em(14px); right: 100px; top: 15px; }
+}
 .top-nav {
-    font-size: em(12px);
+    text-align: right;
+    z-index: z(logo)-1;
 
-    right: 20px;
-    top: 10px;
-    z-index: z(menu)+1;
+    @include absolute(right 20px top 38px);
+    @include media(xs) {
+        font-size: em(12px);
+        right: 10px; top: 12px;
+    }
 
     a {
-        color: #C8C190;
-        margin-right: 5px;
-    }
-}
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 8px;
 
-#banner {
-    background: $banner-bg;
-    height: $banner-height;
-    z-index: z(banner);
+        &.club { @include text-pic('icon_club.png', 35px, 35px, fixed); }
+        &:last-of-type { background-position: -92px 0; }
+    }
+    span {
+        display: block;
+        clear: both;
+        color: #fff;
+        font-size: em(20px);
+        margin-top: 8px;
+    }
 }
 
 
 // footer
 // ----------------------------------------------------------------------
-#footer {
+footer {
+    @extend %center;
+    background: $footer-bg;
     margin-top: -($footer-height);
     height: $footer-height;
     z-index: z(footer);
 
-    .list-inline {
-        background: $footer-bg;
-        color: $footer-contact-color;
-        line-height: $footer-height2;
-        padding: 20px 0;
+    color: #fff;
+    padding: $gutter;
 
-        a {
-            color: $footer-contact-color;
-
-            &:hover {
-                color: $brand-secondary;
-            }
-        }
-        em {
-            font-style: normal;
-
-            display: inline-block;
-            vertical-align: top;
-            min-width: 45px;
-            margin-right: 5px;
-        }
-        li {
-            background-attachment: fixed;
-            background: url(#{$img-path}/icon-contact.png) 0 0 no-repeat;
-            font-size: em(20px);
-            font-weight: 500;
-            line-height: nth($line-height,2);
-            text-align: left;
-            vertical-align: middle;
-
-            width: 300px; min-height: 33px;
-            padding-left: 48px;
-
-            &:nth-child(1) {
-                width: 370px;
-            }
-            &:nth-child(2) {
-                background-position: 0 -100px;
-            }
-            &:nth-child(3) {
-                background-position: 0 -210px;
-
-                em {
-                    display: block;
-                    margin-bottom: -5px;
-                }
-            }
-        }
+    @include media(sm) {
+        margin-top: -($footer-height-sm);
+        height: $footer-height-sm;
     }
 }
 
-.goTop {
-    display: none;
-    transition: all .5s ease;
-    opacity: .8;
+.explain {
+    float: right;
 
-    z-index: z(goTop);
-    position: fixed;
-
-    @each $attr, $value in $goTop {
-        #{$attr}: $value;
+    @include media(sm) {
+        float: none;
+        text-align: center;
+        padding-top: 10px;
     }
-    @include text-pic('gotop.png', 50px, 30px);
 
-    &:hover {
-        background-image: url(#{$img-path}/gotop2.png);
-        opacity: 1
+    a {
+        color: #fff;
+        font-size: em(17px);
+    }
+}
+
+.copyright {
+    float: left;
+    font-size: em(17px);
+    text-align: left;
+}
+.bottom, .goTop {
+    @include media(sm) {
+        @include prefix(transform,scale(0.6) translateX(40%));
+    }
+}
+.bottom {
+    @include fixed(bottom cp(230px) right 0);
+    width: 115px;
+    padding: 15px 3px;
+    background: #fff;
+    border-radius: 15px 0 0 15px;
+    box-shadow: -10px 15px 0 rgba(#CBC9C8, 0.5);
+    z-index: z(goTop)+1;
+    a {
+        display: block;
+        font-size: em(31px);
+
+        &:first-child {
+            @include circle(92px);
+            background: $info;
+            color: #F5F199;
+
+            &:hover, &:active { background: $brand-secondary; }
+        }
+        &:last-child {
+            border-top: 1px solid #878787;
+            line-height: 1.1;
+            padding-top: 12px;
+            margin: 12px 10px 0 10px;
+        }
+    }
+}
+.goTop {
+    @include fixed(bottom cp(55px) right cp(10px));
+    @include circle(100px);
+
+    background: rgba(#fff,0.6);
+    border: 2px solid $info;
+    color: $info;
+    font-size: em(40px);
+    line-height: 1.1;
+    padding-top: 37px;
+
+    display: none;
+    z-index: z(goTop);
+
+    &::before {
+        @include caret(up, 20px, 22px, $info);
+        @include absolute(top 0 left 50%);
+        content: '';
+        margin-left: -10px;
+    }
+    &:hover, &:active {
+        opacity: 1;
+        background: #fff;
+        color: darken($link-color,10%);
     }
 }

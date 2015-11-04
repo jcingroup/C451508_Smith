@@ -296,6 +296,13 @@
     <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\fontAwesome\fontawesome-webfont.ttf" />
     <Content Include="Areas\Base\Views\Menu\Main.cshtml" />
+    <Content Include="Content\sass\component\_figure.scss" />
+    <Content Include="Content\sass\helper\mixins\_animation.scss" />
+    <Content Include="Content\sass\helper\mixins\_gradient.scss" />
+    <Content Include="Content\sass\helper\mixins\_position.scss" />
+    <Content Include="Content\sass\helper\mixins\_shape.scss" />
+    <Content Include="Content\sass\helper\_function.scss" />
+    <Content Include="Content\sass\layout\_grid.scss" />
     <None Include="gulpfile.js" />
     <Content Include="Content\images\noIE\bg.gif" />
     <Content Include="Content\images\noIE\brow.gif" />

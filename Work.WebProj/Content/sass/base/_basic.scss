@@ -16,13 +16,12 @@ button{outline: none;}
     box-sizing: border-box;
 }
 
-html {
+html, body {
     text-align: center;
     height: 100%;
 }
 
 body {
-    @extend html;
     background: $body-bg;
     color: $text-color;
     font-family: $font-family-base;
@@ -57,28 +56,29 @@ img {
 
 @font-face {
     font-family: MElleHK;
-    src: local('蒙纳繁雅丽'),
-         local('MElleHK-Medium'),
-         url(#{$font-path}MElleHK.woff) format('woff'),
-         url(#{$font-path}MElleHK.otf) format('opentype'),
-         url(#{$font-path}MElleHK.ttf) format('opentype');
+    src: url(#{$font-path}/MElleHK.otf) format('opentype');
+}
+
+@font-face {
+    font-family: NeutrafaceDemi;
+    src: url(#{$font-path}/NeutrafaceDemi.otf) format('opentype');
 }
 
 // Headings
 // -----------------------------------------------
 h2, h3, h4, h5, h6 {
-    font-weight: m-get($heading,'font-weight');
-    line-height: m-get($heading,'line-height');
-    color: m-get($heading,'color');
+    font-weight: $heading-font-weight;
+    line-height: $heading-line-height;
+    // color: $heading-color;
 
     small {
         font-weight: normal;
         line-height: 1;
-        color: m-get($heading,'small-color');
+        // color: $heading-small-color;
     }
 }
 h2, h3 {
-    margin-top: em($line-height-computed);
+    // margin-top: em($line-height-computed);
     margin-bottom: em($line-height-computed / 2);
 
     small {
@@ -86,19 +86,22 @@ h2, h3 {
     }
 }
 h4, h5, h6 {
-    margin-top: em($line-height-computed / 2);
+    // margin-top: em($line-height-computed / 2);
     margin-bottom: em($line-height-computed / 2);
 
     small {
         font-size: 75%;
     }
 }
-@for $i from 2 through 6 {
-   h#{$i} {
-      font-size: em(m-get($heading, h#{$i}));
-   }
-}
 
+@for $i from 2 through 6 {
+    $headings: $font-size-h1 $font-size-h2 $font-size-h3 $font-size-h4 $font-size-h5 $font-size-h6;
+
+    h#{$i} {
+        // font-size: em(m-get($heading, h#{$i}));
+        font-size: em(nth($headings, $i));
+    }
+}
 
 // Body text
 // -----------------------------------------------
@@ -118,6 +121,14 @@ mark {
     background-color: lighten($warning, 30%);
     padding: .2em;
 }
+
+hr, %hr {
+    height:0;
+
+    border-top: 1px solid #ccc;
+    border-bottom:1px solid #f9f9f9;
+}
+%hr {height:2px;}
 
 
 // Lists

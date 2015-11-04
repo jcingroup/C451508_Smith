@@ -14,26 +14,11 @@ body {
 //  HTML5 display definitions
 //  ==========================================================================
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-menu,
-nav,
-section,
-summary {
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
     display: block;
 }
 
-audio,
-canvas,
-progress,
-video {
+audio, canvas, progress, video {
     display: inline-block;
     vertical-align: baseline;
 }
@@ -43,8 +28,7 @@ audio:not([controls]) {
     height: 0;
 }
 
-[hidden],
-template {
+[hidden], template {
     display: none;
 }
 
@@ -53,8 +37,7 @@ template {
 
 a {
     background-color: transparent;
-    &:active,
-    &:hover {
+    &:active, &:hover {
         outline: 0;
     }
 }
@@ -67,16 +50,13 @@ abbr[title] {
     border-bottom: 1px dotted;
 }
 
-b,
-strong {
+b, strong {
     font-weight: bold;
 }
 
 dfn {
     font-style: italic;
 }
-
-
 
 mark {
     background: #ff0;
@@ -87,8 +67,7 @@ small {
     font-size: 80%;
 }
 
-sub,
-sup {
+sub, sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -117,10 +96,6 @@ svg:not(:root) {
 //  Grouping content
 //  ==========================================================================
 
-figure {
-    margin: 1em 40px;
-}
-
 hr {
     box-sizing: content-box;
     height: 0;
@@ -130,10 +105,7 @@ pre {
     overflow: auto;
 }
 
-code,
-kbd,
-pre,
-samp {
+code, kbd, pre, samp {
     font-family: monospace, monospace;
     font-size: 1em;
 }
@@ -141,11 +113,7 @@ samp {
 // Forms
 // ==========================================================================
 
-button,
-input,
-optgroup,
-select,
-textarea {
+button, input, optgroup, select, textarea {
     color: inherit;
     font: inherit;
     margin: 0;
@@ -155,8 +123,7 @@ button {
     overflow: visible;
 }
 
-button,
-select {
+button, select {
     text-transform: none;
 }
 
@@ -233,6 +200,6 @@ table {
     border-spacing: 0;
 }
 
-td,th {
+td, th {
     padding: 0;
 }
