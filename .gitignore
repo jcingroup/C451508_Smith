@@ -211,6 +211,10 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 
+Scripts/ts-def/*.js
+Scripts/src/ts-controller/*.js
+
 */Scripts/ts-def/*.js
 */Scripts/src/ts-controller/*.js
 */Scripts/src/tsx/*.js
+*/Scripts/es6ts.js
