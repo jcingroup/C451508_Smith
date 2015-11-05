@@ -257,8 +257,8 @@
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\page.css" />
     <Content Include="Content\css\swiper.min.css" />
-    <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\fonts\fontAwesome\fontawesome-webfont.svg" />
+    <Content Include="Content\font\bootstrap\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\font\fontAwesome\fontawesome-webfont.svg" />
     <Content Include="Content\font\MElleHK.otf" />
     <Content Include="Content\font\MElleHK.ttf" />
     <Content Include="Content\font\MElleHK.woff" />
@@ -288,10 +288,10 @@
     <Content Include="Content\sass\helper\_var.scss" />
     <Content Include="Content\sass\index.scss" />
     <Content Include="Content\sass\layout\_layout.scss" />
-    <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\fontAwesome\fontawesome-webfont.ttf" />
+    <Content Include="Content\font\bootstrap\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\font\bootstrap\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\font\bootstrap\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\font\fontAwesome\fontawesome-webfont.ttf" />
     <Content Include="Areas\Base\Views\Menu\Main.cshtml" />
     <Content Include="Content\sass\component\_figure.scss" />
     <Content Include="Content\sass\helper\mixins\_animation.scss" />
