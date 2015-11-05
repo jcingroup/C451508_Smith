@@ -260,6 +260,7 @@
     <Compile Include="_Code\Ashx\ValidateCode.ashx.cs">
       <DependentUpon>ValidateCode.ashx</DependentUpon>
     </Compile>
+    <Content Include="Content\css\grid.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\page.css" />
     <Content Include="Content\css\swiper.min.css" />
@@ -269,7 +270,15 @@
     <Content Include="Content\font\MElleHK.ttf" />
     <Content Include="Content\font\MElleHK.woff" />
     <Content Include="Content\images\bg.gif" />
+    <Content Include="Content\images\bg2.gif" />
+    <Content Include="Content\images\index\banner1_bg.png" />
+    <Content Include="Content\images\index\banner1_icon.gif" />
+    <Content Include="Content\images\index\banner1_pic.png" />
+    <Content Include="Content\images\index\banner1_title.png" />
+    <Content Include="Content\images\index\infoBg.jpg" />
     <Content Include="Content\images\logo.gif" />
+    <Content Include="Content\images\logo_s.gif" />
+    <Content Include="Content\images\title.gif" />
     <Content Include="Content\js\map.js" />
     <Content Include="Content\sass\base\basic\_normalize.scss" />
     <Content Include="Content\sass\base\basic\_print.scss" />
@@ -284,8 +293,6 @@
     <Content Include="Content\sass\component\_tooltip.scss" />
     <Content Include="Content\sass\helper\mixins\_form.scss" />
     <Content Include="Content\sass\helper\mixins\_media.scss" />
-    <Content Include="Content\sass\helper\mixins\_prefix-animation.scss" />
-    <Content Include="Content\sass\helper\mixins\_prefix-gradient.scss" />
     <Content Include="Content\sass\helper\mixins\_prefix.scss" />
     <Content Include="Content\sass\helper\mixins\_state.scss" />
     <Content Include="Content\sass\helper\mixins\_tab-focus.scss" />
@@ -311,6 +318,7 @@
     <Content Include="Content\sass\base\_extend.scss" />
     <Content Include="Content\sass\grid.scss" />
     <Content Include="Content\sass\helper\mixins\_mq.scss" />
+    <Content Include="Content\sass\page.scss" />
     <None Include="gulpfile.js" />
     <Content Include="Content\images\noIE\bg.gif" />
     <Content Include="Content\images\noIE\brow.gif" />

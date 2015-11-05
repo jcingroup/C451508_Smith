@@ -1,7 +1,27 @@
 ﻿
 @{
-    ViewBag.Title = "list";
+    ViewBag.Title = "藍光DVD播放機";
+    ViewBag.BodyClass = "Products";
+    Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<h2>list</h2>
+@section breadCrumb {
+    <li><a href="~/Products">產品介紹</a></li>
+}
 
+<div id="content" class="col-6 col-sm-12">
+    <figure>
+        <img src="~/Content/Products/list.jpg" alt="藍光DVD播放機-BD350">
+        <h3>BD-350<small>5.1聲道 3D藍光DVD播放機</small></h3>
+        <figcaption>
+            <a href="~/Products/Content">READ MORE</a>
+        </figcaption>
+    </figure>
+    <figure>
+        <img src="~/Content/Products/list2.jpg" alt="藍光DVD播放機-BD320">
+        <h3>BD-320<small>5.1聲道 3D藍光DVD播放機</small></h3>
+        <figcaption>
+            <a href="~/Products/Content">READ MORE</a>
+        </figcaption>
+    </figure>
+</div>

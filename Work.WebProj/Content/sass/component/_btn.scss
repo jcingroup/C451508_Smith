@@ -3,14 +3,15 @@
 $btn-color:          $link-color !default;
 $btn-hover-color:    $link-hover-color !default;
 $btn-bg-color:       $brand-primary !default;
-$btn-bg-hover:       $brand-secondary;
+$btn-bg-hover:       $brand-secondary !default;
 $btn-shadow:         0px 2px 2px hsla(0,0,0,0.2);
 
-$btn-padding:        7px 35px !default;
-$btn-border:         2px solid $link-color;
-$btn-border-radius:  50px !default;
+$btn-width:          100px !default;
+$btn-padding:        12px 20px !default;
+$btn-border:         1px solid $link-color;
+$btn-border-radius:  5px !default;
 
-$btn-font-size:      25px !default;
+$btn-font-size:      13px !default;
 $btn-line-height:    1.01 !default;
 
 $btn-disabled:       $gray-light !default;
@@ -23,10 +24,11 @@ $btn-state-color:    #fff !default;
 .btn {
     display: inline-block;
     padding: $btn-padding;
+    min-width: $btn-width;
 
-    // background: $btn-bg-color;
+    background: $btn-bg-color;
     border-radius: $btn-border-radius;
-    border: $btn-border;
+    // border: $btn-border;
     // box-shadow: $btn-shadow;
 
     color: $btn-color;
@@ -44,7 +46,7 @@ $btn-state-color:    #fff !default;
     }
     &:hover, &:active {
     // &:hover, &:focus, &.focus {
-        background: $btn-state-color;
+        background: $btn-bg-hover;
         border-color: $btn-hover-color;
         color: $btn-hover-color;
     }

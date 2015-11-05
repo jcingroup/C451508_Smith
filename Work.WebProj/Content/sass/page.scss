@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+// var 變數，需放在 @import "helper/var" 之上才能覆蓋掉
+// ------------------------------------------------------------
+
+
+// import
+// ------------------------------------------------------------
+@import "helper/function";
+@import "helper/var";
+@import "helper/mixins";
+
+@import "base/basic";
+@import "base/extend";
+@import "base/classes";
+
+@import "layout/layout";
+
+@import "component/btn";
+@import "component/figure";
+
+
+// main
+// ----------------------------------------------------------------------
+#wrapper::before {
+    content: '';
+    background: #f5f5f5 url(#{$img-path}/bg2.gif) 0 0 repeat-x;
+    width: 100%; height: 70px;
+    @include absolute(left 0 top 170px)
+}
+
+.breadcrumb {
+    @extend %list-inline;
+
+    float: left;
+    margin-left: 50px;
+
+    a {
+        color: #656565;
+        font-size: em(14px,15px);
+
+        &::after { content: '/'; }
+        &:hover, &:active { color: $brand-secondary; }
+    }
+    li {
+        float: left;
+        color: $brand-primary;
+        font-size: em(15px);
+    }
+}
+
+main {
+    @extend %center;
+    text-align: left;
+    padding-top: 10px;
+}
+
+aside {
+    float: left;
+    width: cp(245px);
+    margin-top: -35px;
+    header {
+        @include text-pic('title.gif',245px,97px,fixed);
+
+        @for $i from 2 through length($pages) {
+            $item: nth($pages, $i);
+            .#{$item} & {
+                background-position: 0 (-(119px * $i - 119px));
+            }
+        }
+    }
+    a {
+        display: block;
+        border-bottom: 1px solid #E5E5E5;
+        font-size: em(18px);
+        padding: $gutter 8px;
+
+        &:hover, &:active, &:focus, &.current {
+            color: $brand-primary;
+        }
+    }
+}
+
+#content {
+    margin-top: 155px;
+}

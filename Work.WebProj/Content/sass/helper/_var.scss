@@ -19,28 +19,28 @@ $gray-light:            lighten($gray-base, 46.7%);   // #777
 $gray-lighter:          lighten($gray-base, 93.5%);   // #eee
 
 // 抽象色
-$brand-primary:         #068BAE;             // 主色
-$brand-secondary:       #0662A3;             // 輔色
+$brand-primary:         #0662A3;             // 主色
+$brand-secondary:       #068BAE;             // 輔色
 $success:               #CAD72F !default;             // 綠
 $info:                  #37BCEE !default;             // 藍
 $warning:               #F2B63D !default;             // 黃
-$error:                 #E75375 !default;             // 紅
+$error:                 #F24030 !default;             // 紅
 
 
 // == basic
 // ----------------------------------------------------------------------
 // <body> 背景 & 文字色
-$body-bg:               #F6F6F6 url(#{$img-path}/bg.gif) center 0 no-repeat !default;
+$body-bg:               #F5f5f5 url(#{$img-path}/bg.gif) center 0 no-repeat !default;
 $text-color:            #191919 !default;
 
 // 文字鏈結色&滑鼠移過色
-$link-color:            $brand-primary;
-$link-hover-color:      $gray-light !default;
+$link-color:            $text-color;
+$link-hover-color:      $brand-primary !default;
 
 // layout
 $min-width:             1008px !default;     // 網頁最小尺寸
 $max-width:             1440px !default;     // 網頁最寬尺寸: .wrap
-$pages:                 'index' 'AboutUs' 'News' 'Products' 'FAQ' 'Service' 'ContactUs';
+$pages:                 'AboutUs' 'News' 'Products' 'FAQ' 'Service' 'ContactUs';
 $gutter:                15px !default;
 
 

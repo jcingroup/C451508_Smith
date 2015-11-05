@@ -7,13 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>@Resources.Res.System_Name:@ViewBag.Title</title>
     <!--[if lt IE 9]><script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script><![endif]-->
-    <link href="~/Content/css/grid.css" rel="stylesheet">
-    @if (ViewBag.IsFirstPage)
-        {
-            <link href="~/Content/css/index.css" rel="stylesheet"> }
-        else
-        {
-            <link href="~/Content/css/page.css" rel="stylesheet"> }
+    @if (ViewBag.IsFirstPage) {
+        <link rel="stylesheet" href="~/Content/css/index.css">
+    } else {
+        <link rel="stylesheet" href="~/Content/css/page.css">
+    }
+    <link rel="stylesheet" href="~/Content/css/grid.css">
     @RenderSection("CSS", required: false)
 </head>
 
@@ -22,7 +21,7 @@
     <div id="wrapper">
 
         <header id="header">
-                
+
             @* <h1 onclick="location.href='@Url.Content("~/index")'" title="回首頁">@Resources.Res.WebLayoutHome</h1> *@
             <h1 onclick="location.href='@Url.Content("~/index")'" title="回首頁">統城科技股份有限公司</h1>
 
@@ -43,32 +42,47 @@
         </header>
 
         @if (ViewBag.IsFirstPage) {
+
             @RenderBody()
-        }
-        
-        else {
+
+        } else {
+
             <main>
-                <header>@ViewBag.Title</header>
-                
+                <aside>
+                    <header>@ViewBag.Title</header>
+                    <nav>
+                        <a href="~/Products/list" class="current">藍光DVD播放機</a>
+                        <a href="~/Products/list">數位影音光碟機</a>
+                        <a href="~/Products/list">數位電視接收機</a>
+                        <a href="~/Products/list">數位天線</a>
+                        <a href="~/Products/list">手提音響</a>
+                        <a href="~/Products/list">行動型多媒體音響</a>
+                        <a href="~/Products/list">電視壁掛架</a>
+                        <a href="~/Products/list">可充式電蚊拍</a>
+                        <a href="~/Products/list">充電式探照燈</a>
+                        <a href="~/Products/list">紫外線烘碗機</a>
+                    </nav>
+                </aside>
+
                 <ul class="breadcrumb">
-                    <li><a href="">@Resources.Res.System_Name</a></li>
+                    <li><a href="">Home</a></li>
                     @RenderSection("breadCrumb", required: false)
-                    <li>@ViewBag.Title</li>
+                    <li>@ViewBag.Title</li> @* 當前頁名稱 EX.藍光DVD播放機 *@
                 </ul>
-            
+
                 @RenderBody()
-                
+
             </main><!-- main //-->
         }
 
     </div><!-- wrapper //-->
 
     <a href="#header" class="goTop">T</a>
-    
+
     <footer id="footer">
         <div class="wrap">
-            <div class="copyright"><em>Smith 史密斯</em>&copy; 2015</div>
-            <ul class="list-unstyled">
+            <div class="copyright col-8 col-sm-12"><em>Smith 史密斯</em>&copy; 2015</div>
+            <ul class="list-unstyled col-4 col-sm-12">
                 <li>桃園市中壢區龍興路401巷26號</li>
                 <li><em>T</em>03-4369557</li>
                 <li><em>F</em>03-4364677</li>
@@ -77,7 +91,7 @@
     </footer>
 
     <script src="~/Scripts/jquery/jquery-2.1.4.min.js"></script>
-    
+
     @RenderSection("Scripts", required: false)
 
 </body>

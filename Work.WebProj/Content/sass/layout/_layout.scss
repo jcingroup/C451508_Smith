@@ -1,6 +1,7 @@
 @charset "UTF-8";
+
 // wrapper
-$wrapper-bg:            #F2F2F3;
+$wrapper-bg:            none !default;
 $content-spacing:       50px !default;
 
 // header
@@ -14,8 +15,9 @@ $menu-link:             #001B23;
 $menu-link-hover:       #fff;
 
 // footer
-$footer-height:         102px !default;
+$footer-height:         105px !default;
 $footer-height-sm:      100px;
+$footer-transY:         $footer-height !default;
 $footer-bg:             #EDEFF1;
 $footer-color:          $text-color;
 $goTop:                 (bottom 10px), (right 15px) !default;
@@ -30,17 +32,16 @@ $goTop:                 (bottom 10px), (right 15px) !default;
 
 // 最大寬度限制 (非滿版才需要)
 %center {
-    max-width: $max-width; 
+    max-width: $max-width;
     margin: 0 auto;
 }
 
-// 容器-header、wrap、main、footer等
+// 內容器-header、wrap、main、footer等
 %contain {
-    @extend %clearfix;
-    
     padding-left: $gutter;
     padding-right: $gutter;
-    
+
+    @extend %clearfix;
     @include mq(wide) { padding: 0; }
 }
 
@@ -50,7 +51,7 @@ $goTop:                 (bottom 10px), (right 15px) !default;
         _height: 100%;
     }
     min-height: 100%;
-    
+
     padding-bottom: $footer-height + $content-spacing; // 內容與footer間距
     // background: $wrapper-bg;
 
@@ -64,7 +65,7 @@ $goTop:                 (bottom 10px), (right 15px) !default;
     @extend %contain;
 }
 
-#header, footer, main, section {
+#header, footer, main {
     @extend %container;
     @extend %contain;
 }
@@ -73,9 +74,14 @@ $goTop:                 (bottom 10px), (right 15px) !default;
 // header
 // ----------------------------------------------------------------------
 #header {
-    @extend %center;
     height: $header-height;
     z-index: z(header);
+
+    margin-left: $gutter;
+    margin-right: $gutter;
+
+    @include mq(wide) { margin: 0 auto; }
+    @extend %center;
 
     h1 {
         cursor: pointer; cursor: hand; // for ie
@@ -96,7 +102,7 @@ $goTop:                 (bottom 10px), (right 15px) !default;
     background: #CBCBCB;
     border-radius: 5px;
     padding: 7px $gutter;
-    
+
     z-index: z(logo)-1;
 
     @include absolute(right 0 top 0);
@@ -110,7 +116,7 @@ $goTop:                 (bottom 10px), (right 15px) !default;
         border-right: 1px solid #fff;
         padding-right: 10px;
         margin-right: 10px;
-        
+
         &:last-child {
             border-right: none;
             padding-right: 0;
@@ -125,17 +131,33 @@ $goTop:                 (bottom 10px), (right 15px) !default;
 #menu {
     font-size: em(21px);
     font-weight: bold;
+
     @include absolute(right 0 top 80px);
-    
+
     a {
+        position: relative;
         display: inline-block;
-        padding: 12px 30px;
+        width: 130px;
+        padding: 12px 20px;
         color: $menu-link;
-        
-        &:hover, &:active {
-            background: #028BA4;
+
+        $selector: ();
+        @each $item in $pages {
+            $i: index($pages, $item);
+            $selector: append($selector, unquote(".#{$item} &:nth-child(#{$i})"), comma);
+        }
+
+        &:hover, &:active,
+        #{$selector} {
+            background: $brand-primary;
             border-radius: 5px;
             color: $menu-link-hover;
+
+            &::after {
+                @include arrow(bottom,8px,6px,$brand-primary);
+                @include absolute(top 100% left 50%);
+                margin-left: -8px;
+            }
         }
     }
 }
@@ -145,22 +167,56 @@ $goTop:                 (bottom 10px), (right 15px) !default;
 // ----------------------------------------------------------------------
 footer {
     background: $footer-bg;
-    margin-top: -($footer-height);
-    height: $footer-height;
+    margin-top: -($footer-transY);
+    padding: $gutter 0;
+    min-height: $footer-height;
     z-index: z(footer);
 
     color: $footer-color;
 
     @include mq($max: phone) {
         margin-top: -($footer-height-sm);
-        height: $footer-height-sm;
+        // height: $footer-height-sm;
+    }
+    li {
+        text-align: left;
+        margin: 5px 0;
+        margin-left: 20px;
+
+        &:nth-child(2),
+        &:nth-child(3) {
+            font-size: em(20px);
+            float: left;
+        }
+        &:nth-child(3) { margin-left: 20px; }
+        em {
+            background: $brand-primary;
+            border-radius: 3px;
+            color: #fff;
+            font-style: normal;
+            font-size: em(14px);
+            text-align: center;
+
+            display: inline-block;
+            line-height: 22px;
+            width: 22px;
+            margin-right: 6px;
+        }
     }
 }
 
 .copyright {
-    float: left;
     font-size: em(12px);
     text-align: left;
+    margin-top: 15px;
+
+    em {
+        @include text-pic("#{$img-path}/logo_s.gif",120px,33px);
+        display: inline-block;
+        margin-right: 10px;
+        margin-bottom: -3px;
+        vertical-align: bottom;
+    }
 }
 
 .goTop {

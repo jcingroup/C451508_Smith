@@ -2,8 +2,17 @@
 
 // var 變數，需放在 @import "helper/var" 之上才能覆蓋掉
 // ------------------------------------------------------------
-$img-path2:             '../images/index';
-$content-spacing:       0;
+$img-path2:         '../images/index';
+
+$content-spacing:   0;
+$font-size-h3:      52px;
+
+$footer-transY:     380px;
+
+$btn-color:         #028BA4;
+$btn-hover-color:   #fff;
+$btn-bg-color:      #fff;
+$btn-bg-hover:      #028BA4;
 
 
 // import
@@ -16,10 +25,79 @@ $content-spacing:       0;
 @import "base/extend";
 @import "base/classes";
 
-@import "component/btn";
-
 @import "layout/layout";
+
+@import "component/btn";
 
 
 // main
 // ----------------------------------------------------------------------
+#wrapper { padding-bottom: 0; }
+footer { background: rgba(232,235,237,.8);}
+
+#banner, .swiper-slide { height: 500px; }
+
+.swiper-wrapper { @extend %list-unstyled; }
+
+.swiper-slide {
+    background: url(#{$img-path2}/banner1_bg.png) center bottom no-repeat;
+    padding-top: 70px;
+    padding-bottom: 30px;
+
+    header, img {
+        display: inline-block;
+        vertical-align: top;
+    }
+    header {
+        @include text-pic('#{$img-path2}/banner1_title.png',530px,237px);
+        margin-right: 10px;
+    }
+    img { margin-top: 30px; }
+    ol {
+        margin-left: -590px;
+    }
+    li {
+        background-attachment: fixed;
+        background: url(#{$img-path2}/banner1_icon.gif) 0 0 no-repeat;
+        width: 80px;
+        padding-top: 80px;
+
+        color: #4C4C4C;
+        font-size: em(14px);
+        text-align: center;
+
+        @for $i from 2 through 6 {
+            &:nth-child(#{$i}) {
+                background-position: (86px - (86px * $i)) 0;
+            }
+        }
+    }
+}
+
+.about {
+    background: #407E8F url(#{$img-path2}/infoBg.jpg) center 0 no-repeat fixed;
+    padding: 40px 0;
+    position: relative;
+
+    p, h3, nav a {
+        color: #fff;
+        text-align: left;
+    }
+    h3 { margin-bottom: $gutter; }
+    p { line-height: 2.2; margin-bottom: 20px; }
+    nav a {
+        display: block;
+        margin-bottom: $gutter;
+    }
+    .btn {
+        margin-top: 20px;
+        float: right;
+    }
+}
+
+.col-8 .btn { margin-top: 52px; }
+
+#map-canvas {
+    width: 100%;
+    height: 380px;
+}

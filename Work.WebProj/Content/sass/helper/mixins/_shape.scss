@@ -22,8 +22,8 @@
 // 做三角形
 @mixin caret($direction, $width, $height:$width/2, $color: inherit, $display:inline-block) {
     display: $display;
-    border: $width/2 solid;
-    
+    border: $width solid transparent;
+
     @include size(0);
 
     @if ($direction == "top" or $direction =="up") {
@@ -48,24 +48,40 @@
     }
 }
 
-// 做正三角形
-@mixin arrow($dir:right, $size:5px, $color: inherit) {
+// 用偽類做三角形
+@mixin arrow($dir:right, $width:5px, $height: $width, $color: inherit) {
     content: '';
     display: block;
-    border: $size solid transparent;
+    border: $width solid transparent;
 
     @include size(0);
 
     @if ($dir == "top" or $dir =="up") {
-        border-bottom: $size solid $color;
+        border-bottom: $height solid $color;
+
+        @if $height != $width {
+            border-top-width: $height;
+        }
     }
     @else if ($dir == "bottom" or $dir == "down") {
-        border-top: $size solid $color;
+        border-top: $height solid $color;
+
+        @if $height != $width {
+            border-bottom-width: $height;
+        }
     }
     @else if ($dir == "right") {
-        border-left: $size solid $color;
+        border-left: $height solid $color;
+
+        @if $height != $width {
+            border-right-width: $height;
+        }
     }
     @else if ($dir == "left") {
-        border-right: $size solid $color;
+        border-right: $width solid $color;
+
+        @if $height != $width {
+            border-left-width: $height;
+        }
     }
 }

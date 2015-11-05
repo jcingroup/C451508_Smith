@@ -8,11 +8,11 @@
 
 // 字換圖
 @mixin text-pic($img, $width, $height, $pic: false, $position: 0 0) {
+    @include text-hide;
     @if $pic == fixed {
         background-attachment: fixed;
     }
     background: url(#{$img-path}/#{$img}) $position no-repeat;
-    @include text-hide;
     width: $width; height: $height;
 }
 
