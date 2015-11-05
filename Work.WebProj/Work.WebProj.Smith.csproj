@@ -215,6 +215,7 @@
     <Compile Include="Areas\Base\Controllers\UsersController.cs" />
     <Compile Include="Areas\Base\BaseAreaRegistration.cs" />
     <Content Include="Areas\Base\Views\Login\index.tablet.cshtml" />
+    <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\Api\GetActionController.cs" />
     <Compile Include="Controllers\Api\IssueCategoryController.cs" />
     <Compile Include="Controllers\Api\MenuController.cs" />
@@ -224,7 +225,12 @@
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\PurchaseController.cs" />
     <Compile Include="Controllers\Api\UsersController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -688,6 +694,13 @@
     <Content Include="Scripts\src\tsx\xformat.jsx" />
     <Content Include="Scripts\src\jsx\m-ChangePassword.jsx" />
     <Content Include="Scripts\src\jsx\m-Menu.jsx" />
+    <Content Include="Views\AboutUs\AboutUs.cshtml" />
+    <Content Include="Views\ContactUs\ContactUs.cshtml" />
+    <Content Include="Views\Service\Service.cshtml" />
+    <Content Include="Views\FAQ\FAQ.cshtml" />
+    <Content Include="Views\News\News.cshtml" />
+    <Content Include="Views\Products\list.cshtml" />
+    <Content Include="Views\Products\content.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
