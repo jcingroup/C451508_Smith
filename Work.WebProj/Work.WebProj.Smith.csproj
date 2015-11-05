@@ -264,6 +264,7 @@
     <Content Include="Content\font\MElleHK.woff" />
     <Content Include="Content\images\bg.gif" />
     <Content Include="Content\images\logo.gif" />
+    <Content Include="Content\js\map.js" />
     <Content Include="Content\sass\base\basic\_normalize.scss" />
     <Content Include="Content\sass\base\basic\_print.scss" />
     <Content Include="Content\sass\base\_basic.scss" />
