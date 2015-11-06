@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+// 垂直置中
+@mixin middle($target) {
+    @extend %middle;
+    // &::before {
+    //     content: '';
+    //     display: inline-block;
+    //     vertical-align:middle;
+    //     height: 100%;
+    // }
+
+    // &::before,
+
+    @if $target == img {
+        #{$target} {
+            display: inline-block;
+            @content;
+        }
+    }
+    @else {
+        #{$target} {
+            display: inline-block;
+            vertical-align: middle;
+            @content;
+        }
+    }
+}

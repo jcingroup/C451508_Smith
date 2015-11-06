@@ -8,7 +8,7 @@
 // 自定Reset
 h1,h2,h3,h4,h5,h6,p,figure,form,blockquote{margin:0;}
 ul,ol,li,dl,dt,dd{margin:0;padding:0;}
-button{outline: none;}
+button{outline:none;border:none;}
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -40,7 +40,6 @@ hr {
 }
 
 img { vertical-align: middle; }
-
 
 // Headings
 // -----------------------------------------------

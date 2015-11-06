@@ -11,6 +11,7 @@
 @import "helper/mixins";
 
 @import "base/basic";
+@import "base/form";
 @import "base/extend";
 @import "base/classes";
 
@@ -18,6 +19,7 @@
 
 @import "module/btn";
 @import "module/figure";
+@import "module/modal";
 
 
 // main
@@ -29,33 +31,19 @@
     @include absolute(left 0 top 170px)
 }
 
-.breadcrumb, #content {
-    float: right;
-    width: cp(1115px);
-
-    @include mq(wide) { width: cp(1160px); }
-}
-.breadcrumb {
-    @extend %list-inline;
-
-    a {
-        color: #656565;
-        font-size: em(14px,15px);
-
-        &::after { content: '/'; }
-        &:hover, &:active { color: $brand-secondary; }
-    }
-    li {
-        float: left;
-        color: $brand-primary;
-        font-size: em(15px);
-    }
-}
-
 main {
     @extend %center;
+    background: url(#{$img-path}/AboutUs/banner.jpg) right 0 no-repeat;
     text-align: left;
     padding-top: 10px;
+
+    @for $i from 2 through length($pages) {
+        $item: nth($pages, $i);
+
+        .#{$item} & {
+            background-image: url(#{$img-path}/#{$item}/banner.jpg);
+        }
+    }
 }
 
 aside {
@@ -85,6 +73,87 @@ aside {
     }
 }
 
-#content {
-    margin-top: 155px;
+.breadcrumb, #content {
+    float: right;
+    width: cp(1115px);
+
+    @include mq(wide) { width: cp(1160px); }
 }
+.breadcrumb {
+    @extend %list-inline;
+
+    a {
+        color: #656565;
+        font-size: em(14px,15px);
+
+        &::after { content: '/'; }
+        &:hover, &:active { color: $brand-secondary; }
+    }
+    li {
+        float: left;
+        color: $brand-primary;
+        font-size: em(15px);
+    }
+}
+#content { margin-top: 105px; }
+
+
+// page set
+// ----------------------------------------------------------------------
+
+// == Products
+.pro-pic {
+    background: #fff;
+    border: 1px solid #EBEBEB;
+    text-align: center;
+    height: 300px;
+
+    @include middle(img) {
+        width: 90%;
+        max-width: 500px;
+    }
+}
+.pro-info {
+    padding-left: cp(30px);
+
+    h3 {
+        font-size: em(21px);
+        margin-top: 20px;
+        margin-bottom: 55px;
+    }
+    small {
+        display: block;
+        color: #323232;
+        font-size: em(18px,21px);
+        margin-bottom: 15px;
+        margin-left: -7px;
+    }
+    button { clear: both; }
+    form { text-align: right; }
+}
+select {
+    background: #E5E5E5 url(#{$img-path}/icon_select.gif) right center no-repeat;
+    border: 1px solid #fff;
+    outline: 0;
+    -webkit-appearance: none;
+
+    color: $brand-secondary;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 35px;
+
+    &.sel1 {
+        float: left;
+        width: 65%;
+    }
+    &.sel2 {
+        float: right;
+        width: 32%;
+        &, option {
+            text-align: center;
+        }
+    }
+}
+
+.other { margin-top: 40px; }

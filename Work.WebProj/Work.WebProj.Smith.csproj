@@ -274,6 +274,7 @@
     <Content Include="Content\font\MElleHK.woff" />
     <Content Include="Content\images\bg.gif" />
     <Content Include="Content\images\bg2.gif" />
+    <Content Include="Content\images\icon_select.gif" />
     <Content Include="Content\images\index\banner1_bg.png" />
     <Content Include="Content\images\index\banner1_icon.gif" />
     <Content Include="Content\images\index\banner1_pic.png" />
@@ -281,8 +282,14 @@
     <Content Include="Content\images\index\infoBg.jpg" />
     <Content Include="Content\images\logo.gif" />
     <Content Include="Content\images\logo_s.gif" />
+    <Content Include="Content\images\products\banner.jpg" />
+    <Content Include="Content\images\products\info.gif" />
+    <Content Include="Content\images\products\pro.jpg" />
+    <Content Include="Content\images\products\pro2.jpg" />
     <Content Include="Content\images\title.gif" />
+    <Content Include="Content\js\modal\classie.js" />
     <Content Include="Content\js\map.js" />
+    <Content Include="Content\js\modal\modalEffects.js" />
     <Content Include="Content\sass\base\basic\_normalize.scss" />
     <Content Include="Content\sass\base\basic\_print.scss" />
     <Content Include="Content\sass\base\_basic.scss" />
@@ -322,6 +329,8 @@
     <Content Include="Content\sass\grid.scss" />
     <Content Include="Content\sass\helper\mixins\_mq.scss" />
     <Content Include="Content\sass\page.scss" />
+    <Content Include="Content\sass\module\_modal.scss" />
+    <Content Include="Content\sass\helper\mixins\_align.scss" />
     <None Include="gulpfile.js" />
     <Content Include="Content\images\noIE\bg.gif" />
     <Content Include="Content\images\noIE\brow.gif" />
@@ -813,7 +822,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Active\Views\Shared\" />
     <Folder Include="Areas\Base\Views\Shared\" />
-    <Folder Include="Content\sass\vendor\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="_Code\CReport\" />
     <Folder Include="_Code\Images\" />

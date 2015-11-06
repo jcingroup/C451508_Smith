@@ -190,7 +190,8 @@ ul, ol, li, dl, dt, dd {
   padding: 0; }
 
 button {
-  outline: none; }
+  outline: none;
+  border: none; }
 
 *, *::before, *::after {
   box-sizing: border-box; }

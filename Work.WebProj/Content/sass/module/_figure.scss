@@ -3,11 +3,11 @@
 $figure-bg:             #fff !default;
 $figure-text-align:     center !default;
 
-$figure-min-width:      350px !default;
+$figure-min-width:      310px !default;
 $figure-max-width:      480px !default;
 $figure-max-height:     360px !default;
-$figure-width:          cp(350px) !default;
-$figure-margin:         cp(10px) !default;
+$figure-width:          32% !default;
+$figure-margin:         0 0 100px 7px!default;
 
 // common
 figure {
@@ -28,7 +28,7 @@ figure {
         position: relative;
         display: block;
         // min-height: 100%;
-        max-width: 100%;
+        max-width: 95%;
         // opacity: 0.8;
     }
 }
@@ -46,7 +46,7 @@ figcaption {
     // 預設為覆蓋整個figure
     > a {
         z-index: 1000;
-        text-indent: 200%;
+        // text-indent: 200%;
         white-space: nowrap;
         font-size: 0;
         opacity: 0;
@@ -57,21 +57,20 @@ figcaption {
 figure {
     float: left;
     height: 180px;
-    padding: 10px;
     border: 1px solid #EBEBEB;
-    // @include middle(img);
-    &::before { border: 1px solid #000;
-        content: "";
-        display: inline-block;
-        height: 100%;
-        vertical-align:middle;
+
+    @include middle(img);
+
+    figcaption {
+        height: 0;
+        &, h3 { transition: all .5s ease; }
+        > a { line-height: 180px; }
     }
-    img {
-        display: inline-block;
-    }
+
     h3 {
         color: #323232;
         font-size: em(18px);
+        margin-top: $gutter;
     }
     small {
         color: #656565;
@@ -79,7 +78,20 @@ figure {
         display: block;
         margin-top: 10px;
     }
-    p {
 
+    &:hover {
+        h3 { color: $brand-primary; }
+        small { color: $brand-secondary; }
+
+        figcaption {
+            background: rgba(#002A36,.7);
+            height: 100%;
+
+            > a {
+                opacity: 1;
+                color: #fff;
+                font-size: em(22px);
+            }
+        }
     }
 }

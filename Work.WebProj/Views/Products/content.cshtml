@@ -1,9 +1,45 @@
 ﻿
 @{
-    ViewBag.Title = "產品介紹";
+    ViewBag.Title = "BD-350";
     ViewBag.BodyClass = "Products";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<h2>content</h2>
+@section breadCrumb {
+    <li><a href="~/Products">產品介紹</a></li>
+    <li><a href="~/Products/list">藍光DVD播放機</a></li>
+}
 
+<section class="row">
+
+    <div class="col-7 col-sm-12 pro-pic">
+        <img src="~/Content/images/Products/pro.jpg" alt="產品圖">
+    </div><!-- pro-pic //-->
+
+    <div class="col-5 col-sm-12 pro-info">
+        <h3><small>【型號】BD-350</small>5.1聲道 3D藍光DVD播放機</h3>
+        <form action="mail">
+            <select name="name" id="" class="sel1">
+                <option value="BD-350">BD-350</option>
+                <option value="BD-320">BD-320</option>
+            </select>
+
+            <select name="num" id="" class="sel2">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            <button class="btn">我要下單</button>
+        </form>
+    </div><!-- pro-info //-->
+</section>
+
+@*
+產品更多內容放下面，使用可上傳圖片的編輯器
+若無內容，下列html不會出現
+*@
+<section class="other">
+    @* 下為內容範例，實際online不會出現這張圖 *@
+    <img src="~/Content/images/Products/info.gif" alt="範例">
+</section>

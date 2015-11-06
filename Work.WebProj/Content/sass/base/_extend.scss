@@ -33,9 +33,9 @@
 
 %middle {
     &::before {
-        content: "";
+        content: '';
         display: inline-block;
-        height: 100%;
         vertical-align:middle;
+        height: 100%;
     }
 }

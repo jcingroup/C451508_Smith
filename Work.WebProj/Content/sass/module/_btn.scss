@@ -1,17 +1,17 @@
 @charset "UTF-8";
 
-$btn-color:          $link-color !default;
-$btn-hover-color:    $link-hover-color !default;
+$btn-color:          #fff !default;
+$btn-hover-color:    #fff !default;
 $btn-bg-color:       $brand-primary !default;
 $btn-bg-hover:       $brand-secondary !default;
 $btn-shadow:         0px 2px 2px hsla(0,0,0,0.2);
 
 $btn-width:          100px !default;
-$btn-padding:        12px 20px !default;
+$btn-padding:        18px 38px !default;
 $btn-border:         1px solid $link-color;
 $btn-border-radius:  5px !default;
 
-$btn-font-size:      13px !default;
+$btn-font-size:      15px !default;
 $btn-line-height:    1.01 !default;
 
 $btn-disabled:       $gray-light !default;

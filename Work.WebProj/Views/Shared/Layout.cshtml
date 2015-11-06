@@ -7,16 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>@Resources.Res.System_Name:@ViewBag.Title</title>
     <!--[if lt IE 9]><script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script><![endif]-->
+    <link rel="stylesheet" href="~/Content/css/grid.css">
     @if (ViewBag.IsFirstPage) {
         <link rel="stylesheet" href="~/Content/css/index.css">
     } else {
         <link rel="stylesheet" href="~/Content/css/page.css">
     }
-    <link rel="stylesheet" href="~/Content/css/grid.css">
     @RenderSection("CSS", required: false)
 </head>
 
 <body class="@ViewBag.BodyClass">
+
+    <div class="md-modal md-effect-7" id="login">
+        <form class="md-content">
+            <h3>LOGIN 會員登入</h3>
+            <input type="text" name="login" placeholder="請輸入會員帳號(email)">
+            <input type="password" name="password" placeholder="請輸入會員密碼">
+            <button>登入</button>
+        </form>
+    </div>
 
     <div id="wrapper">
 
@@ -27,7 +36,8 @@
 
             <nav class="top-nav">
                 <a href="~/index">HOME 首頁</a>
-                <a href="">LOGIN 登入</a>
+                <button class="md-trigger" data-modal="login">LOGIN 登入</button>
+                @* <a href="">LOGIN 登入</a> *@
             </nav>
 
             <nav id="menu">
@@ -70,7 +80,9 @@
                     <li>@ViewBag.Title</li> @* 當前頁名稱 EX.藍光DVD播放機 *@
                 </ul>
 
-                @RenderBody()
+                <div id="content">
+                    @RenderBody()
+                </div>
 
             </main><!-- main //-->
         }
@@ -81,8 +93,8 @@
 
     <footer id="footer">
         <div class="wrap">
-            <div class="copyright col-8 col-sm-12"><em>Smith 史密斯</em>&copy; 2015</div>
-            <ul class="list-unstyled col-4 col-sm-12 off-set-lg-1">
+            <div class="copyright col-sm-12"><em>Smith 史密斯</em>&copy; 2015</div>
+            <ul class="list-unstyled col-sm-12 float-r">
                 <li>桃園市中壢區龍興路401巷26號</li>
                 <li><em>T</em>03-4369557</li>
                 <li><em>F</em>03-4364677</li>
@@ -90,7 +102,11 @@
         </div>
     </footer>
 
+    <div class="md-overlay"></div><!-- the overlay element -->
+
     <script src="~/Scripts/jquery/jquery-2.1.4.min.js"></script>
+    <script src="~/Content/js/modal/classie.js"></script>
+    <script src="~/Content/js/modal/modalEffects.js"></script>
 
     @RenderSection("Scripts", required: false)
 

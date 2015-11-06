@@ -107,7 +107,7 @@ output {
 
      &:first-child {margin-left:0;}
 
-     @include media(xs) {
+     @include mq(phone) {
         display:block;
         margin-left:0;
      }
