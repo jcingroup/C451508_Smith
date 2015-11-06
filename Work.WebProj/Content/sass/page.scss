@@ -179,6 +179,11 @@ dd {
 }
 .tabs {
     @extend %list-inline;
+    a {
+        @extend .btn-primary;
+        background: #fff;
+        box-shadow:  1px 1px 1px #ccc;
+    }
 }
 
 // == QA

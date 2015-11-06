@@ -682,7 +682,7 @@ footer {
 [class*="btn-"] {
   background: #fff; }
 
-.btn-primary {
+.btn-primary, .tabs a {
   color: #0662A3;
   border-color: #0662A3; }
 
@@ -993,6 +993,10 @@ dt {
 dd {
   line-height: 2;
   font-size: 1.0625em; }
+
+.tabs a {
+  background: #fff;
+  box-shadow: 1px 1px 1px #ccc; }
 
 .FAQ dt, .FAQ dd {
   text-indent: -36px;
