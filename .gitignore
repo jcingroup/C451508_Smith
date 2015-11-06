@@ -218,3 +218,5 @@ Scripts/src/ts-controller/*.js
 */Scripts/src/ts-controller/*.js
 */Scripts/src/tsx/*.js
 */Scripts/es6ts.js
+*/Scripts/ts-def/d.ts/*.js
+*/Scripts/ts-def/def/*.js

@@ -16,6 +16,7 @@ gulp.task('commHdl', function () {
         'Scripts/app/moment/locale/zh-tw.js',
         'Scripts/jquery/jquery-2.1.4.min.js',
         'Scripts/react/react-with-addons.min.js',
+        'Scripts/app/bootstrap.min.js',
         'Scripts/app/react-bootstrap.min.js',
         'Scripts/app/toastr.min.js',
         'Scripts/build/ts/commfunc.js',
@@ -23,7 +24,7 @@ gulp.task('commHdl', function () {
     ];
 
     return gulp.src(jsfiles)
-        .pipe(strip({safe:true}))
+        .pipe(strip({ safe: true }))
         .pipe(concat('comminc.js'))
         .pipe(gulp.dest('Scripts/build/'));
 });
