@@ -122,6 +122,9 @@
     <Compile Include="DB0\i_UserLoginLog.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB0\Member.cs">
+      <DependentUpon>C45A0_Smith.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB0\Menu.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
@@ -156,6 +159,9 @@
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
     <Compile Include="DB0\m_i_UserLoginLog.cs">
+      <DependentUpon>C45A0_Smith.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB0\m_Member.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
     <Compile Include="DB0\m_Menu.cs">
