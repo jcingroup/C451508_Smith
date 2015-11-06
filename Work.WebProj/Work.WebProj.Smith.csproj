@@ -198,17 +198,18 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Active\ActiveAreaRegistration.cs" />
     <Compile Include="Areas\Active\Controllers\IssueDataController.cs" />
+    <Compile Include="Areas\Active\Controllers\MembersDataController.cs" />
     <Compile Include="Areas\Active\Controllers\PurchaseController.cs" />
-    <Compile Include="Areas\Active\Controllers\SalesController.cs" />
     <Compile Include="Areas\Active\Controllers\ProductDataController.cs" />
     <Compile Include="Areas\Base\Controllers\DocController.cs" />
     <Compile Include="Areas\Base\Controllers\LoginController.cs" />
     <Content Include="Areas\Active\Views\ProductData\Category.cshtml" />
     <Content Include="Areas\Active\Views\ProductData\Main.cshtml" />
-    <Content Include="Areas\Active\Views\Sales\Main.cshtml" />
     <Content Include="Areas\Active\Views\Purchase\Main.cshtml" />
     <Content Include="Areas\Active\Views\IssueData\Category.cshtml" />
     <Content Include="Areas\Active\Views\IssueData\Main.cshtml" />
+    <Content Include="Areas\Active\Views\MembersData\News.cshtml" />
+    <Content Include="Areas\Active\Views\MembersData\Members.cshtml" />
     <None Include="Areas\Base\Controllers\ReportChartController.cs" />
     <Compile Include="Areas\Base\Controllers\MenuController.cs" />
     <Compile Include="Areas\Base\Controllers\RolesController.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Controllers\Api\MenuController.cs" />
     <Compile Include="Controllers\Api\ProductCategoryController.cs" />
     <Compile Include="Controllers\Api\IssueController.cs" />
+    <Compile Include="Controllers\Api\MemberController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\PurchaseController.cs" />
@@ -778,6 +780,7 @@
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <TypeScriptCompile Include="Scripts\es6ts.ts" />
     <TypeScriptCompile Include="Scripts\src\tsx\c-comm.tsx" />
+    <TypeScriptCompile Include="Scripts\src\tsx\m-members.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-issue_category.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-issue.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-product_category.tsx" />
@@ -860,10 +863,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Active\Views\ProductData\App_LocalResources\Main.cshtml.resx" />
-    <Content Include="Areas\Active\Views\Sales\App_LocalResources\Main.cshtml.resx" />
     <Content Include="Areas\Active\Views\Purchase\App_LocalResources\Main.cshtml.resx" />
     <Content Include="Areas\Active\Views\IssueData\App_LocalResources\Main.cshtml.resx" />
     <Content Include="Areas\Base\Views\Menu\App_LocalResources\Main.cshtml.resx" />
+    <Content Include="Areas\Active\Views\MembersData\App_LocalResources\Main.cshtml.resx" />
     <EmbeddedResource Include="_Code\RPTFile\MemeberLabel.rdlc" />
   </ItemGroup>
   <PropertyGroup>
