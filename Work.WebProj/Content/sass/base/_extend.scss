@@ -30,3 +30,12 @@
         padding-right: 5px;
     }
 }
+
+%middle {
+    &::before {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        vertical-align:middle;
+    }
+}

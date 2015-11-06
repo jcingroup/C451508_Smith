@@ -16,8 +16,8 @@
 
 @import "layout/layout";
 
-@import "component/btn";
-@import "component/figure";
+@import "module/btn";
+@import "module/figure";
 
 
 // main
@@ -29,11 +29,14 @@
     @include absolute(left 0 top 170px)
 }
 
+.breadcrumb, #content {
+    float: right;
+    width: cp(1115px);
+
+    @include mq(wide) { width: cp(1160px); }
+}
 .breadcrumb {
     @extend %list-inline;
-
-    float: left;
-    margin-left: 50px;
 
     a {
         color: #656565;
@@ -57,7 +60,7 @@ main {
 
 aside {
     float: left;
-    width: cp(245px);
+    width: cp(250px);
     margin-top: -35px;
     header {
         @include text-pic('title.gif',245px,97px,fixed);
@@ -69,6 +72,7 @@ aside {
             }
         }
     }
+    nav { max-width: 230px; }
     a {
         display: block;
         border-bottom: 1px solid #E5E5E5;

@@ -10,17 +10,12 @@ h1,h2,h3,h4,h5,h6,p,figure,form,blockquote{margin:0;}
 ul,ol,li,dl,dt,dd{margin:0;padding:0;}
 button{outline: none;}
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 html, body {
     text-align: center;
     height: 100%;
 }
-
 body {
     background: $body-bg;
     color: $text-color;
@@ -33,14 +28,8 @@ a {
     text-decoration: none;
     transition: all .35s ease;
 
-    &:hover,
-    &.active {
-        color: $link-hover-color;
-    }
-
-    &:focus {
-        @include tab-focus;
-    }
+    &:hover, &:active, &.active { color: $link-hover-color; }
+    &:focus { @include tab-focus; }
 }
 
 hr {
@@ -50,57 +39,39 @@ hr {
     border-top: 1px solid $gray-lighter;
 }
 
-img {
-    vertical-align: middle;
-}
+img { vertical-align: middle; }
 
-@font-face {
-    font-family: MElleHK;
-    src: url(#{$font-path}/MElleHK.otf) format('opentype');
-}
-
-@font-face {
-    font-family: NeutrafaceDemi;
-    src: url(#{$font-path}/NeutrafaceDemi.otf) format('opentype');
-}
 
 // Headings
 // -----------------------------------------------
 h2, h3, h4, h5, h6 {
     font-weight: $heading-font-weight;
     line-height: $heading-line-height;
-    // color: $heading-color;
+    color: $heading-color;
 
     small {
         font-weight: normal;
         line-height: 1;
-        // color: $heading-small-color;
+        color: $heading-small-color;
     }
 }
 h2, h3 {
-    // margin-top: em($line-height-computed);
+    margin-top: em($line-height-computed);
     margin-bottom: em($line-height-computed / 2);
 
-    small {
-        font-size: 65%;
-    }
+    small { font-size: 65%; }
 }
 h4, h5, h6 {
-    // margin-top: em($line-height-computed / 2);
+    margin-top: em($line-height-computed / 2);
     margin-bottom: em($line-height-computed / 2);
 
-    small {
-        font-size: 75%;
-    }
+    small { font-size: 75%; }
 }
 
 @for $i from 2 through 6 {
     $headings: $font-size-h1 $font-size-h2 $font-size-h3 $font-size-h4 $font-size-h5 $font-size-h6;
 
-    h#{$i} {
-        // font-size: em(m-get($heading, h#{$i}));
-        font-size: em(nth($headings, $i));
-    }
+    h#{$i} { font-size: em(nth($headings, $i)); }
 }
 
 // Body text
@@ -128,26 +99,15 @@ hr, %hr {
     border-top: 1px solid #ccc;
     border-bottom:1px solid #f9f9f9;
 }
-%hr {height:2px;}
+%hr { height: 2px; }
 
 
 // Lists
 // -----------------------------------------------
 ul, ol {
     margin-bottom: ($line-height-computed / 2);
-    ul, ol {
-        margin-bottom: 0;
-    }
-}
 
-dl {
-    margin-bottom: $line-height-computed;
-}
-dt, dd {
-    line-height: $line-height-base;
-}
-dt {
-    font-weight: bold;
+    ul, ol { margin-bottom: 0; }
 }
 
 address {

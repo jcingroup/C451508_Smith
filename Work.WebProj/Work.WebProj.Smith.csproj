@@ -285,12 +285,12 @@
     <Content Include="Content\sass\base\_basic.scss" />
     <Content Include="Content\sass\base\_form.scss" />
     <Content Include="Content\sass\base\_table.scss" />
-    <Content Include="Content\sass\component\_animate.scss" />
-    <Content Include="Content\sass\component\_btn.scss" />
-    <Content Include="Content\sass\component\_dropdown.scss" />
-    <Content Include="Content\sass\component\_label.scss" />
-    <Content Include="Content\sass\component\_magnific.scss" />
-    <Content Include="Content\sass\component\_tooltip.scss" />
+    <Content Include="Content\sass\module\_animate.scss" />
+    <Content Include="Content\sass\module\_btn.scss" />
+    <Content Include="Content\sass\module\_dropdown.scss" />
+    <Content Include="Content\sass\module\_label.scss" />
+    <Content Include="Content\sass\module\_magnific.scss" />
+    <Content Include="Content\sass\module\_tooltip.scss" />
     <Content Include="Content\sass\helper\mixins\_form.scss" />
     <Content Include="Content\sass\helper\mixins\_media.scss" />
     <Content Include="Content\sass\helper\mixins\_prefix.scss" />
@@ -307,7 +307,7 @@
     <Content Include="Content\font\bootstrap\glyphicons-halflings-regular.woff" />
     <Content Include="Content\font\fontAwesome\fontawesome-webfont.ttf" />
     <Content Include="Areas\Base\Views\Menu\Main.cshtml" />
-    <Content Include="Content\sass\component\_figure.scss" />
+    <Content Include="Content\sass\module\_figure.scss" />
     <Content Include="Content\sass\helper\mixins\_animation.scss" />
     <Content Include="Content\sass\helper\mixins\_gradient.scss" />
     <Content Include="Content\sass\helper\mixins\_position.scss" />

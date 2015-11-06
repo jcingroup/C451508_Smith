@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+$figure-bg:             #fff !default;
+$figure-text-align:     center !default;
+
+$figure-min-width:      350px !default;
+$figure-max-width:      480px !default;
+$figure-max-height:     360px !default;
+$figure-width:          cp(350px) !default;
+$figure-margin:         cp(10px) !default;
+
+// common
+figure {
+    position: relative;
+    // overflow: hidden;
+    cursor: pointer;
+
+    margin: $figure-margin;
+    min-width: $figure-min-width;
+    // max-width: $figure-max-width;
+    // max-height: $figure-max-height;
+    width: $figure-width;
+
+    background: $figure-bg;
+    text-align: $figure-text-align;
+
+    img {
+        position: relative;
+        display: block;
+        // min-height: 100%;
+        max-width: 100%;
+        // opacity: 0.8;
+    }
+}
+figcaption {
+    text-transform: uppercase;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    &::before, &::after { pointer-events: none; }
+
+    &, > a {
+        @include absolute(top 0 left 0);
+        width: 100%; height: 100%;
+    }
+    // 預設為覆蓋整個figure
+    > a {
+        z-index: 1000;
+        text-indent: 200%;
+        white-space: nowrap;
+        font-size: 0;
+        opacity: 0;
+    }
+}
+
+// theme
+figure {
+    float: left;
+    height: 180px;
+    padding: 10px;
+    border: 1px solid #EBEBEB;
+    // @include middle(img);
+    &::before { border: 1px solid #000;
+        content: "";
+        display: inline-block;
+        height: 100%;
+        vertical-align:middle;
+    }
+    img {
+        display: inline-block;
+    }
+    h3 {
+        color: #323232;
+        font-size: em(18px);
+    }
+    small {
+        color: #656565;
+        font-size: em(16px,18px);
+        display: block;
+        margin-top: 10px;
+    }
+    p {
+
+    }
+}

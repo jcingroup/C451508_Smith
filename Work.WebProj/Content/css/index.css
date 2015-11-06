@@ -192,9 +192,7 @@ ul, ol, li, dl, dt, dd {
 button {
   outline: none; }
 
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box; }
 
 html, body {
@@ -211,7 +209,7 @@ a {
   color: #191919;
   text-decoration: none;
   transition: all .35s ease; }
-  a:hover, a.active {
+  a:hover, a:active, a.active {
     color: #0662A3; }
   a:focus {
     outline: thin dotted;
@@ -227,25 +225,23 @@ hr {
 img {
   vertical-align: middle; }
 
-@font-face {
-  font-family: MElleHK;
-  src: url(../font/MElleHK.otf) format("opentype"); }
-@font-face {
-  font-family: NeutrafaceDemi;
-  src: url(../font/NeutrafaceDemi.otf) format("opentype"); }
 h2, h3, h4, h5, h6 {
   font-weight: 500;
-  line-height: 1.1; }
+  line-height: 1.1;
+  color: #0662A3; }
   h2 small, h3 small, h4 small, h5 small, h6 small {
     font-weight: normal;
-    line-height: 1; }
+    line-height: 1;
+    color: #175f92; }
 
 h2, h3 {
+  margin-top: 1.25em;
   margin-bottom: 0.625em; }
   h2 small, h3 small {
     font-size: 65%; }
 
 h4, h5, h6 {
+  margin-top: 0.625em;
   margin-bottom: 0.625em; }
   h4 small, h5 small, h6 small {
     font-size: 75%; }
@@ -285,15 +281,6 @@ ul, ol {
   margin-bottom: 10px; }
   ul ul, ul ol, ol ul, ol ol {
     margin-bottom: 0; }
-
-dl {
-  margin-bottom: 20px; }
-
-dt, dd {
-  line-height: 1.25; }
-
-dt {
-  font-weight: bold; }
 
 address {
   margin-bottom: 20px;
@@ -432,7 +419,7 @@ address {
     padding: 12px 20px;
     color: #001B23; }
     #menu a:hover, #menu a:active, .AboutUs #menu a:nth-child(1), .News #menu a:nth-child(2), .Products #menu a:nth-child(3), .FAQ #menu a:nth-child(4), .Service #menu a:nth-child(5), .ContactUs #menu a:nth-child(6) {
-      background: #0662A3;
+      background: #0646A3;
       border-radius: 5px;
       color: #fff; }
       #menu a:hover::after, #menu a:active::after, .AboutUs #menu a:nth-child(1)::after, .News #menu a:nth-child(2)::after, .Products #menu a:nth-child(3)::after, .FAQ #menu a:nth-child(4)::after, .Service #menu a:nth-child(5)::after, .ContactUs #menu a:nth-child(6)::after {
@@ -441,7 +428,7 @@ address {
         border: 8px solid transparent;
         width: 0;
         height: 0;
-        border-top: 6px solid #0662A3;
+        border-top: 6px solid #0646A3;
         border-bottom-width: 6px;
         position: absolute;
         top: 100%;
@@ -612,6 +599,7 @@ footer {
     color: #fff;
     text-align: left; }
   .about h3 {
+    margin-top: 0;
     margin-bottom: 15px; }
   .about p {
     line-height: 2.2;

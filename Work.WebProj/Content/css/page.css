@@ -192,9 +192,7 @@ ul, ol, li, dl, dt, dd {
 button {
   outline: none; }
 
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box; }
 
 html, body {
@@ -211,7 +209,7 @@ a {
   color: #191919;
   text-decoration: none;
   transition: all .35s ease; }
-  a:hover, a.active {
+  a:hover, a:active, a.active {
     color: #0662A3; }
   a:focus {
     outline: thin dotted;
@@ -227,25 +225,23 @@ hr {
 img {
   vertical-align: middle; }
 
-@font-face {
-  font-family: MElleHK;
-  src: url(../font/MElleHK.otf) format("opentype"); }
-@font-face {
-  font-family: NeutrafaceDemi;
-  src: url(../font/NeutrafaceDemi.otf) format("opentype"); }
 h2, h3, h4, h5, h6 {
   font-weight: 500;
-  line-height: 1.1; }
+  line-height: 1.1;
+  color: #0662A3; }
   h2 small, h3 small, h4 small, h5 small, h6 small {
     font-weight: normal;
-    line-height: 1; }
+    line-height: 1;
+    color: #175f92; }
 
 h2, h3 {
+  margin-top: 1.25em;
   margin-bottom: 0.625em; }
   h2 small, h3 small {
     font-size: 65%; }
 
 h4, h5, h6 {
+  margin-top: 0.625em;
   margin-bottom: 0.625em; }
   h4 small, h5 small, h6 small {
     font-size: 75%; }
@@ -285,15 +281,6 @@ ul, ol {
   margin-bottom: 10px; }
   ul ul, ul ol, ol ul, ol ol {
     margin-bottom: 0; }
-
-dl {
-  margin-bottom: 20px; }
-
-dt, dd {
-  line-height: 1.25; }
-
-dt {
-  font-weight: bold; }
 
 address {
   margin-bottom: 20px;
@@ -432,7 +419,7 @@ address {
     padding: 12px 20px;
     color: #001B23; }
     #menu a:hover, #menu a:active, .AboutUs #menu a:nth-child(1), .News #menu a:nth-child(2), .Products #menu a:nth-child(3), .FAQ #menu a:nth-child(4), .Service #menu a:nth-child(5), .ContactUs #menu a:nth-child(6) {
-      background: #0662A3;
+      background: #0646A3;
       border-radius: 5px;
       color: #fff; }
       #menu a:hover::after, #menu a:active::after, .AboutUs #menu a:nth-child(1)::after, .News #menu a:nth-child(2)::after, .Products #menu a:nth-child(3)::after, .FAQ #menu a:nth-child(4)::after, .Service #menu a:nth-child(5)::after, .ContactUs #menu a:nth-child(6)::after {
@@ -441,7 +428,7 @@ address {
         border: 8px solid transparent;
         width: 0;
         height: 0;
-        border-top: 6px solid #0662A3;
+        border-top: 6px solid #0646A3;
         border-bottom-width: 6px;
         position: absolute;
         top: 100%;
@@ -560,66 +547,57 @@ footer {
 
 figure {
   position: relative;
-  overflow: hidden;
   cursor: pointer;
-  margin: 0.2% 0;
-  min-width: 300px;
-  max-width: 480px;
-  max-height: 360px;
+  margin: 1%;
+  min-width: 350px;
   width: 25%;
-  text-align: center;
-  float: left; }
+  background: #fff;
+  text-align: center; }
   figure img {
     position: relative;
     display: block;
-    max-width: 100%;
-    opacity: 0.8; }
-  figure figcaption {
-    text-transform: uppercase;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden; }
-    figure figcaption::before, figure figcaption::after {
-      pointer-events: none; }
-    figure figcaption, figure figcaption > a {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%; }
-    figure figcaption > a {
-      z-index: 1000;
-      white-space: nowrap;
-      font-size: 0;
-      opacity: 0; }
+    max-width: 100%; }
 
-figure h3 {
-  color: #0662A3;
-  font-size: 2em;
-  font-family: MElleHK, "Microsoft Jhenghei", \5FAE\8EDF\6B63\9ED1\9AD4, Helvetica, Arial, sans-serif;
-  margin-bottom: 5px; }
-figure p {
-  color: #656565;
-  font-size: 1.4375em;
-  font-weight: bold;
-  line-height: 1.2;
-  position: absolute;
-  top: 46%;
-  right: 0;
-  left: 0; }
-figure > a {
-  color: #222;
-  font-size: 1.25em;
-  font-weight: bold;
-  position: absolute;
-  bottom: 18%;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
-  transform: translateX(-50%); }
-  figure > a:hover, figure > a:active {
-    color: #37BCEE; }
-figure:hover a, figure:active a {
-  color: #37BCEE; }
+figcaption {
+  text-transform: uppercase;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+  figcaption::before, figcaption::after {
+    pointer-events: none; }
+  figcaption, figcaption > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+  figcaption > a {
+    z-index: 1000;
+    text-indent: 200%;
+    white-space: nowrap;
+    font-size: 0;
+    opacity: 0; }
+
+figure {
+  float: left;
+  height: 180px;
+  padding: 10px;
+  border: 1px solid #EBEBEB; }
+  figure::before {
+    border: 1px solid #000;
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle; }
+  figure img {
+    display: inline-block; }
+  figure h3 {
+    color: #323232;
+    font-size: 1.125em; }
+  figure small {
+    color: #656565;
+    font-size: 0.88889em;
+    display: block;
+    margin-top: 10px; }
 
 #wrapper::before {
   content: '';
@@ -630,20 +608,24 @@ figure:hover a, figure:active a {
   top: 170px;
   left: 0; }
 
-.breadcrumb {
+.breadcrumb, #content {
+  float: right;
+  width: 78%; }
+  @media (min-width: 87.5em) {
+    .breadcrumb, #content {
+      width: 81%; } }
+
+.breadcrumb a {
+  color: #656565;
+  font-size: 0.93333em; }
+  .breadcrumb a::after {
+    content: '/'; }
+  .breadcrumb a:hover, .breadcrumb a:active {
+    color: #068BAE; }
+.breadcrumb li {
   float: left;
-  margin-left: 50px; }
-  .breadcrumb a {
-    color: #656565;
-    font-size: 0.93333em; }
-    .breadcrumb a::after {
-      content: '/'; }
-    .breadcrumb a:hover, .breadcrumb a:active {
-      color: #068BAE; }
-  .breadcrumb li {
-    float: left;
-    color: #0662A3;
-    font-size: 0.9375em; }
+  color: #0662A3;
+  font-size: 0.9375em; }
 
 main {
   text-align: left;
@@ -670,6 +652,8 @@ aside {
       background-position: 0 -476px; }
     .ContactUs aside header {
       background-position: 0 -595px; }
+  aside nav {
+    max-width: 230px; }
   aside a {
     display: block;
     border-bottom: 1px solid #E5E5E5;

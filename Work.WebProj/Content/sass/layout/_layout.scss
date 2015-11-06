@@ -149,12 +149,12 @@ $goTop:                 (bottom 10px), (right 15px) !default;
 
         &:hover, &:active,
         #{$selector} {
-            background: $brand-primary;
+            background: #0646A3;
             border-radius: 5px;
             color: $menu-link-hover;
 
             &::after {
-                @include arrow(bottom,8px,6px,$brand-primary);
+                @include arrow(bottom, 8px, 6px, #0646A3);
                 @include absolute(top 100% left 50%);
                 margin-left: -8px;
             }

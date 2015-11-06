@@ -27,18 +27,25 @@ $btn-bg-hover:      #028BA4;
 
 @import "layout/layout";
 
-@import "component/btn";
+@import "module/btn";
 
 
 // main
 // ----------------------------------------------------------------------
-#wrapper { padding-bottom: 0; }
-footer { background: rgba(232,235,237,.8);}
+#wrapper {
+    padding-bottom: 0;
+}
 
-#banner, .swiper-slide { height: 500px; }
+footer {
+    background: rgba(232,235,237,.8);
+}
 
-.swiper-wrapper { @extend %list-unstyled; }
-
+#banner, .swiper-slide {
+    height: 500px;
+}
+.swiper-wrapper {
+    @extend %list-unstyled;
+}
 .swiper-slide {
     background: url(#{$img-path2}/banner1_bg.png) center bottom no-repeat;
     padding-top: 70px;
@@ -83,8 +90,14 @@ footer { background: rgba(232,235,237,.8);}
         color: #fff;
         text-align: left;
     }
-    h3 { margin-bottom: $gutter; }
-    p { line-height: 2.2; margin-bottom: 20px; }
+    h3 {
+        margin-top: 0;
+        margin-bottom: $gutter;
+    }
+    p {
+        line-height: 2.2;
+        margin-bottom: 20px;
+    }
     nav a {
         display: block;
         margin-bottom: $gutter;
