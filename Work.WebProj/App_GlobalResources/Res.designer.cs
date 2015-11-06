@@ -727,7 +727,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查詢類似 統城 管理系統 的當地語系化字串。
+        ///   查詢類似 統城科技股份有限公司 的當地語系化字串。
         /// </summary>
         internal static string System_Name {
             get {
