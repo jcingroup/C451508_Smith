@@ -98,12 +98,12 @@ $state-type: (
 );
 
 $table-color: (
-    table-bg:               #96D7E7,
+    table-bg:               $brand-secondary,
     table-bg-accent:        #f9f9f9,
-    table-bg-hover:         #D6FAFC,
+    table-bg-hover:         #f7f7f7,
     table-bg-active:        #D6FAFC,
-    table-border:           #96D7E7,
-    table-th:               $text-color,
+    table-border:           lighten($brand-secondary,50%),
+    table-th:               $brand-primary,
     table-td:               $text-color,
     table-caption:          #fff,
 );

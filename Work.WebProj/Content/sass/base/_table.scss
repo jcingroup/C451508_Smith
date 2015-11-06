@@ -1,8 +1,9 @@
 @charset "UTF-8";
 
-$table-padding: 10px 15px;
-$font-size-caption: 30px;
-$font-size-td: 24px;
+$table-padding: 5px 10px 15px !default;
+$font-size-caption: 22px !default;
+$font-size-th: 19px !default;
+$font-size-td: 17px !default;
 
 
 /*      table
@@ -11,16 +12,24 @@ table {
     // margin: $line-height-computed 0;
 }
 th, td {
-    padding: nth($table-padding, 2);
     border: 1px solid color(table-border);
 
     color: color(table-td);
-    font-size: em($font-size-td);
+    // font-size: em($font-size-td);
     line-height: $line-height-base;
 
-    font-weight: bold;
     text-align: center;
-    vertical-align: top;
+    vertical-align: middle;
+}
+
+th {
+    padding: nth($table-padding, 2);
+    color: color(table-th);
+    font-size: em($font-size-th);
+    font-weight: bold;
+}
+td {
+    padding: nth($table-padding, 1);
 }
 
 // 滑鼠移過變色

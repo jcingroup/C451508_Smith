@@ -109,7 +109,7 @@ $goTop:                 (bottom 10px), (right 15px) !default;
     @include mq($max: mobile) {
     }
 
-    a {
+    a, button {
         display: inline-block;
         color: #fff;
         font-size: em(12px);
@@ -117,14 +117,16 @@ $goTop:                 (bottom 10px), (right 15px) !default;
         padding-right: 10px;
         margin-right: 10px;
 
-        &:last-child {
-            border-right: none;
-            padding-right: 0;
-            margin-right: 0;
-        }
         &:hover, &:active {
             color: $brand-primary;
         }
+    }
+    button {
+        background: none;
+        border: none;
+        border-right: none;
+        padding-right: 0;
+        margin-right: 0;
     }
 }
 

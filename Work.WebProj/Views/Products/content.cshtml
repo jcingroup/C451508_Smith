@@ -9,6 +9,27 @@
     <li><a href="~/Products">產品介紹</a></li>
     <li><a href="~/Products/list">藍光DVD播放機</a></li>
 }
+@section overlay {
+    <div class="md-modal md-effect-7" id="buy">
+        <form class="md-content">
+            <h3>產品下單</h3>
+            <table>
+                <tr>
+                    <th>產品名稱</th>
+                    <th>數量</th>
+                </tr>
+                <tr>
+                    <td>藍光DVD播放機【BD-320】</td>
+                    <td>1</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary">確認訂單</button>
+            <button class="btn btn-primary">繼續購買</button>
+            <button class="md-close">X</button>
+        </form>
+    </div>
+}
+
 
 <section class="row">
 
@@ -18,7 +39,7 @@
 
     <div class="col-5 col-sm-12 pro-info">
         <h3><small>【型號】BD-350</small>5.1聲道 3D藍光DVD播放機</h3>
-        <form action="mail">
+        <div class="text-right">
             <select name="name" id="" class="sel1">
                 <option value="BD-350">BD-350</option>
                 <option value="BD-320">BD-320</option>
@@ -30,8 +51,8 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
             </select>
-            <button class="btn">我要下單</button>
-        </form>
+            <button class="btn md-trigger" data-modal="buy">我要下單</button>
+        </div>
     </div><!-- pro-info //-->
 </section>
 

@@ -276,6 +276,7 @@
     <Content Include="Content\font\MElleHK.woff" />
     <Content Include="Content\images\bg.gif" />
     <Content Include="Content\images\bg2.gif" />
+    <Content Include="Content\images\FAQ\pic1.gif" />
     <Content Include="Content\images\icon_select.gif" />
     <Content Include="Content\images\index\banner1_bg.png" />
     <Content Include="Content\images\index\banner1_icon.gif" />
@@ -292,6 +293,7 @@
     <Content Include="Content\js\modal\classie.js" />
     <Content Include="Content\js\map.js" />
     <Content Include="Content\js\modal\modalEffects.js" />
+    <Content Include="Content\js\tab.js" />
     <Content Include="Content\sass\base\basic\_normalize.scss" />
     <Content Include="Content\sass\base\basic\_print.scss" />
     <Content Include="Content\sass\base\_basic.scss" />

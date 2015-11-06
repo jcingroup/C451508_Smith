@@ -105,7 +105,7 @@ output {
     margin-left: $gutter/2;
     font-weight: normal;
 
-     &:first-child {margin-left:0;}
+     &:first-child { margin-left: 0; }
 
      @include mq(phone) {
         display:block;
@@ -141,7 +141,4 @@ input:not([type]), #{text-inputs(all)} {
 
 
 // 禁用元素的滑鼠樣式(含label)
-*[disabled],
-.disabled {
-    cursor: $cursor-disabled;
-}
+*[disabled], .disabled { cursor: $cursor-disabled; }

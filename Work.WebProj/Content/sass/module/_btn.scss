@@ -1,7 +1,10 @@
 @charset "UTF-8";
 
-$btn-color:          #fff !default;
-$btn-hover-color:    #fff !default;
+$btn-disabled:       $gray-light !default;
+$btn-state-color:    #fff !default;
+
+$btn-color:          $btn-state-color !default;
+$btn-hover-color:    $btn-state-color !default;
 $btn-bg-color:       $brand-primary !default;
 $btn-bg-hover:       $brand-secondary !default;
 $btn-shadow:         0px 2px 2px hsla(0,0,0,0.2);
@@ -14,8 +17,6 @@ $btn-border-radius:  5px !default;
 $btn-font-size:      15px !default;
 $btn-line-height:    1.01 !default;
 
-$btn-disabled:       $gray-light !default;
-$btn-state-color:    #fff !default;
 
 
 // button
@@ -60,12 +61,14 @@ $btn-state-color:    #fff !default;
 }
 
 @if $states {
-    // [class*="btn-"] {
-    //     color: $btn-state-color;
-    // }
+    [class*="btn-"] {
+        background: $btn-state-color;
+    }
     @each $type, $color in $state-type {
         .btn-#{$type} {
-            @include state($color, btn)
+            // @include state($color, btn)
+            color: $color;
+            border-color: $color;
         }
     }
 }

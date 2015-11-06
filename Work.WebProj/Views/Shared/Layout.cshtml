@@ -23,9 +23,23 @@
             <h3>LOGIN 會員登入</h3>
             <input type="text" name="login" placeholder="請輸入會員帳號(email)">
             <input type="password" name="password" placeholder="請輸入會員密碼">
-            <button>登入</button>
+            <button class="btn btn-primary">登入</button>
+            <a class="md-trigger joinus" data-modal="join">無帳號，我要加入會員</a>
+            <button class="md-close">X</button>
         </form>
     </div>
+    <div class="md-modal md-effect-7" id="join">
+        <form class="md-content">
+            <h3>JOIN US 加入會員</h3>
+            <input type="text" name="login" placeholder="請輸入會員帳號(email)">
+            <input type="text" name="login" placeholder="請輸入會員名稱">
+            <input type="password" name="password" placeholder="請輸入會員密碼">
+            <button class="btn btn-primary">送出申請</button>
+            <p>感謝您的加入，我們將盡快作業，請等候通知</p>
+            <button class="md-close">X</button>
+        </form>
+    </div>
+    @RenderSection("overlay", required: false)
 
     <div id="wrapper">
 
@@ -37,7 +51,6 @@
             <nav class="top-nav">
                 <a href="~/index">HOME 首頁</a>
                 <button class="md-trigger" data-modal="login">LOGIN 登入</button>
-                @* <a href="">LOGIN 登入</a> *@
             </nav>
 
             <nav id="menu">

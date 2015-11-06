@@ -1,22 +1,19 @@
 @charset "UTF-8";
 
+$modal-max-width: 630px;
+$modal-min-width: 320px;
+
 .md-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
     width: 50%;
-    max-width: 630px;
-    min-width: 320px;
+    max-width: $modal-max-width;
+    min-width: $modal-min-width;
     height: auto;
     z-index: 2000;
     visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
+    @include fixed(top 50% left 50%);
+    @include prefix(backface-visibility,hidden);
     -ms-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
+    @include prefix(transform,translateX(-50%) translateY(-50%));
 }
 
 .md-show {
@@ -24,18 +21,13 @@
 }
 
 .md-overlay {
-    position: fixed;
     width: 100%;
     height: 100%;
     visibility: hidden;
-    top: 0;
-    left: 0;
     z-index: 1000;
     opacity: 0;
-    background: rgba(143,27,15,0.8);
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
+    background: rgba(0,0,0,.2);
+    @include fixed(top 0 left 0);
 }
 
 .md-show ~ .md-overlay {
@@ -43,55 +35,67 @@
     visibility: visible;
 }
 
+.md-close {
+    @include absolute(top 10px right 10px);
+    background: none;
+    font-size: em(30px);
+}
+
+.md-overlay, .md-content {
+    @include prefix(transition,all .3s)
+}
+
 /* Content styles */
 .md-content {
-    color: #fff;
-    background: #e74c3c;
     position: relative;
-    border-radius: 3px;
+    opacity: 0;
     margin: 0 auto;
+
+    color: #fff;
+    background: $brand-primary;
+    border-radius: 0 0 6px 6px;
+    padding-bottom: 10px;
 
     h3 {
         margin: 0;
         padding: 0.4em;
+        color: #fff;
         text-align: center;
-        font-size: 2.4em;
+        font-size: em(32px);
         font-weight: 300;
-        opacity: 0.8;
-        background: rgba(0,0,0,0.1);
-        border-radius: 3px 3px 0 0;
+        background: #0646A3;
     }
-    button {
-        display: block;
-        margin: 0 auto;
-        font-size: 0.8em;
+    input, .btn, table {
+        margin: 30px auto;
+        margin-top: 30px;
     }
+    input { width: 85%; }
+    input { line-height: 2; }
+    .btn { font-size: em(19px); margin-top: 0; }
+    table {
+        background: #E5E5E5;
+        width: 93%;
+    }
+    th, td { border-color: #fff; }
 }
 
 .md-effect-7 {
     top: 0;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
+    @include prefix(transform,translateX(-50%));
 
     .md-content {
-        -webkit-transform: translateY(-200%);
-        -moz-transform: translateY(-200%);
-        -ms-transform: translateY(-200%);
-        transform: translateY(-200%);
-        -webkit-transition: all .3s;
-        -moz-transition: all .3s;
-        transition: all .3s;
-        opacity: 0;
+        @include prefix(transform,translateY(-200%));
     }
-
 }
 .md-show.md-effect-7 .md-content {
-    -webkit-transform: translateY(0%);
-    -moz-transform: translateY(0%);
-    -ms-transform: translateY(0%);
-    transform: translateY(0%);
-    border-radius: 0 0 3px 3px;
     opacity: 1;
+    @include prefix(transform,translateY(0%));
+}
+
+.joinus {
+    cursor: pointer; cursor: hand;
+    color: #fff;
+    margin-left: 20px;
+    &:hover, &:active { color: #CBCBCB; }
 }
