@@ -180,7 +180,8 @@ dd {
 .tabs {
     @extend %list-inline;
     a {
-        @extend .btn-primary;
+        @extend .btn;
+        color: $brand-secondary;
         background: #fff;
         box-shadow:  1px 1px 1px #ccc;
     }

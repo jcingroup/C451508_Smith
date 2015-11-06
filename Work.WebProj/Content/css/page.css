@@ -654,7 +654,7 @@ footer {
     background: #fff;
     color: black; }
 
-.btn {
+.btn, .tabs a {
   display: inline-block;
   padding: 18px 38px;
   min-width: 100px;
@@ -665,24 +665,24 @@ footer {
   font-weight: bold;
   line-height: 1.01;
   transition: all 0.3s; }
-  .btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
+  .btn:focus, .tabs a:focus, .btn.focus, .tabs a.focus, .btn:active:focus, .tabs a:active:focus, .btn:active.focus, .tabs a:active.focus, .btn.active:focus, .tabs a.active:focus, .btn.active.focus, .tabs a.active.focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px; }
-  .btn:hover, .btn:active {
+  .btn:hover, .tabs a:hover, .btn:active, .tabs a:active {
     background: #068BAE;
     border-color: #fff;
     color: #fff; }
-  .btn:active, .btn.active {
+  .btn:active, .tabs a:active, .btn.active, .tabs a.active {
     outline: 0; }
-  .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+  .btn.disabled, .tabs a.disabled, .btn[disabled], .tabs a[disabled], fieldset[disabled] .btn, fieldset[disabled] .tabs a, .tabs fieldset[disabled] a {
     cursor: not-allowed;
     opacity: .65; }
 
 [class*="btn-"] {
   background: #fff; }
 
-.btn-primary, .tabs a {
+.btn-primary {
   color: #0662A3;
   border-color: #0662A3; }
 
@@ -815,14 +815,14 @@ figure {
     font-size: 2em;
     font-weight: 300;
     background: #0646A3; }
-  .md-content input, .md-content .btn, .md-content table {
+  .md-content input, .md-content .btn, .md-content .tabs a, .tabs .md-content a, .md-content table {
     margin: 30px auto;
     margin-top: 30px; }
   .md-content input {
     width: 85%; }
   .md-content input {
     line-height: 2; }
-  .md-content .btn {
+  .md-content .btn, .md-content .tabs a, .tabs .md-content a {
     font-size: 1.1875em;
     margin-top: 0; }
   .md-content table {
@@ -995,6 +995,7 @@ dd {
   font-size: 1.0625em; }
 
 .tabs a {
+  color: #068BAE;
   background: #fff;
   box-shadow: 1px 1px 1px #ccc; }
 
