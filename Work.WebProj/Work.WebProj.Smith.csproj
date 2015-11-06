@@ -604,11 +604,17 @@
     <Content Include="Scripts\app\swipe.js" />
     <Content Include="Scripts\app\toastr.min.js" />
     <Content Include="Scripts\build\comminc.js" />
+    <Content Include="Scripts\build\commincx.js" />
     <Content Include="Scripts\build\func\c-comm.js" />
     <Content Include="Scripts\build\func\inc\c-Comm.js" />
     <Content Include="Scripts\build\func\inc\c-ImgFileSort.js" />
+    <Content Include="Scripts\build\func\m-ChangePassword.js" />
+    <Content Include="Scripts\build\func\m-issue.js" />
+    <Content Include="Scripts\build\func\m-issue_category.js" />
     <Content Include="Scripts\build\func\m-login.js" />
+    <Content Include="Scripts\build\func\m-Menu.js" />
     <Content Include="Scripts\build\func\m-product.js" />
+    <Content Include="Scripts\build\func\m-product_category.js" />
     <Content Include="Scripts\build\func\m-purchase.js" />
     <Content Include="Scripts\build\func\m-Roles.js" />
     <Content Include="Scripts\build\func\m-sales.js" />
