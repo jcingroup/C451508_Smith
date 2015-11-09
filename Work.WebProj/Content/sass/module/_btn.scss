@@ -45,7 +45,7 @@ $btn-line-height:    1.01 !default;
             @include tab-focus;
         }
     }
-    &:hover, &:active {
+    &:hover, &:active, &.active {
     // &:hover, &:focus, &.focus {
         background: $btn-bg-hover;
         border-color: $btn-hover-color;

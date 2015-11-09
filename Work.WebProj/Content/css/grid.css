@@ -47,7 +47,7 @@
 .col-12 {
   width: 100%; }
 
-@media (max-width: 29.99em) {
+@media (max-width: 30em) {
   .col-xs-1 {
     width: 6.5%; }
 
@@ -83,7 +83,7 @@
 
   .col-xs-12 {
     width: 100%; } }
-@media (max-width: 47.99em) {
+@media (max-width: 48em) {
   .col-sm-1 {
     width: 6.5%; }
 
@@ -230,7 +230,7 @@
 .offset-12 {
   margin-left: 100%; }
 
-@media (max-width: 29.99em) {
+@media (max-width: 30em) {
   .offset-xs-0 {
     margin-left: 0%; }
 
@@ -269,7 +269,7 @@
 
   .offset-xs-12 {
     margin-left: 100%; } }
-@media (max-width: 47.99em) {
+@media (max-width: 48em) {
   .offset-sm-0 {
     margin-left: 0%; }
 

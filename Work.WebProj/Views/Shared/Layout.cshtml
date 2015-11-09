@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
     <title>@Resources.Res.System_Name:@ViewBag.Title</title>
     <!--[if lt IE 9]><script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script><![endif]-->
     <link rel="stylesheet" href="~/Content/css/grid.css">
@@ -53,7 +55,9 @@
                 <button class="md-trigger" data-modal="login">LOGIN 登入</button>
             </nav>
 
+            <button class="menu-trigger"></button>
             <nav id="menu">
+                <header class="toggle">MENU</header>
                 <a href="~/AboutUs">公司簡介</a>
                 <a href="~/News">最新消息</a>
                 <a href="~/Products">產品介紹</a>
@@ -102,7 +106,7 @@
 
     </div><!-- wrapper //-->
 
-    <a href="#header" class="goTop">T</a>
+    <a href="#header" class="goTop">▲</a>
 
     <footer id="footer">
         <div class="wrap">
@@ -120,6 +124,7 @@
     <script src="~/Scripts/jquery/jquery-2.1.4.min.js"></script>
     <script src="~/Content/js/modal/classie.js"></script>
     <script src="~/Content/js/modal/modalEffects.js"></script>
+    <script src="~/Content/js/theme.js"></script>
 
     @RenderSection("Scripts", required: false)
 

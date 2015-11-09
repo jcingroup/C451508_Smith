@@ -4,6 +4,23 @@
     ViewBag.BodyClass = "ContactUs";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
+@section Scripts {
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="~/Content/js/map.js"></script>
+}
 
-<h2>ContactUs</h2>
+<h2>聯絡我們 <small>Contact Us</small></h2>
 
+<div id="map-canvas"></div>
+
+<dl class="contacts">
+    <dt>統城科技股份有限公司 84524369</dt>
+    <dt>聯絡電話</dt>
+    <dd>03-4369557</dd>
+    <dt>傳真號碼</dt>
+    <dd>03-4364677</dd>
+    <dt>連絡地址</dt>
+    <dd><a href="https://goo.gl/maps/9mrqTnLFbU82" target="new">桃園市中壢區龍興路401巷26號</a></dd>
+    <dt>E-mail</dt>
+    <dd><a href="mailto:smithtech.a8@gmail.com">smithtech.a8@gmail.com</a></dd>
+</dl>

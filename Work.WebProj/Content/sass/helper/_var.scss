@@ -126,9 +126,9 @@ $color: map-extend($state-type, $table-color, $form-color);
 // == z-index
 // ----------------------------------------------------------------------
 $z-index: (
-    header:     2,
-    main:       1,
-    footer:     3,
+    header:     1,
+    main:       3,
+    footer:     2,
     banner:     4,
     logo:       50,
     menu:       60,
@@ -136,5 +136,6 @@ $z-index: (
     dropdown:   80,
     tooltip:    90,
     modal:      1000,
-    overlay:    1001
+    overlay:    1001,
+    toggle:     999,
 );

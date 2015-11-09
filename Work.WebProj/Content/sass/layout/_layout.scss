@@ -130,6 +130,24 @@ $goTop:                 (bottom 10px), (right 15px) !default;
     }
 }
 
+// == 行動版主選單 開關
+.menu-trigger, .toggle { display: none; }
+.menu-trigger {
+    z-index: z(logo) + 1;
+    width:45px;
+    height: 43px;
+
+    background: $brand-primary url(#{$img-path}/iconMenu.gif) no-repeat center center;
+    border: none;
+
+    @include absolute(right -15px top 0);
+
+    &:hover { background-color: darken($brand-primary,10%); }
+
+    .toggled & {background-image:url(#{$img-path}/iconMenuClose.gif);}
+
+    @include mq($max:desktop) { display: block; }
+}
 #menu {
     font-size: em(21px);
     font-weight: bold;
@@ -139,8 +157,8 @@ $goTop:                 (bottom 10px), (right 15px) !default;
     a {
         position: relative;
         display: inline-block;
-        width: 130px;
-        padding: 12px 20px;
+        width: 100px;
+        padding: 12px 0;
         color: $menu-link;
 
         $selector: ();
@@ -159,6 +177,84 @@ $goTop:                 (bottom 10px), (right 15px) !default;
                 @include arrow(bottom, 8px, 6px, #0646A3);
                 @include absolute(top 100% left 50%);
                 margin-left: -8px;
+            }
+        }
+        @include mq(desktop2) { width: 140px; }
+    }
+
+    @include mq($max:desktop) {
+        width:168px;
+        height:$menu-height-sm;
+        background:$brand-primary;
+
+        position: fixed;
+        left:-168px; top:0;
+        z-index: z(overlay);
+        overflow-y: auto;
+
+        .toggle {
+            display: block;
+            border-bottom:1px solid #69A6B8;
+
+            h2 {
+                width:95px;
+                background:$brand-primary url(#{$img-path}/iconMenu.gif) no-repeat left center;
+                background-size: 19px;
+
+                color:#fff;
+                font-size: em(20px);
+                letter-spacing: 0.1em;
+
+                text-align: right;
+
+                margin:20px auto;
+            }
+        }
+
+        .toggled & {left:0;}
+
+        a {
+            border-bottom:1px solid #69A6B8;
+
+            float:none;
+            width:100%;
+
+            font-size: em(18px);
+            font-weight: normal;
+            letter-spacing: 0.03em;
+            line-height: 100%;
+            text-align: left;
+
+            padding:13px 10px;
+
+            $selector: ();
+            @each $item in $pages {
+                $i: index($pages, $item);
+
+                $selector: append($selector, unquote(".#{$item} &:nth-of-type(#{$i})"), comma);
+            }
+            &:hover,
+            #{$selector} {
+                background:none;
+                color:lighten($brand-secondary,10%);
+            }
+
+            &.sub-title {
+                position: relative;
+
+                border-bottom:0;
+                padding-bottom:3px;
+
+                &::after {
+                    content: " ";
+                    display: block;
+                    width:11px;
+                    height:6px;
+
+                    background: $brand-primary url(#{$img-path}/iconSubmenu.gif) no-repeat right center;
+
+                    @include absolute(left 5.5em top 1.2em);
+                }
             }
         }
     }
@@ -222,28 +318,18 @@ footer {
 }
 
 .goTop {
-    @include fixed(bottom cp(55px) right cp(10px));
-    @include circle(100px);
+    @include fixed(bottom 10px right 10px);
+    @include circle(50px);
 
-    background: rgba(#fff,0.6);
-    border: 2px solid $info;
-    color: $info;
-    font-size: em(40px);
-    line-height: 1.1;
-    padding-top: 37px;
+    background: rgba($brand-secondary,0.6);
+    color: #fff;
 
     display: none;
     z-index: z(goTop);
 
-    &::before {
-        @include caret(up, 20px, 22px, $info);
-        @include absolute(top 0 left 50%);
-        content: '';
-        margin-left: -10px;
-    }
     &:hover, &:active {
         opacity: 1;
-        background: #fff;
-        color: darken($link-color,10%);
+        background: $brand-primary;
+        color: #fff;
     }
 }
