@@ -49,6 +49,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CKFinder">
+      <HintPath>ckfinder\bin\Release\CKFinder.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -631,6 +634,7 @@
     <Content Include="Scripts\build\comminc.js" />
     <Content Include="Scripts\build\commincx.js" />
     <Content Include="Scripts\build\func\c-comm.js" />
+    <Content Include="Scripts\build\func\c-imgFileSort.js" />
     <Content Include="Scripts\build\func\inc\c-Comm.js" />
     <Content Include="Scripts\build\func\inc\c-ImgFileSort.js" />
     <Content Include="Scripts\build\func\m-ChangePassword.js" />
@@ -791,6 +795,7 @@
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <TypeScriptCompile Include="Scripts\es6ts.ts" />
     <TypeScriptCompile Include="Scripts\src\tsx\c-comm.tsx" />
+    <TypeScriptCompile Include="Scripts\src\tsx\c-imgFileSort.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-members.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-issue_category.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-issue.tsx" />
