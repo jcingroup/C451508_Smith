@@ -17,10 +17,9 @@ namespace ProcCore.Business.DB0
     {
         public int issue_id { get; set; }
         public int issue_category_id { get; set; }
-        public string issue_title { get; set; }
-        public string issue_content { get; set; }
-        public System.DateTime issue_date { get; set; }
+        public string issue_q { get; set; }
         public string issue_ans { get; set; }
+        public Nullable<int> sort { get; set; }
         public bool i_Hide { get; set; }
         public string i_InsertUserID { get; set; }
         public Nullable<int> i_InsertDeptID { get; set; }

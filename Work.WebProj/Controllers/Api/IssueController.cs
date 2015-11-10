@@ -33,20 +33,20 @@ namespace DotWeb.Api
             using (db0 = getDB0())
             {
                 var items = db0.Issue
-                    .OrderBy(x => x.issue_date)
+                    .OrderByDescending(x => x.sort)
                     .Select(x => new m_Issue()
                     {
                         issue_id = x.issue_id,
                         issue_category_id = x.issue_category_id,
                         category_name = x.IssueCategory.category_name,
-                        issue_title = x.issue_title,
-                        issue_date = x.issue_date,
+                        issue_q = x.issue_q,
+                        sort = x.sort,
                         i_Hide=x.i_Hide
                     }).AsQueryable();
 
                 if (q.name != null)
                 {
-                    items = items.Where(x => x.issue_title.Contains(q.name));
+                    items = items.Where(x => x.issue_q.Contains(q.name));
                 }
 
                 int page = (q.page == null ? 1 : (int)q.page);
@@ -73,12 +73,11 @@ namespace DotWeb.Api
                 db0 = getDB0();
 
                 item = await db0.Issue.FindAsync(md.issue_id);
-                item.issue_title = md.issue_title;
-                item.issue_content = md.issue_content;
                 item.issue_category_id = md.issue_category_id;
+                item.issue_q = md.issue_q;
                 item.issue_ans = md.issue_ans;
                 item.i_Hide = md.i_Hide;
-                item.issue_date = md.issue_date;
+                item.sort = md.sort;
 
                 md.i_UpdateDateTime = DateTime.Now;
                 md.i_UpdateDeptID = this.departmentId;

@@ -4,8 +4,8 @@
         issue_id: string;
         issue_category_id: number;
         category_name: string;
-        issue_title: string;
-        issue_date: number;
+        issue_q: string;
+        sort: number;
         i_Hide: boolean;
     }
     interface SearchData {
@@ -49,8 +49,8 @@
                         <GridButtonModify modify={this.modify}/>
                         </td>
                     <td>{this.props.itemData.category_name}</td>
-                    <td>{this.props.itemData.issue_title}</td>
-                    <td>{moment(this.props.itemData.issue_date).format('YYYY/MM/DD')}</td>
+                    <td>{this.props.itemData.issue_q}</td>
+                    <td>{this.props.itemData.sort}</td>
                     <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
                 </tr>;
         }
@@ -70,6 +70,7 @@
             this.delCheck = this.delCheck.bind(this);
             this.checkAll = this.checkAll.bind(this);
             this.componentDidMount = this.componentDidMount.bind(this);
+            this.componentDidUpdate = this.componentDidUpdate.bind(this);
             this.insertType = this.insertType.bind(this);
             this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, category_option: null, searchData: {} }
 
@@ -84,7 +85,11 @@
             this.queryGridData(1);
             this.getInitData();
         }
-
+        componentDidUpdate(prevProps, prevState) {
+            if (prevState.edit_type == 0 && this.state.edit_type == 1) {
+                CKEDITOR.replace('editor1', {});
+            }
+        }
         getInitData() {
             jqGet(this.props.InitPath, {})
                 .done((data: Array<IssueCategory>, textStatus, jqXHRdata) => {
@@ -125,6 +130,7 @@
         handleSubmit(e: React.FormEvent) {
 
             e.preventDefault();
+            this.state.fieldData.issue_ans = CKEDITOR.instances.editor1.getData();//編輯器
             if (this.state.edit_type == 1) {
                 jqPost(this.props.apiPath, this.state.fieldData)
                     .done((data: CallResult, textStatus, jqXHRdata) => {
@@ -212,6 +218,7 @@
             jqGet(this.props.apiPath, { id: id })
                 .done((data, textStatus, jqXHRdata) => {
                     this.setState({ edit_type: 2, fieldData: data.data });
+                    CKEDITOR.replace('editor1', {});
                 })
                 .fail((jqXHR, textStatus, errorThrown) => {
                     showAjaxError(errorThrown);
@@ -287,7 +294,7 @@
                         <th className="col-xs-1 text-center">修改</th>
                         <th className="col-xs-2">Q & A 分類</th>
                         <th className="col-xs-2">Q & A 標題</th>
-                        <th className="col-xs-2">提問日期</th>
+                        <th className="col-xs-2">排序</th>
                         <th className="col-xs-2">狀態</th>
                         </tr>
                     </thead>
@@ -348,31 +355,14 @@
                 </div>
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">提問標題</label>
-                <div className="col-xs-4">
-                    <input type="text"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'issue_title') }
-                        value={fieldData.issue_title}
-                        maxLength={64}
-                        required />
-                    </div>
-                    <small className="help-inline col-xs-6">最多64個字<span className="text-danger">(必填) </span></small>
-                </div>
-
-            <div className="form-group">
                 <label className="col-xs-2 control-label">排序</label>
                 <div className="col-xs-4">
-                     <span className="has-feedback">
-                       <InputDate id="issue_date"
-                           ver={1}
-                           onChange={this.changeFDValue.bind(this)}
-                           field_name="issue_date"
-                           value={fieldData.issue_date}
-                           required={true}
-                           disabled={false}/>
-                         </span>
+                    <input type="number"
+                        className="form-control"
+                        onChange={this.changeFDValue.bind(this, 'sort') }
+                        value={fieldData.sort} />
                     </div>
+                <small className="col-xs-2 help-inline">數字越大越前面</small>
                 </div>
 
             <div className="form-group">
@@ -403,20 +393,23 @@
                     </div>
                 </div>
 
-                <div className="form-group">
-                     <label className="col-xs-2 control-label">提問內容</label>
-                        <div className="col-xs-6">
-                            <textarea cols={30} rows={3} className="form-control"
-                                value={fieldData.issue_content}
-                                onChange={this.changeFDValue.bind(this, 'issue_content') }
-                                maxLength={512}></textarea>
-                            </div>
+            <div className="form-group">
+                <label className="col-xs-2 control-label text-danger">Q</label>
+                <div className="col-xs-8">
+                    <input type="text"
+                        className="form-control"
+                        onChange={this.changeFDValue.bind(this, 'issue_q') }
+                        value={fieldData.issue_q}
+                        maxLength={128}
+                        required />
                     </div>
+                    <small className="help-inline col-xs-2">最多128個字<span className="text-danger">(必填) </span></small>
+                </div>
 
                  <div className="form-group">
-                     <label className="col-xs-2 control-label">提問回答</label>
-                        <div className="col-xs-6">
-                            <textarea cols={30} rows={3} className="form-control"
+                     <label className="col-xs-2 control-label">A</label>
+                        <div className="col-xs-8">
+                            <textarea cols={30} rows={3} className="form-control" id="editor1"
                                 value={fieldData.issue_ans}
                                 onChange={this.changeFDValue.bind(this, 'issue_ans') }
                                 maxLength={512}></textarea>

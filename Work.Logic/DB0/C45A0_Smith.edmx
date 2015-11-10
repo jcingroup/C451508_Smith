@@ -116,10 +116,9 @@
           </Key>
           <Property Name="issue_id" Type="int" Nullable="false" />
           <Property Name="issue_category_id" Type="int" Nullable="false" />
-          <Property Name="issue_title" Type="nvarchar" MaxLength="64" Nullable="false" />
-          <Property Name="issue_content" Type="nvarchar" MaxLength="512" />
-          <Property Name="issue_date" Type="datetime" Nullable="false" />
-          <Property Name="issue_ans" Type="nvarchar" MaxLength="512" />
+          <Property Name="issue_q" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="issue_ans" Type="text" />
+          <Property Name="sort" Type="int" />
           <Property Name="i_Hide" Type="bit" Nullable="false" />
           <Property Name="i_InsertUserID" Type="nvarchar" MaxLength="128" />
           <Property Name="i_InsertDeptID" Type="int" />
@@ -579,13 +578,13 @@
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <EntitySet Name="Purchase" EntityType="C45A0_SmithModel.Purchase" />
-          <EntitySet Name="Issue" EntityType="C45A0_SmithModel.Issue" />
           <EntitySet Name="IssueCategory" EntityType="C45A0_SmithModel.IssueCategory" />
+          <EntitySet Name="Member" EntityType="C45A0_SmithModel.Member" />
+          <EntitySet Name="Issue" EntityType="C45A0_SmithModel.Issue" />
           <AssociationSet Name="FK_Issue_IssueCategory" Association="C45A0_SmithModel.FK_Issue_IssueCategory">
             <End Role="IssueCategory" EntitySet="IssueCategory" />
             <End Role="Issue" EntitySet="Issue" />
           </AssociationSet>
-          <EntitySet Name="Member" EntityType="C45A0_SmithModel.Member" />
         </EntityContainer>
         <EntityType Name="ProductCategory">
           <Key>
@@ -657,26 +656,6 @@
           <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
           <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
         </EntityType>
-        <EntityType Name="Issue">
-          <Key>
-            <PropertyRef Name="issue_id" />
-          </Key>
-          <Property Name="issue_id" Type="Int32" Nullable="false" />
-          <Property Name="issue_category_id" Type="Int32" Nullable="false" />
-          <Property Name="issue_title" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="issue_content" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
-          <Property Name="issue_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="issue_ans" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
-          <Property Name="i_Hide" Type="Boolean" Nullable="false" />
-          <Property Name="i_InsertUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="i_InsertDeptID" Type="Int32" />
-          <Property Name="i_InsertDateTime" Type="DateTime" Precision="3" />
-          <Property Name="i_UpdateUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="i_UpdateDeptID" Type="Int32" />
-          <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
-          <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="IssueCategory" Relationship="C45A0_SmithModel.FK_Issue_IssueCategory" FromRole="Issue" ToRole="IssueCategory" />
-        </EntityType>
         <EntityType Name="IssueCategory">
           <Key>
             <PropertyRef Name="issue_category_id" />
@@ -695,18 +674,6 @@
           <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Issue" Relationship="C45A0_SmithModel.FK_Issue_IssueCategory" FromRole="IssueCategory" ToRole="Issue" />
         </EntityType>
-        <Association Name="FK_Issue_IssueCategory">
-          <End Type="C45A0_SmithModel.IssueCategory" Role="IssueCategory" Multiplicity="1" />
-          <End Type="C45A0_SmithModel.Issue" Role="Issue" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="IssueCategory">
-              <PropertyRef Name="issue_category_id" />
-            </Principal>
-            <Dependent Role="Issue">
-              <PropertyRef Name="issue_category_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Member">
           <Key>
             <PropertyRef Name="member_id" />
@@ -731,6 +698,37 @@
           <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
           <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
         </EntityType>
+        <EntityType Name="Issue">
+          <Key>
+            <PropertyRef Name="issue_id" />
+          </Key>
+          <Property Name="issue_id" Type="Int32" Nullable="false" />
+          <Property Name="issue_category_id" Type="Int32" Nullable="false" />
+          <Property Name="issue_q" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="issue_ans" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sort" Type="Int32" />
+          <Property Name="i_Hide" Type="Boolean" Nullable="false" />
+          <Property Name="i_InsertUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_InsertDeptID" Type="Int32" />
+          <Property Name="i_InsertDateTime" Type="DateTime" Precision="3" />
+          <Property Name="i_UpdateUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_UpdateDeptID" Type="Int32" />
+          <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="IssueCategory" Relationship="C45A0_SmithModel.FK_Issue_IssueCategory" FromRole="Issue" ToRole="IssueCategory" />
+        </EntityType>
+        <Association Name="FK_Issue_IssueCategory">
+          <End Type="C45A0_SmithModel.IssueCategory" Role="IssueCategory" Multiplicity="1" />
+          <End Type="C45A0_SmithModel.Issue" Role="Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IssueCategory">
+              <PropertyRef Name="issue_category_id" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="issue_category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -933,26 +931,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Issue">
-            <EntityTypeMapping TypeName="C45A0_SmithModel.Issue">
-              <MappingFragment StoreEntitySet="Issue">
-                <ScalarProperty Name="i_Lang" ColumnName="i_Lang" />
-                <ScalarProperty Name="i_UpdateDateTime" ColumnName="i_UpdateDateTime" />
-                <ScalarProperty Name="i_UpdateDeptID" ColumnName="i_UpdateDeptID" />
-                <ScalarProperty Name="i_UpdateUserID" ColumnName="i_UpdateUserID" />
-                <ScalarProperty Name="i_InsertDateTime" ColumnName="i_InsertDateTime" />
-                <ScalarProperty Name="i_InsertDeptID" ColumnName="i_InsertDeptID" />
-                <ScalarProperty Name="i_InsertUserID" ColumnName="i_InsertUserID" />
-                <ScalarProperty Name="i_Hide" ColumnName="i_Hide" />
-                <ScalarProperty Name="issue_ans" ColumnName="issue_ans" />
-                <ScalarProperty Name="issue_date" ColumnName="issue_date" />
-                <ScalarProperty Name="issue_content" ColumnName="issue_content" />
-                <ScalarProperty Name="issue_title" ColumnName="issue_title" />
-                <ScalarProperty Name="issue_category_id" ColumnName="issue_category_id" />
-                <ScalarProperty Name="issue_id" ColumnName="issue_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="IssueCategory">
             <EntityTypeMapping TypeName="C45A0_SmithModel.IssueCategory">
               <MappingFragment StoreEntitySet="IssueCategory">
@@ -993,6 +971,25 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="member_name" ColumnName="member_name" />
                 <ScalarProperty Name="member_id" ColumnName="member_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Issue">
+            <EntityTypeMapping TypeName="C45A0_SmithModel.Issue">
+              <MappingFragment StoreEntitySet="Issue">
+                <ScalarProperty Name="i_Lang" ColumnName="i_Lang" />
+                <ScalarProperty Name="i_UpdateDateTime" ColumnName="i_UpdateDateTime" />
+                <ScalarProperty Name="i_UpdateDeptID" ColumnName="i_UpdateDeptID" />
+                <ScalarProperty Name="i_UpdateUserID" ColumnName="i_UpdateUserID" />
+                <ScalarProperty Name="i_InsertDateTime" ColumnName="i_InsertDateTime" />
+                <ScalarProperty Name="i_InsertDeptID" ColumnName="i_InsertDeptID" />
+                <ScalarProperty Name="i_InsertUserID" ColumnName="i_InsertUserID" />
+                <ScalarProperty Name="i_Hide" ColumnName="i_Hide" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="issue_ans" ColumnName="issue_ans" />
+                <ScalarProperty Name="issue_q" ColumnName="issue_q" />
+                <ScalarProperty Name="issue_category_id" ColumnName="issue_category_id" />
+                <ScalarProperty Name="issue_id" ColumnName="issue_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

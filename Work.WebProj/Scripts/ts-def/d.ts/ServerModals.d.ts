@@ -73,9 +73,8 @@
     interface Issue extends BaseEntityTable {
         issue_id?: number;
         issue_category_id?: number;
-        issue_title?: string;
-        issue_content?: string;
-        issue_date?: Date;
+        issue_q?: string;
+        sort?: number;
         issue_ans?: string;
         i_Hide?: boolean;
         issueCategory?: server.IssueCategory;
