@@ -4,7 +4,7 @@ $modal-max-width: 630px;
 $modal-min-width: 320px;
 
 .md-modal {
-    width: 50%;
+    width: 60%;
     max-width: $modal-max-width;
     min-width: $modal-min-width;
     height: auto;
@@ -37,8 +37,9 @@ $modal-min-width: 320px;
 
 .md-close {
     @include absolute(top 10px right 10px);
-    background: none;
-    font-size: em(30px);
+    @include text-pic('icon.png',33px,33px);
+    // background: none;
+    // font-size: em(30px);
 }
 
 .md-overlay, .md-content {

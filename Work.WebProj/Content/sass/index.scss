@@ -43,15 +43,24 @@ footer {
     background: rgba(232,235,237,.8);
 }
 
-#banner, .swiper-slide {
-    height: 500px;
+#banner {
+    background: url(#{$img-path2}/bg.png) center 0 no-repeat;
+    padding-top: 17px;
 }
+#banner, .swiper-slide {
+    position: relative;
+    height: 500px;
+
+    @include mq($max:tablet) { height: auto; }
+}
+
 .swiper-wrapper {
     @extend %list-unstyled;
+    margin-bottom: 0;
 }
 .swiper-slide {
-    background: url(#{$img-path2}/banner1_bg.png) center bottom no-repeat;
-    padding-top: 70px;
+    background: url(#{$img-path2}/banner1_bg.png) center no-repeat;
+    padding-top: 55px;
     padding-bottom: 30px;
 
     header, img {
@@ -65,6 +74,11 @@ footer {
     img { margin-top: 30px; }
     ol {
         margin-left: -590px;
+
+        @include mq($max:tablet) {
+            margin-left: auto;
+            margin-top: 20px;
+        }
     }
     li {
         background-attachment: fixed;

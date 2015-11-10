@@ -138,15 +138,17 @@ body, #menu {
 }
 .menu-trigger, .toggle { display: none; }
 .menu-trigger {
-    background: url(#{$img-path}/iconMenu.gif) no-repeat center center;
-    color: $brand-primary;
+    background-attachment: fixed;
+    background: url(#{$img-path}/icon.png) no-repeat 0 -59px;
+    color: $brand-secondary;
     font-size: em(19px);
     font-weight: bold;
-    z-index: z(logo) + 1;
+    padding-left: 25px;
+    z-index: z(overlay) + 1;
 
     @include absolute(left 0 top 5px);
 
-    &:hover {  }
+    &:hover { color: $brand-primary; }
 
     @include mq($max:tablet) { display: block; }
 }
@@ -157,6 +159,13 @@ body {
 }
 .push {
     left: $menu-trigger-width;
+    overflow-y: hidden;
+
+    .md-overlay {
+        opacity: 1;
+        visibility: visible;
+        left: $menu-trigger-width;
+    }
 }
 
 $selector: ();
@@ -205,13 +214,14 @@ $selector: ();
 
         .toggle {
             display: block;
-            background: $brand-primary url(#{$img-path}/iconMenu.gif) no-repeat left center;
+            cursor: pointer; cursor: hand;
+            background: $brand-primary url(#{$img-path}/icon.png) no-repeat right 6px;
 
             color: #fff;
             font-size: em(20px);
             letter-spacing: 0.1em;
 
-            margin: 20px auto;
+            padding: 20px 0;
         }
         .push & { left: 0; }
 

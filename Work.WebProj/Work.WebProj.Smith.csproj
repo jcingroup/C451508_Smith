@@ -290,6 +290,15 @@
     <Content Include="Content\images\index\banner1_icon.gif" />
     <Content Include="Content\images\index\banner1_pic.png" />
     <Content Include="Content\images\index\banner1_title.png" />
+    <Content Include="Content\images\index\banner2_bg.png" />
+    <Content Include="Content\images\index\banner2_icon.gif" />
+    <Content Include="Content\images\index\banner2_pic.png" />
+    <Content Include="Content\images\index\banner2_title.png" />
+    <Content Include="Content\images\index\banner3_bg.png" />
+    <Content Include="Content\images\index\banner3_icon.gif" />
+    <Content Include="Content\images\index\banner3_pic.png" />
+    <Content Include="Content\images\index\banner3_title.png" />
+    <Content Include="Content\images\index\bg.png" />
     <Content Include="Content\images\index\infoBg.jpg" />
     <Content Include="Content\images\logo.gif" />
     <Content Include="Content\images\logo_s.gif" />

@@ -29,8 +29,9 @@ $(document).ready(function() {
     });
 
     // 行動裝置的產品分類選單
-    $("aside header").click(function() {
+    $(".pro-menu").click(function() {
         $(this).toggleClass("active");
-        $(this).next().slideToggle();
+        // $('aside nav').slideToggle(750);
+        $('aside nav').toggleClass('open');
     });
 });

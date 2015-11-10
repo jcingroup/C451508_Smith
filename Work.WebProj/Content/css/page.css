@@ -555,14 +555,18 @@ body, #menu {
   display: none; }
 
 .menu-trigger {
-  background: url(../images/iconMenu.gif) no-repeat center center;
-  color: #0662A3;
+  background-attachment: fixed;
+  background: url(../images/icon.png) no-repeat 0 -59px;
+  color: #068BAE;
   font-size: 1.1875em;
   font-weight: bold;
-  z-index: 51;
+  padding-left: 25px;
+  z-index: 1002;
   position: absolute;
   top: 5px;
   left: 0; }
+  .menu-trigger:hover {
+    color: #0662A3; }
   @media (max-width: 48em) {
     .menu-trigger {
       display: block; } }
@@ -573,7 +577,12 @@ body {
   left: 0; }
 
 .push {
-  left: 250px; }
+  left: 250px;
+  overflow-y: hidden; }
+  .push .md-overlay {
+    opacity: 1;
+    visibility: visible;
+    left: 250px; }
 
 #menu {
   font-size: 1.3125em;
@@ -622,11 +631,13 @@ body {
       left: -250px; }
       #menu .toggle {
         display: block;
-        background: #0662A3 url(../images/iconMenu.gif) no-repeat left center;
+        cursor: pointer;
+        cursor: hand;
+        background: #0662A3 url(../images/icon.png) no-repeat right 6px;
         color: #fff;
         font-size: 1.25em;
         letter-spacing: 0.1em;
-        margin: 20px auto; }
+        padding: 20px 0; }
       .push #menu {
         left: 0; }
       #menu a {
@@ -814,7 +825,7 @@ figure {
       width: 100%; } }
 
 .md-modal {
-  width: 50%;
+  width: 60%;
   max-width: 630px;
   min-width: 320px;
   height: auto;
@@ -853,8 +864,11 @@ figure {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: none;
-  font-size: 1.875em; }
+  font: 0/0 a;
+  text-indent: -9999px;
+  background: url(../images/icon.png) 0 0 no-repeat;
+  width: 33px;
+  height: 33px; }
 
 .md-overlay, .md-content {
   -webkit-transition: all 0.3s;
@@ -947,6 +961,20 @@ main {
     main {
       background-position: center 0; } }
 
+.pro-menu {
+  display: none;
+  background: #E5E5E5 url(../images/icon_select.gif) right center no-repeat;
+  border: 1px solid #fff;
+  color: #222222;
+  font-size: 1.1875em;
+  font-weight: bold;
+  width: 100%;
+  height: 40px;
+  padding: 5px 10px;
+  border-radius: 5px; }
+  .pro-menu:hover, .pro-menu:active {
+    background-color: #d8d8d8; }
+
 aside {
   float: left;
   width: 18%;
@@ -979,22 +1007,25 @@ aside {
       color: #0662A3; }
   @media (max-width: 48em) {
     aside {
-      width: 200px;
-      float: right;
-      margin-top: -120px; }
+      width: 270px;
+      margin-top: 0; }
       aside header {
-        text-indent: 0;
-        background: #E5E5E5 url(../images/icon_select.gif) right center no-repeat;
-        border: 1px solid #fff;
-        color: #068BAE;
-        font-size: 1em;
-        font-weight: bold;
-        width: 100%;
-        height: 35px;
-        padding: 5px 10px;
-        border-radius: 5px; }
+        display: none; }
+      aside .pro-menu {
+        display: block; }
       aside nav {
-        display: none; } }
+        background: #fff;
+        border-radius: 5px 5px 0 0;
+        width: 100%;
+        max-width: 270px;
+        position: absolute;
+        z-index: 80;
+        transition: all .3s;
+        opacity: 0; }
+        aside nav.open {
+          opacity: 1; }
+        aside nav a:hover, aside nav a:active, aside nav a.current {
+          background: #f6f6f6; } }
 
 .breadcrumb, #content {
   float: right;
@@ -1014,7 +1045,7 @@ aside {
   float: left;
   color: #0662A3;
   font-size: 0.9375em; }
-@media (min-width: 48.0625em) and (max-width: 61.25em) {
+@media (min-width: 48.0625em) and (max-width: 75em) {
   .breadcrumb {
     float: left;
     width: auto;
