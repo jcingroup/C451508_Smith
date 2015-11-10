@@ -281,6 +281,7 @@
     <Content Include="Content\images\FAQ\banner.jpg" />
     <Content Include="Content\images\FAQ\pic1.gif" />
     <Content Include="Content\images\FAQ\pic2.gif" />
+    <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\icon_select.gif" />
     <Content Include="Content\images\index\banner1_bg.png" />
     <Content Include="Content\images\index\banner1_icon.gif" />

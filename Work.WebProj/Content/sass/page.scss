@@ -37,6 +37,7 @@ main {
     background: url(#{$img-path}/AboutUs/banner.jpg) 285px 0 no-repeat;
     text-align: left;
     padding-top: 10px;
+    z-index: z(main);
 
     @for $i from 2 through length($pages) {
         $item: nth($pages, $i);
@@ -45,6 +46,7 @@ main {
             background-image: url(#{$img-path}/#{$item}/banner.jpg);
         }
     }
+    @include mq($max:tablet) { background-position: center 0; }
 }
 
 aside {
@@ -68,14 +70,26 @@ aside {
         font-size: em(18px);
         padding: $gutter 8px;
 
-        &:hover, &:active, &:focus, &.current {
+        &:hover, &:active, &.current {
             color: $brand-primary;
         }
     }
     @include mq($max:tablet) {
-        float: none;
-        display: none;
-        width: 100%;
+        width: 200px;
+        float: right;
+        margin-top: -120px;
+        header {
+            text-indent: 0;
+            background: #E5E5E5 url(#{$img-path}/icon_select.gif) right center no-repeat;
+            border: 1px solid #fff;
+            color: $brand-secondary;
+            font-size: em(16px);
+            font-weight: bold;
+            width: 100%; height: 35px;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        nav { display: none; }
     }
 }
 
@@ -100,11 +114,30 @@ aside {
         color: $brand-primary;
         font-size: em(15px);
     }
+    @include mq(769px,desktop) {
+        float: left;
+        width: auto;
+        margin-left: 95px;
+    }
+    @include mq($max:tablet) {
+        text-align: right;
+        width: auto;
+        @include absolute(right 10px top 120px);
+        li { display: inline-block; float: none; }
+    }
 }
 #content {
     @extend %container;
     margin-top: 90px;
     > h2 { margin-top: 0; }
+
+    @include mq($max:tablet) {
+        margin-top: 130px;
+        width: 100%;
+        float: none;
+
+        .Products & { margin-top: 150px; }
+    }
 }
 
 
@@ -121,6 +154,10 @@ aside {
     @include middle(img) {
         width: 90%;
         max-width: 500px;
+    }
+    @include mq($max:mobile) {
+        height: 180px;
+        img { max-height: 170px; }
     }
 }
 .pro-info {
@@ -139,6 +176,11 @@ aside {
         margin-left: -7px;
     }
     button { clear: both; }
+
+    @include mq($max:tablet) {
+        padding-left: 0;
+        h3 { margin-bottom: 20px; }
+    }
 }
 select {
     background: #E5E5E5 url(#{$img-path}/icon_select.gif) right center no-repeat;
@@ -163,9 +205,17 @@ select {
             text-align: center;
         }
     }
+    @include mq($max:tablet) {
+        margin-bottom: 20px;
+    }
 }
 
-.other { margin-top: 40px; }
+.other {
+    margin-top: 40px;
+    @include mq($max:tablet) {
+        img { max-width: 100%; }
+    }
+}
 
 // == News & QA
 .text-list {
@@ -284,7 +334,7 @@ select {
     @include absolute(top 52px right 0);
     @include mq($max:tablet) {
         position: relative;
-        top: 0; left: 0;
+        top: $gutter; left: 0;
         height: auto;
         width: 100%;
     }

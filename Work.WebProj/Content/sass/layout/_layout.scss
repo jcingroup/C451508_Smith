@@ -13,6 +13,8 @@ $menu-height:           51px;
 $menu-height-sm:        100%;
 $menu-link:             #001B23;
 $menu-link-hover:       #fff;
+// 行動版時推拉主選單寬度
+$menu-trigger-width:    250px !default;
 
 // footer
 $footer-height:         105px !default;
@@ -90,24 +92,22 @@ $goTop:                 (bottom 10px), (right 15px) !default;
         @include text-pic($logo-img, nth($logo-size,1),  nth($logo-size,2));
         @include absolute(left 0 top 55px);
 
-        @include mq($max: mobile) {
-            top: 15px; left: 10px;
+        @include mq($max: phone) {
+            left: 0; right: 0;
             background-size: contain;
-            width: 150px; height: 70px;
+            width: 100%;
         }
     }
 }
 
 .top-nav {
     background: #CBCBCB;
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
     padding: 7px $gutter;
 
     z-index: z(logo)-1;
 
     @include absolute(right 0 top 0);
-    @include mq($max: mobile) {
-    }
 
     a, button {
         display: inline-block;
@@ -131,22 +131,38 @@ $goTop:                 (bottom 10px), (right 15px) !default;
 }
 
 // == 行動版主選單 開關
+body, #menu {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
 .menu-trigger, .toggle { display: none; }
 .menu-trigger {
+    background: url(#{$img-path}/iconMenu.gif) no-repeat center center;
+    color: $brand-primary;
+    font-size: em(19px);
+    font-weight: bold;
     z-index: z(logo) + 1;
-    width:45px;
-    height: 43px;
 
-    background: $brand-primary url(#{$img-path}/iconMenu.gif) no-repeat center center;
-    border: none;
+    @include absolute(left 0 top 5px);
 
-    @include absolute(right -15px top 0);
+    &:hover {  }
 
-    &:hover { background-color: darken($brand-primary,10%); }
+    @include mq($max:tablet) { display: block; }
+}
+body {
+    position: relative;
+    overflow-x: hidden;
+    left: 0;
+}
+.push {
+    left: $menu-trigger-width;
+}
 
-    .toggled & {background-image:url(#{$img-path}/iconMenuClose.gif);}
-
-    @include mq($max:desktop) { display: block; }
+$selector: ();
+@each $item in $pages {
+    $i: index($pages, $item);
+    $selector: append($selector, unquote(".#{$item} &:nth-of-type(#{$i})"), comma);
 }
 #menu {
     font-size: em(21px);
@@ -161,12 +177,6 @@ $goTop:                 (bottom 10px), (right 15px) !default;
         padding: 12px 0;
         color: $menu-link;
 
-        $selector: ();
-        @each $item in $pages {
-            $i: index($pages, $item);
-            $selector: append($selector, unquote(".#{$item} &:nth-child(#{$i})"), comma);
-        }
-
         &:hover, &:active,
         #{$selector} {
             background: #0646A3;
@@ -180,85 +190,54 @@ $goTop:                 (bottom 10px), (right 15px) !default;
             }
         }
         @include mq(desktop2) { width: 140px; }
+        @include mq($max:desktop) { font-size: em(19px,21px); width: 95px; }
     }
 
-    @include mq($max:desktop) {
-        width:168px;
-        height:$menu-height-sm;
-        background:$brand-primary;
-
-        position: fixed;
-        left:-168px; top:0;
-        z-index: z(overlay);
+    @include mq($max:tablet) {
+        background: $brand-primary;
+        width: $menu-trigger-width;
+        height: 100%;
         overflow-y: auto;
+        z-index: z(overlay) + 1;
+
+        @include fixed(top 0);
+        left: -$menu-trigger-width;
 
         .toggle {
             display: block;
-            border-bottom:1px solid #69A6B8;
+            background: $brand-primary url(#{$img-path}/iconMenu.gif) no-repeat left center;
 
-            h2 {
-                width:95px;
-                background:$brand-primary url(#{$img-path}/iconMenu.gif) no-repeat left center;
-                background-size: 19px;
+            color: #fff;
+            font-size: em(20px);
+            letter-spacing: 0.1em;
 
-                color:#fff;
-                font-size: em(20px);
-                letter-spacing: 0.1em;
-
-                text-align: right;
-
-                margin:20px auto;
-            }
+            margin: 20px auto;
         }
-
-        .toggled & {left:0;}
+        .push & { left: 0; }
 
         a {
-            border-bottom:1px solid #69A6B8;
-
-            float:none;
-            width:100%;
+            border-bottom: 1px solid $brand-secondary;
+            color: #fff;
 
             font-size: em(18px);
             font-weight: normal;
             letter-spacing: 0.03em;
-            line-height: 100%;
             text-align: left;
 
-            padding:13px 10px;
+            width: 100%;
+            padding: $gutter;
 
-            $selector: ();
-            @each $item in $pages {
-                $i: index($pages, $item);
-
-                $selector: append($selector, unquote(".#{$item} &:nth-of-type(#{$i})"), comma);
-            }
-            &:hover,
+            &:hover, &:active,
             #{$selector} {
-                background:none;
-                color:lighten($brand-secondary,10%);
-            }
+                background: darken($brand-secondary,2%);
+                border-radius: 0;
 
-            &.sub-title {
-                position: relative;
-
-                border-bottom:0;
-                padding-bottom:3px;
-
-                &::after {
-                    content: " ";
-                    display: block;
-                    width:11px;
-                    height:6px;
-
-                    background: $brand-primary url(#{$img-path}/iconSubmenu.gif) no-repeat right center;
-
-                    @include absolute(left 5.5em top 1.2em);
-                }
+                &::after { display: none; }
             }
         }
     }
 }
+
 
 
 // footer
@@ -272,10 +251,6 @@ footer {
 
     color: $footer-color;
 
-    @include mq($max: phone) {
-        margin-top: -($footer-height-sm);
-        // height: $footer-height-sm;
-    }
     li {
         text-align: left;
         margin: 5px 0;
@@ -300,6 +275,9 @@ footer {
             width: 22px;
             margin-right: 6px;
         }
+    }
+    @include mq($max: phone) {
+        ul { margin-top: 20px; }
     }
 }
 

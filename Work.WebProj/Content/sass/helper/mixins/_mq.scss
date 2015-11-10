@@ -86,7 +86,8 @@ $mq-media-type:        all !default;
     $media-type: $mq-media-type,
     $breakpoints: $mq-breakpoints,
     $responsive: $mq-responsive,
-    $static-breakpoint: $mq-static-breakpoint
+    $static-breakpoint: $mq-static-breakpoint,
+    $bk:  false
 ) {
     $min-width: 0;
     $max-width: 0;

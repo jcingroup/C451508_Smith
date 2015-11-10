@@ -79,7 +79,7 @@ figure {
         margin-top: 10px;
     }
 
-    &:hover {
+    &:hover, &:active {
         h3 { color: $brand-primary; }
         small { color: $brand-secondary; }
 
@@ -93,5 +93,14 @@ figure {
                 font-size: em(22px);
             }
         }
+    }
+    @include mq($max:tablet) {
+        display: inline-block;
+        float: none;
+        margin-left: 0;
+        width: 49.6%;
+    }
+    @include mq($max:phone) {
+        width: 100%;
     }
 }

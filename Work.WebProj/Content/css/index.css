@@ -377,17 +377,16 @@ address {
     position: absolute;
     top: 55px;
     left: 0; }
-    @media (max-width: 20em) {
+    @media (max-width: 30em) {
       #header h1 {
-        top: 15px;
-        left: 10px;
+        left: 0;
+        right: 0;
         background-size: contain;
-        width: 150px;
-        height: 70px; } }
+        width: 100%; } }
 
 .top-nav {
   background: #CBCBCB;
-  border-radius: 5px;
+  border-radius: 0 0 5px 5px;
   padding: 7px 15px;
   z-index: 49;
   position: absolute;
@@ -409,25 +408,34 @@ address {
     padding-right: 0;
     margin-right: 0; }
 
+body, #menu {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease; }
+
 .menu-trigger, .toggle {
   display: none; }
 
 .menu-trigger {
+  background: url(../images/iconMenu.gif) no-repeat center center;
+  color: #0662A3;
+  font-size: 1.1875em;
+  font-weight: bold;
   z-index: 51;
-  width: 45px;
-  height: 43px;
-  background: #0662A3 url(../images/iconMenu.gif) no-repeat center center;
-  border: none;
   position: absolute;
-  top: 0;
-  right: -15px; }
-  .menu-trigger:hover {
-    background-color: #044472; }
-  .toggled .menu-trigger {
-    background-image: url(../images/iconMenuClose.gif); }
-  @media (max-width: 61.25em) {
+  top: 5px;
+  left: 0; }
+  @media (max-width: 48em) {
     .menu-trigger {
       display: block; } }
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  left: 0; }
+
+.push {
+  left: 250px; }
 
 #menu {
   font-size: 1.3125em;
@@ -441,11 +449,11 @@ address {
     width: 100px;
     padding: 12px 0;
     color: #001B23; }
-    #menu a:hover, #menu a:active, .AboutUs #menu a:nth-child(1), .News #menu a:nth-child(2), .Products #menu a:nth-child(3), .FAQ #menu a:nth-child(4), .Service #menu a:nth-child(5), .ContactUs #menu a:nth-child(6) {
+    #menu a:hover, #menu a:active, .AboutUs #menu a:nth-of-type(1), .News #menu a:nth-of-type(2), .Products #menu a:nth-of-type(3), .FAQ #menu a:nth-of-type(4), .Service #menu a:nth-of-type(5), .ContactUs #menu a:nth-of-type(6) {
       background: #0646A3;
       border-radius: 5px;
       color: #fff; }
-      #menu a:hover::after, #menu a:active::after, .AboutUs #menu a:nth-child(1)::after, .News #menu a:nth-child(2)::after, .Products #menu a:nth-child(3)::after, .FAQ #menu a:nth-child(4)::after, .Service #menu a:nth-child(5)::after, .ContactUs #menu a:nth-child(6)::after {
+      #menu a:hover::after, #menu a:active::after, .AboutUs #menu a:nth-of-type(1)::after, .News #menu a:nth-of-type(2)::after, .Products #menu a:nth-of-type(3)::after, .FAQ #menu a:nth-of-type(4)::after, .Service #menu a:nth-of-type(5)::after, .ContactUs #menu a:nth-of-type(6)::after {
         content: '';
         display: block;
         border: 8px solid transparent;
@@ -460,56 +468,43 @@ address {
     @media (min-width: 75em) {
       #menu a {
         width: 140px; } }
-  @media (max-width: 61.25em) {
+    @media (max-width: 61.25em) {
+      #menu a {
+        font-size: 0.90476em;
+        width: 95px; } }
+  @media (max-width: 48em) {
     #menu {
-      width: 168px;
-      height: 100%;
       background: #0662A3;
+      width: 250px;
+      height: 100%;
+      overflow-y: auto;
+      z-index: 1002;
       position: fixed;
-      left: -168px;
       top: 0;
-      z-index: 1001;
-      overflow-y: auto; }
+      left: -250px; }
       #menu .toggle {
         display: block;
-        border-bottom: 1px solid #69A6B8; }
-        #menu .toggle h2 {
-          width: 95px;
-          background: #0662A3 url(../images/iconMenu.gif) no-repeat left center;
-          background-size: 19px;
-          color: #fff;
-          font-size: 1.25em;
-          letter-spacing: 0.1em;
-          text-align: right;
-          margin: 20px auto; }
-      .toggled #menu {
+        background: #0662A3 url(../images/iconMenu.gif) no-repeat left center;
+        color: #fff;
+        font-size: 1.25em;
+        letter-spacing: 0.1em;
+        margin: 20px auto; }
+      .push #menu {
         left: 0; }
       #menu a {
-        border-bottom: 1px solid #69A6B8;
-        float: none;
-        width: 100%;
+        border-bottom: 1px solid #068BAE;
+        color: #fff;
         font-size: 1.125em;
         font-weight: normal;
         letter-spacing: 0.03em;
-        line-height: 100%;
         text-align: left;
-        padding: 13px 10px; }
-        #menu a:hover, .AboutUs #menu a:nth-of-type(1), .News #menu a:nth-of-type(2), .Products #menu a:nth-of-type(3), .FAQ #menu a:nth-of-type(4), .Service #menu a:nth-of-type(5), .ContactUs #menu a:nth-of-type(6) {
-          background: none;
-          color: #08b2df; }
-        #menu a.sub-title {
-          position: relative;
-          border-bottom: 0;
-          padding-bottom: 3px; }
-          #menu a.sub-title::after {
-            content: " ";
-            display: block;
-            width: 11px;
-            height: 6px;
-            background: #0662A3 url(../images/iconSubmenu.gif) no-repeat right center;
-            position: absolute;
-            top: 1.2em;
-            left: 5.5em; } }
+        width: 100%;
+        padding: 15px; }
+        #menu a:hover, #menu a:active, .AboutUs #menu a:nth-of-type(1), .News #menu a:nth-of-type(2), .Products #menu a:nth-of-type(3), .FAQ #menu a:nth-of-type(4), .Service #menu a:nth-of-type(5), .ContactUs #menu a:nth-of-type(6) {
+          background: #0683a4;
+          border-radius: 0; }
+          #menu a:hover::after, #menu a:active::after, .AboutUs #menu a:nth-of-type(1)::after, .News #menu a:nth-of-type(2)::after, .Products #menu a:nth-of-type(3)::after, .FAQ #menu a:nth-of-type(4)::after, .Service #menu a:nth-of-type(5)::after, .ContactUs #menu a:nth-of-type(6)::after {
+            display: none; } }
 
 footer {
   background: #EDEFF1;
@@ -518,9 +513,6 @@ footer {
   min-height: 105px;
   z-index: 2;
   color: #191919; }
-  @media (max-width: 30em) {
-    footer {
-      margin-top: -100px; } }
   footer li {
     text-align: left;
     margin: 5px 0;
@@ -541,6 +533,9 @@ footer {
       line-height: 22px;
       width: 22px;
       margin-right: 6px; }
+  @media (max-width: 30em) {
+    footer ul {
+      margin-top: 20px; } }
 
 .copyright {
   font-size: 0.75em;
