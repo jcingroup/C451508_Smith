@@ -1,9 +1,49 @@
 @charset "UTF-8";
 
+// var
+// -----------------------------------------------------------------
 $table-padding: 5px 10px 15px !default;
 $font-size-caption: 22px !default;
 $font-size-th: 19px !default;
 $font-size-td: 17px !default;
+
+$table-color: (
+    table-bg:               $brand-secondary,
+    table-bg-accent:        #f9f9f9,
+    table-bg-hover:         #f7f7f7,
+    table-bg-active:        #D6FAFC,
+    table-border:           lighten($brand-secondary,50%),
+    table-th:               $brand-primary,
+    table-td:               $text-color,
+    table-caption:          #fff,
+);
+
+// 合併配色
+$color: map-extend($color, $table-color);
+
+
+// 函數程式
+// -----------------------------------------------------------------
+
+// table情景色設定
+@mixin table-row-variant($state, $background) {
+    .table {
+        .#{$state},
+        .#{$state} td,
+        .#{$state} th {
+            background-color: $background;
+        }
+    }
+
+    .table-hover {
+        .#{$state}:hover,
+        .#{$state}:hover td,
+        .#{$state}:hover th,
+        tr:hover .#{$state} {
+            background-color: darken($background, 5%);
+        }
+    }
+}
 
 
 /*      table

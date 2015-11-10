@@ -97,30 +97,8 @@ $state-type: (
     // error:                  $error,
 );
 
-$table-color: (
-    table-bg:               $brand-secondary,
-    table-bg-accent:        #f9f9f9,
-    table-bg-hover:         #f7f7f7,
-    table-bg-active:        #D6FAFC,
-    table-border:           lighten($brand-secondary,50%),
-    table-th:               $brand-primary,
-    table-td:               $text-color,
-    table-caption:          #fff,
-);
-
-$form-color:(
-    input-bg:               #fff,
-    input-bg-disabled:      $gray-lighter,
-    input-color:            $gray,
-    input-border:           #ccc,
-    input-border-focus:     #66afe9,
-    input-placeholder:      #999,
-    input-addon-bg:         $gray-lighter,
-    input-addon-border:     #ccc
-);
-
 // 合併配色
-$color: map-extend($state-type, $table-color, $form-color);
+$color: $state-type;
 
 
 // == z-index

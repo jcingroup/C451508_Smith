@@ -339,13 +339,13 @@ label {
   label[class*="col-"] {
     margin-bottom: 0; }
 
-input[type="search"] {
-  box-sizing: border-box; }
-
 input[type="radio"], input[type="checkbox"] {
   margin-top: 4px;
   margin-top: 1px \9;
   line-height: normal; }
+
+input[type="search"] {
+  box-sizing: border-box; }
 
 input[type="file"], input[type="range"] {
   display: block; }
@@ -358,9 +358,12 @@ input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focu
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px; }
 
-select[multiple],
-select[size] {
+select[multiple], select[size] {
   height: auto; }
+
+button {
+  background: none;
+  border: none; }
 
 output {
   display: block;

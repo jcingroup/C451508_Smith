@@ -16,14 +16,13 @@ $('.goTop').click(function () {
 });
 
 // 行動裝置的主選單
-$(".menu-trigger").click(function (event){
-    $("body").toggleClass("toggled");
-    event.preventDefault();
-});
+$(document).ready(function() {
+    $menuLeft = $('#menu');
+    $trigger = $('.menu-trigger');
 
-// 行動裝置的產品左選單
-$(".submenu-trigger .btn").click(function (event){
-    $("#sidebar").slideToggle();
-    event.preventDefault();
+    $trigger.click(function() {
+        $(this).toggleClass('active');
+        $('body').toggleClass('pushmenu-push');
+        $menuLeft.toggleClass('pushmenu-open');
+    });
 });
-
