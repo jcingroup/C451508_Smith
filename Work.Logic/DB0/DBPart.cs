@@ -221,6 +221,12 @@ namespace ProcCore.Business.DB0
         public int val { get; set; }
         public string Lname { get; set; }
     }
+    public class IssueGroup
+    {
+        public int c_id { get; set; }
+        public string Lname { get; set; }
+        public IList<m_Issue> issue { get; set; }
+    }
     #endregion
 
     #region q_Model_Define
