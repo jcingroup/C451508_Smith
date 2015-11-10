@@ -11,6 +11,7 @@
     interface SearchData {
         //搜尋 參數
         name?: string
+        issue_category_id?: number
     }
     interface IssueCategory {
         issue_category_id: number
@@ -72,7 +73,7 @@
             this.componentDidMount = this.componentDidMount.bind(this);
             this.componentDidUpdate = this.componentDidUpdate.bind(this);
             this.insertType = this.insertType.bind(this);
-            this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, category_option: null, searchData: {} }
+            this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, category_option: [], searchData: {} }
 
         }
         static defaultProps: BaseDefine.GridFormPropsBase = {
@@ -211,7 +212,7 @@
             this.setState(newState);
         }
         insertType() {
-            this.setState({ edit_type: 1, fieldData: { issue_category_id: this.state.category_option[0].issue_category_id } });
+            this.setState({ edit_type: 1, fieldData: { issue_category_id: this.state.category_option[0].issue_category_id, i_Hide: false } });
         }
         updateType(id: number | string) {
 
@@ -277,6 +278,19 @@
                                 value={searchData.name}
                                 onChange={this.changeGDValue.bind(this, 'name') }
                                 placeholder="請輸入關鍵字..." /> { }
+
+                             <label>問題分類</label> { }
+                                <select className="form-control"
+                                    value={searchData.issue_category_id}
+                                    onChange={this.changeGDValue.bind(this, 'issue_category_id') }>
+                                    <option  value="">全部分類</option>
+                                    {
+                                    this.state.category_option.map((itemData, i) =>
+                                        <option key={itemData.issue_category_id} value={itemData.issue_category_id.toString() }>{itemData.category_name}</option>
+                                    )
+                                    }
+                                </select>
+
                             <button className="btn-primary" type="submit"><i className="fa-search"></i> 搜尋</button>
                             </div>
                         </div>
@@ -293,9 +307,9 @@
                             </th>
                         <th className="col-xs-1 text-center">修改</th>
                         <th className="col-xs-2">Q & A 分類</th>
-                        <th className="col-xs-2">Q & A 標題</th>
-                        <th className="col-xs-2">排序</th>
-                        <th className="col-xs-2">狀態</th>
+                        <th className="col-xs-4">Q & A 標題</th>
+                        <th className="col-xs-1">排序</th>
+                        <th className="col-xs-1">狀態</th>
                         </tr>
                     </thead>
                 <tbody>
@@ -335,12 +349,9 @@
     <h3 className="title" dangerouslySetInnerHTML={{ __html: this.props.caption + ' 基本資料維護' }}></h3>
     <form className="form-horizontal" onSubmit={this.handleSubmit}>
         <div className="col-xs-12">
-            <div className="alert alert-warning">
-                <p><strong className="text-danger">紅色標題</strong> 為必填欄位。</p>
-                </div>
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">問題分類</label>
+                <label className="col-xs-2 control-label">問題分類</label>
                 <div className="col-xs-4">
                     <select className="form-control"
                         value={fieldData.issue_category_id}
@@ -352,6 +363,7 @@
                         }
                         </select>
                     </div>
+                    <small className="help-inline col-xs-2"><span className="text-danger">(必填) </span></small>
                 </div>
 
             <div className="form-group">
@@ -394,7 +406,7 @@
                 </div>
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">Q</label>
+                <label className="col-xs-2 control-label">Q</label>
                 <div className="col-xs-8">
                     <input type="text"
                         className="form-control"

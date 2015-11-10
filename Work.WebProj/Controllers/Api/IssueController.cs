@@ -33,7 +33,7 @@ namespace DotWeb.Api
             using (db0 = getDB0())
             {
                 var items = db0.Issue
-                    .OrderByDescending(x => x.sort)
+                    .OrderByDescending(x => new { c_sort = x.IssueCategory.sort, x.sort })
                     .Select(x => new m_Issue()
                     {
                         issue_id = x.issue_id,
@@ -41,14 +41,17 @@ namespace DotWeb.Api
                         category_name = x.IssueCategory.category_name,
                         issue_q = x.issue_q,
                         sort = x.sort,
-                        i_Hide=x.i_Hide
+                        i_Hide = x.i_Hide
                     }).AsQueryable();
 
                 if (q.name != null)
                 {
                     items = items.Where(x => x.issue_q.Contains(q.name));
                 }
-
+                if (q.issue_category_id != null)
+                {
+                    items = items.Where(x => x.issue_category_id == q.issue_category_id);
+                }
                 int page = (q.page == null ? 1 : (int)q.page);
                 int startRecord = PageCount.PageInfo(page, this.defPageSize, items.Count());
                 var resultItems = await items.Skip(startRecord).Take(this.defPageSize).ToListAsync();
@@ -190,5 +193,6 @@ namespace DotWeb.Api
     public class q_Issue : QueryBase
     {
         public string name { get; set; }
+        public int? issue_category_id { get; set; }
     }
 }
