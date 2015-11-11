@@ -4,6 +4,7 @@
 // ------------------------------------------------------------
 $img-path2:         '../images/index';
 
+$header-height:     156px;
 $content-spacing:   0;
 $font-size-h3:      52px;
 
@@ -48,19 +49,23 @@ footer {
     padding-top: 17px;
 }
 #banner, .swiper-slide {
-    position: relative;
-    height: 500px;
+    height: 520px;
 
-    @include mq($max:tablet) { height: auto; }
+    @include mq($max:tablet) {
+        height: auto;
+        min-height: 735px;
+        background-size: cover 100%;
+    }
 }
 
 .swiper-wrapper {
     @extend %list-unstyled;
     margin-bottom: 0;
 }
+
 .swiper-slide {
     background: url(#{$img-path2}/banner1_bg.png) center no-repeat;
-    padding-top: 55px;
+    padding-top: 35px;
     padding-bottom: 30px;
 
     header, img {
@@ -68,22 +73,29 @@ footer {
         vertical-align: top;
     }
     header {
-        @include text-pic('#{$img-path2}/banner1_title.png',530px,237px);
         margin-right: 10px;
+        position: relative;
+        z-index: 20;
+
+        @include text-pic('#{$img-path2}/banner1_title.png',530px,237px);
+
+        @include mq(break(tablet,+1), wide) {
+            float: left;
+        }
     }
-    img { margin-top: 30px; }
     ol {
         margin-left: -590px;
 
-        @include mq($max:tablet) {
-            margin-left: auto;
-            margin-top: 20px;
+        @include absolute(left 50% bottom 30px);
+
+        @include mq(break(tablet,+1), wide) {
+            left: 2%; margin-left: 0;
         }
     }
     li {
         background-attachment: fixed;
-        background: url(#{$img-path2}/banner1_icon.gif) 0 0 no-repeat;
-        width: 80px;
+        background: url(#{$img-path2}/banner1_icon.gif) 11px 0 no-repeat;
+        min-width: 90px;
         padding-top: 80px;
 
         color: #4C4C4C;
@@ -92,8 +104,72 @@ footer {
 
         @for $i from 2 through 6 {
             &:nth-child(#{$i}) {
-                background-position: (86px - (86px * $i)) 0;
+                background-position: (97px - (86px * $i)) 0;
             }
+        }
+    }
+    img {
+        @include mq(break(tablet,+1), wide) {
+            @include absolute(right 1% top 30px);
+        }
+    }
+    @include mq($max:phone) {
+        padding-bottom: 240px;
+        background-size: cover;
+    }
+}
+.i1 {
+    header {
+        margin-top: 35px;
+        @include mq($max:tablet) {
+            max-height: 230px;
+            margin-top: 0;
+        }
+    }
+    img { margin-top: 30px; }
+}
+.i2 {
+    background-image: url(#{$img-path2}/banner2_bg.png);
+    header {
+        background-image: url(#{$img-path2}/banner2_title.png);
+        width: 705px; height: 321px;
+        @include mq($max:tablet) { max-height: 300px; }
+    }
+    li { background-image: url(#{$img-path2}/banner2_icon.gif); }
+}
+.i3 {
+    background-image: url(#{$img-path2}/banner3_bg.png);
+    header {
+        background-image: url(#{$img-path2}/banner3_title.png);
+        width: 466px; height: 280px;
+    }
+    li { background-image: url(#{$img-path2}/banner3_icon.gif); }
+    img {
+        @include mq($max:tablet) {
+            max-height: 320px;
+        }
+        @include mq(break(phone,+1),tablet) {
+            @include absolute(left 50% 0 bottom 130px);
+            @include prefix(transform,translateX(-50%));
+        }
+    }
+}
+@include mq($max:tablet) {
+    .swiper-slide {
+        padding-bottom: 130px;
+        header {
+            background-size: contain;
+            width: 100%;
+            margin-right: 0;
+        }
+        ol {
+            margin-left: 0;
+            margin-top: 20px;
+            left: 0; right: 0;
+        }
+        img {
+            max-width: 90%;
+            max-height: 260px;
         }
     }
 }
@@ -118,14 +194,31 @@ footer {
     nav a {
         display: block;
         margin-bottom: $gutter;
+        &:hover, &:active {
+            color: lighten($brand-secondary,40%);
+        }
     }
     .btn {
         margin-top: 20px;
         float: right;
+
+        @include mq($max: break(tablet,-1)) {
+            margin-top: 0;
+        }
+    }
+    .col-3 {
+        min-width: 245px;
+        float: right;
     }
 }
-
-.col-8 .btn { margin-top: 52px; }
+.col-8 {
+    .btn {
+        @include mq(wide) { margin-top: 52px; }
+    }
+    @include mq($max: break(tablet,-1)) {
+        margin-bottom: 30px;
+    }
+}
 
 #map-canvas {
     width: 100%;

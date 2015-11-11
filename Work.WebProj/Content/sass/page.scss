@@ -119,7 +119,7 @@ aside {
     float: right;
     width: cp(1115px);
 
-    @include mq(wide) { width: cp(1160px); }
+    @include mq(wider) { width: cp(1160px); }
 }
 .breadcrumb {
     @extend %list-inline;
@@ -136,7 +136,7 @@ aside {
         color: $brand-primary;
         font-size: em(15px);
     }
-    @include mq(769px,desktop2) {
+    @include mq(break(tablet,+1),wide) {
         float: left;
         width: auto;
         margin-left: 95px;

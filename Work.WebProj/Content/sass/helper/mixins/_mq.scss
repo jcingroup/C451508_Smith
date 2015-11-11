@@ -1,10 +1,12 @@
 @charset "UTF-8";
 
+// mixin來源: https://github.com/sass-mq/sass-mq
+//
 // == var
 // ----------------------------------------------------------------------
 $mq-base-font-size:    $font-size-base !default;
 
-// Set to `false` to enable support for browsers that do not support @media queries,
+// 設定為 false 時讓不支援 @media queries 的瀏覽器可讀
 // (IE <= 8, Firefox <= 3, Opera <= 9)
 $mq-responsive:        true !default;
 
@@ -14,13 +16,13 @@ $mq-breakpoints: (
     phone:             480px,
     tablet:            768px,
     desktop:           980px,
-    desktop2:          1200px,
-    wide:              1400px
+    wide:              1200px,
+    wider:             1400px
 ) !default;
 
 $mq-static-breakpoint: desktop !default;
 
-$mq-show-breakpoints:  () !default;
+// $mq-show-breakpoints:  () !default;
 
 // Customize the media type (e.g. `@media screen` or `@media print`)
 $mq-media-type:        all !default;
@@ -48,37 +50,33 @@ $mq-media-type:        all !default;
     }
 }
 
+// $count可設 +1 or -1
+// 用法 @include mq(break(table,-1)) => 767px
+@function break($name, $count, $breakpoints: $mq-breakpoints) {
+    @if map-has-key($breakpoints, $name) {
+        $media: map-get($breakpoints, $name);
+        $break: $media + $count;
+
+        @return $break;
+    }
+}
+
 
 // == mixin
 // ----------------------------------------------------------------------
 // Media Query mixin
 // @example scss
-//  .element {
-//    @include mq($min: mobile) {
-//      color: red;
-//    }
-//    @include mq($max: tablet) {
-//      color: blue;
-//    }
-//    @include mq(mobile, tablet) {
-//      color: green;
-//    }
-//    @include mq($min: tablet, $and: '(orientation: landscape)') {
-//      color: teal;
-//    }
-//    @include mq(950px) {
-//      color: hotpink;
-//    }
-//    @include mq(tablet, $media-type: screen) {
-//      color: hotpink;
-//    }
-//    // Advanced use:
-//    $my-breakpoints: ( L: 900px, XL: 1200px );
-//    @include mq(L, $breakpoints: $my-breakpoints, $static-breakpoint: L) {
-//      color: hotpink;
-//    }
-//  }
-
+// @include mq($min: mobile) {}
+// @include mq($max: tablet) {}
+// @include mq(mobile, tablet) {}
+// @include mq($min: tablet, $and: '(orientation: landscape)') {}
+// @include mq(950px) {}
+// @include mq(tablet, $media-type: screen) {}
+//
+// // Advanced use:
+// $my-breakpoints: ( L: 900px, XL: 1200px );
+// @include mq(L, $breakpoints: $my-breakpoints, $static-breakpoint: L) {}
+//
 @mixin mq(
     $min: false,
     $max: false,
@@ -86,14 +84,13 @@ $mq-media-type:        all !default;
     $media-type: $mq-media-type,
     $breakpoints: $mq-breakpoints,
     $responsive: $mq-responsive,
-    $static-breakpoint: $mq-static-breakpoint,
-    $bk:  false
+    $static-breakpoint: $mq-static-breakpoint
 ) {
     $min-width: 0;
     $max-width: 0;
     $media-query: '';
 
-    // From: this breakpoint (inclusive)
+    // min: this breakpoint (inclusive)
     @if $min {
         @if type-of($min) == number {
             $min-width: mq-px2em($min);
@@ -102,12 +99,11 @@ $mq-media-type:        all !default;
         }
     }
 
-    // Until: that breakpoint (exclusive)
+    // max: that breakpoint (exclusive)
     @if $max {
         @if type-of($max) == number {
             $max-width: mq-px2em($max);
         } @else {
-            // $max-width: mq-px2em(mq-get-breakpoint-width($max, $breakpoints)) - .001em;
             $max-width: mq-px2em(mq-get-breakpoint-width($max, $breakpoints));
         }
     }
@@ -156,3 +152,31 @@ $mq-media-type:        all !default;
     $new-breakpoint: ($name: $width);
     $mq-breakpoints: map-merge($mq-breakpoints, $new-breakpoint) !global;
 }
+
+// @mixin mq-show-breakpoints($show-breakpoints: $mq-show-breakpoints, $breakpoints: $mq-breakpoints) {
+//     body:before {
+//         background-color: #FCF8E3;
+//         border-bottom: 1px solid #FBEED5;
+//         border-left: 1px solid #FBEED5;
+//         color: #C09853;
+//         font: small-caption;
+//         padding: 3px 6px;
+//         pointer-events: none;
+//         position: fixed;
+//         right: 0;
+//         top: 0;
+//         z-index: 100;
+
+//         // Loop through the breakpoints that should be shown
+//         @each $show-breakpoint in $show-breakpoints {
+//             $width: mq-get-breakpoint-width($show-breakpoint, $breakpoints);
+//             @include mq($show-breakpoint, $breakpoints: $breakpoints) {
+//                 content: "#{$show-breakpoint} ≥ #{$width} (#{mq-px2em($width)})";
+//             }
+//         }
+//     }
+// }
+
+// @if length($mq-show-breakpoints) > 0 {
+//     @include mq-show-breakpoints;
+// }
