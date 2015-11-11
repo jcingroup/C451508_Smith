@@ -202,13 +202,17 @@ namespace ProcCore.Business.DB0
         public string category_name { get; set; }
         public string imgsrc { get; set; }
     }
+    public partial class Product : BaseEntityTable
+    {
+        public string imgsrc { get; set; }
+        public List<option> model_select { get; set; }
+    }
     public partial class m_Issue : BaseEntityTable
     {
         public string category_name { get; set; }
     }
     public partial class Menu : BaseEntityTable
     {
-
         public IList<MenuRoleArray> role_array { get; set; }
     }
     public class MenuRoleArray

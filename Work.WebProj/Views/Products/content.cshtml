@@ -1,13 +1,13 @@
-﻿
+﻿@model ProcCore.Business.DB0.Product
 @{
-    ViewBag.Title = "BD-350";
+    ViewBag.Title = Model.model_type;
     ViewBag.BodyClass = "Products";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
 @section breadCrumb {
     <li><a href="~/Products">產品介紹</a></li>
-    <li><a href="~/Products/list">藍光DVD播放機</a></li>
+    <li><a href="~/Products?id=@Model.category_id">@ViewBag.C_name</a></li>
 }
 @section overlay {
     <div class="md-modal md-effect-7" id="buy">
@@ -34,15 +34,24 @@
 <section class="row">
 
     <div class="col-7 col-sm-12 pro-pic">
-        <img src="~/Content/images/Products/pro.jpg" alt="產品圖">
+        <img src="@Model.imgsrc" alt="產品圖">
     </div><!-- pro-pic //-->
 
     <div class="col-5 col-sm-12 pro-info">
-        <h3><small>【型號】BD-350</small>5.1聲道 3D藍光DVD播放機</h3>
+        <h3><small>【型號】@Model.model_type</small>@Model.product_name</h3>
         <div class="text-right">
             <select name="name" id="" class="sel1">
-                <option value="BD-350">BD-350</option>
-                <option value="BD-320">BD-320</option>
+                @foreach (var option in Model.model_select)
+                {
+                    if (option.val == Model.product_id)
+                    {
+                        <option value="@option.val" selected>@option.Lname</option>
+                    }
+                    else
+                    {
+                        <option value="@option.val">@option.Lname</option>
+                    }
+                }
             </select>
 
             <select name="num" id="" class="sel2">
@@ -57,10 +66,10 @@
 </section>
 
 @*
-產品更多內容放下面，使用可上傳圖片的編輯器
-若無內容，下列html不會出現
+    產品更多內容放下面，使用可上傳圖片的編輯器
+    若無內容，下列html不會出現
 *@
 <section class="other">
     @* 下為內容範例，實際online不會出現這張圖 *@
-    <img src="~/Content/images/Products/info.gif" alt="範例">
+    @Html.Raw(Model.product_content)
 </section>
