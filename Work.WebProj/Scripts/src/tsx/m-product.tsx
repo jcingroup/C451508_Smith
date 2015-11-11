@@ -5,6 +5,7 @@
         category_id: number;
         category_name: string;
         product_name: string;
+        model_type: string;
         price: number;
         sort: number;
         i_Hide: boolean;
@@ -12,6 +13,7 @@
     interface SearchData {
         //搜尋 參數
         name?: string
+        product_category_id?: number;
     }
     interface ProductCategory {
         product_category_id: number
@@ -50,6 +52,7 @@
                         <GridButtonModify modify={this.modify}/>
                         </td>
                     <td>{this.props.itemData.category_name}</td>
+                    <td>{this.props.itemData.model_type}</td>
                     <td>{this.props.itemData.product_name}</td>
                     <td>{this.props.itemData.price}</td>
                     <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
@@ -71,8 +74,9 @@
             this.delCheck = this.delCheck.bind(this);
             this.checkAll = this.checkAll.bind(this);
             this.componentDidMount = this.componentDidMount.bind(this);
+            this.componentDidUpdate = this.componentDidUpdate.bind(this);
             this.insertType = this.insertType.bind(this);
-            this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, category_option: null, searchData: {} }
+            this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, category_option: [], searchData: {} }
 
         }
         static defaultProps: BaseDefine.GridFormPropsBase = {
@@ -85,7 +89,11 @@
             this.queryGridData(1);
             this.getInitData();
         }
-
+        componentDidUpdate(prevProps, prevState) {
+            if (prevState.edit_type == 0 && this.state.edit_type == 1) {
+                CKEDITOR.replace('editor1', {});
+            }
+        }
         getInitData() {
             jqGet(this.props.InitPath, {})
                 .done((data: Array<ProductCategory>, textStatus, jqXHRdata) => {
@@ -126,6 +134,7 @@
         handleSubmit(e: React.FormEvent) {
 
             e.preventDefault();
+            this.state.fieldData.product_content = CKEDITOR.instances.editor1.getData();//編輯器
             if (this.state.edit_type == 1) {
                 jqPost(this.props.apiPath, this.state.fieldData)
                     .done((data: CallResult, textStatus, jqXHRdata) => {
@@ -206,13 +215,14 @@
             this.setState(newState);
         }
         insertType() {
-            this.setState({ edit_type: 1, fieldData: { category_id: this.state.category_option[0].product_category_id, price: 0 } });
+            this.setState({ edit_type: 1, fieldData: { category_id: this.state.category_option[0].product_category_id, price: 0, i_Hide: false } });
         }
         updateType(id: number | string) {
 
             jqGet(this.props.apiPath, { id: id })
                 .done((data, textStatus, jqXHRdata) => {
                     this.setState({ edit_type: 2, fieldData: data.data });
+                    CKEDITOR.replace('editor1', {});
                 })
                 .fail((jqXHR, textStatus, errorThrown) => {
                     showAjaxError(errorThrown);
@@ -272,6 +282,19 @@
                                 value={searchData.name}
                                 onChange={this.changeGDValue.bind(this, 'name') }
                                 placeholder="請輸入關鍵字..." /> { }
+
+                             <label>產品分類</label> { }
+                                <select className="form-control"
+                                    value={searchData.product_category_id}
+                                    onChange={this.changeGDValue.bind(this, 'product_category_id') }>
+                                    <option  value="">全部分類</option>
+                                    {
+                                    this.state.category_option.map((itemData, i) =>
+                                        <option key={itemData.product_category_id} value={itemData.product_category_id.toString() }>{itemData.category_name}</option>
+                                    )
+                                    }
+                                    </select> { }
+
                             <button className="btn-primary" type="submit"><i className="fa-search"></i> 搜尋</button>
                             </div>
                         </div>
@@ -288,9 +311,10 @@
                             </th>
                         <th className="col-xs-1 text-center">修改</th>
                         <th className="col-xs-2">產品分類</th>
-                        <th className="col-xs-2">產品名稱</th>
-                        <th className="col-xs-2">單價</th>
-                        <th className="col-xs-2">狀態</th>
+                        <th className="col-xs-2">產品型號</th>
+                        <th className="col-xs-4">產品名稱</th>
+                        <th className="col-xs-1">單價</th>
+                        <th className="col-xs-1">狀態</th>
                         </tr>
                     </thead>
                 <tbody>
@@ -348,7 +372,7 @@
                         </div>
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">產品分類</label>
+                <label className="col-xs-2 control-label">產品分類</label>
                 <div className="col-xs-4">
                     <select className="form-control"
                         value={fieldData.category_id}
@@ -360,10 +384,11 @@
                         }
                         </select>
                     </div>
+                    <small className="help-inline col-xs-6"><span className="text-danger">(必填) </span></small>
                 </div>
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">產品名稱</label>
+                <label className="col-xs-2 control-label">產品名稱</label>
                 <div className="col-xs-4">
                     <input type="text"
                         className="form-control"
@@ -374,9 +399,21 @@
                     </div>
                     <small className="help-inline col-xs-6">最多64個字<span className="text-danger">(必填) </span></small>
                 </div>
+            <div className="form-group">
+                <label className="col-xs-2 control-label">產品型號</label>
+                <div className="col-xs-4">
+                    <input type="text"
+                        className="form-control"
+                        onChange={this.changeFDValue.bind(this, 'model_type') }
+                        value={fieldData.model_type}
+                        maxLength={16}
+                        required />
+                    </div>
+                    <small className="help-inline col-xs-6">最多16個字<span className="text-danger">(必填) </span></small>
+                </div>
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">單價</label>
+                <label className="col-xs-2 control-label">單價</label>
                 <div className="col-xs-4">
                     <input type="number"
                         className="form-control"
@@ -427,8 +464,8 @@
 
                 <div className="form-group">
                      <label className="col-xs-2 control-label">產品內容</label>
-                        <div className="col-xs-6">
-                            <textarea cols={30} rows={3} className="form-control"
+                        <div className="col-xs-8">
+                            <textarea cols={30} rows={3} className="form-control"  id="editor1"
                                 value={fieldData.product_content}
                                 onChange={this.changeFDValue.bind(this, 'product_content') }
                                 maxLength={256}></textarea>

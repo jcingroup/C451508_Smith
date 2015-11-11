@@ -31,7 +31,9 @@ namespace DotWeb.WebApp.Controllers
                                                                  .Select(x => new m_Product()
                                                                  {
                                                                      product_id = x.product_id,
-                                                                     product_name = x.product_name
+                                                                     product_name = x.product_name,
+                                                                     category_name = x.ProductCategory.category_name,
+                                                                     model_type = x.model_type
                                                                  }).ToList();
 
                     foreach (var i in items)
