@@ -612,7 +612,7 @@ body {
         top: 100%;
         left: 50%;
         margin-left: -8px; }
-    @media (min-width: 75em) {
+    @media (min-width: 87.5em) {
       #menu a {
         width: 140px; } }
     @media (max-width: 61.25em) {
