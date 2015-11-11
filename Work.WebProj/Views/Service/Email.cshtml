@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Email";
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>統城科技股份有限公司-線上諮詢</title>
+</head>
+<body style="font: .8em/140% '微軟正黑體', 'Microsoft JhengHei', Helvetica, sans-serif;">
+    <h1 style="font-size:1.5em;">統城科技股份有限公司-線上諮詢</h1>
+    <table border="1" bordercolor="#ddd" style="border:1px solid #ccc">
+        <caption style="background:#FCF8E3; color:#9C7163; font-size:1.2em; font-weight:bold; padding:5px; text-align:center;">
+            以下為聯絡人資料
+        </caption>
+
+        <tr>
+            <td style="color:#9C7163; padding:5px; border:1px solid #ccc">聯絡人</td>
+            <td style="width:150px; padding:5px; border:1px solid #ccc">@Model.contact_person</td>
+        </tr>
+        <tr>
+            <td style="color:#9C7163; padding:5px; border:1px solid #ccc">聯絡電話</td>
+            <td style="width:150px; padding:5px; border:1px solid #ccc">@Model.tel</td>
+        </tr>
+        <tr>
+            <td style="color:#9C7163; padding:5px; border:1px solid #ccc">E-mail</td>
+            <td style="width:150px; padding:5px; border:1px solid #ccc">@Model.email</td>
+        </tr>
+        <tr>
+            <td style="color:#9C7163; padding:5px; border:1px solid #ccc">諮詢內容</td>
+            <td style="width:500px; height:100px; word-break:break-all; height:100px; padding:5px; border:1px solid #ccc">
+                @Html.Raw(Model.content.Replace("\n", "<br/>"))
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+

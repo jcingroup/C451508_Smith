@@ -17,6 +17,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -1043,6 +1044,91 @@ namespace DotWeb.Controller
                 return null;
             }
         }
+        #endregion
+
+        #region 寄信相關
+        //將變數套用至信件版面
+        public string getMailBody(string EmailView, object md)
+        {
+            ViewResult resultView = View(EmailView, md);
+
+            StringResult sr = new StringResult();
+            sr.ViewName = resultView.ViewName;
+            sr.MasterName = resultView.MasterName;
+            sr.ViewData = resultView.ViewData;
+            sr.TempData = resultView.TempData;
+            sr.ExecuteResult(this.ControllerContext);
+
+            return sr.ToHtmlString;
+        }
+
+        public bool Mail_Send(string MailFrom, string[] MailTos, string MailSub, string MailBody, bool isBodyHtml)
+        {
+            try
+            {
+                //建立MailMessage物件
+                MailMessage mms = new MailMessage();
+                mms.From = new MailAddress(MailFrom);//寄件人
+                mms.Subject = MailSub;//信件主旨
+                mms.Body = MailBody;//信件內容
+                mms.IsBodyHtml = isBodyHtml;//判斷是否採用html格式
+
+                if (MailTos != null)//防呆
+                {
+                    foreach (var str in MailTos)
+                    {
+                        if (str != "")
+                        {
+                            var m = str.Split(':');
+                            if (m.Length == 2)
+                            {
+                                mms.To.Add(new MailAddress(m[1], m[0]));
+                            }
+                            else if (m.Length == 1)
+                            {
+                                mms.To.Add(new MailAddress(m[0]));
+                            }
+                        }
+                    }
+                }//End if (MailTos !=null)//防呆
+
+                //if (Bcc != null) //防呆
+                //{
+                //    for (int i = 0; i < Bcc.Length; i++)
+                //    {
+                //        if (!string.IsNullOrEmpty(Bcc[i].Trim()))
+                //        {
+                //            //加入信件的密件副本(們)address
+                //            mms.Bcc.Add(new MailAddress(Bcc[i].Trim()));
+                //        }
+
+                //    }
+                //}//End if (Ccs!=null) //防呆
+
+
+
+                using (SmtpClient client = new SmtpClient(CommWebSetup.MailServer))//或公司、客戶的smtp_server
+
+                    client.Send(mms);//寄出一封信
+
+                //釋放每個附件，才不會Lock住
+                if (mms.Attachments != null && mms.Attachments.Count > 0)
+                {
+                    for (int i = 0; i < mms.Attachments.Count; i++)
+                    {
+                        mms.Attachments[i].Dispose();
+                        mms.Attachments[i] = null;
+                    }
+                }
+
+                return true;//寄信成功
+            }
+            catch (Exception)
+            {
+                return false;//寄信失敗
+            }
+        }
+
         #endregion
     }
     #endregion

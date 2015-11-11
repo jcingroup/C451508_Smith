@@ -753,6 +753,7 @@
     <Content Include="Views\News\News.cshtml" />
     <Content Include="Views\Products\list.cshtml" />
     <Content Include="Views\Products\content.cshtml" />
+    <Content Include="Views\Service\Email.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
