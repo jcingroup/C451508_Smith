@@ -206,7 +206,7 @@
             this.setState(newState);
         }
         insertType() {
-            this.setState({ edit_type: 1, fieldData: { category_id: this.state.category_option[0].product_category_id,price:0 } });
+            this.setState({ edit_type: 1, fieldData: { category_id: this.state.category_option[0].product_category_id, price: 0 } });
         }
         updateType(id: number | string) {
 
@@ -330,9 +330,22 @@
     <h3 className="title"> { this.props.caption } 基本資料維護</h3>
     <form className="form-horizontal" onSubmit={this.handleSubmit}>
         <div className="col-xs-12">
-            <div className="alert alert-warning">
-                <p><strong className="text-danger">紅色標題</strong> 為必填欄位。</p>
-                </div>
+
+                    <div className="form-group">
+                        <label className="col-xs-2 control-label">代表圖</label>
+                        <div className="col-xs-4">
+                            <MasterImageUpload
+                                FileKind="Photo1"
+                                MainId={fieldData.product_id}
+                                ParentEditType={this.state.edit_type}
+                                url_upload={gb_approot + 'Active/ProductData/axFUpload'}
+                                url_list={gb_approot + 'Active/ProductData/axFList'}
+                                url_delete={gb_approot + 'Active/ProductData/axFDelete'}
+                                url_sort={gb_approot + 'Active/ProductData/axFSort'}
+                                />
+                            </div>
+                        <small className="help-inline col-xs-4 text-danger">限 1 張圖片，檔案大小不可超過4.8MB</small>
+                        </div>
 
             <div className="form-group">
                 <label className="col-xs-2 control-label text-danger">產品分類</label>

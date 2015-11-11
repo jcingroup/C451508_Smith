@@ -228,42 +228,23 @@ namespace DotWeb.CommSetup
         {
             get
             {
-                ImageUpScope imUp = new ImageUpScope() { keepOrigin = true, limitCount = 1, limitSize = 1024 * 1024 * 2 };
+                ImageUpScope imUp = new ImageUpScope() { keepOrigin = true, limitCount = 1, limitSize = 1024 * 1024 * 5 };
                 imUp.Parm = new ImageSizeParm[] {
-                    new ImageSizeParm(){ folderName="150", width=150}
+                    new ImageSizeParm(){ folderName="list", width=300},
+                    new ImageSizeParm(){ folderName="content", width=500}
+
                 };
                 return imUp;
             }
         }
-        public static ImageUpScope Member
+        public static ImageUpScope TEST
         {
             get
             {
-                ImageUpScope imUp = new ImageUpScope() { keepOrigin = true, limitCount = 1, limitSize = 1024 * 1024 * 2 };
+                ImageUpScope imUp = new ImageUpScope() { keepOrigin = true, limitCount = 1, limitSize = 1024 * 1024 * 5 };
                 imUp.Parm = new ImageSizeParm[] {
-                    new ImageSizeParm(){ folderName="162", width=162}
-                };
-                return imUp;
-            }
-        }
-        public static ImageUpScope Company
-        {
-            get
-            {
-                ImageUpScope imUp = new ImageUpScope() { keepOrigin = true, limitCount = 1, limitSize = 1024 * 1024 * 2 };
-                imUp.Parm = new ImageSizeParm[] {
-                    new ImageSizeParm(){ folderName="162", width=162}
-                };
-                return imUp;
-            }
-        }
-        public static ImageUpScope BannerRotator
-        {
-            get
-            {
-                ImageUpScope imUp = new ImageUpScope() { keepOrigin = true, limitCount = 4, limitSize = 1024 * 1024 * 2 };
-                imUp.Parm = new ImageSizeParm[] {
-                    new ImageSizeParm(){ folderName="800", width=800}
+                    new ImageSizeParm(){ width=300}
+
                 };
                 return imUp;
             }

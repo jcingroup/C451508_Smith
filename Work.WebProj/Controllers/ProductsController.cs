@@ -33,6 +33,11 @@ namespace DotWeb.WebApp.Controllers
                                                                      product_id = x.product_id,
                                                                      product_name = x.product_name
                                                                  }).ToList();
+
+                    foreach (var i in items)
+                    {
+                        i.imgsrc = GetImg(i.product_id, "Photo1", "ProductData", "Photo", "list");//顯示圖片
+                    }
                 }
             }
             ViewBag.C_id = id;
