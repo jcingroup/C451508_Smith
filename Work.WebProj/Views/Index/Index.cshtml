@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<ProcCore.Business.DB0.option>
+@{
     ViewBag.Title = "首頁";
     ViewBag.IsFirstPage = true;
     ViewBag.BodyClass = "index";
@@ -19,7 +20,7 @@
             autoplay: 4000,
             speed: 1000,
             effect: 'slide',
-            autoplayDisableOnInteraction : false
+            autoplayDisableOnInteraction: false
         })
     </script>
 }
@@ -75,12 +76,10 @@
         <div class="col-3 offset-lg-1 col-xs-12">
             <h3>PRODUCT</h3>
             <nav>
-                <a href="~/Products/list">藍光DVE播放機</a>
-                <a href="~/Products/list">數位影音光碟機</a>
-                <a href="~/Products/list">數位電視接收機</a>
-                <a href="~/Products/list">數位天線</a>
-                <a href="~/Products/list">手提音響</a>
-                <a href="~/Products/list">行動型多媒體音響</a>
+                @foreach (var i in Model)
+                {
+                    <a href="~/Products?id=@i.val">@i.Lname</a>
+                }
             </nav>
             <a href="~/Products" class="btn">MORE</a>
         </div>
