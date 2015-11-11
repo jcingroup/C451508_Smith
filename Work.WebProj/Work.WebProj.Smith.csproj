@@ -204,6 +204,7 @@
     <Compile Include="Areas\Active\Controllers\MembersDataController.cs" />
     <Compile Include="Areas\Active\Controllers\PurchaseController.cs" />
     <Compile Include="Areas\Active\Controllers\ProductDataController.cs" />
+    <Compile Include="Areas\Base\Controllers\ChangeParmController.cs" />
     <Compile Include="Areas\Base\Controllers\DocController.cs" />
     <Compile Include="Areas\Base\Controllers\LoginController.cs" />
     <Content Include="Areas\Active\Views\ProductData\Category.cshtml" />
@@ -356,6 +357,7 @@
     <Content Include="Content\sass\page.scss" />
     <Content Include="Content\sass\module\_modal.scss" />
     <Content Include="Content\sass\helper\mixins\_align.scss" />
+    <Content Include="Areas\Base\Views\ChangeParm\Main.cshtml" />
     <None Include="gulpfile.js" />
     <Content Include="Content\images\noIE\bg.gif" />
     <Content Include="Content\images\noIE\brow.gif" />
@@ -646,10 +648,12 @@
     <Content Include="Scripts\build\func\c-imgFileSort.js" />
     <Content Include="Scripts\build\func\inc\c-Comm.js" />
     <Content Include="Scripts\build\func\inc\c-ImgFileSort.js" />
+    <Content Include="Scripts\build\func\m-ChangeEmail.js" />
     <Content Include="Scripts\build\func\m-ChangePassword.js" />
     <Content Include="Scripts\build\func\m-issue.js" />
     <Content Include="Scripts\build\func\m-issue_category.js" />
     <Content Include="Scripts\build\func\m-login.js" />
+    <Content Include="Scripts\build\func\m-members.js" />
     <Content Include="Scripts\build\func\m-Menu.js" />
     <Content Include="Scripts\build\func\m-product.js" />
     <Content Include="Scripts\build\func\m-product_category.js" />
@@ -754,6 +758,7 @@
     <Content Include="Views\Products\list.cshtml" />
     <Content Include="Views\Products\content.cshtml" />
     <Content Include="Views\Service\Email.cshtml" />
+    <Content Include="Scripts\src\jsx\m-ChangeEmail.jsx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -893,6 +898,7 @@
     <Content Include="Areas\Active\Views\IssueData\App_LocalResources\Main.cshtml.resx" />
     <Content Include="Areas\Base\Views\Menu\App_LocalResources\Main.cshtml.resx" />
     <Content Include="Areas\Active\Views\MembersData\App_LocalResources\Main.cshtml.resx" />
+    <Content Include="Areas\Base\Views\ChangeParm\App_LocalResources\Main.cshtml.resx" />
     <EmbeddedResource Include="_Code\RPTFile\MemeberLabel.rdlc" />
   </ItemGroup>
   <PropertyGroup>
