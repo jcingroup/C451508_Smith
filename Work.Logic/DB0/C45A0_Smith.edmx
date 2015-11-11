@@ -160,6 +160,7 @@
           <Property Name="tw_address" Type="nvarchar" MaxLength="256" />
           <Property Name="member_account" Type="nvarchar" MaxLength="10" />
           <Property Name="member_password" Type="nvarchar(max)" />
+          <Property Name="is_approve" Type="bit" Nullable="false" />
           <Property Name="i_Hide" Type="bit" Nullable="false" />
           <Property Name="i_InsertUserID" Type="nvarchar" MaxLength="128" />
           <Property Name="i_InsertDeptID" Type="int" />
@@ -575,7 +576,6 @@
           <EntitySet Name="ProductCategory" EntityType="C45A0_SmithModel.ProductCategory" />
           <EntitySet Name="Purchase" EntityType="C45A0_SmithModel.Purchase" />
           <EntitySet Name="IssueCategory" EntityType="C45A0_SmithModel.IssueCategory" />
-          <EntitySet Name="Member" EntityType="C45A0_SmithModel.Member" />
           <EntitySet Name="Issue" EntityType="C45A0_SmithModel.Issue" />
           <AssociationSet Name="FK_Issue_IssueCategory" Association="C45A0_SmithModel.FK_Issue_IssueCategory">
             <End Role="IssueCategory" EntitySet="IssueCategory" />
@@ -586,6 +586,7 @@
             <End Role="ProductCategory" EntitySet="ProductCategory" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
+          <EntitySet Name="Member" EntityType="C45A0_SmithModel.Member" />
         </EntityContainer>
         <EntityType Name="ProductCategory">
           <Key>
@@ -642,30 +643,6 @@
           <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
           <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Issue" Relationship="C45A0_SmithModel.FK_Issue_IssueCategory" FromRole="IssueCategory" ToRole="Issue" />
-        </EntityType>
-        <EntityType Name="Member">
-          <Key>
-            <PropertyRef Name="member_id" />
-          </Key>
-          <Property Name="member_id" Type="Int32" Nullable="false" />
-          <Property Name="member_name" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="tw_zip" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="tw_city" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="tw_country" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="tw_address" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="member_account" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="member_password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="i_Hide" Type="Boolean" Nullable="false" />
-          <Property Name="i_InsertUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="i_InsertDeptID" Type="Int32" />
-          <Property Name="i_InsertDateTime" Type="DateTime" Precision="3" />
-          <Property Name="i_UpdateUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="i_UpdateDeptID" Type="Int32" />
-          <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
-          <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="Issue">
           <Key>
@@ -731,6 +708,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="member_id" />
+          </Key>
+          <Property Name="member_id" Type="Int32" Nullable="false" />
+          <Property Name="member_name" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tw_zip" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="tw_city" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="tw_country" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="tw_address" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="member_account" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="member_password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="is_approve" Type="Boolean" Nullable="false" />
+          <Property Name="i_Hide" Type="Boolean" Nullable="false" />
+          <Property Name="i_InsertUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_InsertDeptID" Type="Int32" />
+          <Property Name="i_InsertDateTime" Type="DateTime" Precision="3" />
+          <Property Name="i_UpdateUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_UpdateDeptID" Type="Int32" />
+          <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -931,31 +933,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Member">
-            <EntityTypeMapping TypeName="C45A0_SmithModel.Member">
-              <MappingFragment StoreEntitySet="Member">
-                <ScalarProperty Name="i_Lang" ColumnName="i_Lang" />
-                <ScalarProperty Name="i_UpdateDateTime" ColumnName="i_UpdateDateTime" />
-                <ScalarProperty Name="i_UpdateDeptID" ColumnName="i_UpdateDeptID" />
-                <ScalarProperty Name="i_UpdateUserID" ColumnName="i_UpdateUserID" />
-                <ScalarProperty Name="i_InsertDateTime" ColumnName="i_InsertDateTime" />
-                <ScalarProperty Name="i_InsertDeptID" ColumnName="i_InsertDeptID" />
-                <ScalarProperty Name="i_InsertUserID" ColumnName="i_InsertUserID" />
-                <ScalarProperty Name="i_Hide" ColumnName="i_Hide" />
-                <ScalarProperty Name="member_password" ColumnName="member_password" />
-                <ScalarProperty Name="member_account" ColumnName="member_account" />
-                <ScalarProperty Name="tw_address" ColumnName="tw_address" />
-                <ScalarProperty Name="tw_country" ColumnName="tw_country" />
-                <ScalarProperty Name="tw_city" ColumnName="tw_city" />
-                <ScalarProperty Name="tw_zip" ColumnName="tw_zip" />
-                <ScalarProperty Name="mobile" ColumnName="mobile" />
-                <ScalarProperty Name="tel" ColumnName="tel" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="member_name" ColumnName="member_name" />
-                <ScalarProperty Name="member_id" ColumnName="member_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Issue">
             <EntityTypeMapping TypeName="C45A0_SmithModel.Issue">
               <MappingFragment StoreEntitySet="Issue">
@@ -993,6 +970,32 @@
                 <ScalarProperty Name="model_type" ColumnName="model_type" />
                 <ScalarProperty Name="category_id" ColumnName="category_id" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Member">
+            <EntityTypeMapping TypeName="C45A0_SmithModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="i_Lang" ColumnName="i_Lang" />
+                <ScalarProperty Name="i_UpdateDateTime" ColumnName="i_UpdateDateTime" />
+                <ScalarProperty Name="i_UpdateDeptID" ColumnName="i_UpdateDeptID" />
+                <ScalarProperty Name="i_UpdateUserID" ColumnName="i_UpdateUserID" />
+                <ScalarProperty Name="i_InsertDateTime" ColumnName="i_InsertDateTime" />
+                <ScalarProperty Name="i_InsertDeptID" ColumnName="i_InsertDeptID" />
+                <ScalarProperty Name="i_InsertUserID" ColumnName="i_InsertUserID" />
+                <ScalarProperty Name="i_Hide" ColumnName="i_Hide" />
+                <ScalarProperty Name="is_approve" ColumnName="is_approve" />
+                <ScalarProperty Name="member_password" ColumnName="member_password" />
+                <ScalarProperty Name="member_account" ColumnName="member_account" />
+                <ScalarProperty Name="tw_address" ColumnName="tw_address" />
+                <ScalarProperty Name="tw_country" ColumnName="tw_country" />
+                <ScalarProperty Name="tw_city" ColumnName="tw_city" />
+                <ScalarProperty Name="tw_zip" ColumnName="tw_zip" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="member_name" ColumnName="member_name" />
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

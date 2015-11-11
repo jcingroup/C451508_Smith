@@ -23,6 +23,7 @@ namespace ProcCore.Business.DB0
     public string tw_address { get; set; }
     public string member_account { get; set; }
     public string member_password { get; set; }
+    public bool is_approve { get; set; }
     public bool i_Hide { get; set; }
     public string i_InsertUserID { get; set; }
     public Nullable<int> i_InsertDeptID { get; set; }

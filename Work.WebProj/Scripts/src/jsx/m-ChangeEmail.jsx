@@ -104,7 +104,7 @@ var GirdForm = React.createClass({
 			(
 			<div>
 				<h3 className="title">
-					{this.props.caption}
+					{this.props.Caption}
 				</h3>
 				<form className="form-horizontal" onSubmit={this.handleSubmit}>
 
