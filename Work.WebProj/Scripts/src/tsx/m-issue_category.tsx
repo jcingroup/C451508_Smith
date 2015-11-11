@@ -184,7 +184,7 @@
             this.setState(newState);
         }
         insertType() {
-            this.setState({ edit_type: 1, fieldData: {} });
+            this.setState({ edit_type: 1, fieldData: { i_Hide: false } });
         }
         updateType(id: number | string) {
 

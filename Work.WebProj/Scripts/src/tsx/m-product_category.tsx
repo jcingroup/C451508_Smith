@@ -184,7 +184,7 @@
             this.setState(newState);
         }
         insertType() {
-            this.setState({ edit_type: 1, fieldData: {} });
+            this.setState({ edit_type: 1, fieldData: { i_Hide: false } });
         }
         updateType(id: number | string) {
 
@@ -305,13 +305,9 @@
     <h3 className="title"> { this.props.caption } 基本資料維護</h3>
     <form className="form-horizontal" onSubmit={this.handleSubmit}>
         <div className="col-xs-12">
-            <div className="alert alert-warning">
-                <p><strong className="text-danger">紅色標題</strong> 為必填欄位。</p>
-                </div>
-
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">分類名稱</label>
+                <label className="col-xs-2 control-label">分類名稱</label>
                 <div className="col-xs-4">
                     <input type="text"
                         className="form-control"

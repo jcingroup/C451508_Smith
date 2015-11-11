@@ -1,7 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@{
+
+    var sidebar = (List<ProcCore.Business.DB0.m_ProductCategory>)ViewBag.Sidebar;
+
+}
+<!DOCTYPE html>
 <html lang="zh-TW">
 <!-- saved from url=(0014)about:internet -->
- <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -10,9 +15,12 @@
     <title>@Resources.Res.System_Name:@ViewBag.Title</title>
     <!--[if lt IE 9]><script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script><![endif]-->
     <link rel="stylesheet" href="~/Content/css/grid.css">
-    @if (ViewBag.IsFirstPage) {
+    @if (ViewBag.IsFirstPage)
+    {
         <link rel="stylesheet" href="~/Content/css/index.css">
-    } else {
+    }
+    else
+    {
         <link rel="stylesheet" href="~/Content/css/page.css">
     }
     @RenderSection("CSS", required: false)
@@ -68,27 +76,31 @@
 
         </header>
 
-        @if (ViewBag.IsFirstPage) {
+        @if (ViewBag.IsFirstPage)
+        {
 
             @RenderBody()
 
-        } else {
+        }
+        else
+        {
 
             <main>
                 <aside>
                     <header>@ViewBag.Title</header>
                     <button class="pro-menu">產品選單</button>
                     <nav>
-                        <a href="~/Products/list" class="current">藍光DVD播放機</a>
-                        <a href="~/Products/list">數位影音光碟機</a>
-                        <a href="~/Products/list">數位電視接收機</a>
-                        <a href="~/Products/list">數位天線</a>
-                        <a href="~/Products/list">手提音響</a>
-                        <a href="~/Products/list">行動型多媒體音響</a>
-                        <a href="~/Products/list">電視壁掛架</a>
-                        <a href="~/Products/list">可充式電蚊拍</a>
-                        <a href="~/Products/list">充電式探照燈</a>
-                        <a href="~/Products/list">紫外線烘碗機</a>
+                        @foreach (var item in sidebar)
+                        {
+                            if (ViewBag.C_id == item.product_category_id)
+                            {
+                                <a href="~/Products?id=@item.product_category_id" class="current">@item.category_name</a>
+                            }
+                            else
+                            {
+                                <a href="~/Products?id=@item.product_category_id">@item.category_name</a>
+                            }
+                        }
                     </nav>
                 </aside>
 

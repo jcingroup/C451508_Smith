@@ -759,6 +759,7 @@ namespace DotWeb.Controller
 
                 ViewBag.VisitCount = visitCount;
                 ViewBag.IsFirstPage = false; //是否為首頁，請在首頁的Action此值設為True
+                ajax_GetSidebarData();//前台左選單
 
                 this.isTablet = (new WebInfo()).isTablet();
             }
@@ -961,6 +962,21 @@ namespace DotWeb.Controller
                 r.Add(s);
             }
             return r;
+        }
+        public void ajax_GetSidebarData()
+        {
+            List<m_ProductCategory> category = new List<m_ProductCategory>();
+            using (var db = getDB0())
+            {
+                category = db.ProductCategory.Where(x => !x.i_Hide).OrderByDescending(x => x.sort)
+                                .Select(x => new m_ProductCategory()
+                                {
+                                    product_category_id = x.product_category_id,
+                                    category_name = x.category_name
+                                }).ToList();
+
+            }
+            ViewBag.Sidebar = category;
         }
     }
     #endregion
