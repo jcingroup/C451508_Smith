@@ -14,6 +14,7 @@ namespace ProcCore.Business.DB0
     public partial class m_Product :BaseEntityTable {
     public int product_id { get; set; }
     public int category_id { get; set; }
+    public string model_type { get; set; }
     public string product_name { get; set; }
     public string product_content { get; set; }
     public double price { get; set; }

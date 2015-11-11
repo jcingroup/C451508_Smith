@@ -116,7 +116,7 @@
           </Key>
           <Property Name="issue_id" Type="int" Nullable="false" />
           <Property Name="issue_category_id" Type="int" Nullable="false" />
-          <Property Name="issue_q" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="issue_q" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="issue_ans" Type="text" />
           <Property Name="sort" Type="int" />
           <Property Name="i_Hide" Type="bit" Nullable="false" />
@@ -201,6 +201,7 @@
           </Key>
           <Property Name="product_id" Type="int" Nullable="false" />
           <Property Name="category_id" Type="int" Nullable="false" />
+          <Property Name="model_type" Type="nvarchar" MaxLength="16" />
           <Property Name="product_name" Type="nvarchar" MaxLength="64" />
           <Property Name="product_content" Type="text" />
           <Property Name="price" Type="float" Nullable="false" />
@@ -572,11 +573,6 @@
             <End Role="Menu" EntitySet="Menu" />
           </AssociationSet>
           <EntitySet Name="ProductCategory" EntityType="C45A0_SmithModel.ProductCategory" />
-          <EntitySet Name="Product" EntityType="C45A0_SmithModel.Product" />
-          <AssociationSet Name="FK_Product_ProductCategory" Association="C45A0_SmithModel.FK_Product_ProductCategory">
-            <End Role="ProductCategory" EntitySet="ProductCategory" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
           <EntitySet Name="Purchase" EntityType="C45A0_SmithModel.Purchase" />
           <EntitySet Name="IssueCategory" EntityType="C45A0_SmithModel.IssueCategory" />
           <EntitySet Name="Member" EntityType="C45A0_SmithModel.Member" />
@@ -584,6 +580,11 @@
           <AssociationSet Name="FK_Issue_IssueCategory" Association="C45A0_SmithModel.FK_Issue_IssueCategory">
             <End Role="IssueCategory" EntitySet="IssueCategory" />
             <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <EntitySet Name="Product" EntityType="C45A0_SmithModel.Product" />
+          <AssociationSet Name="FK_Product_ProductCategory" Association="C45A0_SmithModel.FK_Product_ProductCategory">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ProductCategory">
@@ -604,38 +605,6 @@
           <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Product" Relationship="C45A0_SmithModel.FK_Product_ProductCategory" FromRole="ProductCategory" ToRole="Product" />
         </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="product_id" />
-          </Key>
-          <Property Name="product_id" Type="Int32" Nullable="false" />
-          <Property Name="category_id" Type="Int32" Nullable="false" />
-          <Property Name="product_name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="product_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="price" Type="Double" Nullable="false" />
-          <Property Name="sort" Type="Int32" />
-          <Property Name="i_Hide" Type="Boolean" Nullable="false" />
-          <Property Name="i_InsertUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="i_InsertDeptID" Type="Int32" />
-          <Property Name="i_InsertDateTime" Type="DateTime" Precision="3" />
-          <Property Name="i_UpdateUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="i_UpdateDeptID" Type="Int32" />
-          <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
-          <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="ProductCategory" Relationship="C45A0_SmithModel.FK_Product_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
-        </EntityType>
-        <Association Name="FK_Product_ProductCategory">
-          <End Type="C45A0_SmithModel.ProductCategory" Role="ProductCategory" Multiplicity="1" />
-          <End Type="C45A0_SmithModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductCategory">
-              <PropertyRef Name="product_category_id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="category_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Purchase">
           <Key>
             <PropertyRef Name="purchase_id" />
@@ -704,7 +673,7 @@
           </Key>
           <Property Name="issue_id" Type="Int32" Nullable="false" />
           <Property Name="issue_category_id" Type="Int32" Nullable="false" />
-          <Property Name="issue_q" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="issue_q" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="issue_ans" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="sort" Type="Int32" />
           <Property Name="i_Hide" Type="Boolean" Nullable="false" />
@@ -726,6 +695,39 @@
             </Principal>
             <Dependent Role="Issue">
               <PropertyRef Name="issue_category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="category_id" Type="Int32" Nullable="false" />
+          <Property Name="model_type" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="product_name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="product_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="sort" Type="Int32" />
+          <Property Name="i_Hide" Type="Boolean" Nullable="false" />
+          <Property Name="i_InsertUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_InsertDeptID" Type="Int32" />
+          <Property Name="i_InsertDateTime" Type="DateTime" Precision="3" />
+          <Property Name="i_UpdateUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_UpdateDeptID" Type="Int32" />
+          <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="ProductCategory" Relationship="C45A0_SmithModel.FK_Product_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
+        </EntityType>
+        <Association Name="FK_Product_ProductCategory">
+          <End Type="C45A0_SmithModel.ProductCategory" Role="ProductCategory" Multiplicity="1" />
+          <End Type="C45A0_SmithModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="product_category_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="category_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -894,26 +896,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="C45A0_SmithModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="i_Lang" ColumnName="i_Lang" />
-                <ScalarProperty Name="i_UpdateDateTime" ColumnName="i_UpdateDateTime" />
-                <ScalarProperty Name="i_UpdateDeptID" ColumnName="i_UpdateDeptID" />
-                <ScalarProperty Name="i_UpdateUserID" ColumnName="i_UpdateUserID" />
-                <ScalarProperty Name="i_InsertDateTime" ColumnName="i_InsertDateTime" />
-                <ScalarProperty Name="i_InsertDeptID" ColumnName="i_InsertDeptID" />
-                <ScalarProperty Name="i_InsertUserID" ColumnName="i_InsertUserID" />
-                <ScalarProperty Name="i_Hide" ColumnName="i_Hide" />
-                <ScalarProperty Name="sort" ColumnName="sort" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="product_content" ColumnName="product_content" />
-                <ScalarProperty Name="product_name" ColumnName="product_name" />
-                <ScalarProperty Name="category_id" ColumnName="category_id" />
-                <ScalarProperty Name="product_id" ColumnName="product_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Purchase">
             <EntityTypeMapping TypeName="C45A0_SmithModel.Purchase">
               <MappingFragment StoreEntitySet="Purchase">
@@ -990,6 +972,27 @@
                 <ScalarProperty Name="issue_q" ColumnName="issue_q" />
                 <ScalarProperty Name="issue_category_id" ColumnName="issue_category_id" />
                 <ScalarProperty Name="issue_id" ColumnName="issue_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="C45A0_SmithModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="i_Lang" ColumnName="i_Lang" />
+                <ScalarProperty Name="i_UpdateDateTime" ColumnName="i_UpdateDateTime" />
+                <ScalarProperty Name="i_UpdateDeptID" ColumnName="i_UpdateDeptID" />
+                <ScalarProperty Name="i_UpdateUserID" ColumnName="i_UpdateUserID" />
+                <ScalarProperty Name="i_InsertDateTime" ColumnName="i_InsertDateTime" />
+                <ScalarProperty Name="i_InsertDeptID" ColumnName="i_InsertDeptID" />
+                <ScalarProperty Name="i_InsertUserID" ColumnName="i_InsertUserID" />
+                <ScalarProperty Name="i_Hide" ColumnName="i_Hide" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="product_content" ColumnName="product_content" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="model_type" ColumnName="model_type" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

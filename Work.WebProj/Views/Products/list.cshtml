@@ -1,4 +1,4 @@
-﻿
+﻿@model List<ProcCore.Business.DB0.m_Product>
 @{
     ViewBag.Title = "藍光DVD播放機";
     ViewBag.BodyClass = "Products";
@@ -9,17 +9,14 @@
     <li><a href="~/Products">產品介紹</a></li>
 }
 
-<figure>
-    <img src="~/Content/images/products/pro.jpg" alt="藍光DVD播放機-BD350">
-    <h3>BD-350<small>5.1聲道 3D藍光DVD播放機</small></h3>
-    <figcaption>
-        <a href="~/Products/Content">READ MORE</a>
-    </figcaption>
-</figure>
-<figure>
-    <img src="~/Content/images/products/pro2.jpg" alt="藍光DVD播放機-BD320">
-    <h3>BD-320<small>5.1聲道 3D藍光DVD播放機</small></h3>
-    <figcaption>
-        <a href="~/Products/Content">READ MORE</a>
-    </figcaption>
-</figure>
+@foreach (var item in Model)
+{
+    <figure>
+        <img src="@item.imgsrc" alt=@(item.category_name+"-"+item.model_type) >
+        <h3>@item.model_type<small>@item.product_name</small></h3>
+        <figcaption>
+            <a href="~/Products/Content?id=@item.product_id">READ MORE</a>
+        </figcaption>
+    </figure>
+}
+

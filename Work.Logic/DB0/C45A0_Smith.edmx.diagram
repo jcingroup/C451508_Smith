@@ -19,13 +19,13 @@
         <AssociationConnector Association="C45A0_SmithModel.AspNetUserRoles" ManuallyRouted="false" />
         <AssociationConnector Association="C45A0_SmithModel.MenuRole" ManuallyRouted="false" />
         <EntityTypeShape EntityType="C45A0_SmithModel.ProductCategory" Width="1.5" PointX="8.375" PointY="7.125" />
-        <EntityTypeShape EntityType="C45A0_SmithModel.Product" Width="1.5" PointX="10.625" PointY="6.875" />
-        <AssociationConnector Association="C45A0_SmithModel.FK_Product_ProductCategory" />
         <EntityTypeShape EntityType="C45A0_SmithModel.Purchase" Width="1.5" PointX="10.375" PointY="0.75" />
         <EntityTypeShape EntityType="C45A0_SmithModel.IssueCategory" Width="1.5" PointX="5.375" PointY="12.25" />
         <EntityTypeShape EntityType="C45A0_SmithModel.Member" Width="1.5" PointX="10.375" PointY="11.75" />
         <EntityTypeShape EntityType="C45A0_SmithModel.Issue" Width="1.5" PointX="7.625" PointY="12.125" />
         <AssociationConnector Association="C45A0_SmithModel.FK_Issue_IssueCategory" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.Product" Width="1.5" PointX="10.625" PointY="6.875" />
+        <AssociationConnector Association="C45A0_SmithModel.FK_Product_ProductCategory" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

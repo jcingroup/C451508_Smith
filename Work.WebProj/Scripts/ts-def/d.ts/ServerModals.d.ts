@@ -54,6 +54,7 @@
     interface Product extends BaseEntityTable {
         product_id?: number;
         category_id: number;
+        model_type?: number;
         product_name?: string;
         product_content?: string;
         price?: number;

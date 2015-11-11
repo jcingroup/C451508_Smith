@@ -33,20 +33,26 @@ namespace DotWeb.Api
             using (db0 = getDB0())
             {
                 var items = db0.Product
-                    .OrderBy(x => x.sort)
-                    .Select(x => new m_Product()
-                    {
-                        product_id = x.product_id,
-                        product_name = x.product_name,
-                        category_name = x.ProductCategory.category_name,
-                        price = x.price,
-                        sort = x.sort,
-                        i_Hide=x.i_Hide
-                    }).Where(x => x.product_id > 0).AsQueryable();
+                            .OrderBy(x => x.sort)
+                            .Select(x => new m_Product()
+                            {
+                                product_id = x.product_id,
+                                product_name = x.product_name,
+                                category_name = x.ProductCategory.category_name,
+                                category_id = x.category_id,
+                                model_type=x.model_type,
+                                price = x.price,
+                                sort = x.sort,
+                                i_Hide = x.i_Hide
+                            }).Where(x => x.product_id > 0).AsQueryable();
 
                 if (q.name != null)
                 {
                     items = items.Where(x => x.product_name.Contains(q.name));
+                }
+                if (q.product_category_id != null)
+                {
+                    items = items.Where(x => x.category_id == q.product_category_id);
                 }
 
                 int page = (q.page == null ? 1 : (int)q.page);
@@ -62,6 +68,7 @@ namespace DotWeb.Api
                     startcount = PageCount.StartCount,
                     endcount = PageCount.EndCount
                 });
+
             }
             #endregion
         }
@@ -76,6 +83,7 @@ namespace DotWeb.Api
                 item.product_name = md.product_name;
                 item.product_content = md.product_content;
                 item.category_id = md.category_id;
+                item.model_type = md.model_type;
                 item.price = md.price;
                 item.sort = md.sort;
 
@@ -190,5 +198,6 @@ namespace DotWeb.Api
     public class q_Product : QueryBase
     {
         public string name { get; set; }
+        public int? product_category_id { get; set; }
     }
 }
