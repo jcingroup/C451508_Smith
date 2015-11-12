@@ -60,7 +60,7 @@
         }
     }
 
-    export class GridForm extends React.Component<BaseDefine.GridFormPropsBase, FormState<Rows, server.Sales, SearchData>>{
+    export class GridForm extends React.Component<BaseDefine.GridFormPropsBase, FormState<Rows, any, SearchData>>{
 
         constructor() {
 

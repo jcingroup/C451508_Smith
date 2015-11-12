@@ -122,3 +122,78 @@ var GridNavPage = (function (_super) {
     };
     return GridNavPage;
 })(React.Component);
+var TwAddress = (function (_super) {
+    __extends(TwAddress, _super);
+    function TwAddress(props) {
+        _super.call(this, props);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.componentDidUpdate = this.componentDidUpdate.bind(this);
+        this.onCityChange = this.onCityChange.bind(this);
+        this.listCountry = this.listCountry.bind(this);
+        this.valueChange = this.valueChange.bind(this);
+        this.render = this.render.bind(this);
+    }
+    TwAddress.prototype.componentDidMount = function () {
+        if (this.props.city_value != null) {
+        }
+    };
+    TwAddress.prototype.componentDidUpdate = function (prevProps, prevState) {
+        if (this.props.city_value != null && this.props.city_value != prevProps.city_value) {
+        }
+    };
+    TwAddress.prototype.onCityChange = function (e) {
+    };
+    TwAddress.prototype.onCountryChange = function (e) {
+        this.props.onChange(this.props.country_field, e);
+        for (var i in this.state.country_list) {
+            var item = this.state.country_list[i];
+            if (item.county == e.target.value) {
+                this.props.setFDValue(this.props.zip_field, item.zip);
+                break;
+            }
+        }
+    };
+    TwAddress.prototype.listCountry = function (value) {
+        if (value == null || value == undefined || value == '') {
+            this.setState({ country_list: [] });
+        }
+        else {
+            for (var i in dt.twDistrict) {
+                var item = dt.twDistrict[i];
+                if (item.city == value) {
+                    this.setState({ country_list: item.contain });
+                    if (this.props.country_value != null) {
+                    }
+                    break;
+                }
+            }
+        }
+    };
+    TwAddress.prototype.valueChange = function (f, e) {
+        this.props.onChange(f, e);
+    };
+    TwAddress.prototype.render = function () {
+        var out_html = null;
+        out_html = (React.createElement("div", null, React.createElement("div", {"className": "col-xs-1"}, React.createElement("input", {"type": "text", "className": "form-control", "value": this.props.zip_value, "onChange": this.valueChange.bind(this, this.props.zip_field), "maxLength": 5, "required": true, "disabled": true})), React.createElement("div", {"className": "col-xs-2"}, React.createElement("select", {"className": "form-control", "value": this.props.city_value, "onChange": this.onCityChange, "required": this.props.required, "disabled": this.props.disabled}, React.createElement("option", {"value": ""}), dt.twDistrict.map(function (itemData, i) {
+            return React.createElement("option", {"key": itemData.city, "value": itemData.city}, itemData.city);
+        }))), React.createElement("div", {"className": "col-xs-2"}, React.createElement("select", {"className": "form-control", "value": this.props.country_value, "onChange": this.onCountryChange, "required": this.props.required, "disabled": this.props.disabled}, React.createElement("option", {"value": ""}), this.state.country_list.map(function (itemData, i) {
+            return React.createElement("option", {"key": itemData.county, "value": itemData.county}, itemData.county);
+        }))), React.createElement("div", {"className": "col-xs-5"}, React.createElement("input", {"type": "text", "className": "form-control", "value": this.props.address_value, "onChange": this.valueChange.bind(this, this.props.address_field), "maxLength": 128, "required": this.props.required, "disabled": this.props.disabled}))));
+        return out_html;
+    };
+    TwAddress.defaultProps = {
+        onChange: null,
+        zip_value: null,
+        zip_field: null,
+        city_value: null,
+        city_field: null,
+        country_value: null,
+        country_field: null,
+        address_value: null,
+        address_field: null,
+        setFDValue: null,
+        required: false,
+        disabled: false
+    };
+    return TwAddress;
+})(React.Component);

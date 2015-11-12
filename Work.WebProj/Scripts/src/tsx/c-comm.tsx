@@ -269,3 +269,152 @@ class GridNavPage extends React.Component<GridNavPageProps, any> {
         return oper;
     }
 }
+
+//台灣地址切換
+class TwAddress extends React.Component<{
+    onChange(fieldName: string, e: any): void,
+    setFDValue(fieldName: string, e: any): void,
+    zip_value: string,
+    zip_field: string,
+    city_value: string,
+    city_field: string,
+    country_value: string,
+    country_field: string,
+    address_value: string,
+    address_field: string,
+    required?: boolean,
+    disabled?: boolean,
+    ver?: number
+}, { country_list: Array<any> }>{
+
+    constructor(props) {
+        super(props)
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.componentDidUpdate = this.componentDidUpdate.bind(this);
+        this.onCityChange = this.onCityChange.bind(this);
+        this.listCountry = this.listCountry.bind(this);
+        this.valueChange = this.valueChange.bind(this);
+        this.render = this.render.bind(this);
+    }
+    static defaultProps = {
+        onChange: null,
+        zip_value: null,
+        zip_field: null,
+        city_value: null,
+        city_field: null,
+        country_value: null,
+        country_field: null,
+        address_value: null,
+        address_field: null,
+        setFDValue: null,
+        required: false,
+        disabled: false
+    }
+
+    componentDidMount() {
+        if (this.props.city_value != null) {
+            //this.listCountry(this.props.city_value);
+        }
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.city_value != null && this.props.city_value != prevProps.city_value) {
+            //this.listCountry(this.props.city_value);
+        }
+    }
+    onCityChange(e: React.SyntheticEvent) {
+        //this.props.onChange(this.props.city_field, e);
+        //this.listCountry(e.target.value);
+    }
+    onCountryChange(e) {
+        this.props.onChange(this.props.country_field, e);
+        for (var i in this.state.country_list) {
+            var item = this.state.country_list[i];
+            if (item.county == e.target.value) {
+                this.props.setFDValue(this.props.zip_field, item.zip);
+                break;
+            }
+        }
+    }
+    listCountry(value) {
+
+        if (value == null || value == undefined || value == '') {
+            this.setState({ country_list: [] });
+        }
+        else {
+            for (var i in dt.twDistrict) {
+                var item = dt.twDistrict[i];
+                if (item.city == value) {
+                    this.setState({ country_list: item.contain });
+                    if (this.props.country_value != null) {
+                        //console.log('country_value');
+                        //this.setState({a:1});
+                    }
+                    //console.log('country value:',this.props.country_value);
+
+                    //切換完成預設設為第一個
+                    //var item_1 = item.contain[0];
+                    //this.props.setFDValue(this.props.country_field,item_1.county);
+                    //this.props.setFDValue(this.props.zip_field,item_1.zip);
+                    break;
+                }
+            }
+        }
+    }
+    valueChange(f, e) {
+        this.props.onChange(f, e);
+    }
+
+    render() {
+        var out_html = null;
+        out_html = (
+            <div>
+                    <div className="col-xs-1">
+                        <input 	type="text"
+                            className="form-control"
+                            value={this.props.zip_value}
+                            onChange={this.valueChange.bind(this, this.props.zip_field) }
+                            maxLength={5}
+                            required disabled />
+                        </div>
+                    <div className="col-xs-2">
+                        <select className="form-control"
+                            value={this.props.city_value}
+                            onChange={this.onCityChange}
+                            required={this.props.required}
+                            disabled={this.props.disabled}>
+                                <option value=""></option>
+                                {
+                                dt.twDistrict.map(function (itemData, i) {
+                                    return <option key={itemData.city} value={itemData.city}>{itemData.city}</option>;
+                                })
+                                }
+                            </select>
+                        </div>
+                    <div className="col-xs-2">
+                        <select className="form-control"
+                            value={this.props.country_value}
+                            onChange={this.onCountryChange}
+                            required={this.props.required}
+                            disabled={this.props.disabled}>
+                                <option value=""></option>
+                                {
+                                this.state.country_list.map(function (itemData, i) {
+                                    return <option key={itemData.county} value={itemData.county}>{itemData.county}</option>;
+                                })
+                                }
+                            </select>
+                        </div>
+                    <div className="col-xs-5">
+                        <input 	type="text"
+                            className="form-control"
+                            value={this.props.address_value}
+                            onChange={this.valueChange.bind(this, this.props.address_field) }
+                            maxLength={128}
+                            required={this.props.required}
+                            disabled={this.props.disabled}/>
+                        </div>
+                </div>
+        );
+        return out_html;
+    }
+}

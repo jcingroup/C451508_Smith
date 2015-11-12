@@ -88,22 +88,19 @@
         i_Hide?: boolean;
         issue?: server.Issue[];
     }
-    interface Sales extends BaseEntityTable {
-        sales_id?: number;
-        sales_no?: string;
-        sales_name?: string;
-        account?: string;
-        psaaword?: string;
-        address?: string;
-        gender?: boolean;
-        rank?: number;
-        recommend_id?: number;
-        recommend_name?: string; //only client
-        share_id?: number;
-        share_sort?: number;
-        join_date?: Date;
-        sales_state?: number;
-        birthday?: Date;
+    interface Member extends BaseEntityTable {
+        member_id?: number;
+        member_name?: string;
+        email?: string;
+        tel?: string;
+        mobile?: string;
+        tw_zip?: string;
+        tw_city?: string;
+        tw_country?: string;
+        tw_address?: string;
+        member_account?: string;
+        member_password?: string;
+        is_approve?: boolean;
     }
     interface Purchase extends BaseEntityTable {
         purchase_id?: number;

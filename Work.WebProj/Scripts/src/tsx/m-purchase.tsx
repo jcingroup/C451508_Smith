@@ -64,11 +64,11 @@
         close(): void
         updateView(sales_id: number, sales_name: string): void,
     }
-    interface ModalSalesState {
-        modalData?: Array<server.Sales>;
-        keyword?: string;
-    }
-    class ModalSales extends React.Component<ModalSalesProps, ModalSalesState>{
+    //interface ModalSalesState {
+    //    modalData?: Array<server.Sales>;
+    //    keyword?: string;
+    //}
+    class ModalSales extends React.Component<ModalSalesProps, any>{
         constructor() {
             super();
             this.close = this.close.bind(this);

@@ -9,7 +9,7 @@
     }
     interface SearchData {
         //搜尋 參數
-        category_name?: string
+        name?: string
     }
     interface IssueCategoryState<G, F, S> extends BaseDefine.GirdFormStateBase<G, F, S> {
         //額外擴充 表單 State參數
@@ -49,7 +49,7 @@
                 </tr>;
         }
     }
-    export class GirdForm extends React.Component<BaseDefine.GridFormPropsBase, IssueCategoryState<Rows, server.IssueCategory, SearchData>>{
+    export class GirdForm extends React.Component<BaseDefine.GridFormPropsBase, IssueCategoryState<Rows, server.Member, SearchData>>{
 
         constructor() {
 
@@ -64,13 +64,14 @@
             this.checkAll = this.checkAll.bind(this);
             this.componentDidMount = this.componentDidMount.bind(this);
             this.insertType = this.insertType.bind(this);
+            this.setFDValue = this.setFDValue.bind(this);
             this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, searchData: {} }
 
         }
         static defaultProps: BaseDefine.GridFormPropsBase = {
             fdName: 'fieldData',
             gdName: 'searchData',
-            apiPath: gb_approot + 'api/IssueCategory'
+            apiPath: gb_approot + 'api/Member'
         }
         componentDidMount() {
             this.queryGridData(1);
@@ -225,7 +226,12 @@
             }
             this.setState({ fieldData: obj });
         }
-
+        setFDValue(fieldName, value) {
+            //此function提供給次元件調用，所以要以屬性往下傳。
+            var obj = this.state[this.props.fdName];
+            obj[fieldName] = value;
+            this.setState({ fieldData: obj });
+        }
         render() {
 
             var outHtml: JSX.Element = null;
@@ -245,8 +251,8 @@
                         <div className="form-group">
                             <label>Q & A分類名稱</label> { }
                             <input type="text" className="form-control"
-                                value={searchData.category_name}
-                                onChange={this.changeGDValue.bind(this, 'category_name') }
+                                value={searchData.name}
+                                onChange={this.changeGDValue.bind(this, 'name') }
                                 placeholder="請輸入關鍵字..." /> { }
                             <button className="btn-primary" type="submit"><i className="fa-search"></i> 搜尋</button>
                             </div>
@@ -304,18 +310,25 @@
     <h3 className="title" dangerouslySetInnerHTML={{ __html: this.props.caption + ' 基本資料維護' }}></h3>
     <form className="form-horizontal" onSubmit={this.handleSubmit}>
         <div className="col-xs-12">
-            <div className="alert alert-warning">
-                <p><strong className="text-danger">紅色標題</strong> 為必填欄位。</p>
-                </div>
-
 
             <div className="form-group">
-                <label className="col-xs-2 control-label text-danger">分類名稱</label>
+                <label className="col-xs-2 control-label">會員編號</label>
                 <div className="col-xs-4">
                     <input type="text"
                         className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'category_name') }
-                        value={fieldData.category_name}
+                        onChange={this.changeFDValue.bind(this, 'member_id') }
+                        value={fieldData.member_id}
+                        placeholder="系統自動產生"
+                        disabled />
+                    </div>
+                </div>
+            <div className="form-group">
+                <label className="col-xs-2 control-label">會員姓名</label>
+                <div className="col-xs-4">
+                    <input type="text"
+                        className="form-control"
+                        onChange={this.changeFDValue.bind(this, 'member_name') }
+                        value={fieldData.member_name}
                         maxLength={64}
                         required />
                     </div>
@@ -323,53 +336,72 @@
                 </div>
 
             <div className="form-group">
-                <label className="col-xs-2 control-label">排序</label>
+                <label className="col-xs-2 control-label">E-Mail</label>
                 <div className="col-xs-4">
-                    <input type="number"
+                    <input type="text"
                         className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'sort') }
-                        value={fieldData.sort} />
+                        onChange={this.changeFDValue.bind(this, 'email') }
+                        value={fieldData.email}
+                        maxLength={256}
+                        required />
                     </div>
-                <small className="col-xs-2 help-inline">數字越大越前面</small>
+                   <small className="help-inline col-xs-6">最多256個字<span className="text-danger">(必填) </span></small>
                 </div>
+             <div className="form-group">
+                <label className="col-xs-2 control-label">電話</label>
+                <div className="col-xs-4">
+                    <input type="text"
+                        className="form-control"
+                        onChange={this.changeFDValue.bind(this, 'tel') }
+                        value={fieldData.tel}
+                        maxLength={10} />
+                    </div>
+                   <small className="help-inline col-xs-6">最多10個字</small>
+                 </div>
 
+                 <div className="form-group">
+                     <label className="col-xs-2 control-label">地址</label>
+                     <TwAddress 
+                         onChange={this.changeFDValue}
+                         setFDValue={this.setFDValue}
+                         zip_value={fieldData.tw_zip}
+                         city_value={fieldData.tw_city}
+                         country_value={fieldData.tw_country}
+                         address_value={fieldData.tw_address}
+                         zip_field="tw_zip_1"
+                         city_field="tw_city_1"
+                         country_field="tw_country_1"
+                         address_field="tw_address" />
+
+                     <small className="help-inline col-xs-1 text-danger">(必填) </small>
+                     </div>
             <div className="form-group">
                 <label className="col-xs-2 control-label">狀態</label>
                 <div className="col-xs-4">
                    <div className="radio-inline">
                        <label>
                             <input type="radio"
-                                name="i_Hide"
+                                name="is_approve"
                                 value={true}
-                                checked={fieldData.i_Hide === true}
-                                onChange={this.changeFDValue.bind(this, 'i_Hide') }
+                                checked={fieldData.is_approve === true}
+                                onChange={this.changeFDValue.bind(this, 'is_approve') }
                                 />
-                            <span>隱藏</span>
+                            <span>認可</span>
                            </label>
                        </div>
                    <div className="radio-inline">
                        <label>
                             <input type="radio"
-                                name="i_Hide"
+                                name="is_approve"
                                 value={false}
-                                checked={fieldData.i_Hide === false}
-                                onChange={this.changeFDValue.bind(this, 'i_Hide') }
+                                checked={fieldData.is_approve === false}
+                                onChange={this.changeFDValue.bind(this, 'is_approve') }
                                 />
-                            <span>顯示</span>
+                            <span>未認可</span>
                            </label>
                        </div>
                     </div>
                 </div>
-
-                <div className="form-group">
-                     <label className="col-xs-2 control-label">備註</label>
-                        <div className="col-xs-6">
-                            <textarea cols={30} rows={3} className="form-control"
-                                value={fieldData.memo}
-                                onChange={this.changeFDValue.bind(this, 'memo') }
-                                maxLength={256}></textarea>
-                            </div>
-                    </div>
 
             <div className="form-action text-right">
                 <div className="col-xs-5">
