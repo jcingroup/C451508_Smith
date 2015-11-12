@@ -129,25 +129,33 @@ var TwAddress = (function (_super) {
         this.componentDidMount = this.componentDidMount.bind(this);
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.onCityChange = this.onCityChange.bind(this);
+        this.onCountryChange = this.onCountryChange.bind(this);
         this.listCountry = this.listCountry.bind(this);
         this.valueChange = this.valueChange.bind(this);
         this.render = this.render.bind(this);
+        this.state = { country_list: [] };
     }
     TwAddress.prototype.componentDidMount = function () {
         if (this.props.city_value != null) {
+            this.listCountry(this.props.city_value);
         }
     };
     TwAddress.prototype.componentDidUpdate = function (prevProps, prevState) {
         if (this.props.city_value != null && this.props.city_value != prevProps.city_value) {
+            this.listCountry(this.props.city_value);
         }
     };
     TwAddress.prototype.onCityChange = function (e) {
+        var input = e.target;
+        this.props.onChange(this.props.city_field, e);
+        this.listCountry(input.value);
     };
     TwAddress.prototype.onCountryChange = function (e) {
+        var input = e.target;
         this.props.onChange(this.props.country_field, e);
         for (var i in this.state.country_list) {
             var item = this.state.country_list[i];
-            if (item.county == e.target.value) {
+            if (item.county == input.value) {
                 this.props.setFDValue(this.props.zip_field, item.zip);
                 break;
             }
@@ -174,11 +182,11 @@ var TwAddress = (function (_super) {
     };
     TwAddress.prototype.render = function () {
         var out_html = null;
-        out_html = (React.createElement("div", null, React.createElement("div", {"className": "col-xs-1"}, React.createElement("input", {"type": "text", "className": "form-control", "value": this.props.zip_value, "onChange": this.valueChange.bind(this, this.props.zip_field), "maxLength": 5, "required": true, "disabled": true})), React.createElement("div", {"className": "col-xs-2"}, React.createElement("select", {"className": "form-control", "value": this.props.city_value, "onChange": this.onCityChange, "required": this.props.required, "disabled": this.props.disabled}, React.createElement("option", {"value": ""}), dt.twDistrict.map(function (itemData, i) {
+        out_html = (React.createElement("div", null, React.createElement("div", {"className": "col-xs-1"}, React.createElement("input", {"type": "text", "className": "form-control", "value": this.props.zip_value, "onChange": this.valueChange.bind(this, this.props.zip_field), "maxLength": 5, "required": true, "disabled": true})), React.createElement("div", {"className": "col-xs-1"}, React.createElement("select", {"className": "form-control", "value": this.props.city_value, "onChange": this.onCityChange, "required": this.props.required, "disabled": this.props.disabled}, React.createElement("option", {"value": ""}), dt.twDistrict.map(function (itemData, i) {
             return React.createElement("option", {"key": itemData.city, "value": itemData.city}, itemData.city);
-        }))), React.createElement("div", {"className": "col-xs-2"}, React.createElement("select", {"className": "form-control", "value": this.props.country_value, "onChange": this.onCountryChange, "required": this.props.required, "disabled": this.props.disabled}, React.createElement("option", {"value": ""}), this.state.country_list.map(function (itemData, i) {
+        }))), React.createElement("div", {"className": "col-xs-1"}, React.createElement("select", {"className": "form-control", "value": this.props.country_value, "onChange": this.onCountryChange, "required": this.props.required, "disabled": this.props.disabled}, React.createElement("option", {"value": ""}), this.state.country_list.map(function (itemData, i) {
             return React.createElement("option", {"key": itemData.county, "value": itemData.county}, itemData.county);
-        }))), React.createElement("div", {"className": "col-xs-5"}, React.createElement("input", {"type": "text", "className": "form-control", "value": this.props.address_value, "onChange": this.valueChange.bind(this, this.props.address_field), "maxLength": 128, "required": this.props.required, "disabled": this.props.disabled}))));
+        }))), React.createElement("div", {"className": "col-xs-2"}, React.createElement("input", {"type": "text", "className": "form-control", "value": this.props.address_value, "onChange": this.valueChange.bind(this, this.props.address_field), "maxLength": 128, "required": this.props.required, "disabled": this.props.disabled}))));
         return out_html;
     };
     TwAddress.defaultProps = {

@@ -314,6 +314,68 @@ namespace DotWeb.Areas.Base.Controllers
                 return defJSON(rAjaxResult);
             }
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<string> ajax_MemberLogin(MemberLogin obj)
+        {
+            LoginResult rAjaxResult = new LoginResult();
+            if (!ModelState.IsValid)
+            {
+                rAjaxResult.result = false;
+                rAjaxResult.message = "資訊不完整";
+                return defJSON(rAjaxResult);
+            }
+
+            #region 驗證碼檢查程序
+            if (string.IsNullOrEmpty(Session["MemberLogin"].ToString()))
+            {
+                Session["MemberLogin"] = Guid.NewGuid();
+                rAjaxResult.result = false;
+                rAjaxResult.message = Resources.Res.Log_Err_ImgValideNotEquel;
+                return defJSON(rAjaxResult);
+            }
+
+            rAjaxResult.vildate = Session["MemberLogin"].Equals(obj.validate) ? true : false;
+#if DEBUG
+            rAjaxResult.vildate = true;
+#endif
+            if (!rAjaxResult.vildate)
+            {
+                Session["MemberLogin"] = Guid.NewGuid(); //只要有錯先隨意產生唯一碼 以防暴力破解，新的CheckCode會在Validate產生。
+                rAjaxResult.result = false;
+                rAjaxResult.message = Resources.Res.Log_Err_ImgValideNotEquel;
+                return defJSON(rAjaxResult);
+            }
+            #endregion
+            var db0 = getDB0();
+            var get_user = db0.Member.Where(x => (x.member_account == obj.act || x.email == obj.act) && x.member_password == obj.pwd).FirstOrDefault();
+
+            if (get_user != null)
+            {
+                Response.Cookies.Add(new HttpCookie(CommWebSetup.WebCookiesId + ".member_id", Server.UrlEncode(EncryptString.desEncryptBase64(get_user.member_id.ToString()))));
+                Response.Cookies.Add(new HttpCookie(CommWebSetup.WebCookiesId + ".member_name", Server.UrlEncode(get_user.member_name)));
+
+                rAjaxResult.result = true;
+                rAjaxResult.url = Url.Content("~/News");
+                return defJSON(rAjaxResult);
+            }
+            else
+            {
+                rAjaxResult.result = false;
+                rAjaxResult.message = "帳號或密碼錯誤 請重新輸入";
+                return defJSON(rAjaxResult);
+            }
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public RedirectResult ajax_MemberLogout()
+        {
+            removeCookie(CommWebSetup.WebCookiesId + ".member_id");
+            removeCookie(CommWebSetup.WebCookiesId + ".member_name");
+
+            return Redirect("~");
+        }
         private void removeCookie(string key)
         {
             var c = new HttpCookie(key);
@@ -325,6 +387,7 @@ namespace DotWeb.Areas.Base.Controllers
         {
             public string act { get; set; }
             public string pwd { get; set; }
+            public string validate { get; set; }
         }
         class LoginResult
         {

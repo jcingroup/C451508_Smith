@@ -1,7 +1,6 @@
 ﻿@{
 
     var sidebar = (List<ProcCore.Business.DB0.m_ProductCategory>)ViewBag.Sidebar;
-
 }
 <!DOCTYPE html>
 <html lang="zh-TW">
@@ -33,6 +32,8 @@
             <h3>LOGIN 會員登入</h3>
             <input type="text" name="id" placeholder="請輸入會員帳號(email)">
             <input type="password" name="pwd" placeholder="請輸入會員密碼">
+            <img alt="驗證碼" src="~/_Code/Ashx/ValidateCode.ashx?vn=MemberLogin" />
+            <input type="text" name="validate" placeholder="請輸入驗證碼">
             <button class="btn btn-primary">登入</button>
             <a class="md-trigger joinus" data-modal="join">無帳號，我要加入會員</a>
             <button class="md-close">X</button>
@@ -59,8 +60,11 @@
             <h1 onclick="location.href='@Url.Content("~/index")'" title="回首頁">統城科技股份有限公司</h1>
 
             <nav class="top-nav">
+                <a>某某會員,你好!</a>@*登入後,顯示會員名稱*@
                 <a href="~/index">HOME 首頁</a>
                 <button class="md-trigger" data-modal="login">LOGIN 登入</button>
+                <button type="button">LOGOUT 登出</button>@*登入後隱藏登入按鈕,並顯示登出按鈕*@
+                <button>購物車</button>
             </nav>
 
             <button class="menu-trigger">主選單</button>
