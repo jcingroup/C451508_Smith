@@ -11,7 +11,7 @@ var strip = require('gulp-strip-comments'); //移除註解
 //後台共同引用的js打包處理
 gulp.task('commHdl', function () {
     var jsfiles = [
-        'Scripts/build/ts/dynScript/defData.js',
+        'Scripts/build/ts/def/defData.js',
         'Scripts/app/moment/moment.min.js',
         'Scripts/app/moment/locale/zh-tw.js',
         'Scripts/jquery/jquery-2.1.4.min.js',
@@ -31,7 +31,7 @@ gulp.task('commHdl', function () {
 
 gulp.task('commHdlX', function () {
     var jsfiles = [
-        'Scripts/build/ts/dynScript/defData.js',
+        'Scripts/build/ts/def/defData.js',
         'Scripts/app/moment/moment.min.js',
         'Scripts/app/moment/locale/zh-tw.js',
         'Scripts/jquery/jquery-2.1.4.min.js',
@@ -74,7 +74,7 @@ gulp.task('tsHdl', function () {
     var jsfiles = [
         'Scripts/ts-def/*.js',
         'Scripts/ts-def/d.ts/*.js',
-        'Scripts/ts-def/dynScript/*.js',
+        'Scripts/ts-def/def/*.js',
         'Scripts/ts-def/widegt/*.js'
     ];
 

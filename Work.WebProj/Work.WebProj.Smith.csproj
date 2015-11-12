@@ -659,7 +659,6 @@
     <Content Include="Scripts\build\func\m-product_category.js" />
     <Content Include="Scripts\build\func\m-purchase.js" />
     <Content Include="Scripts\build\func\m-Roles.js" />
-    <Content Include="Scripts\build\func\m-sales.js" />
     <Content Include="Scripts\build\func\m-Users.js" />
     <Content Include="Scripts\build\ts\commangular.js" />
     <Content Include="Scripts\build\ts\commfunc.js" />
@@ -668,8 +667,8 @@
     <Content Include="Scripts\build\ts\ConsoleIe8.js" />
     <Content Include="Scripts\build\ts\d.ts\EToasterType.js" />
     <Content Include="Scripts\build\ts\d.ts\IExcelHandle.js" />
-    <Content Include="Scripts\build\ts\dynScript\defData.js" />
-    <Content Include="Scripts\build\ts\dynScript\defGlobal.js" />
+    <Content Include="Scripts\build\ts\def\defData.js" />
+    <Content Include="Scripts\build\ts\def\defGlobal.js" />
     <Content Include="Scripts\build\ts\index.js" />
     <Content Include="Scripts\es6.js" />
     <Content Include="Scripts\GoogleAnalytics.js" />
@@ -817,7 +816,6 @@
     <TypeScriptCompile Include="Scripts\src\tsx\m-product_category.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-product.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-purchase.tsx" />
-    <TypeScriptCompile Include="Scripts\src\tsx\m-sales.tsx" />
     <TypeScriptCompile Include="Scripts\ts-def\commfunc.ts" />
     <TypeScriptCompile Include="Scripts\ts-def\commupload.ts" />
     <TypeScriptCompile Include="Scripts\ts-def\commwww.ts" />
