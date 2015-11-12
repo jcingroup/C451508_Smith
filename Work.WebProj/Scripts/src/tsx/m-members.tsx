@@ -1,11 +1,11 @@
 ﻿namespace MembersData {
     interface Rows {
         check_del: boolean,
-        issue_category_id: number;
-        category_name: string;
-        sort: number;
-        memo: string;
-        i_Hide: boolean;
+        member_id: number;
+        tel: string;
+        member_name: string;
+        email: string;
+        is_approve: boolean;
     }
     interface SearchData {
         //搜尋 參數
@@ -43,9 +43,10 @@
                     <td className="text-center">
                         <GridButtonModify modify={this.modify}/>
                         </td>
-                    <td>{this.props.itemData.category_name}</td>
-                    <td>{this.props.itemData.sort}</td>
-                    <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
+                    <td>{this.props.itemData.member_id}</td>
+                    <td>{this.props.itemData.member_name}</td>
+                    <td>{this.props.itemData.email}</td>
+                    <td>{this.props.itemData.is_approve ? <span className="label label-success">認可</span> : <span className="label label-default">未認可</span>}</td>
                 </tr>;
         }
     }
@@ -143,7 +144,7 @@
             var ids = [];
             for (var i in this.state.gridData.rows) {
                 if (this.state.gridData.rows[i].check_del) {
-                    ids.push('ids=' + this.state.gridData.rows[i].issue_category_id);
+                    ids.push('ids=' + this.state.gridData.rows[i].member_id);
                 }
             }
 
@@ -249,7 +250,7 @@
                 <div className="table-filter">
                     <div className="form-inline">
                         <div className="form-group">
-                            <label>Q & A分類名稱</label> { }
+                            <label>會員名稱</label> { }
                             <input type="text" className="form-control"
                                 value={searchData.name}
                                 onChange={this.changeGDValue.bind(this, 'name') }
@@ -269,9 +270,10 @@
                                 </label>
                             </th>
                         <th className="col-xs-1 text-center">修改</th>
-                        <th className="col-xs-2">分類名稱</th>
-                        <th className="col-xs-2">排序</th>
-                        <th className="col-xs-2">狀態</th>
+                        <th className="col-xs-1">編號</th>
+                        <th className="col-xs-2">姓名</th>
+                        <th className="col-xs-2">EMail</th>
+                        <th className="col-xs-1">狀態</th>
                         </tr>
                     </thead>
                 <tbody>
@@ -280,7 +282,7 @@
                         (itemData, i) =>
                             <GridRow key={i}
                                 ikey={i}
-                                primKey={itemData.issue_category_id}
+                                primKey={itemData.member_id}
                                 itemData={itemData}
                                 delCheck={this.delCheck}
                                 updateType={this.updateType} />
@@ -313,7 +315,7 @@
 
             <div className="form-group">
                 <label className="col-xs-2 control-label">會員編號</label>
-                <div className="col-xs-4">
+                <div className="col-xs-5">
                     <input type="text"
                         className="form-control"
                         onChange={this.changeFDValue.bind(this, 'member_id') }
@@ -324,7 +326,7 @@
                 </div>
             <div className="form-group">
                 <label className="col-xs-2 control-label">會員姓名</label>
-                <div className="col-xs-4">
+                <div className="col-xs-5">
                     <input type="text"
                         className="form-control"
                         onChange={this.changeFDValue.bind(this, 'member_name') }
@@ -332,52 +334,75 @@
                         maxLength={64}
                         required />
                     </div>
-                   <small className="help-inline col-xs-6">最多64個字<span className="text-danger">(必填) </span></small>
+                   <small className="help-inline col-xs-5">最多64個字<span className="text-danger">(必填) </span></small>
                 </div>
 
             <div className="form-group">
                 <label className="col-xs-2 control-label">E-Mail</label>
-                <div className="col-xs-4">
-                    <input type="text"
+                <div className="col-xs-5">
+                    <input type="email"
                         className="form-control"
                         onChange={this.changeFDValue.bind(this, 'email') }
                         value={fieldData.email}
                         maxLength={256}
                         required />
                     </div>
-                   <small className="help-inline col-xs-6">最多256個字<span className="text-danger">(必填) </span></small>
+                   <small className="help-inline col-xs-5">最多256個字<span className="text-danger">(必填) </span></small>
                 </div>
              <div className="form-group">
                 <label className="col-xs-2 control-label">電話</label>
-                <div className="col-xs-4">
+                <div className="col-xs-5">
                     <input type="text"
                         className="form-control"
                         onChange={this.changeFDValue.bind(this, 'tel') }
                         value={fieldData.tel}
                         maxLength={10} />
                     </div>
-                   <small className="help-inline col-xs-6">最多10個字</small>
+                   <small className="help-inline col-xs-5">最多10個字</small>
                  </div>
 
                  <div className="form-group">
                      <label className="col-xs-2 control-label">地址</label>
-                     <TwAddress 
-                         onChange={this.changeFDValue}
-                         setFDValue={this.setFDValue}
+                     <TwAddress
+                         onChange={this.changeFDValue.bind(this) }
+                         setFDValue={this.setFDValue.bind(this) }
                          zip_value={fieldData.tw_zip}
                          city_value={fieldData.tw_city}
                          country_value={fieldData.tw_country}
                          address_value={fieldData.tw_address}
-                         zip_field="tw_zip_1"
-                         city_field="tw_city_1"
-                         country_field="tw_country_1"
+                         zip_field="tw_zip"
+                         city_field="tw_city"
+                         country_field="tw_country"
                          address_field="tw_address" />
-
-                     <small className="help-inline col-xs-1 text-danger">(必填) </small>
                      </div>
+
+            <div className="form-group">
+                <label className="col-xs-2 control-label">會員帳號</label>
+                <div className="col-xs-5">
+                    <input type="text"
+                        className="form-control"
+                        onChange={this.changeFDValue.bind(this, 'member_account') }
+                        value={fieldData.member_account}
+                        maxLength={10}
+                        required />
+                    </div>
+                   <small className="help-inline col-xs-5">最多10個字<span className="text-danger">(必填) </span></small>
+                </div>
+             <div className="form-group">
+                <label className="col-xs-2 control-label">會員密碼</label>
+                <div className="col-xs-5">
+                    <input type="text"
+                        className="form-control"
+                        onChange={this.changeFDValue.bind(this, 'member_password') }
+                        value={fieldData.member_password}
+                        required />
+                    </div>
+                   <small className="help-inline col-xs-5"><span className="text-danger">(必填) </span></small>
+              </div>
+
             <div className="form-group">
                 <label className="col-xs-2 control-label">狀態</label>
-                <div className="col-xs-4">
+                <div className="col-xs-2">
                    <div className="radio-inline">
                        <label>
                             <input type="radio"
@@ -401,6 +426,7 @@
                            </label>
                        </div>
                     </div>
+                    <small className="help-inline col-xs-6">會員申請認可,認可後帳號才可正式使用</small>
                 </div>
 
             <div className="form-action text-right">

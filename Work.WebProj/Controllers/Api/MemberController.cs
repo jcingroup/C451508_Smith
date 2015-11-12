@@ -41,7 +41,7 @@ namespace DotWeb.Api
                         tel = x.tel,
                         mobile = x.mobile,
                         email = x.email,
-                        i_Hide=x.i_Hide
+                        is_approve=x.is_approve
                     }).AsQueryable();
 
                 if (q.name != null)
@@ -83,6 +83,7 @@ namespace DotWeb.Api
                 item.tw_city = md.tw_city;
                 item.tw_country = md.tw_country;
                 item.tw_address = md.tw_address;
+                item.is_approve = md.is_approve;
 
                 md.i_UpdateDateTime = DateTime.Now;
                 md.i_UpdateDeptID = this.departmentId;

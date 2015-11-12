@@ -272,8 +272,8 @@ class GridNavPage extends React.Component<GridNavPageProps, any> {
 
 //台灣地址切換
 class TwAddress extends React.Component<{
-    onChange(fieldName: string, e: any): void,
-    setFDValue(fieldName: string, e: any): void,
+    onChange(fieldName: string, e: React.SyntheticEvent): void,
+    setFDValue(fieldName: string, e: React.SyntheticEvent): void,
     zip_value: string,
     zip_field: string,
     city_value: string,
@@ -292,9 +292,11 @@ class TwAddress extends React.Component<{
         this.componentDidMount = this.componentDidMount.bind(this);
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.onCityChange = this.onCityChange.bind(this);
+        this.onCountryChange = this.onCountryChange.bind(this);
         this.listCountry = this.listCountry.bind(this);
         this.valueChange = this.valueChange.bind(this);
         this.render = this.render.bind(this);
+        this.state = { country_list: [] };
     }
     static defaultProps = {
         onChange: null,
@@ -313,23 +315,25 @@ class TwAddress extends React.Component<{
 
     componentDidMount() {
         if (this.props.city_value != null) {
-            //this.listCountry(this.props.city_value);
+            this.listCountry(this.props.city_value);
         }
     }
     componentDidUpdate(prevProps, prevState) {
         if (this.props.city_value != null && this.props.city_value != prevProps.city_value) {
-            //this.listCountry(this.props.city_value);
-        }
+            this.listCountry(this.props.city_value);
+        }       
     }
     onCityChange(e: React.SyntheticEvent) {
-        //this.props.onChange(this.props.city_field, e);
-        //this.listCountry(e.target.value);
+        let input: HTMLInputElement = e.target as HTMLInputElement;
+        this.props.onChange(this.props.city_field, e);
+        this.listCountry(input.value);
     }
-    onCountryChange(e) {
+    onCountryChange(e: React.SyntheticEvent) {
+        let input: HTMLInputElement = e.target as HTMLInputElement;
         this.props.onChange(this.props.country_field, e);
         for (var i in this.state.country_list) {
             var item = this.state.country_list[i];
-            if (item.county == e.target.value) {
+            if (item.county == input.value) {
                 this.props.setFDValue(this.props.zip_field, item.zip);
                 break;
             }
@@ -363,7 +367,6 @@ class TwAddress extends React.Component<{
     valueChange(f, e) {
         this.props.onChange(f, e);
     }
-
     render() {
         var out_html = null;
         out_html = (
@@ -376,7 +379,7 @@ class TwAddress extends React.Component<{
                             maxLength={5}
                             required disabled />
                         </div>
-                    <div className="col-xs-2">
+                    <div className="col-xs-1">
                         <select className="form-control"
                             value={this.props.city_value}
                             onChange={this.onCityChange}
@@ -390,7 +393,7 @@ class TwAddress extends React.Component<{
                                 }
                             </select>
                         </div>
-                    <div className="col-xs-2">
+                    <div className="col-xs-1">
                         <select className="form-control"
                             value={this.props.country_value}
                             onChange={this.onCountryChange}
@@ -404,7 +407,7 @@ class TwAddress extends React.Component<{
                                 }
                             </select>
                         </div>
-                    <div className="col-xs-5">
+                    <div className="col-xs-2">
                         <input 	type="text"
                             className="form-control"
                             value={this.props.address_value}

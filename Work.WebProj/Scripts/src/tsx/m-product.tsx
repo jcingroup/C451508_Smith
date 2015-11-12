@@ -54,7 +54,7 @@
                     <td>{this.props.itemData.category_name}</td>
                     <td>{this.props.itemData.model_type}</td>
                     <td>{this.props.itemData.product_name}</td>
-                    <td>{this.props.itemData.price}</td>
+                    {/*<td>{this.props.itemData.price}</td>*/}
                     <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
                 </tr>;
         }
@@ -313,7 +313,7 @@
                         <th className="col-xs-2">產品分類</th>
                         <th className="col-xs-2">產品型號</th>
                         <th className="col-xs-4">產品名稱</th>
-                        <th className="col-xs-1">單價</th>
+                        {/*<th className="col-xs-1">單價</th>*/}
                         <th className="col-xs-1">狀態</th>
                         </tr>
                     </thead>
@@ -412,7 +412,7 @@
                     <small className="help-inline col-xs-6">最多16個字<span className="text-danger">(必填) </span></small>
                 </div>
 
-            <div className="form-group">
+            {/*<div className="form-group">
                 <label className="col-xs-2 control-label">單價</label>
                 <div className="col-xs-4">
                     <input type="number"
@@ -421,7 +421,7 @@
                         value={fieldData.price}
                         required />
                     </div>
-                </div>
+                </div>*/}
 
             <div className="form-group">
                 <label className="col-xs-2 control-label">排序</label>
