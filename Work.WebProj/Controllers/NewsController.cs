@@ -12,7 +12,15 @@ namespace DotWeb.WebApp.Controllers
         // GET: News
         public ActionResult Index()
         {
-            return View("News");
+            if (this.isLogin)
+            {
+                return View("News");
+            }
+            else
+            {//非會員連News轉址到首頁
+                return Redirect("~");
+            }
+
         }
     }
 }

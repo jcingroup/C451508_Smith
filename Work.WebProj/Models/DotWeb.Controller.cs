@@ -746,6 +746,7 @@ namespace DotWeb.Controller
         private readonly string sysUpFilePathTpl = "~/_Code/SysUpFiles/{0}.{1}/{2}/{3}/{4}";
         private string getImg_path_tpl = "~/_Code/SysUpFiles/{0}/{1}/{2}/{3}";
         protected string MemberId;
+        protected Boolean isLogin;
         protected WebInfo wi;
 
         protected WebUserController()
@@ -767,17 +768,31 @@ namespace DotWeb.Controller
 
             var getMemberIdCookie = Request.Cookies[CommWebSetup.WebCookiesId + ".member_id"];
             var getMemberName = Request.Cookies[CommWebSetup.WebCookiesId + ".member_name"];
-            MemberId = getMemberIdCookie == null ? null : getMemberIdCookie.Value;
+            MemberId = getMemberIdCookie == null ? null : EncryptString.desDecryptBase64(Server.UrlDecode(getMemberIdCookie.Value));
             try
             {
                 var db = getDB0();
-
+                #region 判斷會員是否正確登入
+                this.isLogin = false;
+                ViewBag.isLogin = false;
+                if (MemberId != null)
+                {
+                    int m_id = int.Parse(this.MemberId);
+                    Boolean check = db.Member.Any(x => x.member_id == m_id);
+                    if (check)
+                    {
+                        this.isLogin = true;
+                        ViewBag.isLogin = true;
+                    }
+                }
+                #endregion
                 var Async = db.SaveChangesAsync();
                 Async.Wait();
 
                 ViewBag.VisitCount = visitCount;
                 ViewBag.IsFirstPage = false; //是否為首頁，請在首頁的Action此值設為True
                 ajax_GetSidebarData();//前台左選單
+                ViewBag.MName = getMemberName.Value;
 
                 this.isTablet = (new WebInfo()).isTablet();
             }

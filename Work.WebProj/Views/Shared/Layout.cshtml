@@ -60,10 +60,15 @@
             <h1 onclick="location.href='@Url.Content("~/index")'" title="回首頁">統城科技股份有限公司</h1>
 
             <nav class="top-nav">
-                <a>某某會員,你好!</a>@*登入後,顯示會員名稱*@
                 <a href="~/index">HOME 首頁</a>
-                <button class="md-trigger" data-modal="login">LOGIN 登入</button>
-                <a href="~/Login/ajax_MemberLogout">LOGOUT 登出</a>@*登入後隱藏登入按鈕,並顯示登出按鈕*@
+                @if ((Boolean)ViewBag.isLogin == true)
+                {
+                    <a href="~/Login/ajax_MemberLogout">@ViewBag.MName,您好!是否 LOGOUT 登出</a>
+                }
+                else
+                {
+                    <button class="md-trigger" data-modal="login">LOGIN 登入</button>
+                }
                 <button>購物車</button>
             </nav>
 
@@ -71,7 +76,10 @@
             <nav id="menu">
                 <header class="toggle">MENU</header>
                 <a href="~/AboutUs">公司簡介</a>
-                <a href="~/News">最新消息</a>
+                @if ((Boolean)ViewBag.isLogin == true)
+                {//最新消息只有會員才看的到
+                    <a href="~/News">最新消息</a>
+                }
                 <a href="~/Products">產品介紹</a>
                 <a href="~/FAQ">常見問題</a>
                 <a href="~/Service">線上諮詢</a>
