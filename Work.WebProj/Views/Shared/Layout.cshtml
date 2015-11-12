@@ -28,15 +28,15 @@
 <body class="@ViewBag.BodyClass">
 
     <div class="md-modal md-effect-7" id="login">
-        <form class="md-content">
+        <form class="md-content" id="MLogin">
             <h3>LOGIN 會員登入</h3>
-            <input type="text" name="id" placeholder="請輸入會員帳號(email)">
-            <input type="password" name="pwd" placeholder="請輸入會員密碼">
-            <img alt="驗證碼" src="~/_Code/Ashx/ValidateCode.ashx?vn=MemberLogin" />
-            <input type="text" name="validate" placeholder="請輸入驗證碼">
+            <input type="text" name="id" id="m_member_id" placeholder="請輸入會員帳號(email)">
+            <input type="password" name="pwd" id="m_member_pwd" placeholder="請輸入會員密碼">
+            <img alt="驗證碼" id="m_Mlogin_img" src="~/_Code/Ashx/ValidateCode.ashx?vn=MemberLogin" />
+            <input type="text" id="m_Mlogin_validate" placeholder="請輸入驗證碼">
             <button class="btn btn-primary">登入</button>
             <a class="md-trigger joinus" data-modal="join">無帳號，我要加入會員</a>
-            <button class="md-close">X</button>
+            <button class="md-close" type="button">X</button>
         </form>
     </div>
     <div class="md-modal md-effect-7" id="join">
@@ -63,7 +63,7 @@
                 <a>某某會員,你好!</a>@*登入後,顯示會員名稱*@
                 <a href="~/index">HOME 首頁</a>
                 <button class="md-trigger" data-modal="login">LOGIN 登入</button>
-                <button type="button">LOGOUT 登出</button>@*登入後隱藏登入按鈕,並顯示登出按鈕*@
+                <a href="~/Login/ajax_MemberLogout">LOGOUT 登出</a>@*登入後隱藏登入按鈕,並顯示登出按鈕*@
                 <button>購物車</button>
             </nav>
 
@@ -145,6 +145,7 @@
     <script type="text/javascript">
         var gb_approot = '@Url.Content("~")';
     </script>
+    <script src="~/Scripts/src/tsx/w-member.js"></script>
     @RenderSection("Scripts", required: false)
 
 </body>

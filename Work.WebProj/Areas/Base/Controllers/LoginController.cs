@@ -367,7 +367,7 @@ namespace DotWeb.Areas.Base.Controllers
                 return defJSON(rAjaxResult);
             }
         }
-        [HttpPost]
+        [HttpGet]
         [AllowAnonymous]
         public RedirectResult ajax_MemberLogout()
         {

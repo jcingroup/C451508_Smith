@@ -816,6 +816,7 @@
     <TypeScriptCompile Include="Scripts\src\tsx\m-product_category.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-product.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-purchase.tsx" />
+    <TypeScriptCompile Include="Scripts\src\tsx\w-member.ts" />
     <TypeScriptCompile Include="Scripts\ts-def\commfunc.ts" />
     <TypeScriptCompile Include="Scripts\ts-def\commupload.ts" />
     <TypeScriptCompile Include="Scripts\ts-def\commwww.ts" />

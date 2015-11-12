@@ -745,6 +745,7 @@ namespace DotWeb.Controller
         //protected readonly string sessionMemberLoginString = "CestLaVie.loginMail";
         private readonly string sysUpFilePathTpl = "~/_Code/SysUpFiles/{0}.{1}/{2}/{3}/{4}";
         private string getImg_path_tpl = "~/_Code/SysUpFiles/{0}/{1}/{2}/{3}";
+        protected string MemberId;
         protected WebInfo wi;
 
         protected WebUserController()
@@ -764,6 +765,9 @@ namespace DotWeb.Controller
             Log.SetupBasePath = System.Web.HttpContext.Current.Server.MapPath("~\\_Code\\Log\\");
             Log.Enabled = true;
 
+            var getMemberIdCookie = Request.Cookies[CommWebSetup.WebCookiesId + ".member_id"];
+            var getMemberName = Request.Cookies[CommWebSetup.WebCookiesId + ".member_name"];
+            MemberId = getMemberIdCookie == null ? null : getMemberIdCookie.Value;
             try
             {
                 var db = getDB0();
