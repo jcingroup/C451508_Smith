@@ -41,5 +41,6 @@ namespace ProcCore.Business.DB0
         public virtual DbSet<Issue> Issue { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Member> Member { get; set; }
+        public virtual DbSet<News> News { get; set; }
     }
 }

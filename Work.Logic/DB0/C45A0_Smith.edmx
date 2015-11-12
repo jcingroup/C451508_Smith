@@ -155,7 +155,7 @@
           <Property Name="tel" Type="nvarchar" MaxLength="50" />
           <Property Name="mobile" Type="nvarchar" MaxLength="50" />
           <Property Name="tw_zip" Type="varchar" MaxLength="5" />
-          <Property Name="tw_city" Type="varchar" MaxLength="5" />
+          <Property Name="tw_city" Type="nvarchar" MaxLength="5" />
           <Property Name="tw_country" Type="nvarchar" MaxLength="5" />
           <Property Name="tw_address" Type="nvarchar" MaxLength="256" />
           <Property Name="member_account" Type="nvarchar" MaxLength="10" />
@@ -195,6 +195,24 @@
           </Key>
           <Property Name="menu_id" Type="int" Nullable="false" />
           <Property Name="role_id" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="news_id" />
+          </Key>
+          <Property Name="news_id" Type="int" Nullable="false" />
+          <Property Name="is_correspond" Type="bit" Nullable="false" />
+          <Property Name="news_title" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="news_content" Type="text" />
+          <Property Name="news_date" Type="datetime" />
+          <Property Name="i_Hide" Type="bit" Nullable="false" />
+          <Property Name="i_InsertUserID" Type="nvarchar" MaxLength="128" />
+          <Property Name="i_InsertDeptID" Type="int" />
+          <Property Name="i_InsertDateTime" Type="datetime" />
+          <Property Name="i_UpdateUserID" Type="nvarchar" MaxLength="128" />
+          <Property Name="i_UpdateDeptID" Type="int" />
+          <Property Name="i_UpdateDateTime" Type="datetime" />
+          <Property Name="i_Lang" Type="char" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -359,6 +377,7 @@
           <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuRole" EntityType="Self.MenuRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Purchase" EntityType="Self.Purchase" store:Type="Tables" store:Schema="dbo">
@@ -587,6 +606,7 @@
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <EntitySet Name="Member" EntityType="C45A0_SmithModel.Member" />
+          <EntitySet Name="News" EntityType="C45A0_SmithModel.News" />
         </EntityContainer>
         <EntityType Name="ProductCategory">
           <Key>
@@ -718,12 +738,30 @@
           <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="tw_zip" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="tw_city" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="tw_city" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="tw_country" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="tw_address" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="member_account" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="member_password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="is_approve" Type="Boolean" Nullable="false" />
+          <Property Name="i_Hide" Type="Boolean" Nullable="false" />
+          <Property Name="i_InsertUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_InsertDeptID" Type="Int32" />
+          <Property Name="i_InsertDateTime" Type="DateTime" Precision="3" />
+          <Property Name="i_UpdateUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_UpdateDeptID" Type="Int32" />
+          <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="news_id" />
+          </Key>
+          <Property Name="news_id" Type="Int32" Nullable="false" />
+          <Property Name="is_correspond" Type="Boolean" Nullable="false" />
+          <Property Name="news_title" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="news_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="news_date" Type="DateTime" Precision="3" />
           <Property Name="i_Hide" Type="Boolean" Nullable="false" />
           <Property Name="i_InsertUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="i_InsertDeptID" Type="Int32" />
@@ -996,6 +1034,25 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="member_name" ColumnName="member_name" />
                 <ScalarProperty Name="member_id" ColumnName="member_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="C45A0_SmithModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="i_Lang" ColumnName="i_Lang" />
+                <ScalarProperty Name="i_UpdateDateTime" ColumnName="i_UpdateDateTime" />
+                <ScalarProperty Name="i_UpdateDeptID" ColumnName="i_UpdateDeptID" />
+                <ScalarProperty Name="i_UpdateUserID" ColumnName="i_UpdateUserID" />
+                <ScalarProperty Name="i_InsertDateTime" ColumnName="i_InsertDateTime" />
+                <ScalarProperty Name="i_InsertDeptID" ColumnName="i_InsertDeptID" />
+                <ScalarProperty Name="i_InsertUserID" ColumnName="i_InsertUserID" />
+                <ScalarProperty Name="i_Hide" ColumnName="i_Hide" />
+                <ScalarProperty Name="news_date" ColumnName="news_date" />
+                <ScalarProperty Name="news_content" ColumnName="news_content" />
+                <ScalarProperty Name="news_title" ColumnName="news_title" />
+                <ScalarProperty Name="is_correspond" ColumnName="is_correspond" />
+                <ScalarProperty Name="news_id" ColumnName="news_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

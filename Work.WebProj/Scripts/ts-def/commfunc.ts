@@ -66,6 +66,10 @@ function stand_date(getDateStr: string) {
     var r = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate;
     return r;
 }
+function format_Date(date: Date): string {
+    var r: string = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+    return r;
+}
 function getNowDate(): Date {
     var d: Date = new Date();
     var r: Date = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0)

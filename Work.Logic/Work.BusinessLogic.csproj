@@ -167,6 +167,9 @@
     <Compile Include="DB0\m_Menu.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB0\m_News.cs">
+      <DependentUpon>C45A0_Smith.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB0\m_Product.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
@@ -174,6 +177,9 @@
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
     <Compile Include="DB0\m_Purchase.cs">
+      <DependentUpon>C45A0_Smith.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB0\News.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
     <Compile Include="DB0\Product.cs">
@@ -215,6 +221,11 @@
       <DependentUpon>C45A0_Smith.edmx</DependentUpon>
       <LastGenOutput>C45A0_Smith.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="DB0\News.cs.d.ts">
+      <DependentUpon>News.cs</DependentUpon>
+    </TypeScriptCompile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

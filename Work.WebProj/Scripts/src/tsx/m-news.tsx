@@ -1,21 +1,23 @@
-﻿namespace MembersData {
+﻿namespace News {
     interface Rows {
         check_del: boolean,
-        member_id: number;
-        tel: string;
-        member_name: string;
-        email: string;
-        is_approve: boolean;
+        product_id: string;
+        category_id: number;
+        category_name: string;
+        product_name: string;
+        model_type: string;
+        price: number;
+        sort: number;
+        i_Hide: boolean;
     }
     interface SearchData {
         //搜尋 參數
         name?: string
     }
-    interface MembersDataState<G, F, S> extends BaseDefine.GirdFormStateBase<G, F, S> {
+    interface NewsState<G, F, S> extends BaseDefine.GirdFormStateBase<G, F, S> {
         //額外擴充 表單 State參數
     }
     interface CallResult extends IResultBase {
-        //定義 回傳結果參數
         id: string
     }
     class GridRow extends React.Component<BaseDefine.GridRowPropsBase<Rows>, BaseDefine.GridRowStateBase> {
@@ -43,14 +45,15 @@
                     <td className="text-center">
                         <GridButtonModify modify={this.modify}/>
                         </td>
-                    <td>{this.props.itemData.member_id}</td>
-                    <td>{this.props.itemData.member_name}</td>
-                    <td>{this.props.itemData.email}</td>
-                    <td>{this.props.itemData.is_approve ? <span className="label label-success">認可</span> : <span className="label label-default">未認可</span>}</td>
+                    <td>{this.props.itemData.category_name}</td>
+                    <td>{this.props.itemData.model_type}</td>
+                    <td>{this.props.itemData.product_name}</td>
+                    <td>{this.props.itemData.price}</td>
+                    <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
                 </tr>;
         }
     }
-    export class GirdForm extends React.Component<BaseDefine.GridFormPropsBase, MembersDataState<Rows, server.Member, SearchData>>{
+    export class GirdForm extends React.Component<BaseDefine.GridFormPropsBase, NewsState<Rows, server.News, SearchData>>{
 
         constructor() {
 
@@ -64,20 +67,24 @@
             this.delCheck = this.delCheck.bind(this);
             this.checkAll = this.checkAll.bind(this);
             this.componentDidMount = this.componentDidMount.bind(this);
+            this.componentDidUpdate = this.componentDidUpdate.bind(this);
             this.insertType = this.insertType.bind(this);
-            this.setFDValue = this.setFDValue.bind(this);
-            this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, searchData: {} }
+            this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0,  searchData: {} }
 
         }
         static defaultProps: BaseDefine.GridFormPropsBase = {
             fdName: 'fieldData',
             gdName: 'searchData',
-            apiPath: gb_approot + 'api/Member'
+            apiPath: gb_approot + 'api/News'
         }
         componentDidMount() {
             this.queryGridData(1);
         }
-
+        componentDidUpdate(prevProps, prevState) {
+            if (prevState.edit_type == 0 && this.state.edit_type == 1) {
+                CKEDITOR.replace('editor1', {});
+            }
+        }
         gridData(page: number) {
 
             var parms = {
@@ -106,6 +113,7 @@
         handleSubmit(e: React.FormEvent) {
 
             e.preventDefault();
+            this.state.fieldData.news_content = CKEDITOR.instances.editor1.getData();//編輯器
             if (this.state.edit_type == 1) {
                 jqPost(this.props.apiPath, this.state.fieldData)
                     .done((data: CallResult, textStatus, jqXHRdata) => {
@@ -144,7 +152,7 @@
             var ids = [];
             for (var i in this.state.gridData.rows) {
                 if (this.state.gridData.rows[i].check_del) {
-                    ids.push('ids=' + this.state.gridData.rows[i].member_id);
+                    ids.push('ids=' + this.state.gridData.rows[i].product_id);
                 }
             }
 
@@ -186,13 +194,14 @@
             this.setState(newState);
         }
         insertType() {
-            this.setState({ edit_type: 1, fieldData: {} });
+            this.setState({ edit_type: 1, fieldData: { is_correspond: false, i_Hide: false, news_date: format_Date(getNowDate())} });
         }
         updateType(id: number | string) {
 
             jqGet(this.props.apiPath, { id: id })
                 .done((data, textStatus, jqXHRdata) => {
                     this.setState({ edit_type: 2, fieldData: data.data });
+                    CKEDITOR.replace('editor1', {});
                 })
                 .fail((jqXHR, textStatus, errorThrown) => {
                     showAjaxError(errorThrown);
@@ -227,12 +236,7 @@
             }
             this.setState({ fieldData: obj });
         }
-        setFDValue(fieldName, value) {
-            //此function提供給次元件調用，所以要以屬性往下傳。
-            var obj = this.state[this.props.fdName];
-            obj[fieldName] = value;
-            this.setState({ fieldData: obj });
-        }
+
         render() {
 
             var outHtml: JSX.Element = null;
@@ -242,7 +246,9 @@
                 outHtml =
                 (
                     <div>
-    <h3 className="title" dangerouslySetInnerHTML={{ __html: this.props.caption }}>
+
+    <h3 className="title">
+        {this.props.caption}
         </h3>
     <form onSubmit={this.handleSearch}>
         <div className="table-responsive">
@@ -250,11 +256,12 @@
                 <div className="table-filter">
                     <div className="form-inline">
                         <div className="form-group">
-                            <label>會員名稱</label> { }
+                            <label>最新消息標題</label> { }
                             <input type="text" className="form-control"
                                 value={searchData.name}
                                 onChange={this.changeGDValue.bind(this, 'name') }
                                 placeholder="請輸入關鍵字..." /> { }
+
                             <button className="btn-primary" type="submit"><i className="fa-search"></i> 搜尋</button>
                             </div>
                         </div>
@@ -270,9 +277,10 @@
                                 </label>
                             </th>
                         <th className="col-xs-1 text-center">修改</th>
-                        <th className="col-xs-1">編號</th>
-                        <th className="col-xs-2">姓名</th>
-                        <th className="col-xs-2">EMail</th>
+                        <th className="col-xs-2">產品分類</th>
+                        <th className="col-xs-2">產品型號</th>
+                        <th className="col-xs-4">產品名稱</th>
+                        <th className="col-xs-1">單價</th>
                         <th className="col-xs-1">狀態</th>
                         </tr>
                     </thead>
@@ -282,7 +290,7 @@
                         (itemData, i) =>
                             <GridRow key={i}
                                 ikey={i}
-                                primKey={itemData.member_id}
+                                primKey={itemData.product_id}
                                 itemData={itemData}
                                 delCheck={this.delCheck}
                                 updateType={this.updateType} />
@@ -309,125 +317,79 @@
 
                 outHtml = (
                     <div>
-    <h3 className="title" dangerouslySetInnerHTML={{ __html: this.props.caption + ' 基本資料維護' }}></h3>
+
+    <h3 className="title"> { this.props.caption } 基本資料維護</h3>
     <form className="form-horizontal" onSubmit={this.handleSubmit}>
         <div className="col-xs-12">
 
             <div className="form-group">
-                <label className="col-xs-2 control-label">會員編號</label>
-                <div className="col-xs-5">
+                <label className="col-xs-2 control-label">標題</label>
+                <div className="col-xs-4">
                     <input type="text"
                         className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'member_id') }
-                        value={fieldData.member_id}
-                        placeholder="系統自動產生"
-                        disabled />
-                    </div>
-                </div>
-            <div className="form-group">
-                <label className="col-xs-2 control-label">會員姓名</label>
-                <div className="col-xs-5">
-                    <input type="text"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'member_name') }
-                        value={fieldData.member_name}
+                        onChange={this.changeFDValue.bind(this, 'news_title') }
+                        value={fieldData.news_title}
                         maxLength={64}
                         required />
                     </div>
-                   <small className="help-inline col-xs-5">最多64個字<span className="text-danger">(必填) </span></small>
+                    <small className="help-inline col-xs-6">最多64個字<span className="text-danger">(必填) </span></small>
                 </div>
 
             <div className="form-group">
-                <label className="col-xs-2 control-label">E-Mail</label>
-                <div className="col-xs-5">
-                    <input type="email"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'email') }
-                        value={fieldData.email}
-                        maxLength={256}
-                        required />
+                <label className="col-xs-1 control-label text-danger">日期</label>
+                <div className="col-xs-4">
+                    <span className="has-feedback">
+                       <InputDate id="news_date"
+                           ver={1}
+                           onChange={this.changeFDValue.bind(this) }
+                           field_name="news_date"
+                           value={fieldData.news_date}
+                           required={true}
+                           disabled={false}/>
+                        </span>
                     </div>
-                   <small className="help-inline col-xs-5">最多256個字<span className="text-danger">(必填) </span></small>
+                <small className="help-inline col-xs-7"><span className="text-danger">(必填) </span></small>
                 </div>
-             <div className="form-group">
-                <label className="col-xs-2 control-label">電話</label>
-                <div className="col-xs-5">
-                    <input type="text"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'tel') }
-                        value={fieldData.tel}
-                        maxLength={10} />
-                    </div>
-                   <small className="help-inline col-xs-5">最多10個字</small>
-                 </div>
 
-                 <div className="form-group">
-                     <label className="col-xs-2 control-label">地址</label>
-                     <TwAddress
-                         onChange={this.changeFDValue.bind(this) }
-                         setFDValue={this.setFDValue.bind(this) }
-                         zip_value={fieldData.tw_zip}
-                         city_value={fieldData.tw_city}
-                         country_value={fieldData.tw_country}
-                         address_value={fieldData.tw_address}
-                         zip_field="tw_zip"
-                         city_field="tw_city"
-                         country_field="tw_country"
-                         address_field="tw_address" />
-                     </div>
-
-            <div className="form-group">
-                <label className="col-xs-2 control-label">會員帳號</label>
-                <div className="col-xs-5">
-                    <input type="text"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'member_account') }
-                        value={fieldData.member_account}
-                        maxLength={10}
-                        required />
-                    </div>
-                   <small className="help-inline col-xs-5">最多10個字<span className="text-danger">(必填) </span></small>
-                </div>
-             <div className="form-group">
-                <label className="col-xs-2 control-label">會員密碼</label>
-                <div className="col-xs-5">
-                    <input type="text"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'member_password') }
-                        value={fieldData.member_password}
-                        required />
-                    </div>
-                   <small className="help-inline col-xs-5"><span className="text-danger">(必填) </span></small>
-              </div>
 
             <div className="form-group">
                 <label className="col-xs-2 control-label">狀態</label>
-                <div className="col-xs-2">
+                <div className="col-xs-4">
                    <div className="radio-inline">
                        <label>
                             <input type="radio"
-                                name="is_approve"
+                                name="i_Hide"
                                 value={true}
-                                checked={fieldData.is_approve === true}
-                                onChange={this.changeFDValue.bind(this, 'is_approve') }
+                                checked={fieldData.i_Hide === true}
+                                onChange={this.changeFDValue.bind(this, 'i_Hide') }
                                 />
-                            <span>認可</span>
+                            <span>隱藏</span>
                            </label>
                        </div>
                    <div className="radio-inline">
                        <label>
                             <input type="radio"
-                                name="is_approve"
+                                name="i_Hide"
                                 value={false}
-                                checked={fieldData.is_approve === false}
-                                onChange={this.changeFDValue.bind(this, 'is_approve') }
+                                checked={fieldData.i_Hide === false}
+                                onChange={this.changeFDValue.bind(this, 'i_Hide') }
                                 />
-                            <span>未認可</span>
+                            <span>顯示</span>
                            </label>
                        </div>
                     </div>
-                    <small className="help-inline col-xs-6">會員申請認可,認可後帳號才可正式使用</small>
                 </div>
+
+                <div className="form-group">
+                     <label className="col-xs-2 control-label">內容</label>
+                        <div className="col-xs-8">
+                            <textarea cols={30} rows={3} className="form-control"  id="editor1"
+                                value={fieldData.news_content}
+                                onChange={this.changeFDValue.bind(this, 'news_content') }></textarea>
+                            </div>
+                    </div>
+
+
 
             <div className="form-action text-right">
                 <div className="col-xs-5">
@@ -446,4 +408,4 @@
     }
 }
 var dom = document.getElementById('page_content');
-React.render(<MembersData.GirdForm caption={gb_caption} menuName={gb_menuname} iconClass="fa-list-alt" />, dom);
+React.render(<News.GirdForm caption={gb_caption} menuName={gb_menuname} iconClass="fa-list-alt" />, dom);

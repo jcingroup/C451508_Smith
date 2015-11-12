@@ -102,6 +102,14 @@
         member_password?: string;
         is_approve?: boolean;
     }
+    interface News extends BaseEntityTable {
+        news_id?: number;
+        is_correspond?: boolean;
+        news_title?: string;
+        news_content?: string;
+        news_date?: any;
+        i_Hide?: boolean;
+    }
     interface Purchase extends BaseEntityTable {
         purchase_id?: number;
         purchase_no?: string;
