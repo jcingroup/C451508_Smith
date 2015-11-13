@@ -22,7 +22,7 @@ namespace DotWeb.Api
             return Ok(obj);
         }
 
-        #region 組合菜單對應基礎菜單
+        #region 最新消息對應會員
         public async Task<IHttpActionResult> GetLeftData([FromUri]ParmGetCorrespondData parm)
         {
             db0 = getDB0();
@@ -56,6 +56,9 @@ namespace DotWeb.Api
                     endcount = PageCount.EndCount
                 });
             }
+            catch (Exception ex) {
+                return Ok(ex.ToString());
+            }
             finally
             {
                 db0.Dispose();
@@ -69,6 +72,7 @@ namespace DotWeb.Api
                 int page_size = 10;
                 var items = from x in db0.NewsOfMember
                             join y in db0.Member on x.member_id equals y.member_id
+                            orderby y.member_name
                             where x.news_id == parm.main_id
                             select new { x.member_id, y.member_name, y.email };
 
@@ -86,6 +90,10 @@ namespace DotWeb.Api
                     startcount = PageCount.StartCount,
                     endcount = PageCount.EndCount
                 });
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex.ToString());
             }
             finally
             {

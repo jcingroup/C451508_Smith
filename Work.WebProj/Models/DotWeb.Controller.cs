@@ -87,51 +87,6 @@ namespace DotWeb.Controller
         //protected Log.LogPlamInfo plamInfo = new Log.LogPlamInfo() { AllowWrite = true };
         private ApplicationUserManager _userManager;
 
-        protected override void Initialize(System.Web.Routing.RequestContext requestContext)
-        {
-            base.Initialize(requestContext);
-            var getUserIdCookie = Request.Cookies["user_id"];
-            var getUserName = Request.Cookies["user_name"];
-            UserId = getUserIdCookie == null ? null : getUserIdCookie.Value;
-
-            var aspnet_user_id = User.Identity.GetUserId();
-            ApplicationUser aspnet_user = UserManager.FindById(aspnet_user_id);
-
-            if (UserId != null & aspnet_user != null)
-            {
-                #region Working...
-                this.UserId = aspnet_user.Id;
-                ViewBag.UserId = UserId;
-                ViewBag.UserName = getUserName == null ? "" : Server.UrlDecode(getUserName.Value);
-
-                string asp_net_roles = aspnet_user.Roles.Select(x => x.RoleId).FirstOrDefault();
-                var role = roleManager.FindById(asp_net_roles);
-                ViewBag.RoleName = role.Name;
-
-                this.departmentId = aspnet_user.department_id;
-
-                this.isTablet = (new WebInfo()).isTablet();
-
-                var m = MvcSiteMapProvider.SiteMaps.Current;
-                Console.WriteLine(m);
-
-                if (
-                    MvcSiteMapProvider.SiteMaps.Current != null &&
-                    MvcSiteMapProvider.SiteMaps.Current.CurrentNode != null &&
-                    MvcSiteMapProvider.SiteMaps.Current.CurrentNode.ParentNode != null)
-                {
-                    ViewBag.Caption = MvcSiteMapProvider.SiteMaps.Current.CurrentNode.Title;
-                    ViewBag.MenuName = MvcSiteMapProvider.SiteMaps.Current.CurrentNode.ParentNode.Title;
-                }
-                else
-                {
-                    ViewBag.Caption = Resources.Res.ViewbagCapton;
-                    ViewBag.MenuName = Resources.Res.ViewbagMenuName;
-                }
-                #endregion
-            }
-        }
-
         public ApplicationUserManager UserManager
         {
             get
@@ -161,12 +116,47 @@ namespace DotWeb.Controller
             Log.SetupBasePath = System.Web.HttpContext.Current.Server.MapPath("~\\_Code\\Log\\");
             Log.Enabled = true;
 
-            //plamInfo.BroswerInfo = System.Web.HttpContext.Current.Request.Browser.Browser + "." + System.Web.HttpContext.Current.Request.Browser.Version;
-            //plamInfo.IP = this.IP;
+            var getUserIdCookie = Request.Cookies["user_id"];
+            var getUserName = Request.Cookies["user_name"];
+            UserId = getUserIdCookie == null ? null : getUserIdCookie.Value;
 
-            //plamInfo.UnitId = departmentId;
+            var aspnet_user_id = User.Identity.GetUserId();
+            ApplicationUser aspnet_user = UserManager.FindById(aspnet_user_id);
+            UserId = aspnet_user.Id;
+            if (UserId != null)
+            {
+                #region Working...
+                ViewBag.UserId = UserId;
+                ViewBag.UserName = getUserName == null ? "" : Server.UrlDecode(getUserName.Value);
 
-            defPageSize = CommSetup.CommWebSetup.MasterGridDefPageSize;
+                string asp_net_roles = aspnet_user.Roles.Select(x => x.RoleId).FirstOrDefault();
+                var role = roleManager.FindById(asp_net_roles);
+                ViewBag.RoleName = role.Name;
+
+                this.departmentId = aspnet_user.department_id;
+
+                this.isTablet = (new WebInfo()).isTablet();
+
+                var m = MvcSiteMapProvider.SiteMaps.Current;
+                Console.WriteLine(m);
+
+                if (
+                    MvcSiteMapProvider.SiteMaps.Current != null &&
+                    MvcSiteMapProvider.SiteMaps.Current.CurrentNode != null &&
+                    MvcSiteMapProvider.SiteMaps.Current.CurrentNode.ParentNode != null)
+                {
+                    ViewBag.Caption = MvcSiteMapProvider.SiteMaps.Current.CurrentNode.Title;
+                    ViewBag.MenuName = MvcSiteMapProvider.SiteMaps.Current.CurrentNode.ParentNode.Title;
+                }
+                else
+                {
+                    ViewBag.Caption = Resources.Res.ViewbagCapton;
+                    ViewBag.MenuName = Resources.Res.ViewbagMenuName;
+                }
+                #endregion
+            }
+
+            defPageSize = CommWebSetup.MasterGridDefPageSize;
             this.getController = ControllerContext.RouteData.Values["controller"].ToString();
             this.getArea = ControllerContext.RouteData.DataTokens["area"].ToString();
             this.getAction = ControllerContext.RouteData.Values["action"].ToString();
@@ -187,9 +177,9 @@ namespace DotWeb.Controller
         }
         public int getNewId()
         {
-            return getNewId(ProcCore.Business.CodeTable.Base);
+            return getNewId(CodeTable.Base);
         }
-        public int getNewId(ProcCore.Business.CodeTable tab)
+        public int getNewId(CodeTable tab)
         {
 
             //using (TransactionScope tx = new TransactionScope())
@@ -197,7 +187,7 @@ namespace DotWeb.Controller
             var db = getDB0();
             try
             {
-                string tab_name = Enum.GetName(typeof(ProcCore.Business.CodeTable), tab);
+                string tab_name = Enum.GetName(typeof(CodeTable), tab);
                 var items = db.i_IDX.Where(x => x.table_name == tab_name).FirstOrDefault();
 
                 if (items == null)

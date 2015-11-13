@@ -309,7 +309,24 @@
             else if (this.state.edit_type == 1 || this.state.edit_type == 2) {
 
                 let fieldData = this.state.fieldData;
-
+                var outDetailHtml: JSX.Element = null;
+                if (this.state.edit_type == 2 && fieldData.is_correspond) {
+                    outDetailHtml = (<GridNofM main_id={fieldData.news_id} />);
+                } else if (this.state.edit_type == 1) {
+                    outDetailHtml = (
+                        <div>
+                            <hr className="condensed" />
+                            <h4 className="title">會員對應設定</h4>
+                            <div className="alert alert-warning">請先按上方的 <strong>存檔確認</strong>，再進行設定。</div>
+                            </div>);
+                } else if (!fieldData.is_correspond) {
+                    outDetailHtml = (
+                        <div>
+                            <hr className="condensed" />
+                            <h4 className="title">會員對應設定</h4>
+                            <div className="alert alert-warning">請先將上方的「是否對應會員」改為 <strong>對應</strong>，再進行設定。</div>
+                            </div>);
+                }
                 outHtml = (
                     <div>
 
@@ -421,7 +438,8 @@
                 </div>
             </div>
         </form>
-                        <GridNofM />
+                           {outDetailHtml}
+
                         </div>
                 );
             }
@@ -429,43 +447,244 @@
             return outHtml;
         }
     }
+
     interface CorrespondState {
-        grid_right_data: {
-            rows: Array<server.NewsOfMember>,
+        grid_right_data?: {
+            rows: Array<server.Member>,
             page: number,
             startcount?: number,
             endcount?: number,
             total?: number,
             records?: number
         };
-        grid_left_data: {
-            rows: Array<server.NewsOfMember>,
+        grid_left_data?: {
+            rows: Array<server.Member>,
             page: number,
             startcount?: number,
             endcount?: number,
             total?: number,
             records?: number
         };
-        searchData: any;
+        searchData?: {
+            main_id?: number;
+            name?: string;
+        };
     }
-    class GridNofM extends React.Component<any, CorrespondState>{
+    class GridNofM extends React.Component<{
+        main_id: number;
+        apiLeftPath?: string;
+        apiRightPath?: string;
+        apiAddPath?: string;
+        apiRemovePath?: string;
+    }, CorrespondState>{
         constructor() {
             super();
             this.componentDidMount = this.componentDidMount.bind(this);
+            this.queryLeftData = this.queryLeftData.bind(this);
+            this.queryRightData = this.queryRightData.bind(this);
+            this.addMember = this.addMember.bind(this);
+            this.removeMember = this.removeMember.bind(this);
+            this.querySearchData = this.querySearchData.bind(this);
+            this.LeftGridPrev = this.LeftGridPrev.bind(this);
+            this.LeftGridNext = this.LeftGridNext.bind(this);
+            this.RightGridPrev = this.RightGridPrev.bind(this);
+            this.RightGridNext = this.RightGridNext.bind(this);
+            this.state = { grid_right_data: { rows: [], page: 1 }, grid_left_data: { rows: [], page: 1 }, searchData: {} }
+        }
+        static defaultProps = {
+            apiLeftPath: gb_approot + 'api/GetAction/GetLeftData',
+            apiRightPath: gb_approot + 'api/GetAction/GetRightData',
+            apiAddPath: gb_approot + 'api/GetAction/PostNewsOfMember',
+            apiRemovePath: gb_approot + 'api/GetAction/DeleteNewsOfMember'
         }
         componentDidMount() {
+            this.queryRightData();
+            this.queryLeftData();
+        }
+
+        queryLeftData() {
+            var parms = {
+                page: this.state.grid_left_data.page,
+                main_id: this.props.main_id
+            };
+
+            $.extend(parms, this.state.searchData);
+
+            jqGet(this.props.apiLeftPath, parms)
+                .done(function (data, textStatus, jqXHRdata) {
+                    this.setState({ grid_left_data: data });
+                }.bind(this))
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    showAjaxError(errorThrown);
+                });
+        }
+        queryRightData() {
+            var parms = {
+                page: this.state.grid_right_data.page,
+                main_id: this.props.main_id
+            };
+
+            $.extend(parms, this.state.searchData);
+
+            jqGet(this.props.apiRightPath, parms)
+                .done(function (data, textStatus, jqXHRdata) {
+                    this.setState({ grid_right_data: data });
+                }.bind(this))
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    showAjaxError(errorThrown);
+                });
+        }
+        querySearchData(name, e: React.SyntheticEvent) {
+            let input: HTMLInputElement = e.target as HTMLInputElement;
+            var obj = this.state.searchData;
+            obj[name] = input.value;
+            this.setState({ searchData: obj });
+            this.queryLeftData();
+        }
+        addMember(member_id) {
+            jqPost(this.props.apiAddPath, { news_id: this.props.main_id, member_id: member_id })
+                .done(function (data, textStatus, jqXHRdata) {
+                    if (data.result) {
+                        this.queryLeftData();
+                        this.queryRightData();
+                    } else {
+                        alert(data.message);
+                    }
+                }.bind(this))
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    showAjaxError(errorThrown);
+                });
+        }
+        removeMember(member_id) {
+            jqDelete(this.props.apiRemovePath, { news_id: this.props.main_id, member_id: member_id })
+                .done(function (data, textStatus, jqXHRdata) {
+                    if (data.result) {
+                        this.queryLeftData();
+                        this.queryRightData();
+                    } else {
+                        alert(data.message);
+                    }
+                }.bind(this))
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    showAjaxError(errorThrown);
+                });
+        }
+        LeftGridPrev() {
+            if (this.state.grid_left_data.page > 1) {
+                this.state.grid_left_data.page--;
+                this.queryLeftData();
+            }
+        }
+        LeftGridNext() {
+            if (this.state.grid_left_data.page < this.state.grid_left_data.total) {
+                this.state.grid_left_data.page++;
+                this.queryLeftData();
+            }
+        }
+        RightGridPrev() {
+            if (this.state.grid_right_data.page > 1) {
+                this.state.grid_right_data.page--;
+                this.queryRightData();
+            }
+        }
+        RightGridNext() {
+            if (this.state.grid_right_data.page < this.state.grid_right_data.total) {
+                this.state.grid_right_data.page++;
+                this.queryRightData();
+            }
         }
         render() {
             var outHtml: JSX.Element = null;
-
+            let searchData = this.state.searchData;
             outHtml = (
                 <div>
                     <hr className="condensed" />
                     <h4 className="title">會員對應設定</h4>
                     <div className="row">
-                        
+                    <div className="col-xs-6">
+
+                            <table className="table-condensed">
+                                <caption>
+                                    <div className="form-inline break pull-right">
+                                        <div className="form-group">
+                                            <input type="text" className="form-control input-sm" placeholder="請輸入關鍵字..."
+                                                value={searchData.name}
+                                                onChange={this.querySearchData.bind(this, 'name') } /> { }
+                                            </div>
+                                        </div>
+                                    全部會員
+                                    </caption>
+                                <tbody>
+                                    <tr>
+                                        <th>會員名稱</th>
+                                        <th>EMail</th>
+                                        <th className="text-center">加入</th>
+                                        </tr>
+                                    {
+                                    this.state.grid_left_data.rows.map((itemData, i) => {
+                                        let out_sub_html = (
+                                            <tr key={itemData.member_id}>
+                                                    <td>{itemData.member_name}</td>
+                                                    <td>{itemData.email}</td>
+                                                    <td className="text-center">
+                                                        <button className="btn-link text-success" type="button" onClick={this.addMember.bind(this, itemData.member_id) }>
+                                                            <i className="fa-plus"></i>
+                                                            </button>
+                                                        </td>
+                                                </tr>
+                                        );
+                                        return out_sub_html;
+                                    })
+                                    }
+                                    </tbody>
+                                </table>
+                            <div className="form-inline text-center">
+                                <ul className="pager list-inline list-unstyled">
+                                    <li><a href="#" onClick={this.LeftGridPrev}><i className="glyphicon glyphicon-arrow-left"></i> 上一頁</a></li>
+                                    <li>{this.state.grid_left_data.page + '/' + this.state.grid_left_data.total}</li>
+                                    <li><a href="#" onClick={this.LeftGridNext}>下一頁 <i className="glyphicon glyphicon-arrow-right"></i></a></li>
+                                    </ul>
+                                </div>
+                        </div>
+                    <div className="col-xs-6">
+
+                            <table className="table-condensed">
+                                <caption>已加入對應會員</caption>
+                                <tbody>
+                                    <tr>
+                                        <th>會員名稱</th>
+                                        <th>EMail</th>
+                                        <th className="text-center">刪除</th>
+                                        </tr>
+                                    {
+                                    this.state.grid_right_data.rows.map((itemData, i) => {
+                                        let out_sub_html = (
+                                            <tr key={itemData.member_id}>
+                                                    <td>{itemData.member_name}</td>
+                                                    <td>{itemData.email}</td>
+                                                    <td className="text-center">
+                                                        <button className="btn-link text-danger" type="button" onClick={this.removeMember.bind(this, itemData.member_id) }>
+                                                            <i className="fa-times"></i>
+                                                            </button>
+                                                        </td>
+                                                </tr>
+                                        );
+                                        return out_sub_html;
+                                    })
+                                    }
+                                    </tbody>
+                                </table>
+                                <div className="form-inline text-center">
+                                    <ul className="pager list-inline list-unstyled">
+                                        <li><a href="#" onClick={this.LeftGridPrev}><i className="glyphicon glyphicon-arrow-left"></i> 上一頁</a></li>
+                                        <li>{this.state.grid_right_data.page + '/' + this.state.grid_right_data.total}</li>
+                                        <li><a href="#" onClick={this.LeftGridNext}>下一頁 <i className="glyphicon glyphicon-arrow-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                        </div>
+
+                        </div>
                     </div>
-                </div>
 
             );
             return outHtml;
