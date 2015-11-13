@@ -13,25 +13,10 @@ namespace ProcCore.Business.DB0
     using System.Collections.Generic;
     
     using Newtonsoft.Json;
-    public partial class Member : BaseEntityTable
+    public partial class NewsOfMember : BaseEntityTable
     {
-        public Member()
-        {
-            this.NewsOfMember = new HashSet<NewsOfMember>();
-        }
-    
+        public int news_id { get; set; }
         public int member_id { get; set; }
-        public string member_name { get; set; }
-        public string email { get; set; }
-        public string tel { get; set; }
-        public string mobile { get; set; }
-        public string tw_zip { get; set; }
-        public string tw_city { get; set; }
-        public string tw_country { get; set; }
-        public string tw_address { get; set; }
-        public string member_account { get; set; }
-        public string member_password { get; set; }
-        public bool is_approve { get; set; }
         public bool i_Hide { get; set; }
         public string i_InsertUserID { get; set; }
         public Nullable<int> i_InsertDeptID { get; set; }
@@ -42,6 +27,8 @@ namespace ProcCore.Business.DB0
         public string i_Lang { get; set; }
     
     	[JsonIgnore]
-        public virtual ICollection<NewsOfMember> NewsOfMember { get; set; }
+        public virtual Member Member { get; set; }
+    	[JsonIgnore]
+        public virtual News News { get; set; }
     }
 }

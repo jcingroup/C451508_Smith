@@ -96,10 +96,11 @@ namespace DotWeb.Controller
 
             var aspnet_user_id = User.Identity.GetUserId();
             ApplicationUser aspnet_user = UserManager.FindById(aspnet_user_id);
-            this.UserId = aspnet_user.Id;
-            if (UserId != null)
+
+            if (UserId != null & aspnet_user != null)
             {
                 #region Working...
+                this.UserId = aspnet_user.Id;
                 ViewBag.UserId = UserId;
                 ViewBag.UserName = getUserName == null ? "" : Server.UrlDecode(getUserName.Value);
 

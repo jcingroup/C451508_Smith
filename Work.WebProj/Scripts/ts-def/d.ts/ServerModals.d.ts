@@ -101,6 +101,7 @@
         member_account?: string;
         member_password?: string;
         is_approve?: boolean;
+        newsOfMember?: server.NewsOfMember[];
     }
     interface News extends BaseEntityTable {
         news_id?: number;
@@ -109,6 +110,13 @@
         news_content?: string;
         news_date?: any;
         i_Hide?: boolean;
+        newsOfMember?: server.NewsOfMember[];
+    }
+    interface NewsOfMember extends BaseEntityTable {
+        news_id?: number;
+        member_id?: number;
+        member?: server.Member;
+        news?: server.News;
     }
     interface Purchase extends BaseEntityTable {
         purchase_id?: number;

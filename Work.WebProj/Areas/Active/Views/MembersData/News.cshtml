@@ -6,7 +6,7 @@
     <li>@ViewBag.Caption</li>
 }
 @section IncludeCSS{
-
+    <link href="~/Content/backstageCss/bootstrap-datetimepicker-build.css" rel="stylesheet" />
 }
 @section IncludeScript{
     @Html.Partial("Manage/JSGlobalVar")
@@ -14,7 +14,9 @@
         var gb_menuname = '@ViewBag.MenuName';
         var gb_caption = '@ViewBag.Caption';
     </script>
+    <script src="~/ckeditor/ckeditor.js"></script>
     <script src="~/Scripts/build/commincx.js"></script>
+    <script src="~/Scripts/app/datetimepicker/bootstrap-datetimepicker.min.js"></script>
     <script src="~/Scripts/build/func/m-news.js"></script>
 }
 @section sidebar{

@@ -15,6 +15,11 @@ namespace ProcCore.Business.DB0
     using Newtonsoft.Json;
     public partial class News : BaseEntityTable
     {
+        public News()
+        {
+            this.NewsOfMember = new HashSet<NewsOfMember>();
+        }
+    
         public int news_id { get; set; }
         public bool is_correspond { get; set; }
         public string news_title { get; set; }
@@ -28,5 +33,8 @@ namespace ProcCore.Business.DB0
         public Nullable<int> i_UpdateDeptID { get; set; }
         public Nullable<System.DateTime> i_UpdateDateTime { get; set; }
         public string i_Lang { get; set; }
+    
+    	[JsonIgnore]
+        public virtual ICollection<NewsOfMember> NewsOfMember { get; set; }
     }
 }

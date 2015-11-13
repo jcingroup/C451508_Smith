@@ -1,13 +1,10 @@
 ﻿namespace News {
     interface Rows {
         check_del: boolean,
-        product_id: string;
-        category_id: number;
-        category_name: string;
-        product_name: string;
-        model_type: string;
-        price: number;
-        sort: number;
+        news_id: number;
+        news_title: string;
+        news_date: Date;
+        is_correspond: boolean;
         i_Hide: boolean;
     }
     interface SearchData {
@@ -45,10 +42,9 @@
                     <td className="text-center">
                         <GridButtonModify modify={this.modify}/>
                         </td>
-                    <td>{this.props.itemData.category_name}</td>
-                    <td>{this.props.itemData.model_type}</td>
-                    <td>{this.props.itemData.product_name}</td>
-                    <td>{this.props.itemData.price}</td>
+                    <td>{this.props.itemData.news_title}</td>
+                    <td>{moment(this.props.itemData.news_date).format('YYYY/MM/DD') }</td>
+                    <td>{this.props.itemData.is_correspond ? <span className="label label-success">對應</span> : <span className="label label-default">未對應</span>}</td>
                     <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
                 </tr>;
         }
@@ -69,7 +65,7 @@
             this.componentDidMount = this.componentDidMount.bind(this);
             this.componentDidUpdate = this.componentDidUpdate.bind(this);
             this.insertType = this.insertType.bind(this);
-            this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0,  searchData: {} }
+            this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, searchData: {} }
 
         }
         static defaultProps: BaseDefine.GridFormPropsBase = {
@@ -152,7 +148,7 @@
             var ids = [];
             for (var i in this.state.gridData.rows) {
                 if (this.state.gridData.rows[i].check_del) {
-                    ids.push('ids=' + this.state.gridData.rows[i].product_id);
+                    ids.push('ids=' + this.state.gridData.rows[i].news_id);
                 }
             }
 
@@ -194,7 +190,7 @@
             this.setState(newState);
         }
         insertType() {
-            this.setState({ edit_type: 1, fieldData: { is_correspond: false, i_Hide: false, news_date: format_Date(getNowDate())} });
+            this.setState({ edit_type: 1, fieldData: { is_correspond: false, i_Hide: false, news_date: format_Date(getNowDate()) } });
         }
         updateType(id: number | string) {
 
@@ -277,11 +273,10 @@
                                 </label>
                             </th>
                         <th className="col-xs-1 text-center">修改</th>
-                        <th className="col-xs-2">產品分類</th>
-                        <th className="col-xs-2">產品型號</th>
-                        <th className="col-xs-4">產品名稱</th>
-                        <th className="col-xs-1">單價</th>
-                        <th className="col-xs-1">狀態</th>
+                        <th className="col-xs-3">標題</th>
+                        <th className="col-xs-2">日期</th>
+                        <th className="col-xs-2">是否對應會員</th>
+                        <th className="col-xs-2">狀態</th>
                         </tr>
                     </thead>
                 <tbody>
@@ -290,7 +285,7 @@
                         (itemData, i) =>
                             <GridRow key={i}
                                 ikey={i}
-                                primKey={itemData.product_id}
+                                primKey={itemData.news_id}
                                 itemData={itemData}
                                 delCheck={this.delCheck}
                                 updateType={this.updateType} />
@@ -319,7 +314,7 @@
                     <div>
 
     <h3 className="title"> { this.props.caption } 基本資料維護</h3>
-    <form className="form-horizontal" onSubmit={this.handleSubmit}>
+    <form className="form-horizontal clearfix" onSubmit={this.handleSubmit}>
         <div className="col-xs-12">
 
             <div className="form-group">
@@ -336,7 +331,7 @@
                 </div>
 
             <div className="form-group">
-                <label className="col-xs-1 control-label text-danger">日期</label>
+                <label className="col-xs-2 control-label">日期</label>
                 <div className="col-xs-4">
                     <span className="has-feedback">
                        <InputDate id="news_date"
@@ -348,9 +343,37 @@
                            disabled={false}/>
                         </span>
                     </div>
-                <small className="help-inline col-xs-7"><span className="text-danger">(必填) </span></small>
+                <small className="help-inline col-xs-5"><span className="text-danger">(必填) </span></small>
                 </div>
 
+
+            <div className="form-group">
+                <label className="col-xs-2 control-label">是否對應會員</label>
+                <div className="col-xs-4">
+                   <div className="radio-inline">
+                       <label>
+                            <input type="radio"
+                                name="is_correspond"
+                                value={true}
+                                checked={fieldData.is_correspond === true}
+                                onChange={this.changeFDValue.bind(this, 'is_correspond') }
+                                />
+                            <span>對應</span>
+                           </label>
+                       </div>
+                   <div className="radio-inline">
+                       <label>
+                            <input type="radio"
+                                name="is_correspond"
+                                value={false}
+                                checked={fieldData.is_correspond === false}
+                                onChange={this.changeFDValue.bind(this, 'is_correspond') }
+                                />
+                            <span>不對應</span>
+                           </label>
+                       </div>
+                    </div>
+                </div>
 
             <div className="form-group">
                 <label className="col-xs-2 control-label">狀態</label>
@@ -379,7 +402,6 @@
                        </div>
                     </div>
                 </div>
-
                 <div className="form-group">
                      <label className="col-xs-2 control-label">內容</label>
                         <div className="col-xs-8">
@@ -399,10 +421,53 @@
                 </div>
             </div>
         </form>
+                        <GridNofM />
                         </div>
                 );
             }
 
+            return outHtml;
+        }
+    }
+    interface CorrespondState {
+        grid_right_data: {
+            rows: Array<server.NewsOfMember>,
+            page: number,
+            startcount?: number,
+            endcount?: number,
+            total?: number,
+            records?: number
+        };
+        grid_left_data: {
+            rows: Array<server.NewsOfMember>,
+            page: number,
+            startcount?: number,
+            endcount?: number,
+            total?: number,
+            records?: number
+        };
+        searchData: any;
+    }
+    class GridNofM extends React.Component<any, CorrespondState>{
+        constructor() {
+            super();
+            this.componentDidMount = this.componentDidMount.bind(this);
+        }
+        componentDidMount() {
+        }
+        render() {
+            var outHtml: JSX.Element = null;
+
+            outHtml = (
+                <div>
+                    <hr className="condensed" />
+                    <h4 className="title">會員對應設定</h4>
+                    <div className="row">
+                        
+                    </div>
+                </div>
+
+            );
             return outHtml;
         }
     }
