@@ -387,7 +387,7 @@ address {
 .top-nav {
   background: #CBCBCB;
   border-radius: 0 0 5px 5px;
-  padding: 7px 15px;
+  padding: 6px 10px;
   z-index: 49;
   position: absolute;
   top: 0;
@@ -403,7 +403,8 @@ address {
       color: #0662A3; }
   .top-nav button {
     background: none;
-    border: none;
+    border: none; }
+  .top-nav button:last-child {
     border-right: none;
     padding-right: 0;
     margin-right: 0; }
@@ -423,6 +424,7 @@ body, #menu {
   font-size: 1.1875em;
   font-weight: bold;
   padding-left: 25px;
+  margin-left: -7px;
   z-index: 1002;
   position: absolute;
   top: 5px;
@@ -474,7 +476,7 @@ body {
         top: 100%;
         left: 50%;
         margin-left: -8px; }
-    @media (min-width: 87.5em) {
+    @media (min-width: 75em) {
       #menu a {
         width: 140px; } }
     @media (max-width: 61.25em) {
@@ -731,23 +733,28 @@ footer {
 #banner {
   background: url(../images/index/bg.png) center 0 no-repeat;
   padding-top: 17px; }
+  @media (max-width: 48em) {
+    #banner {
+      background-size: cover 100%; } }
 
 #banner, .swiper-slide {
   height: 520px; }
-  @media (max-width: 48em) {
+  @media (min-width: 30em) and (max-width: 48em) {
     #banner, .swiper-slide {
-      height: auto;
-      min-height: 735px;
-      background-size: cover 100%; } }
+      height: 620px; } }
 
 .swiper-wrapper {
   margin-bottom: 0; }
 
 .swiper-slide {
-  background: url(../images/index/banner1_bg.png) center no-repeat;
+  background: url(../images/index/banner1_bg.png) center center no-repeat;
   padding-top: 35px;
   padding-bottom: 30px; }
-  .swiper-slide header, .swiper-slide img {
+  @media (max-width: 48em) {
+    .swiper-slide {
+      padding-bottom: 130px;
+      background-size: auto cover; } }
+  .swiper-slide header, .swiper-slide .pic {
     display: inline-block;
     vertical-align: top; }
   .swiper-slide header {
@@ -756,12 +763,15 @@ footer {
     z-index: 20;
     font: 0/0 a;
     text-indent: -9999px;
-    background: url(../images/../images/index/banner1_title.png) 0 0 no-repeat;
+    background: url(../images/index/banner1_title.png) center 0 no-repeat;
     width: 530px;
     height: 237px; }
-    @media (min-width: 48.0625em) and (max-width: 75em) {
-      .swiper-slide header {
-        float: left; } }
+  .swiper-slide .pic {
+    font: 0/0 a;
+    text-indent: -9999px;
+    background: url(../images/index/banner1_pic.png) center 0 no-repeat;
+    width: 551px;
+    height: 269px; }
   .swiper-slide ol {
     margin-left: -590px;
     position: absolute;
@@ -769,11 +779,18 @@ footer {
     left: 50%; }
     @media (min-width: 48.0625em) and (max-width: 75em) {
       .swiper-slide ol {
-        left: 2%;
+        left: 1%;
         margin-left: 0; } }
+    @media (max-width: 48em) {
+      .swiper-slide ol {
+        margin-left: 0;
+        margin-top: 20px;
+        left: 0;
+        right: 0;
+        bottom: 15px; } }
   .swiper-slide li {
     background-attachment: fixed;
-    background: url(../images/index/banner1_icon.gif) 11px 0 no-repeat;
+    background: url(../images/index/banner1_icon.png) 11px 0 no-repeat;
     min-width: 90px;
     padding-top: 80px;
     color: #4C4C4C;
@@ -789,72 +806,106 @@ footer {
       background-position: -333px 0; }
     .swiper-slide li:nth-child(6) {
       background-position: -419px 0; }
-  @media (min-width: 48.0625em) and (max-width: 75em) {
-    .swiper-slide img {
-      position: absolute;
-      top: 30px;
-      right: 1%; } }
-  @media (max-width: 30em) {
-    .swiper-slide {
-      padding-bottom: 240px;
-      background-size: cover; } }
 
-.i1 header {
-  margin-top: 35px; }
+@media (min-width: 48.0625em) and (max-width: 64em) {
+  .i1 header, .i2 header {
+    float: left; } }
+@media (max-width: 64em) {
+  .i1 .pic, .i2 .pic {
+    position: absolute;
+    right: 1%;
+    bottom: 14%; } }
+@media (max-width: 48em) {
+  .i1 .pic, .i2 .pic {
+    right: 0;
+    left: 0;
+    bottom: 115px; } }
+@media (max-width: 30em) {
+  .i1 .pic, .i2 .pic {
+    bottom: 215px; } }
+
+.i1 {
+  padding-top: 10px; }
+  .i1 header {
+    margin-top: 35px; }
+    @media (max-width: 48em) {
+      .i1 header {
+        background-image: url(../images/index/banner1_title2.png);
+        height: 225px;
+        margin-top: 0; } }
   @media (max-width: 48em) {
-    .i1 header {
-      max-height: 230px;
-      margin-top: 0; } }
-.i1 img {
-  margin-top: 30px; }
+    .i1 .pic {
+      background-image: url(../images/index/banner1_pic2.png);
+      height: 235px; } }
+  @media (max-width: 30em) {
+    .i1 .pic {
+      height: 200px; } }
+  @media (max-width: 20em) {
+    .i1 .pic {
+      height: 138px; } }
 
 .i2 {
-  background-image: url(../images/index/banner2_bg.png); }
+  background-image: url(../images/index/banner2_bg.jpg); }
   .i2 header {
     background-image: url(../images/index/banner2_title.png);
     width: 705px;
     height: 321px; }
+  .i2 .pic {
+    background-image: url(../images/index/banner2_pic.png);
+    width: 519px;
+    height: 339px; }
     @media (max-width: 48em) {
-      .i2 header {
-        max-height: 300px; } }
+      .i2 .pic {
+        background-image: url(../images/index/banner2_pic2.png);
+        height: 167px; } }
+    @media (max-width: 30em) {
+      .i2 .pic {
+        height: 100px; } }
   .i2 li {
-    background-image: url(../images/index/banner2_icon.gif); }
+    background-image: url(../images/index/banner2_icon.png); }
 
 .i3 {
-  background-image: url(../images/index/banner3_bg.png); }
+  background-image: url(../images/index/banner3_bg.gif);
+  background-position: center bottom;
+  padding-top: 10px; }
   .i3 header {
     background-image: url(../images/index/banner3_title.png);
-    width: 466px;
-    height: 280px; }
+    width: 436px;
+    height: 218px;
+    margin-top: 85px;
+    margin-right: 20px; }
+    @media (max-width: 48em) {
+      .i3 header {
+        background-image: url(../images/index/banner3_title2.png);
+        height: 185px;
+        margin: 0; } }
+  .i3 .pic {
+    background-image: url(../images/index/banner3_pic.png);
+    width: 401px;
+    height: 435px; }
+    @media (max-width: 48em) {
+      .i3 .pic {
+        position: absolute;
+        right: 0;
+        bottom: 115px;
+        left: 0; } }
+    @media (max-width: 30em) {
+      .i3 .pic {
+        height: 320px;
+        bottom: 200px; } }
+    @media (max-width: 20em) {
+      .i3 .pic {
+        height: 270px; } }
   .i3 li {
-    background-image: url(../images/index/banner3_icon.gif); }
-  @media (max-width: 48em) {
-    .i3 img {
-      max-height: 320px; } }
-  @media (min-width: 30.0625em) and (max-width: 48em) {
-    .i3 img {
-      position: absolute;
-      bottom: 130px;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      -o-transform: translateX(-50%);
-      transform: translateX(-50%); } }
+    background-image: url(../images/index/banner3_icon.png); }
 
 @media (max-width: 48em) {
-  .swiper-slide {
-    padding-bottom: 130px; }
-    .swiper-slide header {
-      background-size: contain;
-      width: 100%;
-      margin-right: 0; }
-    .swiper-slide ol {
-      margin-left: 0;
-      margin-top: 20px;
-      left: 0;
-      right: 0; }
-    .swiper-slide img {
-      max-width: 90%;
-      max-height: 260px; } }
+  .swiper-slide header, .swiper-slide .pic {
+    background-size: contain;
+    width: 100%;
+    margin: 0; }
+  .swiper-slide header {
+    margin: 0; } }
 .about {
   background: #407E8F url(../images/index/infoBg.jpg) center 0 no-repeat fixed;
   padding: 40px 0;
@@ -868,15 +919,23 @@ footer {
   .about p {
     line-height: 2.2;
     margin-bottom: 20px; }
+    @media (max-width: 48em) {
+      .about p {
+        line-height: 1.7; } }
   .about nav a {
     display: block;
     margin-bottom: 15px; }
     .about nav a:hover, .about nav a:active {
       color: #85e2fb; }
+    @media (max-width: 48em) {
+      .about nav a {
+        float: left;
+        padding-right: 15px;
+        font-size: 1.3125em; } }
   .about .btn {
     margin-top: 20px;
     float: right; }
-    @media (max-width: 47.9375em) {
+    @media (max-width: 48em) {
       .about .btn {
         margin-top: 0; } }
   .about .col-3 {
@@ -886,7 +945,7 @@ footer {
 @media (min-width: 75em) {
   .col-8 .btn {
     margin-top: 52px; } }
-@media (max-width: 47.9375em) {
+@media (max-width: 48em) {
   .col-8 {
     margin-bottom: 30px; } }
 

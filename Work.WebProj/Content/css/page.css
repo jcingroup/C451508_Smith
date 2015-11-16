@@ -525,7 +525,7 @@ figure::before, .pro-pic::before {
 .top-nav {
   background: #CBCBCB;
   border-radius: 0 0 5px 5px;
-  padding: 7px 15px;
+  padding: 6px 10px;
   z-index: 49;
   position: absolute;
   top: 0;
@@ -541,7 +541,8 @@ figure::before, .pro-pic::before {
       color: #0662A3; }
   .top-nav button {
     background: none;
-    border: none;
+    border: none; }
+  .top-nav button:last-child {
     border-right: none;
     padding-right: 0;
     margin-right: 0; }
@@ -561,6 +562,7 @@ body, #menu {
   font-size: 1.1875em;
   font-weight: bold;
   padding-left: 25px;
+  margin-left: -7px;
   z-index: 1002;
   position: absolute;
   top: 5px;
@@ -612,7 +614,7 @@ body {
         top: 100%;
         left: 50%;
         margin-left: -8px; }
-    @media (min-width: 87.5em) {
+    @media (min-width: 75em) {
       #menu a {
         width: 140px; } }
     @media (max-width: 61.25em) {
