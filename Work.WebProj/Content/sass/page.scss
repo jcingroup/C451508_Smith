@@ -329,7 +329,8 @@ select {
         dt::before { content: 'Q'; }
         dd {
             &::before { content: 'A'; background: #EC8278; }
-            > * { text-indent: 0; margin: 20px 0 }
+            > * { text-indent: 0; margin-bottom: 20px }
+            > p:first-child { margin-top: -28px; }
         }
     }
 }

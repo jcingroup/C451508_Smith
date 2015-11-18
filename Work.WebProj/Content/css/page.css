@@ -1220,7 +1220,9 @@ select {
   background: #EC8278; }
 .FAQ .text-list dd > * {
   text-indent: 0;
-  margin: 20px 0; }
+  margin-bottom: 20px; }
+.FAQ .text-list dd > p:first-child {
+  margin-top: -28px; }
 
 .mail input, .mail textarea {
   margin: 15px 0;

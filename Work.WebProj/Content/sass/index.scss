@@ -84,9 +84,7 @@ footer {
     }
     .pic {
         @include text-pic('index/banner1_pic.png',551px,269px,$position: center 0);
-        @include mq($max:tablet) {
-            // bottom: 215px;
-        }
+        margin-top: 30px;
     }
     ol {
         margin-left: -590px;
@@ -150,9 +148,11 @@ footer {
         }
     }
     .pic {
+        margin-top: 60px;
         @include mq($max: tablet) {
             background-image: url(#{$img-banner}1_pic2.png);
             height: 235px;
+            margin-top: 0;
         }
         @include mq($max: phone) { height: 200px; }
         @include mq($max: mobile) { height: 138px; }
@@ -179,8 +179,9 @@ footer {
 }
 .i3 {
     background-image: url(#{$img-banner}3_bg.gif);
-    background-position: center bottom;
     padding-top: 10px;
+
+    @include mq($max: tablet) { background-position: center bottom; }
 
     header {
         background-image: url(#{$img-banner}3_title.png);

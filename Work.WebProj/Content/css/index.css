@@ -771,7 +771,8 @@ footer {
     text-indent: -9999px;
     background: url(../images/index/banner1_pic.png) center 0 no-repeat;
     width: 551px;
-    height: 269px; }
+    height: 269px;
+    margin-top: 30px; }
   .swiper-slide ol {
     margin-left: -590px;
     position: absolute;
@@ -833,16 +834,19 @@ footer {
         background-image: url(../images/index/banner1_title2.png);
         height: 225px;
         margin-top: 0; } }
-  @media (max-width: 48em) {
-    .i1 .pic {
-      background-image: url(../images/index/banner1_pic2.png);
-      height: 235px; } }
-  @media (max-width: 30em) {
-    .i1 .pic {
-      height: 200px; } }
-  @media (max-width: 20em) {
-    .i1 .pic {
-      height: 138px; } }
+  .i1 .pic {
+    margin-top: 60px; }
+    @media (max-width: 48em) {
+      .i1 .pic {
+        background-image: url(../images/index/banner1_pic2.png);
+        height: 235px;
+        margin-top: 0; } }
+    @media (max-width: 30em) {
+      .i1 .pic {
+        height: 200px; } }
+    @media (max-width: 20em) {
+      .i1 .pic {
+        height: 138px; } }
 
 .i2 {
   background-image: url(../images/index/banner2_bg.jpg); }
@@ -866,8 +870,10 @@ footer {
 
 .i3 {
   background-image: url(../images/index/banner3_bg.gif);
-  background-position: center bottom;
   padding-top: 10px; }
+  @media (max-width: 48em) {
+    .i3 {
+      background-position: center bottom; } }
   .i3 header {
     background-image: url(../images/index/banner3_title.png);
     width: 436px;
