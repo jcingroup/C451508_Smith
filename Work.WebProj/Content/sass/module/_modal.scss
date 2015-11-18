@@ -66,9 +66,8 @@ $modal-min-width: 320px;
         font-weight: 300;
         background: #0646A3;
     }
-    input, .btn, table {
+    input, .btn, table, .row {
         margin: 30px auto;
-        margin-top: 30px;
     }
     input { width: 85%; }
     input { line-height: 2; }
@@ -78,6 +77,13 @@ $modal-min-width: 320px;
         width: 93%;
     }
     th, td { border-color: #fff; }
+    .row {
+        width: 85%;
+        input {
+            max-width: 420px;
+            margin: 0;
+        }
+    }
 }
 
 .md-effect-7 {

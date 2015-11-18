@@ -894,9 +894,8 @@ figure {
     font-size: 2em;
     font-weight: 300;
     background: #0646A3; }
-  .md-content input, .md-content .btn, .md-content .tabs li, .tabs .md-content li, .md-content table {
-    margin: 30px auto;
-    margin-top: 30px; }
+  .md-content input, .md-content .btn, .md-content .tabs li, .tabs .md-content li, .md-content table, .md-content .row {
+    margin: 30px auto; }
   .md-content input {
     width: 85%; }
   .md-content input {
@@ -909,6 +908,11 @@ figure {
     width: 93%; }
   .md-content th, .md-content td {
     border-color: #fff; }
+  .md-content .row {
+    width: 85%; }
+    .md-content .row input {
+      max-width: 420px;
+      margin: 0; }
 
 .md-effect-7 {
   top: 0;
