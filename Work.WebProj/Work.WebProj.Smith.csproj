@@ -763,9 +763,10 @@
     <Content Include="Views\News\News.cshtml" />
     <Content Include="Views\Products\list.cshtml" />
     <Content Include="Views\Products\content.cshtml" />
-    <Content Include="Views\Service\Email.cshtml" />
+    <Content Include="Views\Shared\ServerEmail.cshtml" />
     <Content Include="Scripts\src\jsx\m-ChangeEmail.jsx" />
     <Content Include="Views\Products\Order.cshtml" />
+    <Content Include="Views\Shared\ApplyMemberEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

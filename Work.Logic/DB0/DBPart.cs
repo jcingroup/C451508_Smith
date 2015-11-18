@@ -238,6 +238,7 @@ namespace ProcCore.Business.DB0
         public string email { get; set; }
         public string act { get; set; }
         public string pwd { get; set; }
+        public string validate { get; set; }
     }
     #endregion
 

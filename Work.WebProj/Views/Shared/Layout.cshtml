@@ -44,12 +44,12 @@
     <div class="md-modal md-effect-7" id="join">
         <form class="md-content" id="MApply">
             <h3>JOIN US 加入會員</h3>
-            <input type="text" name="member" id="ma_member_name" placeholder="請輸入會員名稱">
-            <input type="email" name="email" id="ma_member_email" placeholder="請輸入會員email">
-            <input type="text" name="id" id="ma_member_id" placeholder="請輸入會員帳號">
-            <input type="password" name="pwd" id="ma_member_pwd" placeholder="請輸入會員密碼">
+            <input type="text" name="member" id="ma_member_name" placeholder="請輸入會員名稱" required>
+            <input type="email" name="email" id="ma_member_email" placeholder="請輸入會員email" required>
+            <input type="text" name="id" id="ma_member_id" placeholder="請輸入會員帳號" required>
+            <input type="password" name="pwd" id="ma_member_pwd" placeholder="請輸入會員密碼" required>
             <p class="row">
-                <input type="text" id="m_MApply_validate" placeholder="請輸入驗證碼" class="float-l">
+                <input type="text" id="m_MApply_validate" placeholder="請輸入驗證碼" class="float-l" required>
                 <img alt="驗證碼" id="m_MApply_img" src="~/_Code/Ashx/ValidateCode.ashx?vn=MemberApply" class="float-r" />
             </p>
             <button class="btn btn-primary">送出申請</button>

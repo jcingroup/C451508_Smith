@@ -1003,7 +1003,33 @@ namespace DotWeb.Controller
             ViewBag.Sidebar = category;
         }
 
+        public void addApplyMember(AddMember md)
+        {
+            try
+            {
+                using (var db0 = getDB0())
+                {
+                    var item = new Member
+                    {
+                        member_id = GetNewId(CodeTable.Member),
+                        member_name = md.name,
+                        email = md.email,
+                        member_account = md.act,
+                        member_password = md.pwd,
+                        i_InsertDateTime = DateTime.Now,
+                        i_Lang = "zh-TW"
+                    };
 
+
+                    db0.Member.Add(item);
+                    db0.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
 
         #region 前台抓取圖片
         public string[] GetImgs(int id, string file_kind, string category1, string category2, string size)

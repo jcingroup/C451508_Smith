@@ -391,7 +391,7 @@
              <div className="form-group">
                 <label className="col-xs-2 control-label">會員密碼</label>
                 <div className="col-xs-5">
-                    <input type="text"
+                    <input type="password"
                         className="form-control"
                         onChange={this.changeFDValue.bind(this, 'member_password') }
                         value={fieldData.member_password}

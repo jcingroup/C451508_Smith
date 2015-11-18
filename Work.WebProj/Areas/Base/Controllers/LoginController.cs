@@ -337,9 +337,9 @@ namespace DotWeb.Areas.Base.Controllers
             }
 
             rAjaxResult.vildate = Session["MemberLogin"].Equals(obj.validate) ? true : false;
-//#if DEBUG
-//            rAjaxResult.vildate = true;
-//#endif
+#if DEBUG
+            rAjaxResult.vildate = true;
+#endif
             if (!rAjaxResult.vildate)
             {
                 Session["MemberLogin"] = Guid.NewGuid(); //只要有錯先隨意產生唯一碼 以防暴力破解，新的CheckCode會在Validate產生。

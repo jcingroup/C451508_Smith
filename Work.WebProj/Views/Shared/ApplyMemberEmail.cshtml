@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Email";
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>統城科技股份有限公司-申請加入會員</title>
+</head>
+<body style="font: .8em/140% '微軟正黑體', 'Microsoft JhengHei', Helvetica, sans-serif;">
+    <h1 style="font-size:1.5em;">統城科技股份有限公司-申請加入會員</h1>
+    <table border="1" bordercolor="#ddd" style="border:1px solid #ccc">
+        <caption style="background:#FCF8E3; color:#9C7163; font-size:1.2em; font-weight:bold; padding:5px; text-align:center;">
+            以下為申請人資料
+        </caption>
+
+        <tr>
+            <td style="color:#9C7163; padding:5px; border:1px solid #ccc">姓名</td>
+            <td style="width:150px; padding:5px; border:1px solid #ccc">@Model.name</td>
+        </tr>
+        <tr>
+            <td style="color:#9C7163; padding:5px; border:1px solid #ccc">E-mail</td>
+            <td style="width:150px; padding:5px; border:1px solid #ccc">@Model.email</td>
+        </tr>
+    </table>
+    <p>請至系統後台核准確認後，該會員帳號才會正式啟用～！</p>
+</body>
+</html>
+

@@ -34,7 +34,7 @@ namespace DotWeb.WebApp.Controllers
                         return defJSON(r);
                     }
                     #region 信件發送
-                    string Body = getMailBody("Email", md);//套用信件版面
+                    string Body = getMailBody("ServerEmail", md);//套用信件版面
                     Boolean mail;
                     mail = Mail_Send(md.email, //寄信人
                                     openLogic().getReceiveMails(), //收信人
