@@ -79,5 +79,11 @@ namespace DotWeb.WebApp.Controllers
             ViewBag.C_name = c_name;
             return View(item);
         }
+
+        public ActionResult Order()
+        {
+               return View();
+        }
+
     }
 }

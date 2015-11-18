@@ -291,26 +291,24 @@ address {
 /*      table
 -----------------------------------------------------------------------*/
 th, td {
-  border: 1px solid #b7eefc;
+  border: 1px solid #acdbfc;
   color: #191919;
   line-height: 1.25;
   text-align: center;
   vertical-align: middle; }
 
 th {
+  background: #e7e7e7;
   padding: 10px;
   color: #0662A3;
   font-size: 1.1875em;
   font-weight: bold; }
 
 td {
-  padding: 5px; }
-
-tr:hover {
-  background-color: #f7f7f7; }
+  padding: 3px 5px; }
 
 caption {
-  background: #068BAE;
+  background: #e7e7e7;
   padding-top: 5px;
   padding-bottom: 5px;
   color: #fff;
@@ -542,7 +540,7 @@ figure::before, .pro-pic::before {
   .top-nav button {
     background: none;
     border: none; }
-  .top-nav button:last-child {
+  .top-nav *:last-child {
     border-right: none;
     padding-right: 0;
     margin-right: 0; }
@@ -1009,7 +1007,7 @@ aside {
     border-bottom: 1px solid #E5E5E5;
     font-size: 1.125em;
     padding: 15px 8px; }
-    aside a:hover, aside a:active, aside a.current {
+    aside a:hover, aside a:active, aside a.current, .order aside a:first-child {
       color: #0662A3; }
   @media (max-width: 48em) {
     aside {
@@ -1108,11 +1106,16 @@ aside {
     margin-left: -7px; }
   .pro-info button {
     clear: both; }
+  .pro-info select {
+    margin-bottom: 35px; }
   @media (max-width: 48em) {
     .pro-info {
       padding-left: 0; }
       .pro-info h3 {
         margin-bottom: 20px; } }
+
+.order-list table {
+  margin-bottom: 30px; }
 
 select {
   background: #E5E5E5 url(../images/icon_select.gif) right center no-repeat;
@@ -1121,9 +1124,8 @@ select {
   -webkit-appearance: none;
   color: #068BAE;
   font-weight: bold;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-bottom: 35px; }
+  padding: 5px 35px 5px 10px;
+  border-radius: 5px; }
   select.sel1 {
     float: left;
     width: 65%; }
@@ -1135,6 +1137,33 @@ select {
   @media (max-width: 48em) {
     select {
       margin-bottom: 20px; } }
+
+input[type="checkbox"] {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden; }
+
+input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  cursor: hand;
+  outline: none;
+  user-select: none;
+  background-attachment: fixed;
+  background: #e5e5e5 url(../images/Products/check.png) center 50px no-repeat;
+  border: 1px solid #fff;
+  padding: 5px 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 5px;
+  margin: auto; }
+
+input[type="checkbox"]:hover + label {
+  background-position: center 7px; }
+
+input[type="checkbox"]:checked + label {
+  background-position: center -48px; }
 
 .other {
   margin-top: 40px; }

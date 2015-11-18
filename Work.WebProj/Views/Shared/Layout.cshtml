@@ -71,7 +71,6 @@
                 @if ((Boolean)ViewBag.isLogin == true)
                 {
                     <a href="~/Login/ajax_MemberLogout">@* @ViewBag.MName, 您好 *@LOGOUT 登出</a>
-                    <button>購物車</button>
                 }
                 else
                 {
@@ -106,6 +105,10 @@
                     <header>@ViewBag.Title</header>
                     <button class="pro-menu">產品選單</button>
                     <nav>
+                        @if ((Boolean)ViewBag.isLogin == true)
+                        {
+                            <a href="~/Products/Order">產品下單</a>
+                        }
                         @foreach (var item in sidebar)
                         {
                             if (ViewBag.C_id == item.product_category_id)

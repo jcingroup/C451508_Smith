@@ -764,6 +764,7 @@
     <Content Include="Views\Products\content.cshtml" />
     <Content Include="Views\Service\Email.cshtml" />
     <Content Include="Scripts\src\jsx\m-ChangeEmail.jsx" />
+    <Content Include="Views\Products\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

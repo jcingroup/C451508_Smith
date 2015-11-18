@@ -9,7 +9,7 @@
     <li><a href="~/Products">產品介紹</a></li>
     <li><a href="~/Products?id=@Model.category_id">@ViewBag.C_name</a></li>
 }
-@section overlay {
+@* @section overlay {
     <div class="md-modal md-effect-7" id="buy">
         <form class="md-content">
             <h3>產品下單</h3>
@@ -28,7 +28,7 @@
             <button class="md-close" type="button">X</button>
         </form>
     </div>
-}
+} *@
 
 
 <section class="row">
@@ -39,7 +39,7 @@
 
     <div class="col-5 col-sm-12 pro-info">
         <h3><small>【型號】@Model.model_type</small>@Model.product_name</h3>
-        <div class="text-right">
+        <!-- <div class="text-right">
             <select name="name" id="" class="sel1">
                 @foreach (var option in Model.model_select)
                 {
@@ -61,7 +61,7 @@
                 <option value="4">4</option>
             </select>
             <button class="btn md-trigger" data-modal="buy">我要下單</button>
-        </div>
+        </div> -->
     </div><!-- pro-info //-->
 </section>
 

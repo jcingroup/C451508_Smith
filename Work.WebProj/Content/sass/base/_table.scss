@@ -8,11 +8,11 @@ $font-size-th: 19px !default;
 $font-size-td: 17px !default;
 
 $table-color: (
-    table-bg:               $brand-secondary,
+    table-bg:               #e7e7e7,
     table-bg-accent:        #f9f9f9,
-    table-bg-hover:         #f7f7f7,
+    table-bg-hover:         #fff,
     table-bg-active:        #D6FAFC,
-    table-border:           lighten($brand-secondary,50%),
+    table-border:           lighten($brand-primary,50%),
     table-th:               $brand-primary,
     table-td:               $text-color,
     table-caption:          #fff,
@@ -63,18 +63,19 @@ th, td {
 }
 
 th {
+    background: color(table-bg);
     padding: nth($table-padding, 2);
     color: color(table-th);
     font-size: em($font-size-th);
     font-weight: bold;
 }
 td {
-    padding: nth($table-padding, 1);
+    padding: 3px nth($table-padding, 1);
 }
 
 // 滑鼠移過變色
 tr:hover {
-    background-color: color(table-bg-hover);
+    // background-color: color(table-bg-hover);
 }
 
 caption {

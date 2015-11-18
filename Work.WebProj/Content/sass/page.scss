@@ -85,7 +85,8 @@ aside {
         font-size: em(18px);
         padding: $gutter 8px;
 
-        &:hover, &:active, &.current {
+        &:hover, &:active, &.current,
+        .order &:first-child {
             color: $brand-primary;
         }
     }
@@ -198,11 +199,15 @@ aside {
         margin-left: -7px;
     }
     button { clear: both; }
+    select { margin-bottom: 35px; }
 
     @include mq($max:tablet) {
         padding-left: 0;
         h3 { margin-bottom: 20px; }
     }
+}
+.order-list {
+    table { margin-bottom: 30px; }
 }
 select {
     background: #E5E5E5 url(#{$img-path}/icon_select.gif) right center no-repeat;
@@ -212,9 +217,8 @@ select {
 
     color: $brand-secondary;
     font-weight: bold;
-    padding: 5px 10px;
+    padding: 5px 35px 5px 10px;
     border-radius: 5px;
-    margin-bottom: 35px;
 
     &.sel1 {
         float: left;
@@ -230,6 +234,34 @@ select {
     @include mq($max:tablet) {
         margin-bottom: 20px;
     }
+}
+input[type="checkbox"] {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+}
+input[type="checkbox"] + label {
+    // 共用設定
+    display: block;
+    position: relative;
+    cursor: pointer; cursor:hand;
+    outline: none;
+    user-select: none;
+
+    // 各別設定(換圖及調大小)
+    background-attachment: fixed;
+    background: #e5e5e5 url(#{$img-path}/Products/check.png) center 50px no-repeat;
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    width: 34px; height: 34px;
+    border-radius: 5px;
+    margin: auto;
+}
+input[type="checkbox"]:hover + label {
+    background-position: center 7px;
+}
+input[type="checkbox"]:checked + label {
+    background-position: center -48px;
 }
 
 .other {

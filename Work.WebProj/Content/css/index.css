@@ -501,7 +501,7 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
   .top-nav button {
     background: none;
     border: none; }
-  .top-nav button:last-child {
+  .top-nav *:last-child {
     border-right: none;
     padding-right: 0;
     margin-right: 0; }
