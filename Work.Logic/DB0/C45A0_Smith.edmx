@@ -204,7 +204,7 @@
           <Property Name="is_correspond" Type="bit" Nullable="false" />
           <Property Name="news_title" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="news_content" Type="text" />
-          <Property Name="news_date" Type="datetime" />
+          <Property Name="news_date" Type="datetime" Nullable="false" />
           <Property Name="i_Hide" Type="bit" Nullable="false" />
           <Property Name="i_InsertUserID" Type="nvarchar" MaxLength="128" />
           <Property Name="i_InsertDeptID" Type="int" />
@@ -655,12 +655,12 @@
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <EntitySet Name="Member" EntityType="C45A0_SmithModel.Member" />
-          <EntitySet Name="News" EntityType="C45A0_SmithModel.News" />
           <EntitySet Name="NewsOfMember" EntityType="C45A0_SmithModel.NewsOfMember" />
           <AssociationSet Name="FK_NewsOfMember_Member" Association="C45A0_SmithModel.FK_NewsOfMember_Member">
             <End Role="Member" EntitySet="Member" />
             <End Role="NewsOfMember" EntitySet="NewsOfMember" />
           </AssociationSet>
+          <EntitySet Name="News" EntityType="C45A0_SmithModel.News" />
           <AssociationSet Name="FK_NewsOfMember_News" Association="C45A0_SmithModel.FK_NewsOfMember_News">
             <End Role="News" EntitySet="News" />
             <End Role="NewsOfMember" EntitySet="NewsOfMember" />
@@ -812,25 +812,6 @@
           <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="NewsOfMember" Relationship="C45A0_SmithModel.FK_NewsOfMember_Member" FromRole="Member" ToRole="NewsOfMember" />
         </EntityType>
-        <EntityType Name="News">
-          <Key>
-            <PropertyRef Name="news_id" />
-          </Key>
-          <Property Name="news_id" Type="Int32" Nullable="false" />
-          <Property Name="is_correspond" Type="Boolean" Nullable="false" />
-          <Property Name="news_title" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="news_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="news_date" Type="DateTime" Precision="3" />
-          <Property Name="i_Hide" Type="Boolean" Nullable="false" />
-          <Property Name="i_InsertUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="i_InsertDeptID" Type="Int32" />
-          <Property Name="i_InsertDateTime" Type="DateTime" Precision="3" />
-          <Property Name="i_UpdateUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="i_UpdateDeptID" Type="Int32" />
-          <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
-          <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="NewsOfMember" Relationship="C45A0_SmithModel.FK_NewsOfMember_News" FromRole="News" ToRole="NewsOfMember" />
-        </EntityType>
         <EntityType Name="NewsOfMember">
           <Key>
             <PropertyRef Name="news_id" />
@@ -861,6 +842,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="news_id" />
+          </Key>
+          <Property Name="news_id" Type="Int32" Nullable="false" />
+          <Property Name="is_correspond" Type="Boolean" Nullable="false" />
+          <Property Name="news_title" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="news_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="news_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="i_Hide" Type="Boolean" Nullable="false" />
+          <Property Name="i_InsertUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_InsertDeptID" Type="Int32" />
+          <Property Name="i_InsertDateTime" Type="DateTime" Precision="3" />
+          <Property Name="i_UpdateUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_UpdateDeptID" Type="Int32" />
+          <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="NewsOfMember" Relationship="C45A0_SmithModel.FK_NewsOfMember_News" FromRole="News" ToRole="NewsOfMember" />
+        </EntityType>
         <Association Name="FK_NewsOfMember_News">
           <End Type="C45A0_SmithModel.News" Role="News" Multiplicity="1" />
           <End Type="C45A0_SmithModel.NewsOfMember" Role="NewsOfMember" Multiplicity="*" />
@@ -1139,6 +1139,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="NewsOfMember">
+            <EntityTypeMapping TypeName="C45A0_SmithModel.NewsOfMember">
+              <MappingFragment StoreEntitySet="NewsOfMember">
+                <ScalarProperty Name="i_Lang" ColumnName="i_Lang" />
+                <ScalarProperty Name="i_UpdateDateTime" ColumnName="i_UpdateDateTime" />
+                <ScalarProperty Name="i_UpdateDeptID" ColumnName="i_UpdateDeptID" />
+                <ScalarProperty Name="i_UpdateUserID" ColumnName="i_UpdateUserID" />
+                <ScalarProperty Name="i_InsertDateTime" ColumnName="i_InsertDateTime" />
+                <ScalarProperty Name="i_InsertDeptID" ColumnName="i_InsertDeptID" />
+                <ScalarProperty Name="i_InsertUserID" ColumnName="i_InsertUserID" />
+                <ScalarProperty Name="i_Hide" ColumnName="i_Hide" />
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+                <ScalarProperty Name="news_id" ColumnName="news_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="News">
             <EntityTypeMapping TypeName="C45A0_SmithModel.News">
               <MappingFragment StoreEntitySet="News">
@@ -1154,22 +1170,6 @@
                 <ScalarProperty Name="news_content" ColumnName="news_content" />
                 <ScalarProperty Name="news_title" ColumnName="news_title" />
                 <ScalarProperty Name="is_correspond" ColumnName="is_correspond" />
-                <ScalarProperty Name="news_id" ColumnName="news_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NewsOfMember">
-            <EntityTypeMapping TypeName="C45A0_SmithModel.NewsOfMember">
-              <MappingFragment StoreEntitySet="NewsOfMember">
-                <ScalarProperty Name="i_Lang" ColumnName="i_Lang" />
-                <ScalarProperty Name="i_UpdateDateTime" ColumnName="i_UpdateDateTime" />
-                <ScalarProperty Name="i_UpdateDeptID" ColumnName="i_UpdateDeptID" />
-                <ScalarProperty Name="i_UpdateUserID" ColumnName="i_UpdateUserID" />
-                <ScalarProperty Name="i_InsertDateTime" ColumnName="i_InsertDateTime" />
-                <ScalarProperty Name="i_InsertDeptID" ColumnName="i_InsertDeptID" />
-                <ScalarProperty Name="i_InsertUserID" ColumnName="i_InsertUserID" />
-                <ScalarProperty Name="i_Hide" ColumnName="i_Hide" />
-                <ScalarProperty Name="member_id" ColumnName="member_id" />
                 <ScalarProperty Name="news_id" ColumnName="news_id" />
               </MappingFragment>
             </EntityTypeMapping>

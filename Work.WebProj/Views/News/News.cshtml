@@ -1,4 +1,4 @@
-﻿
+﻿@model List<ProcCore.Business.DB0.m_News>
 @{
     ViewBag.Title = "最新消息";
     ViewBag.BodyClass = "News";
@@ -10,14 +10,22 @@
 
 <h2>最新消息 <small>News</small></h2>
 
-<dl class="text-list collapse">
-    <dt><span>2015/11/6</span>最新消息標題最新消息標題最新消息標題最新消息標題最新消息標題最新消息標題最新消息標題</dt>
-    <dd>最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容
-    </dd>
-    <dt><span>2015/11/6</span>最新消息標題最新消息標題最新消息標題最新消息標題最新消息標題最新消息標題最新消息標題</dt>
-    <dd>最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容
-    </dd>
-    <dt><span>2015/11/6</span>最新消息標題最新消息標題最新消息標題最新消息標題最新消息標題最新消息標題最新消息標題</dt>
-    <dd>最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容最新消息內容
-    </dd>
-</dl>
+@if ((Boolean)ViewBag.isLogin == true)
+{
+    <dl class="text-list collapse">
+
+        @foreach (var i in Model)
+        {
+            <dt><span>@i.news_date.ToString("yyyy/MM/dd")</span>@i.news_title</dt>
+            <dd>
+                @Html.Raw(i.news_content)
+            </dd>
+        }
+    </dl>
+}
+else
+{
+    <button class="md-trigger" data-modal="login">
+        請登入會員才可檢視最新消息內容!
+    </button>
+}

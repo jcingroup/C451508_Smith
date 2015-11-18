@@ -65,6 +65,7 @@
             this.componentDidMount = this.componentDidMount.bind(this);
             this.componentDidUpdate = this.componentDidUpdate.bind(this);
             this.insertType = this.insertType.bind(this);
+            this.changeCorrespondVal = this.changeCorrespondVal.bind(this);
             this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, searchData: {} }
 
         }
@@ -232,7 +233,17 @@
             }
             this.setState({ fieldData: obj });
         }
-
+        changeCorrespondVal(e: React.SyntheticEvent) {
+            let input: HTMLInputElement = e.target as HTMLInputElement;
+            let obj = this.state.fieldData;
+            if (input.value == 'true') {
+                obj.is_correspond = true;
+            } else if (input.value == 'false') {
+                obj.is_correspond = false;
+            }
+            //console.log((this.refs['SubFrom']).state.grid_right_data.rows.length);
+            this.setState({ fieldData: obj });
+        }
         render() {
 
             var outHtml: JSX.Element = null;
@@ -311,7 +322,7 @@
                 let fieldData = this.state.fieldData;
                 var outDetailHtml: JSX.Element = null;
                 if (this.state.edit_type == 2 && fieldData.is_correspond) {
-                    outDetailHtml = (<GridNofM main_id={fieldData.news_id} />);
+                    outDetailHtml = (<GridNofM ref="SubFrom" main_id={fieldData.news_id} />);
                 } else if (this.state.edit_type == 1) {
                     outDetailHtml = (
                         <div>
@@ -366,14 +377,14 @@
 
             <div className="form-group">
                 <label className="col-xs-2 control-label">是否對應會員</label>
-                <div className="col-xs-4">
+                <div className="col-xs-2">
                    <div className="radio-inline">
                        <label>
                             <input type="radio"
                                 name="is_correspond"
                                 value={true}
                                 checked={fieldData.is_correspond === true}
-                                onChange={this.changeFDValue.bind(this, 'is_correspond') }
+                                onChange={this.changeCorrespondVal.bind(this) }
                                 />
                             <span>對應</span>
                            </label>
@@ -384,12 +395,13 @@
                                 name="is_correspond"
                                 value={false}
                                 checked={fieldData.is_correspond === false}
-                                onChange={this.changeFDValue.bind(this, 'is_correspond') }
+                                onChange={this.changeCorrespondVal.bind(this) }
                                 />
                             <span>不對應</span>
                            </label>
                        </div>
                     </div>
+                    <small className="help-inline col-xs-5">對應:指定會員才可檢視 , 不對應:全部會員皆可檢視</small>
                 </div>
 
             <div className="form-group">
@@ -476,6 +488,7 @@
         apiRightPath?: string;
         apiAddPath?: string;
         apiRemovePath?: string;
+        ref: any;
     }, CorrespondState>{
         constructor() {
             super();

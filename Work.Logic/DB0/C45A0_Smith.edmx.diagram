@@ -26,9 +26,9 @@
         <EntityTypeShape EntityType="C45A0_SmithModel.Product" Width="1.5" PointX="10.625" PointY="6.875" />
         <AssociationConnector Association="C45A0_SmithModel.FK_Product_ProductCategory" />
         <EntityTypeShape EntityType="C45A0_SmithModel.Member" Width="1.5" PointX="10.375" PointY="11.75" />
-        <EntityTypeShape EntityType="C45A0_SmithModel.News" Width="1.5" PointX="12.375" PointY="0.75" />
         <EntityTypeShape EntityType="C45A0_SmithModel.NewsOfMember" Width="1.5" PointX="14.625" PointY="7.125" />
         <AssociationConnector Association="C45A0_SmithModel.FK_NewsOfMember_Member" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.News" Width="1.5" PointX="12.375" PointY="17.875" />
         <AssociationConnector Association="C45A0_SmithModel.FK_NewsOfMember_News" />
       </Diagram>
     </edmx:Diagrams>

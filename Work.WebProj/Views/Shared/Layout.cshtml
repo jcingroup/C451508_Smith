@@ -76,10 +76,7 @@
             <nav id="menu">
                 <header class="toggle">MENU</header>
                 <a href="~/AboutUs">公司簡介</a>
-                @if ((Boolean)ViewBag.isLogin == true)
-                {//最新消息只有會員才看的到
-                    <a href="~/News">最新消息</a>
-                }
+                <a href="~/News">最新消息</a>
                 <a href="~/Products">產品介紹</a>
                 <a href="~/FAQ">常見問題</a>
                 <a href="~/Service">線上諮詢</a>
