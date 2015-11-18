@@ -1002,6 +1002,9 @@ namespace DotWeb.Controller
             }
             ViewBag.Sidebar = category;
         }
+
+
+
         #region 前台抓取圖片
         public string[] GetImgs(int id, string file_kind, string category1, string category2, string size)
         {

@@ -30,10 +30,10 @@
     <div class="md-modal md-effect-7" id="login">
         <form class="md-content" id="MLogin">
             <h3>LOGIN 會員登入</h3>
-            <input type="text" name="id" id="m_member_id" placeholder="請輸入會員帳號(email)">
-            <input type="password" name="pwd" id="m_member_pwd" placeholder="請輸入會員密碼">
+            <input type="text" name="id" id="m_member_id" placeholder="請輸入會員帳號(email)" required>
+            <input type="password" name="pwd" id="m_member_pwd" placeholder="請輸入會員密碼" required>
             <p class="row">
-                <input type="text" id="m_Mlogin_validate" placeholder="請輸入驗證碼" class="float-l">
+                <input type="text" id="m_Mlogin_validate" placeholder="請輸入驗證碼" class="float-l" required>
                 <img alt="驗證碼" id="m_Mlogin_img" src="~/_Code/Ashx/ValidateCode.ashx?vn=MemberLogin" class="float-r" />
             </p>
             <button class="btn btn-primary">登入</button>
@@ -42,14 +42,19 @@
         </form>
     </div>
     <div class="md-modal md-effect-7" id="join">
-        <form class="md-content">
+        <form class="md-content" id="MApply">
             <h3>JOIN US 加入會員</h3>
-            <input type="text" name="id" placeholder="請輸入會員帳號(email)">
-            <input type="text" name="member" placeholder="請輸入會員名稱">
-            <input type="password" name="pwd" placeholder="請輸入會員密碼">
+            <input type="text" name="member" id="ma_member_name" placeholder="請輸入會員名稱">
+            <input type="email" name="email" id="ma_member_email" placeholder="請輸入會員email">
+            <input type="text" name="id" id="ma_member_id" placeholder="請輸入會員帳號">
+            <input type="password" name="pwd" id="ma_member_pwd" placeholder="請輸入會員密碼">
+            <p class="row">
+                <input type="text" id="m_MApply_validate" placeholder="請輸入驗證碼" class="float-l">
+                <img alt="驗證碼" id="m_MApply_img" src="~/_Code/Ashx/ValidateCode.ashx?vn=MemberApply" class="float-r" />
+            </p>
             <button class="btn btn-primary">送出申請</button>
             <p>感謝您的加入，我們將盡快作業，請等候通知</p>
-            <button class="md-close">X</button>
+            <button class="md-close" type="button">X</button>
         </form>
     </div>
     @RenderSection("overlay", required: false)

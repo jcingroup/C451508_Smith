@@ -232,6 +232,13 @@ namespace ProcCore.Business.DB0
         public string Lname { get; set; }
         public IList<m_Issue> issue { get; set; }
     }
+    public class AddMember
+    {
+        public string name { get; set; }
+        public string email { get; set; }
+        public string act { get; set; }
+        public string pwd { get; set; }
+    }
     #endregion
 
     #region q_Model_Define
