@@ -401,7 +401,7 @@
                            </label>
                        </div>
                     </div>
-                    <small className="help-inline col-xs-5">對應:指定會員才可檢視 , 不對應:全部會員皆可檢視</small>
+                    <small className="help-inline col-xs-5">預設「不對應」所有會員都會收到消息，設定「對應」則有指定的會員才收的到</small>
                 </div>
 
             <div className="form-group">

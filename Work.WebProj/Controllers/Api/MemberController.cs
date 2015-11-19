@@ -83,7 +83,7 @@ namespace DotWeb.Api
                 item.tw_city = md.tw_city;
                 item.tw_country = md.tw_country;
                 item.tw_address = md.tw_address;
-                item.is_approve = md.is_approve;
+                //item.is_approve = md.is_approve;
 
                 md.i_UpdateDateTime = DateTime.Now;
                 md.i_UpdateDeptID = this.departmentId;
@@ -106,6 +106,7 @@ namespace DotWeb.Api
         public async Task<IHttpActionResult> Post([FromBody]Member md)
         {
             md.member_id = GetNewId(CodeTable.Member);
+            md.is_approve = true;
             md.i_Hide = false;
             md.i_InsertDateTime = DateTime.Now;
             md.i_InsertDeptID = this.departmentId;

@@ -783,7 +783,7 @@ namespace DotWeb.Controller
                 ViewBag.VisitCount = visitCount;
                 ViewBag.IsFirstPage = false; //是否為首頁，請在首頁的Action此值設為True
                 ajax_GetSidebarData();//前台左選單
-                ViewBag.MName = getMemberName.Value;
+                ViewBag.MName = Server.UrlDecode(getMemberName.Value);
 
                 this.isTablet = (new WebInfo()).isTablet();
             }

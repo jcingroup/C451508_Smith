@@ -106,6 +106,7 @@
         handleSubmit(e: React.FormEvent) {
 
             e.preventDefault();
+
             if (this.state.edit_type == 1) {
                 jqPost(this.props.apiPath, this.state.fieldData)
                     .done((data: CallResult, textStatus, jqXHRdata) => {
@@ -400,7 +401,7 @@
                    <small className="help-inline col-xs-5"><span className="text-danger">(必填) </span></small>
               </div>
 
-            <div className="form-group">
+            {/*<div className="form-group">
                 <label className="col-xs-2 control-label">狀態</label>
                 <div className="col-xs-2">
                    <div className="radio-inline">
@@ -427,11 +428,11 @@
                        </div>
                     </div>
                     <small className="help-inline col-xs-6">會員申請認可,認可後帳號才可正式使用</small>
-                </div>
+                </div>*/}
 
             <div className="form-action text-right">
-                <div className="col-xs-5">
-                    <button type="submit" className="btn-primary"><i className="fa-check"></i> 儲存</button> { }
+                <div className="col-xs-6">
+                    <button type="submit" className="btn-primary" name="btn-1"><i className="fa-check"></i> 儲存</button> { }
                     <button type="button" onClick={this.noneType}><i className="fa-times"></i> 回前頁</button>
                     </div>
                 </div>
