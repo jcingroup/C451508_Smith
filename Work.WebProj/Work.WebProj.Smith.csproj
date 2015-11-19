@@ -224,6 +224,8 @@
     <Compile Include="Controllers\Api\GetActionController.cs" />
     <Compile Include="Controllers\Api\IssueCategoryController.cs" />
     <Compile Include="Controllers\Api\MenuController.cs" />
+    <Compile Include="Controllers\Api\OrderDetailController.cs" />
+    <Compile Include="Controllers\Api\OrderController.cs" />
     <Compile Include="Controllers\Api\ProductCategoryController.cs" />
     <Compile Include="Controllers\Api\IssueController.cs" />
     <Compile Include="Controllers\Api\MemberController.cs" />

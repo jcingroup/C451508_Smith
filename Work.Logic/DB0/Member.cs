@@ -18,6 +18,7 @@ namespace ProcCore.Business.DB0
         public Member()
         {
             this.NewsOfMember = new HashSet<NewsOfMember>();
+            this.Order = new HashSet<Order>();
         }
     
         public int member_id { get; set; }
@@ -43,5 +44,7 @@ namespace ProcCore.Business.DB0
     
     	[JsonIgnore]
         public virtual ICollection<NewsOfMember> NewsOfMember { get; set; }
+    	[JsonIgnore]
+        public virtual ICollection<Order> Order { get; set; }
     }
 }

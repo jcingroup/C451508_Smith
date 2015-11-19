@@ -173,6 +173,12 @@
     <Compile Include="DB0\m_NewsOfMember.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB0\m_Order.cs">
+      <DependentUpon>C45A0_Smith.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB0\m_OrderDetail.cs">
+      <DependentUpon>C45A0_Smith.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB0\m_Product.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
@@ -183,6 +189,12 @@
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
     <Compile Include="DB0\NewsOfMember.cs">
+      <DependentUpon>C45A0_Smith.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB0\Order.cs">
+      <DependentUpon>C45A0_Smith.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB0\OrderDetail.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
     <Compile Include="DB0\Product.cs">
