@@ -269,26 +269,6 @@
         </EntityType>
         <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'C45A0_Smith.dbo.Purchase' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
-        <EntityType Name="Purchase">
-          <Key>
-            <PropertyRef Name="purchase_id" />
-            <PropertyRef Name="set_date" />
-            <PropertyRef Name="total" />
-            <PropertyRef Name="i_Hide" />
-            <PropertyRef Name="i_Lang" />
-          </Key>
-          <Property Name="purchase_id" Type="int" Nullable="false" />
-          <Property Name="set_date" Type="datetime" Nullable="false" />
-          <Property Name="total" Type="int" Nullable="false" />
-          <Property Name="i_Hide" Type="bit" Nullable="false" />
-          <Property Name="i_InsertUserID" Type="nvarchar" MaxLength="128" />
-          <Property Name="i_InsertDeptID" Type="int" />
-          <Property Name="i_InsertDateTime" Type="datetime" />
-          <Property Name="i_UpdateUserID" Type="nvarchar" MaxLength="128" />
-          <Property Name="i_UpdateDeptID" Type="int" />
-          <Property Name="i_UpdateDateTime" Type="datetime" />
-          <Property Name="i_Lang" Type="char" MaxLength="5" Nullable="false" />
-        </EntityType>
         <Association Name="FK_AspNetUsers_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
@@ -421,21 +401,6 @@
           <EntitySet Name="NewsOfMember" EntityType="Self.NewsOfMember" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Purchase" EntityType="Self.Purchase" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Purchase].[purchase_id] AS [purchase_id], 
-    [Purchase].[set_date] AS [set_date], 
-    [Purchase].[total] AS [total], 
-    [Purchase].[i_Hide] AS [i_Hide], 
-    [Purchase].[i_InsertUserID] AS [i_InsertUserID], 
-    [Purchase].[i_InsertDeptID] AS [i_InsertDeptID], 
-    [Purchase].[i_InsertDateTime] AS [i_InsertDateTime], 
-    [Purchase].[i_UpdateUserID] AS [i_UpdateUserID], 
-    [Purchase].[i_UpdateDeptID] AS [i_UpdateDeptID], 
-    [Purchase].[i_UpdateDateTime] AS [i_UpdateDateTime], 
-    [Purchase].[i_Lang] AS [i_Lang]
-    FROM [dbo].[Purchase] AS [Purchase]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_AspNetUsers_Department" Association="Self.FK_AspNetUsers_Department">
             <End Role="Department" EntitySet="Department" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -642,7 +607,6 @@
             <End Role="Menu" EntitySet="Menu" />
           </AssociationSet>
           <EntitySet Name="ProductCategory" EntityType="C45A0_SmithModel.ProductCategory" />
-          <EntitySet Name="Purchase" EntityType="C45A0_SmithModel.Purchase" />
           <EntitySet Name="IssueCategory" EntityType="C45A0_SmithModel.IssueCategory" />
           <EntitySet Name="Issue" EntityType="C45A0_SmithModel.Issue" />
           <AssociationSet Name="FK_Issue_IssueCategory" Association="C45A0_SmithModel.FK_Issue_IssueCategory">
@@ -683,26 +647,6 @@
           <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
           <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Product" Relationship="C45A0_SmithModel.FK_Product_ProductCategory" FromRole="ProductCategory" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Purchase">
-          <Key>
-            <PropertyRef Name="purchase_id" />
-            <PropertyRef Name="set_date" />
-            <PropertyRef Name="total" />
-            <PropertyRef Name="i_Hide" />
-            <PropertyRef Name="i_Lang" />
-          </Key>
-          <Property Name="purchase_id" Type="Int32" Nullable="false" />
-          <Property Name="set_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="total" Type="Int32" Nullable="false" />
-          <Property Name="i_Hide" Type="Boolean" Nullable="false" />
-          <Property Name="i_InsertUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="i_InsertDeptID" Type="Int32" />
-          <Property Name="i_InsertDateTime" Type="DateTime" Precision="3" />
-          <Property Name="i_UpdateUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="i_UpdateDeptID" Type="Int32" />
-          <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
-          <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="IssueCategory">
           <Key>
@@ -1035,23 +979,6 @@
                 <ScalarProperty Name="sort" ColumnName="sort" />
                 <ScalarProperty Name="category_name" ColumnName="category_name" />
                 <ScalarProperty Name="product_category_id" ColumnName="product_category_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Purchase">
-            <EntityTypeMapping TypeName="C45A0_SmithModel.Purchase">
-              <MappingFragment StoreEntitySet="Purchase">
-                <ScalarProperty Name="i_Lang" ColumnName="i_Lang" />
-                <ScalarProperty Name="i_UpdateDateTime" ColumnName="i_UpdateDateTime" />
-                <ScalarProperty Name="i_UpdateDeptID" ColumnName="i_UpdateDeptID" />
-                <ScalarProperty Name="i_UpdateUserID" ColumnName="i_UpdateUserID" />
-                <ScalarProperty Name="i_InsertDateTime" ColumnName="i_InsertDateTime" />
-                <ScalarProperty Name="i_InsertDeptID" ColumnName="i_InsertDeptID" />
-                <ScalarProperty Name="i_InsertUserID" ColumnName="i_InsertUserID" />
-                <ScalarProperty Name="i_Hide" ColumnName="i_Hide" />
-                <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="set_date" ColumnName="set_date" />
-                <ScalarProperty Name="purchase_id" ColumnName="purchase_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

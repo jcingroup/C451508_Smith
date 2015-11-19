@@ -37,3 +37,4 @@ namespace ProcCore.Business.DB0
         public virtual ICollection<Product> Product { get; set; }
     }
 }
+

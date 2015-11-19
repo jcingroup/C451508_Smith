@@ -179,9 +179,6 @@
     <Compile Include="DB0\m_ProductCategory.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB0\m_Purchase.cs">
-      <DependentUpon>C45A0_Smith.tt</DependentUpon>
-    </Compile>
     <Compile Include="DB0\News.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
@@ -192,9 +189,6 @@
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
     <Compile Include="DB0\ProductCategory.cs">
-      <DependentUpon>C45A0_Smith.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB0\Purchase.cs">
       <DependentUpon>C45A0_Smith.tt</DependentUpon>
     </Compile>
     <Compile Include="LogicCenter.cs" />

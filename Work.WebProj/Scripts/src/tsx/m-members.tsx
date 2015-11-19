@@ -46,7 +46,7 @@
                     <td>{this.props.itemData.member_id}</td>
                     <td>{this.props.itemData.member_name}</td>
                     <td>{this.props.itemData.email}</td>
-                    <td>{this.props.itemData.is_approve ? <span className="label label-success">認可</span> : <span className="label label-default">未認可</span>}</td>
+                    {/*<td>{this.props.itemData.is_approve ? <span className="label label-success">認可</span> : <span className="label label-default">未認可</span>}</td>*/}
                 </tr>;
         }
     }
@@ -274,7 +274,7 @@
                         <th className="col-xs-1">編號</th>
                         <th className="col-xs-2">姓名</th>
                         <th className="col-xs-2">EMail</th>
-                        <th className="col-xs-1">狀態</th>
+                        {/*<th className="col-xs-1">狀態</th>*/}
                         </tr>
                     </thead>
                 <tbody>

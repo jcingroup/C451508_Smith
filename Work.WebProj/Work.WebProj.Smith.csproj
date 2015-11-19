@@ -230,7 +230,6 @@
     <Compile Include="Controllers\Api\NewsController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
-    <Compile Include="Controllers\Api\PurchaseController.cs" />
     <Compile Include="Controllers\Api\UsersController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
