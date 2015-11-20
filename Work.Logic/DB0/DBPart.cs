@@ -197,13 +197,18 @@ namespace ProcCore.Business.DB0
 
     }
     #region Model Expand
-    public partial class m_Order : BaseEntityTable {
+    public partial class m_Order : BaseEntityTable
+    {
         public string member_name { get; set; }
     }
     public partial class m_Product : BaseEntityTable
     {
         public string category_name { get; set; }
         public string imgsrc { get; set; }
+        //訂單顯示用欄位
+        public int count { get; set; }
+        public bool isFirst { get; set; }
+        public int qty { get; set; }
     }
     public partial class Product : BaseEntityTable
     {

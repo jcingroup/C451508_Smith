@@ -55,6 +55,7 @@
                     <td>{this.props.itemData.model_type}</td>
                     <td>{this.props.itemData.product_name}</td>
                     <td>{this.props.itemData.price}</td>
+                    <td>{this.props.itemData.sort}</td>
                     <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
                 </tr>;
         }
@@ -312,8 +313,9 @@
                         <th className="col-xs-1 text-center">修改</th>
                         <th className="col-xs-2">產品分類</th>
                         <th className="col-xs-2">產品型號</th>
-                        <th className="col-xs-4">產品名稱</th>
+                        <th className="col-xs-3">產品名稱</th>
                         <th className="col-xs-1">單價</th>
+                        <th className="col-xs-1">排序</th>
                         <th className="col-xs-1">狀態</th>
                         </tr>
                     </thead>

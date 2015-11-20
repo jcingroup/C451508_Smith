@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using DotWeb.Controller;
 using ProcCore.Business.DB0;
+using ProcCore.HandleResult;
+using DotWeb.CommSetup;
 
 namespace DotWeb.WebApp.Controllers
 {
@@ -82,8 +83,74 @@ namespace DotWeb.WebApp.Controllers
 
         public ActionResult Order()
         {
-               return View();
+            if (!this.isLogin)
+            {//必免未登入連進產品訂單頁
+                return Redirect("~");
+            }
+            else
+            {
+                return View();
+            }
         }
 
+        public string sendOrderMail(MailContent md)
+        {
+            ResultInfo r = new ResultInfo();
+            try
+            {
+                if (this.isLogin)
+                {
+                    using (db0 = getDB0())
+                    {
+                        #region 設定會員
+                        int member_id = int.Parse(this.MemberId);
+                        var getMember = db0.Member.Find(member_id);
+                        md.member_id = getMember.member_id;
+                        md.member_name = getMember.member_name;
+                        #endregion
+                        postOrderContent(md);
+                        #region 信件發送
+                        string Body = getMailBody("OrderEmail", md);//套用信件版面
+                        Boolean mail;
+                        mail = Mail_Send("sdec0817@kimo.com", //寄信人
+                                        openLogic().getReceiveMails(), //收信人
+                                        CommWebSetup.OrderMailTitle, //信件標題
+                                        Body, //信件內容
+                                        true); //是否為html格式
+                        if (mail == false)
+                        {
+                            r.result = false;
+                            r.message = "信箱號碼不正確或送信失敗!";
+                            return defJSON(r);
+                        }
+                        #endregion
+                    }
+                    r.result = true;
+                }
+                else {
+                    r.result = false;
+                    r.message ="未登入會員無法下單~!";
+                }
+            }
+            catch (Exception ex)
+            {
+                r.result = false;
+                r.message = ex.Message;
+            }
+            return defJSON(r);
+        }
+        public class ODetail
+        {
+            public string c_name { get; set; }
+            public string m_type { get; set; }
+            public int p_id { get; set; }
+            public int qty { get; set; }
+        }
+        public class MailContent
+        {
+            public List<ODetail> order_list { get; set; }
+            public string member_name { get; set; }
+            public int member_id { get; set; }
+        }
     }
 }

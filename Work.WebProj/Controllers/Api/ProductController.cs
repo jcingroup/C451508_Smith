@@ -33,14 +33,14 @@ namespace DotWeb.Api
             using (db0 = getDB0())
             {
                 var items = db0.Product
-                            .OrderBy(x => x.sort)
+                            .OrderByDescending(x => new { c_sort = x.ProductCategory.sort, x.sort })
                             .Select(x => new m_Product()
                             {
                                 product_id = x.product_id,
                                 product_name = x.product_name,
                                 category_name = x.ProductCategory.category_name,
                                 category_id = x.category_id,
-                                model_type=x.model_type,
+                                model_type = x.model_type,
                                 price = x.price,
                                 sort = x.sort,
                                 i_Hide = x.i_Hide

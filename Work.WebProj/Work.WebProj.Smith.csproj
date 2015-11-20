@@ -668,6 +668,8 @@
     <Content Include="Scripts\build\func\m-purchase.js" />
     <Content Include="Scripts\build\func\m-Roles.js" />
     <Content Include="Scripts\build\func\m-Users.js" />
+    <Content Include="Scripts\build\func\w-member.js" />
+    <Content Include="Scripts\build\func\w-order.js" />
     <Content Include="Scripts\build\ts\commangular.js" />
     <Content Include="Scripts\build\ts\commfunc.js" />
     <Content Include="Scripts\build\ts\commupload.js" />
@@ -768,6 +770,7 @@
     <Content Include="Scripts\src\jsx\m-ChangeEmail.jsx" />
     <Content Include="Views\Products\Order.cshtml" />
     <Content Include="Views\Shared\ApplyMemberEmail.cshtml" />
+    <Content Include="Views\Shared\OrderEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -826,7 +829,7 @@
     <TypeScriptCompile Include="Scripts\src\tsx\m-news.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-product_category.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-product.tsx" />
-    <TypeScriptCompile Include="Scripts\src\tsx\m-purchase.tsx" />
+    <TypeScriptCompile Include="Scripts\src\tsx\w-order.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\w-member.ts" />
     <TypeScriptCompile Include="Scripts\ts-def\commfunc.ts" />
     <TypeScriptCompile Include="Scripts\ts-def\commupload.ts" />

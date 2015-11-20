@@ -54,7 +54,7 @@
     interface Product extends BaseEntityTable {
         product_id?: number;
         category_id: number;
-        model_type?: number;
+        model_type?: string;
         product_name?: string;
         product_content?: string;
         price?: number;
@@ -118,26 +118,24 @@
         member?: server.Member;
         news?: server.News;
     }
-    interface Purchase extends BaseEntityTable {
-        purchase_id?: number;
-        purchase_no?: string;
-        set_date?: Date;
-        sales_id?: number;
-        sales_name?: string;
-        total?: number;
-        state?: number;
-    }
-    interface PurchaseDetail extends BaseEntityTable {
-        purchase_detail_id?: number;
-        purchase_id?: number;
-        item_no?: number;
+    interface OrderProduct extends BaseEntityTable {
+        product_id?: number;
+        category_id: number;
+        model_type?: string;
         product_name?: string;
-        qty?: number;
-        price?: number;
-        sub_total?: number;
-        product_no?: string;
-        purchase_no?: string
-    }
+        category_name?: string;
 
+        count?: number;
+        isFirst?: boolean;
+        qty?: number;
+        is_buy?: boolean;
+
+    }
+    interface OrderDetailList extends BaseEntityTable {
+        p_id?: number;
+        qty?: number;
+        m_type?: string;
+        c_name?: string;
+    }
 
 } 

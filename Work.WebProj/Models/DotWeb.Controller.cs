@@ -1031,6 +1031,45 @@ namespace DotWeb.Controller
             }
         }
 
+        public void postOrderContent(WebApp.Controllers.ProductsController.MailContent md) {
+            try
+            {
+                using (var db0 = getDB0())
+                {
+                    var item = new Order
+                    {
+                        order_id = GetNewId(CodeTable.Order),
+                        member_id = int.Parse(this.MemberId),
+                        order_day=DateTime.Now,
+                        i_InsertDateTime = DateTime.Now,
+                        i_Lang = "zh-TW"
+                    };
+                    List<OrderDetail> details = new List<OrderDetail>();
+                    foreach (var i in md.order_list) {
+                        var detail = new OrderDetail
+                        {
+                            order_id = item.order_id,
+                            order_detail_id= GetNewId(CodeTable.OrderDetail),
+                            product_id = i.p_id,
+                            model_type=i.m_type,
+                            qty = i.qty,
+                            i_InsertDateTime = DateTime.Now,
+                            i_Lang = "zh-TW"
+                        };
+                        details.Add(detail);
+                    }
+
+                    db0.Order.Add(item);
+                    db0.OrderDetail.AddRange(details);
+                    db0.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+
         #region 前台抓取圖片
         public string[] GetImgs(int id, string file_kind, string category1, string category2, string size)
         {

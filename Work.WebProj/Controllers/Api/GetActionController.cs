@@ -56,7 +56,8 @@ namespace DotWeb.Api
                     endcount = PageCount.EndCount
                 });
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return Ok(ex.ToString());
             }
             finally
@@ -172,6 +173,47 @@ namespace DotWeb.Api
                 r.result = false;
                 r.message = ex.Message;
                 return Ok(r);
+            }
+            finally
+            {
+                db0.Dispose();
+            }
+        }
+        #endregion
+
+        #region 產品下單
+        public async Task<IHttpActionResult> GetProductData()
+        {
+            db0 = getDB0();
+            List<m_Product> items = new List<m_Product>();
+            try
+            {
+
+                items = await db0.Product.Where(x => !x.i_Hide & !x.ProductCategory.i_Hide).OrderByDescending(x => new { c_sort = x.ProductCategory.sort, x.sort })
+                                                         .Select(x => new m_Product
+                                                         {
+                                                             product_id = x.product_id,
+                                                             category_id = x.category_id,
+                                                             category_name = x.ProductCategory.category_name,
+                                                             model_type = x.model_type,
+                                                             product_name = x.product_name,
+                                                             qty = 0
+                                                         }).ToListAsync();
+
+                var category = await db0.ProductCategory.Where(x => !x.i_Hide).OrderByDescending(x => x.sort).ToListAsync();
+
+                foreach (var i in category)
+                {
+                    var p_data = items.Where(x => x.category_id == i.product_category_id).FirstOrDefault();
+                    p_data.count = items.Where(x => x.category_id == i.product_category_id).Count();
+                    p_data.isFirst = true;
+                }
+
+                return Ok(new { result = true, data = items });
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex.ToString());
             }
             finally
             {

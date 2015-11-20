@@ -205,6 +205,13 @@ namespace DotWeb.CommSetup
                 return GetKeyValue("ApplyMemberMailTitle");
             }
         }
+        public static string OrderMailTitle
+        {
+            get
+            {
+                return GetKeyValue("OrderMailTitle");
+            }
+        }
         public static string[] MailToList
         {
             get
