@@ -37,11 +37,11 @@ namespace DotWeb.Api
                             .OrderByDescending(x => new { x.order_day, x.order_id })
                             .Select(x => new m_Order()
                             {
-                                order_id=x.order_id,
-                                order_day=x.order_day,
-                                member_id=x.member_id,
+                                order_id = x.order_id,
+                                order_day = x.order_day,
+                                member_id = x.member_id,
                                 member_name = x.Member.member_name,
-                                i_Hide=x.i_Hide
+                                i_Hide = x.i_Hide
                             }).AsQueryable();
 
                 if (q.name != null)
@@ -149,6 +149,12 @@ namespace DotWeb.Api
                 foreach (var id in ids)
                 {
                     item = new Order() { order_id = id };
+                    Boolean check_detail = db0.OrderDetail.Any(x => x.order_id == id);
+                    if (check_detail)
+                    {
+                        var getDeatil = db0.OrderDetail.Where(x => x.order_id == id);
+                        db0.OrderDetail.RemoveRange(getDeatil);
+                    }
                     db0.Order.Attach(item);
                     db0.Order.Remove(item);
                 }

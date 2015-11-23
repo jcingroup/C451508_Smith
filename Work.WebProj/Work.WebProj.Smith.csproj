@@ -665,6 +665,7 @@
     <Content Include="Scripts\build\func\m-members.js" />
     <Content Include="Scripts\build\func\m-Menu.js" />
     <Content Include="Scripts\build\func\m-news.js" />
+    <Content Include="Scripts\build\func\m-orders.js" />
     <Content Include="Scripts\build\func\m-product.js" />
     <Content Include="Scripts\build\func\m-product_category.js" />
     <Content Include="Scripts\build\func\m-purchase.js" />

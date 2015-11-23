@@ -34,12 +34,13 @@ namespace DotWeb.Api
             {
                 var items = db0.OrderDetail
                             .OrderBy(x => new { x.product_name })
+                            .Where(x => x.order_id == q.order_id)
                             .Select(x => new m_OrderDetail()
                             {
                                 order_id = x.order_id,
                                 order_detail_id = x.order_detail_id,
                                 product_id = x.product_id,
-                                category_name=x.Product.ProductCategory.category_name,
+                                category_name = x.Product.ProductCategory.category_name,
                                 product_name = x.product_name,
                                 model_type = x.model_type,
                                 qty = x.qty,
@@ -177,5 +178,6 @@ namespace DotWeb.Api
     public class q_OrderDetail : QueryBase
     {
         public string name { get; set; }
+        public int order_id { get; set; }
     }
 }

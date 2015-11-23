@@ -108,7 +108,7 @@
                 });
         }
         queryGridDeatilData(order_id: number | string) {
-            jqGet(this.props.InitPath, {})
+            jqGet(this.props.InitPath, { order_id: order_id})
                 .done(function (data, textStatus, jqXHRdata) {
                     this.setState({ detail_list: data });
                 }.bind(this))
