@@ -279,7 +279,6 @@
     <Content Include="Content\font\MElleHK.otf" />
     <Content Include="Content\font\MElleHK.ttf" />
     <Content Include="Content\font\MElleHK.woff" />
-    <Content Include="Content\images\AboutUs\banner.jpg" />
     <Content Include="Content\images\banner1.jpg" />
     <Content Include="Content\images\banner2.jpg" />
     <Content Include="Content\images\banner3.jpg" />
@@ -287,7 +286,6 @@
     <Content Include="Content\images\bg.gif" />
     <Content Include="Content\images\bg2.gif" />
     <Content Include="Content\images\ContactUs\banner.jpg" />
-    <Content Include="Content\images\FAQ\banner.jpg" />
     <Content Include="Content\images\FAQ\pic1.gif" />
     <Content Include="Content\images\FAQ\pic2.gif" />
     <Content Include="Content\images\icon.png" />
@@ -316,8 +314,6 @@
     <Content Include="Content\images\logo.gif" />
     <Content Include="Content\images\logo2.gif" />
     <Content Include="Content\images\logo_s.gif" />
-    <Content Include="Content\images\News\banner.jpg" />
-    <Content Include="Content\images\products\banner.jpg" />
     <Content Include="Content\images\products\check.png" />
     <Content Include="Content\images\products\info.gif" />
     <Content Include="Content\images\products\pro.jpg" />
@@ -881,6 +877,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Active\Views\Shared\" />
     <Folder Include="Areas\Base\Views\Shared\" />
+    <Folder Include="Content\images\AboutUs\" />
+    <Folder Include="Content\images\News\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="_Code\CReport\" />
     <Folder Include="_Code\Images\" />
