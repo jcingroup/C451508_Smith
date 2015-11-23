@@ -138,4 +138,22 @@
         c_name?: string;
     }
 
+    interface Order extends BaseEntityTable {
+        order_id?: number;
+        order_day?: any;
+        member_id?: number;
+        member_name?: string;
+        member?: server.Member;
+        orderDetail?: Array<server.OrderDetail>;
+    }
+    interface OrderDetail extends BaseEntityTable {
+        order_detail_id?: number;
+        order_id?: number;
+        product_id?: number;
+        category_name?: string;
+        product_name?: string;
+        model_type?: string;
+        qty?: number;
+        order?: server.Order;
+    }
 } 

@@ -108,12 +108,23 @@ namespace DotWeb.WebApp.Controllers
                         md.member_id = getMember.member_id;
                         md.member_name = getMember.member_name;
                         #endregion
-                        postOrderContent(md);
                         #region 信件發送
                         string Body = getMailBody("OrderEmail", md);//套用信件版面
                         Boolean mail;
-                        mail = Mail_Send("sdec0817@kimo.com", //寄信人
-                                        openLogic().getReceiveMails(), //收信人
+                        #region 收信人及寄信人
+                        string sendMail = openLogic().getReceiveMails()[0];
+                        if (sendMail != "")
+                        {
+                            var m = sendMail.Split(':');
+                            sendMail = m[m.Length - 1];
+                        }
+
+                        List<string> r_mails = openLogic().getReceiveMails().ToList();
+                        if (!r_mails.Any(x => x.Contains(getMember.email))) { r_mails.Add(getMember.member_name + ":" + getMember.email); }
+
+                        #endregion
+                        mail = Mail_Send(sendMail, //寄信人
+                                        r_mails.ToArray(), //收信人
                                         CommWebSetup.OrderMailTitle, //信件標題
                                         Body, //信件內容
                                         true); //是否為html格式
@@ -123,13 +134,15 @@ namespace DotWeb.WebApp.Controllers
                             r.message = "信箱號碼不正確或送信失敗!";
                             return defJSON(r);
                         }
+                        postOrderContent(md);
                         #endregion
                     }
                     r.result = true;
                 }
-                else {
+                else
+                {
                     r.result = false;
-                    r.message ="未登入會員無法下單~!";
+                    r.message = "未登入會員無法下單~!";
                 }
             }
             catch (Exception ex)

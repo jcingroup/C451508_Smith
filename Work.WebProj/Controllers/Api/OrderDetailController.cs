@@ -39,6 +39,7 @@ namespace DotWeb.Api
                                 order_id = x.order_id,
                                 order_detail_id = x.order_detail_id,
                                 product_id = x.product_id,
+                                category_name=x.Product.ProductCategory.category_name,
                                 product_name = x.product_name,
                                 model_type = x.model_type,
                                 qty = x.qty,
@@ -50,19 +51,7 @@ namespace DotWeb.Api
                     items = items.Where(x => x.product_name.Contains(q.name));
                 }
 
-                int page = (q.page == null ? 1 : (int)q.page);
-                int startRecord = PageCount.PageInfo(page, this.defPageSize, items.Count());
-                var resultItems = await items.Skip(startRecord).Take(this.defPageSize).ToListAsync();
-
-                return Ok(new GridInfo<m_OrderDetail>()
-                {
-                    rows = resultItems,
-                    total = PageCount.TotalPage,
-                    page = PageCount.Page,
-                    records = PageCount.RecordCount,
-                    startcount = PageCount.StartCount,
-                    endcount = PageCount.EndCount
-                });
+                return Ok(items.ToList());
 
             }
             #endregion

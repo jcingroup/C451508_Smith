@@ -197,6 +197,14 @@ namespace ProcCore.Business.DB0
 
     }
     #region Model Expand
+    public partial class Order : BaseEntityTable
+    {
+        public string member_name { get; set; }
+    }
+    public partial class m_OrderDetail : BaseEntityTable
+    {
+        public string category_name { get; set; }
+    }
     public partial class m_Order : BaseEntityTable
     {
         public string member_name { get; set; }

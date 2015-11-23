@@ -43,18 +43,24 @@ module BaseDefine {
 }
 
 // Component
-class GridButtonModify extends React.Component<{ modify(): void }, {}> {
+class GridButtonModify extends React.Component<{ modify(): void, ver?: number }, {}> {
 
     constructor(props) {
         super(props)
         this.onClick = this.onClick.bind(this);
     }
-
+    static defaultProps = {
+        ver: 1
+    }
     onClick() {
         this.props.modify();
     }
     render() {
-        return <button type="button" className="btn-link btn-lg" onClick={this.onClick}><i className="fa-pencil"></i></button>
+        if (this.props.ver == 1) {
+            return <button type="button" className="btn-link btn-lg" onClick={this.onClick}><i className="fa-pencil"></i></button>
+        } else if (this.props.ver == 2) {
+            return <button type="button" className="btn-link btn-lg" onClick={this.onClick}><i className="fa-search"></i></button>
+        }
     }
 }
 class GridCheckDel extends React.Component<
@@ -321,7 +327,7 @@ class TwAddress extends React.Component<{
     componentDidUpdate(prevProps, prevState) {
         if (this.props.city_value != null && this.props.city_value != prevProps.city_value) {
             this.listCountry(this.props.city_value);
-        }       
+        }
     }
     onCityChange(e: React.SyntheticEvent) {
         let input: HTMLInputElement = e.target as HTMLInputElement;

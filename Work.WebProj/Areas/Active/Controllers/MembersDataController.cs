@@ -22,7 +22,7 @@ namespace DotWeb.Areas.Active.Controllers
             ActionRun();
             return View();
         }
-        public ActionResult Purchase()
+        public ActionResult Orders()
         {//會員下單紀錄
             ActionRun();
             return View();

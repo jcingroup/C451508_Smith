@@ -21,6 +21,7 @@ namespace DotWeb.Api
             {
                 r = new ResultInfo<Order>();
                 item = await db0.Order.FindAsync(id);
+                item.member_name = item.Member.member_name;
                 r.data = item;
             }
 

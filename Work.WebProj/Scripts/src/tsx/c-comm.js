@@ -14,7 +14,15 @@ var GridButtonModify = (function (_super) {
         this.props.modify();
     };
     GridButtonModify.prototype.render = function () {
-        return React.createElement("button", {"type": "button", "className": "btn-link btn-lg", "onClick": this.onClick}, React.createElement("i", {"className": "fa-pencil"}));
+        if (this.props.ver == 1) {
+            return React.createElement("button", {"type": "button", "className": "btn-link btn-lg", "onClick": this.onClick}, React.createElement("i", {"className": "fa-pencil"}));
+        }
+        else if (this.props.ver == 2) {
+            return React.createElement("button", {"type": "button", "className": "btn-link btn-lg", "onClick": this.onClick}, React.createElement("i", {"className": "fa-search"}));
+        }
+    };
+    GridButtonModify.defaultProps = {
+        ver: 1
     };
     return GridButtonModify;
 })(React.Component);

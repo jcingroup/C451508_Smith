@@ -202,18 +202,17 @@
     <Compile Include="Areas\Active\ActiveAreaRegistration.cs" />
     <Compile Include="Areas\Active\Controllers\IssueDataController.cs" />
     <Compile Include="Areas\Active\Controllers\MembersDataController.cs" />
-    <Compile Include="Areas\Active\Controllers\PurchaseController.cs" />
     <Compile Include="Areas\Active\Controllers\ProductDataController.cs" />
     <Compile Include="Areas\Base\Controllers\ChangeParmController.cs" />
     <Compile Include="Areas\Base\Controllers\DocController.cs" />
     <Compile Include="Areas\Base\Controllers\LoginController.cs" />
     <Content Include="Areas\Active\Views\ProductData\Category.cshtml" />
     <Content Include="Areas\Active\Views\ProductData\Main.cshtml" />
-    <Content Include="Areas\Active\Views\Purchase\Main.cshtml" />
     <Content Include="Areas\Active\Views\IssueData\Category.cshtml" />
     <Content Include="Areas\Active\Views\IssueData\Main.cshtml" />
     <Content Include="Areas\Active\Views\MembersData\News.cshtml" />
     <Content Include="Areas\Active\Views\MembersData\Members.cshtml" />
+    <Content Include="Areas\Active\Views\MembersData\Orders.cshtml" />
     <None Include="Areas\Base\Controllers\ReportChartController.cs" />
     <Compile Include="Areas\Base\Controllers\MenuController.cs" />
     <Compile Include="Areas\Base\Controllers\RolesController.cs" />
@@ -827,6 +826,7 @@
     <TypeScriptCompile Include="Scripts\src\tsx\m-issue_category.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-issue.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-news.tsx" />
+    <TypeScriptCompile Include="Scripts\src\tsx\m-orders.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-product_category.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-product.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\w-order.tsx" />
@@ -907,7 +907,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Active\Views\ProductData\App_LocalResources\Main.cshtml.resx" />
-    <Content Include="Areas\Active\Views\Purchase\App_LocalResources\Main.cshtml.resx" />
     <Content Include="Areas\Active\Views\IssueData\App_LocalResources\Main.cshtml.resx" />
     <Content Include="Areas\Base\Views\Menu\App_LocalResources\Main.cshtml.resx" />
     <Content Include="Areas\Active\Views\MembersData\App_LocalResources\Main.cshtml.resx" />
