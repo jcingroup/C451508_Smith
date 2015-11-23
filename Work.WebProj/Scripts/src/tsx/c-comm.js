@@ -213,3 +213,39 @@ var TwAddress = (function (_super) {
     };
     return TwAddress;
 })(React.Component);
+var StateForGrid = (function (_super) {
+    __extends(StateForGrid, _super);
+    function StateForGrid(props) {
+        _super.call(this, props);
+        this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.render = this.render.bind(this);
+        this.state = { setClass: null, label: null };
+    }
+    StateForGrid.prototype.componentWillReceiveProps = function (nextProps) {
+        for (var i in this.props.stateData) {
+            var item = this.props.stateData[i];
+            if (item.id == nextProps.id) {
+                this.setState({ setClass: item.className, label: item.label });
+                break;
+            }
+        }
+    };
+    StateForGrid.prototype.componentDidMount = function () {
+        for (var i in this.props.stateData) {
+            var item = this.props.stateData[i];
+            if (item.id == this.props.id) {
+                this.setState({ setClass: item.className, label: item.label });
+                break;
+            }
+        }
+    };
+    StateForGrid.prototype.render = function () {
+        return (React.createElement("span", {"className": this.state.setClass}, this.state.label));
+    };
+    StateForGrid.defaultProps = {
+        stateData: null,
+        id: null
+    };
+    return StateForGrid;
+})(React.Component);

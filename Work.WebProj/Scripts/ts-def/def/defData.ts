@@ -478,4 +478,10 @@ module dt {
             },
         ]
     export var dateFT: string = 'YYYY-MM-DD';
+
+    export var newsType = [
+        { id: 1, label: '非會員', className: 'label label-primary', code: 'store' },
+        { id: 2, label: '限會員', className: 'label label-success', code: 'straght' },
+        { id: 3, label: '指定會員', className: 'label label-info', code: 'straght' }
+    ];
 }

@@ -39,7 +39,7 @@ namespace DotWeb.Api
                                 news_id=x.news_id,
                                 news_title=x.news_title,
                                 news_date=x.news_date,
-                                is_correspond=x.is_correspond,
+                                news_type=x.news_type,
                                 i_Hide=x.i_Hide
                             }).AsQueryable();
 
@@ -47,9 +47,9 @@ namespace DotWeb.Api
                 {
                     items = items.Where(x => x.news_title.Contains(q.name));
                 }
-                if (q.is_correspond != null)
+                if (q.news_type != null)
                 {
-                    items = items.Where(x => x.is_correspond == q.is_correspond);
+                    items = items.Where(x => x.news_type == q.news_type);
                 }
 
                 int page = (q.page == null ? 1 : (int)q.page);
@@ -79,7 +79,7 @@ namespace DotWeb.Api
                 item = await db0.News.FindAsync(md.news_id);
                 item.news_title = md.news_title;
                 item.news_date = md.news_date;
-                item.is_correspond = md.is_correspond;
+                item.news_type = md.news_type;
                 item.i_Hide = md.i_Hide;
                 item.news_content = md.news_content;
 
@@ -194,6 +194,6 @@ namespace DotWeb.Api
     public class q_News : QueryBase
     {
         public string name { get; set; }
-        public bool? is_correspond { get; set; }
+        public int? news_type { get; set; }
     }
 }

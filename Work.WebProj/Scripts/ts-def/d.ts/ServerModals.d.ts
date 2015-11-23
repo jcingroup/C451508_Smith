@@ -105,7 +105,7 @@
     }
     interface News extends BaseEntityTable {
         news_id?: number;
-        is_correspond?: boolean;
+        news_type?: number;
         news_title?: string;
         news_content?: string;
         news_date?: any;

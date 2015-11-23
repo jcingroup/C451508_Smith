@@ -22,6 +22,12 @@ namespace ProcCore.Business.DB0
         finish,
         pause
     }
+    public enum NewsType
+    {
+        general = 1,//一般檢視
+        member = 2,//會員限定
+        assign = 3//指定會員
+    }
 
     #region Set CodeSheet
 

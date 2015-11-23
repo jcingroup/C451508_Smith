@@ -4,7 +4,7 @@
         news_id: number;
         news_title: string;
         news_date: Date;
-        is_correspond: boolean;
+        news_type: number;
         i_Hide: boolean;
     }
     interface SearchData {
@@ -44,7 +44,7 @@
                         </td>
                     <td>{this.props.itemData.news_title}</td>
                     <td>{moment(this.props.itemData.news_date).format('YYYY/MM/DD') }</td>
-                    <td>{this.props.itemData.is_correspond ? <span className="label label-success">對應</span> : <span className="label label-default">未對應</span>}</td>
+                    <td><StateForGrid stateData={dt.newsType} id={this.props.itemData.news_type} /></td>
                     <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
                 </tr>;
         }
@@ -191,7 +191,7 @@
             this.setState(newState);
         }
         insertType() {
-            this.setState({ edit_type: 1, fieldData: { is_correspond: false, i_Hide: false, news_date: format_Date(getNowDate()) } });
+            this.setState({ edit_type: 1, fieldData: { news_type: 1, i_Hide: false, news_date: format_Date(getNowDate()) } });
         }
         updateType(id: number | string) {
 
@@ -233,14 +233,10 @@
             }
             this.setState({ fieldData: obj });
         }
-        changeCorrespondVal(e: React.SyntheticEvent) {
+        changeCorrespondVal(name: string, e: React.SyntheticEvent) {
             let input: HTMLInputElement = e.target as HTMLInputElement;
             let obj = this.state.fieldData;
-            if (input.value == 'true') {
-                obj.is_correspond = true;
-            } else if (input.value == 'false') {
-                obj.is_correspond = false;
-            }
+            obj[name] = input.value;
             //console.log((this.refs['SubFrom']).state.grid_right_data.rows.length);
             this.setState({ fieldData: obj });
         }
@@ -286,7 +282,7 @@
                         <th className="col-xs-1 text-center">修改</th>
                         <th className="col-xs-3">標題</th>
                         <th className="col-xs-2">日期</th>
-                        <th className="col-xs-2">是否對應會員</th>
+                        <th className="col-xs-2">最新消息分類</th>
                         <th className="col-xs-2">狀態</th>
                         </tr>
                     </thead>
@@ -321,7 +317,7 @@
 
                 let fieldData = this.state.fieldData;
                 var outDetailHtml: JSX.Element = null;
-                if (this.state.edit_type == 2 && fieldData.is_correspond) {
+                if (this.state.edit_type == 2 && fieldData.news_type == 3) {
                     outDetailHtml = (<GridNofM ref="SubFrom" main_id={fieldData.news_id} />);
                 } else if (this.state.edit_type == 1) {
                     outDetailHtml = (
@@ -330,12 +326,12 @@
                             <h4 className="title">會員對應設定</h4>
                             <div className="alert alert-warning">請先按上方的 <strong>存檔確認</strong>，再進行設定。</div>
                             </div>);
-                } else if (!fieldData.is_correspond) {
+                } else if (fieldData.news_type != 3) {
                     outDetailHtml = (
                         <div>
                             <hr className="condensed" />
                             <h4 className="title">會員對應設定</h4>
-                            <div className="alert alert-warning">請先將上方的「是否對應會員」改為 <strong>對應</strong>，再進行設定。</div>
+                            <div className="alert alert-warning">請先將上方的「最新消息分類」改為 <strong>指定會員</strong>，再進行設定。</div>
                             </div>);
                 }
                 outHtml = (
@@ -376,32 +372,43 @@
 
 
             <div className="form-group">
-                <label className="col-xs-2 control-label">是否對應會員</label>
-                <div className="col-xs-2">
+                <label className="col-xs-2 control-label">最新消息分類</label>
+                <div className="col-xs-3">
                    <div className="radio-inline">
                        <label>
                             <input type="radio"
-                                name="is_correspond"
-                                value={true}
-                                checked={fieldData.is_correspond === true}
-                                onChange={this.changeCorrespondVal.bind(this) }
+                                name="news_type"
+                                value={1}
+                                checked={fieldData.news_type == 1}
+                                onChange={this.changeCorrespondVal.bind(this, 'news_type') }
                                 />
-                            <span>對應</span>
+                            <span>非會員</span>
                            </label>
                        </div>
                    <div className="radio-inline">
                        <label>
                             <input type="radio"
-                                name="is_correspond"
-                                value={false}
-                                checked={fieldData.is_correspond === false}
-                                onChange={this.changeCorrespondVal.bind(this) }
+                                name="news_type"
+                                value={2}
+                                checked={fieldData.news_type == 2}
+                                onChange={this.changeCorrespondVal.bind(this, 'news_type') }
                                 />
-                            <span>不對應</span>
+                            <span>限會員</span>
                            </label>
                        </div>
+                    <div className="radio-inline">
+                       <label>
+                            <input type="radio"
+                                name="news_type"
+                                value={3}
+                                checked={fieldData.news_type == 3}
+                                onChange={this.changeCorrespondVal.bind(this, 'news_type') }
+                                />
+                            <span>指定會員</span>
+                           </label>
+                        </div>
                     </div>
-                    <small className="help-inline col-xs-5">預設「不對應」所有會員都會收到消息，設定「對應」則有指定的會員才收的到</small>
+                    <small className="help-inline col-xs-5"></small>
                 </div>
 
             <div className="form-group">

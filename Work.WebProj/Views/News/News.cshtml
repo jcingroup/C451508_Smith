@@ -10,22 +10,13 @@
 
 <h2>最新消息 <small>News</small></h2>
 
-@if ((Boolean)ViewBag.isLogin == true)
-{
-    <dl class="text-list collapse">
+<dl class="text-list collapse">
 
-        @foreach (var i in Model)
-        {
-            <dt><span>@i.news_date.ToString("yyyy/MM/dd")</span>@i.news_title</dt>
+    @foreach (var i in Model)
+    {
+        <dt><span>@i.news_date.ToString("yyyy/MM/dd")</span>@i.news_title</dt>
             <dd>
                 @Html.Raw(i.news_content)
             </dd>
-        }
-    </dl>
-}
-else
-{
-    <button class="md-trigger" data-modal="login">
-        請登入會員才可檢視最新消息內容!
-    </button>
-}
+    }
+</dl>

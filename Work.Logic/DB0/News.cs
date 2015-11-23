@@ -21,7 +21,7 @@ namespace ProcCore.Business.DB0
         }
     
         public int news_id { get; set; }
-        public bool is_correspond { get; set; }
+        public int news_type { get; set; }
         public string news_title { get; set; }
         public string news_content { get; set; }
         public System.DateTime news_date { get; set; }

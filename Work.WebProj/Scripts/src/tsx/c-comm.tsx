@@ -427,3 +427,49 @@ class TwAddress extends React.Component<{
         return out_html;
     }
 }
+
+class StateForGrid extends React.Component<{
+    stateData: Array<any>
+    id: number
+}, {
+        setClass: string
+        label: string
+    }>{
+    constructor(props) {
+        super(props)
+        this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.render = this.render.bind(this);
+        this.state = { setClass: null, label: null };
+    }
+    static defaultProps = {
+        stateData: null,
+        id: null
+    }
+    componentWillReceiveProps(nextProps) {
+        //當元件收到新的 props 時被執行，這個方法在初始化時並不會被執行。使用的時機是在我們使用 setState() 並且呼叫 render() 之前您可以比對 props，舊的值在 this.props，而新值就從 nextProps 來。
+        for (var i in this.props.stateData) {
+            var item = this.props.stateData[i];
+            if (item.id == nextProps.id) {
+                this.setState({ setClass: item.className, label: item.label });
+                break;
+            }
+        }
+    }
+    componentDidMount() {
+        for (var i in this.props.stateData) {
+            var item = this.props.stateData[i];
+            if (item.id == this.props.id) {
+                this.setState({ setClass: item.className, label: item.label });
+                break;
+            }
+        }
+    }
+    render() {
+        return (
+            <span className={this.state.setClass}>
+                    {this.state.label}
+                </span>
+        );
+    }
+}
