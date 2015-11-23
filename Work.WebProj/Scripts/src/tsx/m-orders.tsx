@@ -363,7 +363,6 @@
                     </div>
                 </div>
          {/*---產品訂購明細start---*/}
-        <hr className="condensed" />
         <table className="table-condensed">
             <tbody>
             <tr>
@@ -387,6 +386,7 @@
                 }
                 </tbody>
             </table>
+            <div className="form-group"></div>
             {/*---產品訂購明細end---*/}
                <div className="form-action text-right">
                 <div className="col-xs-5">

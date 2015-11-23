@@ -411,6 +411,11 @@
                     <small className="help-inline col-xs-5"></small>
                 </div>
 
+                <div className="form-group">
+                    <small className="col-xs-10 col-xs-offset-2 help-inline">「非會員」: 所有會員及非會員都會收到消息</small>
+                    <small className="col-xs-10 col-xs-offset-2 help-inline">「限會員」: 所有會員都會收到消息</small>
+                    <small className="col-xs-10 col-xs-offset-2 help-inline">「指定會員」: 只有指定的會員才會收到消息</small>
+                    </div>
             <div className="form-group">
                 <label className="col-xs-2 control-label">狀態</label>
                 <div className="col-xs-4">
