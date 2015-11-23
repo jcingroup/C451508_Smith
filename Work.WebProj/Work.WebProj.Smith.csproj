@@ -364,6 +364,9 @@
     <Content Include="Content\sass\module\_modal.scss" />
     <Content Include="Content\sass\helper\mixins\_align.scss" />
     <Content Include="Areas\Base\Views\ChangeParm\Main.cshtml" />
+    <Content Include="Content\font\fontAwesome\fontawesome-webfont.eot" />
+    <Content Include="Content\font\fontAwesome\fontawesome-webfont.woff" />
+    <Content Include="Content\font\fontAwesome\FontAwesome.otf" />
     <None Include="gulpfile.js" />
     <Content Include="Content\images\noIE\bg.gif" />
     <Content Include="Content\images\noIE\brow.gif" />
