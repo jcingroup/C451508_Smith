@@ -22,6 +22,7 @@
     {
         <link rel="stylesheet" href="~/Content/css/page.css">
     }
+    <link rel="stylesheet" href="~/Content/css/swiper.min.css">
     @RenderSection("CSS", required: false)
 </head>
 
@@ -36,13 +37,15 @@
                 <input type="text" id="m_Mlogin_validate" placeholder="請輸入驗證碼" class="float-l" required>
                 <img alt="驗證碼" id="m_Mlogin_img" src="~/_Code/Ashx/ValidateCode.ashx?vn=MemberLogin" class="float-r" />
             </p>
-            <button class="btn btn-primary">登入</button>
-            @*<a class="md-trigger joinus" data-modal="join">無帳號，我要加入會員</a>*@
-            <a class="joinus">申請帳號，請與業務人員聯繫</a>
+            <p class="row">
+                <button class="btn btn-primary">登入</button>
+                @*<a class="md-trigger joinus" data-modal="join">無帳號，我要加入會員</a>*@
+                <span>申請帳號，請與業務人員聯繫</span>
+            </p>
             <button class="md-close" type="button">X</button>
         </form>
     </div>
-    <div class="md-modal md-effect-7" id="join">
+    <!-- <div class="md-modal md-effect-7" id="join">
         <form class="md-content" id="MApply">
             <h3>JOIN US 加入會員</h3>
             <input type="text" name="member" id="ma_member_name" placeholder="請輸入會員名稱" required>
@@ -57,7 +60,7 @@
             <p>感謝您的加入，我們將盡快作業，請等候通知</p>
             <button class="md-close" type="button">X</button>
         </form>
-    </div>
+    </div> -->
     @RenderSection("overlay", required: false)
 
     <div id="wrapper">
@@ -130,6 +133,15 @@
                     <li>@ViewBag.Title</li> @* 當前頁名稱 EX.藍光DVD播放機 *@
                 </ul>
 
+                <div id="slider" class="swiper-container">
+                    <ul class="swiper-wrapper">
+                        <li class="swiper-slide i1"></li>
+                        <li class="swiper-slide i2"></li>
+                        <li class="swiper-slide i3"></li>
+                        <li class="swiper-slide i4"></li>
+                    </ul>
+                </div>
+
                 <div id="content">
                     @RenderBody()
                 </div>
@@ -155,6 +167,7 @@
     <div class="md-overlay"></div><!-- the overlay element -->
 
     <script src="~/Scripts/jquery/jquery-2.1.4.min.js"></script>
+    <script src="~/Content/js/swiper/swiper.min.js"></script>
     <script src="~/Content/js/modal/classie.js"></script>
     <script src="~/Content/js/modal/modalEffects.js"></script>
     <script src="~/Content/js/theme.js"></script>
@@ -163,6 +176,15 @@
         function uniqid() {
             var newDate = new Date(); return newDate.getTime();
         }
+    </script>
+    <script>
+        var mySwiper = new Swiper('#slider', {
+            loop: true,
+            autoplay: 4000,
+            speed: 1000,
+            effect: 'fade',
+            autoplayDisableOnInteraction: false
+        })
     </script>
     <script src="~/Scripts/build/func/w-member.js"></script>
     @RenderSection("Scripts", required: false)

@@ -763,7 +763,6 @@ footer {
   -o-transition: all 0.3s;
   transition: all 0.3s; }
 
-/* Content styles */
 .md-content {
   position: relative;
   opacity: 0;
@@ -780,25 +779,9 @@ footer {
     font-size: 2em;
     font-weight: 300;
     background: #0646A3; }
-  .md-content input, .md-content .btn, .md-content table, .md-content .row {
-    margin: 30px auto; }
-  .md-content input {
-    width: 85%; }
-  .md-content input {
-    line-height: 2; }
-  .md-content .btn {
-    font-size: 1.1875em;
-    margin-top: 0; }
-  .md-content table {
-    background: #E5E5E5;
-    width: 93%; }
-  .md-content th, .md-content td {
-    border-color: #fff; }
-  .md-content .row {
-    width: 85%; }
-    .md-content .row input {
-      max-width: 420px;
-      margin: 0; }
+    @media (max-width: 20em) {
+      .md-content h3 {
+        font-size: 1.625em; } }
 
 .md-effect-7 {
   top: 0;
@@ -824,6 +807,28 @@ footer {
   margin-left: 20px; }
   .joinus:hover, .joinus:active {
     color: #CBCBCB; }
+
+#login input, #login .btn, #login .row {
+  margin: 30px auto; }
+#login input, #login .row {
+  width: 85%; }
+#login input {
+  line-height: 2; }
+#login .btn {
+  font-size: 1.1875em;
+  margin-top: 0; }
+#login .row input, #login .row button, #login .row img {
+  vertical-align: middle; }
+#login .row input {
+  max-width: 420px;
+  margin: 0; }
+  @media (max-width: 20em) {
+    #login .row input {
+      max-width: 172px; } }
+#login .row img {
+  margin-top: 6px; }
+#login span {
+  display: inline-block; }
 
 #wrapper {
   padding-bottom: 0; }
@@ -908,20 +913,25 @@ footer {
       background-position: -333px 0; }
     .swiper-slide li:nth-child(6) {
       background-position: -419px 0; }
+    @media (max-width: 47.9375em) {
+      .swiper-slide li {
+        background-image: url(../images/index/banner1_icon2.png);
+        background-size: auto 72px; } }
 
-@media (min-width: 48.0625em) and (max-width: 64em) {
+@media (min-width: 48.0625em) and (max-width: 75em) {
   .i1 header, .i2 header {
     float: left; } }
-@media (max-width: 64em) {
+@media (max-width: 75em) {
   .i1 .pic, .i2 .pic {
     position: absolute;
-    right: 1%;
-    bottom: 14%; } }
+    top: 30px;
+    right: 1%; } }
 @media (max-width: 48em) {
   .i1 .pic, .i2 .pic {
     right: 0;
     left: 0;
-    bottom: 115px; } }
+    bottom: 115px;
+    top: auto; } }
 @media (max-width: 30em) {
   .i1 .pic, .i2 .pic {
     bottom: 215px; } }
@@ -930,22 +940,19 @@ footer {
   padding-top: 10px; }
   .i1 header {
     margin-top: 35px; }
-    @media (max-width: 48em) {
+    @media (max-width: 47.9375em) {
       .i1 header {
         background-image: url(../images/index/banner1_title2.png);
         height: 225px;
         margin-top: 0; } }
   .i1 .pic {
     margin-top: 60px; }
-    @media (max-width: 48em) {
+    @media (max-width: 47.9375em) {
       .i1 .pic {
         background-image: url(../images/index/banner1_pic2.png);
         height: 235px;
         margin-top: 0; } }
     @media (max-width: 30em) {
-      .i1 .pic {
-        height: 200px; } }
-    @media (max-width: 20em) {
       .i1 .pic {
         height: 138px; } }
 
@@ -968,6 +975,9 @@ footer {
         height: 100px; } }
   .i2 li {
     background-image: url(../images/index/banner2_icon.png); }
+    @media (max-width: 47.9375em) {
+      .i2 li {
+        background-image: url(../images/index/banner2_icon2.png); } }
 
 .i3 {
   background-image: url(../images/index/banner3_bg.gif);
@@ -998,13 +1008,13 @@ footer {
         left: 0; } }
     @media (max-width: 30em) {
       .i3 .pic {
-        height: 320px;
+        height: 240px;
         bottom: 200px; } }
-    @media (max-width: 20em) {
-      .i3 .pic {
-        height: 270px; } }
   .i3 li {
     background-image: url(../images/index/banner3_icon.png); }
+    @media (max-width: 47.9375em) {
+      .i3 li {
+        background-image: url(../images/index/banner3_icon2.png); } }
 
 @media (max-width: 48em) {
   .swiper-slide header, .swiper-slide .pic {
@@ -1034,11 +1044,6 @@ footer {
     margin-bottom: 15px; }
     .about nav a:hover, .about nav a:active {
       color: #85e2fb; }
-    @media (max-width: 48em) {
-      .about nav a {
-        float: left;
-        padding-right: 15px;
-        font-size: 1.3125em; } }
   .about .btn {
     margin-top: 20px;
     float: right; }

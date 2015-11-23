@@ -118,19 +118,23 @@ footer {
                 background-position: (97px - (86px * $i)) 0;
             }
         }
+        @include mq($max: break(tablet,-1)) {
+            background-image: url(#{$img-banner}1_icon2.png);
+            background-size: auto 72px;
+        }
     }
 }
 .i1, .i2 {
-    @include mq(break(tablet,+1), 1024px) {
+    @include mq(break(tablet,+1), wide) {
         header { float: left; }
     }
     .pic {
-        @include mq($max: 1024px) {
-            @include absolute(right 1% bottom cp(200px));
+        @include mq($max: wide) {
+            @include absolute(right 1% top 30px);
         }
         @include mq($max: tablet) {
             right: 0; left: 0;
-            bottom: 115px;
+            bottom: 115px; top: auto;
         }
         @include mq($max: phone) {
             bottom: 215px;
@@ -142,7 +146,7 @@ footer {
 
     header {
         margin-top: 35px;
-        @include mq($max:tablet) {
+        @include mq($max: break(tablet,-1)) {
             background-image: url(#{$img-banner}1_title2.png);
             height: 225px;
             margin-top: 0;
@@ -150,13 +154,13 @@ footer {
     }
     .pic {
         margin-top: 60px;
-        @include mq($max: tablet) {
+        @include mq($max: break(tablet,-1)) {
             background-image: url(#{$img-banner}1_pic2.png);
             height: 235px;
             margin-top: 0;
         }
-        @include mq($max: phone) { height: 200px; }
-        @include mq($max: mobile) { height: 138px; }
+        // @include mq($max: phone) { height: 200px; }
+        @include mq($max: phone) { height: 138px; }
     }
 }
 .i2 {
@@ -176,7 +180,12 @@ footer {
         }
         @include mq($max:phone) { height: 100px; }
     }
-    li { background-image: url(#{$img-banner}2_icon.png); }
+    li {
+        background-image: url(#{$img-banner}2_icon.png);
+        @include mq($max: break(tablet,-1)) {
+            background-image: url(#{$img-banner}2_icon2.png);
+        }
+    }
 }
 .i3 {
     background-image: url(#{$img-banner}3_bg.gif);
@@ -204,14 +213,17 @@ footer {
             @include absolute(bottom 115px left 0 right 0)
         }
         @include mq($max: phone) {
-            height: 320px;
+            height: 240px;
             bottom: 200px;
         }
-        @include mq($max: mobile) {
-            height: 270px;
+    }
+    li {
+        background-image: url(#{$img-banner}3_icon.png);
+
+        @include mq($max: break(tablet,-1)) {
+            background-image: url(#{$img-banner}3_icon2.png);
         }
     }
-    li { background-image: url(#{$img-banner}3_icon.png); }
 }
 
 @include mq($max:tablet) {
@@ -251,11 +263,11 @@ footer {
         &:hover, &:active {
             color: lighten($brand-secondary,40%);
         }
-        @include mq($max: tablet) {
-            float: left;
-            padding-right: $gutter;
-            font-size: em(21px);
-        }
+        // @include mq($max: tablet) {
+        //     float: left;
+        //     padding-right: $gutter;
+        //     font-size: em(21px);
+        // }
     }
     .btn {
         margin-top: 20px;

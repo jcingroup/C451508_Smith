@@ -34,19 +34,41 @@
 
 main {
     @extend %center;
-    background: url(#{$img-path}/AboutUs/banner.jpg) 285px 0 no-repeat;
     text-align: left;
     padding-top: 10px;
     z-index: z(main);
 
-    @for $i from 2 through length($pages) {
-        $item: nth($pages, $i);
+    // background: url(#{$img-path}/AboutUs/banner.jpg) 285px 0 no-repeat;
+    // @for $i from 2 through length($pages) {
+    //     $item: nth($pages, $i);
 
-        .#{$item} & {
-            background-image: url(#{$img-path}/#{$item}/banner.jpg);
-        }
+    //     .#{$item} & {
+    //         background-image: url(#{$img-path}/#{$item}/banner.jpg);
+    //     }
+    // }
+    // @include mq($max:tablet) { background-position: center 0; }
+}
+
+#slider {
+    @include absolute(top 0 left 265px);
+    z-index: -1;
+}
+#slider, .swiper-slide {
+    width: 100%;
+    height: 145px;
+}
+.swiper-wrapper {
+    @extend %list-unstyled;
+    margin-bottom: 0;
+}
+.swiper-slide {
+    background-position: 0;
+    background-repeat: no-repeat;
+}
+@for $i from 1 through 4 {
+    .i#{$i} {
+        background-image: url(#{$img-path}/banner#{$i}.jpg);
     }
-    @include mq($max:tablet) { background-position: center 0; }
 }
 
 .pro-menu {
@@ -87,7 +109,7 @@ aside {
 
         &:hover, &:active, &.current,
         .order &:first-child {
-            color: $brand-primary;
+            color: $error;
         }
     }
 

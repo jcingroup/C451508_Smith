@@ -6,20 +6,14 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-@section CSS {
-    <link rel="stylesheet" href="~/Content/css/swiper.min.css">
-}
-
 @section Scripts {
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="~/Content/js/map.js"></script>
-    <script src="~/Content/js/swiper/swiper.min.js"></script>
     <script>
         var mySwiper = new Swiper('#banner', {
             loop: true,
             autoplay: 4000,
             speed: 1000,
-            effect: 'slide',
             autoplayDisableOnInteraction: false
         })
     </script>
