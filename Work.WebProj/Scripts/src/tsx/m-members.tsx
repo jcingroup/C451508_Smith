@@ -345,10 +345,9 @@
                         className="form-control"
                         onChange={this.changeFDValue.bind(this, 'email') }
                         value={fieldData.email}
-                        maxLength={256}
-                        required />
+                        maxLength={256} />
                     </div>
-                   <small className="help-inline col-xs-5">最多256個字<span className="text-danger">(必填) </span></small>
+                   <small className="help-inline col-xs-5">最多256個字<span className="text-danger"></span></small>
                 </div>
              <div className="form-group">
                 <label className="col-xs-2 control-label">電話</label>

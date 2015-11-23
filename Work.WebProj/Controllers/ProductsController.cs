@@ -120,7 +120,7 @@ namespace DotWeb.WebApp.Controllers
                         }
 
                         List<string> r_mails = openLogic().getReceiveMails().ToList();
-                        if (!r_mails.Any(x => x.Contains(getMember.email))) { r_mails.Add(getMember.member_name + ":" + getMember.email); }
+                        if (!r_mails.Any(x => x == getMember.email) & getMember.email != null) { r_mails.Add(getMember.member_name + ":" + getMember.email); }
 
                         #endregion
                         mail = Mail_Send(sendMail, //寄信人
