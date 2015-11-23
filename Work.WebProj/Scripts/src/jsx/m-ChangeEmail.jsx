@@ -122,7 +122,8 @@ var GirdForm = React.createClass({
 					            <input className="form-control" type="text"
 					            		value={pram.receiveMails}
 					            		onChange={this.changePValue.bind(this,'receiveMails')}
-					            		maxLength="500"/>
+					            		maxLength="500"
+                                        required/>
 					        </div>
 					    </div>
 					
