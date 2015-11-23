@@ -290,23 +290,27 @@
     <Content Include="Content\images\icon_select.gif" />
     <Content Include="Content\images\index\banner1_bg.png" />
     <Content Include="Content\images\index\banner1_icon.png" />
+    <Content Include="Content\images\index\banner1_icon2.png" />
     <Content Include="Content\images\index\banner1_pic.png" />
     <Content Include="Content\images\index\banner1_pic2.png" />
     <Content Include="Content\images\index\banner1_title.png" />
     <Content Include="Content\images\index\banner1_title2.png" />
     <Content Include="Content\images\index\banner2_bg.jpg" />
     <Content Include="Content\images\index\banner2_icon.png" />
+    <Content Include="Content\images\index\banner2_icon2.png" />
     <Content Include="Content\images\index\banner2_pic.png" />
     <Content Include="Content\images\index\banner2_pic2.png" />
     <Content Include="Content\images\index\banner2_title.png" />
     <Content Include="Content\images\index\banner3_bg.gif" />
     <Content Include="Content\images\index\banner3_icon.png" />
+    <Content Include="Content\images\index\banner3_icon2.png" />
     <Content Include="Content\images\index\banner3_pic.png" />
     <Content Include="Content\images\index\banner3_title.png" />
     <Content Include="Content\images\index\banner3_title2.png" />
     <Content Include="Content\images\index\bg.png" />
     <Content Include="Content\images\index\infoBg.jpg" />
     <Content Include="Content\images\logo.gif" />
+    <Content Include="Content\images\logo2.gif" />
     <Content Include="Content\images\logo_s.gif" />
     <Content Include="Content\images\News\banner.jpg" />
     <Content Include="Content\images\products\banner.jpg" />
@@ -951,7 +955,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3185</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
