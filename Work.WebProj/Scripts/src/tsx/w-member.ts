@@ -9,14 +9,6 @@
         message: string;
         url: string;
     }
-    function uniqid() {
-        /*
-            Autohr:Jerry
-            Date:2014/2/23
-            Description:取得唯一值
-        */
-        var newDate: Date = new Date(); return newDate.getTime();
-    }
     $("#MLogin").submit(function (event) {
         event.preventDefault();
         let data: LoginData = {

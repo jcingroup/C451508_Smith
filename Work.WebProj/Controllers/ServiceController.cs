@@ -38,9 +38,9 @@ namespace DotWeb.WebApp.Controllers
                     }
 
                     bool vildate = Session["ServiceCheck"].Equals(md.validate) ? true : false;
-#if DEBUG
-                    vildate = true;
-#endif
+//#if DEBUG
+//                    vildate = true;
+//#endif
                     if (!vildate)
                     {
                         Session["ServiceCheck"] = Guid.NewGuid(); //只要有錯先隨意產生唯一碼 以防暴力破解，新的CheckCode會在Validate產生。

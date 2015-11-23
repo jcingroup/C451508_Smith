@@ -160,6 +160,9 @@
     <script src="~/Content/js/theme.js"></script>
     <script type="text/javascript">
         var gb_approot = '@Url.Content("~")';
+        function uniqid() {
+            var newDate = new Date(); return newDate.getTime();
+        }
     </script>
     <script src="~/Scripts/build/func/w-member.js"></script>
     @RenderSection("Scripts", required: false)
