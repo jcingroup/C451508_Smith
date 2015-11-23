@@ -817,7 +817,7 @@ footer {
 #login .btn {
   font-size: 1.1875em;
   margin-top: 0; }
-#login .row input, #login .row button, #login .row img {
+#login .row input, #login .row button, #login .row img, #login .row span {
   vertical-align: middle; }
 #login .row input {
   max-width: 420px;

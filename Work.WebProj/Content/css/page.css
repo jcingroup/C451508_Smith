@@ -298,9 +298,9 @@ th, td {
   vertical-align: middle; }
 
 th {
-  background: #e7e7e7;
+  background: #0662A3;
   padding: 10px;
-  color: #0662A3;
+  color: #fff;
   font-size: 1.1875em;
   font-weight: bold; }
 
@@ -308,10 +308,9 @@ td {
   padding: 3px 5px; }
 
 caption {
-  background: #e7e7e7;
   padding-top: 5px;
   padding-bottom: 5px;
-  color: #fff;
+  color: #05538a;
   font-size: 1.375em;
   line-height: 1.5;
   text-align: center; }
@@ -929,7 +928,7 @@ figure {
 #login .btn, #login .tabs li, .tabs #login li {
   font-size: 1.1875em;
   margin-top: 0; }
-#login .row input, #login .row button, #login .row img {
+#login .row input, #login .row button, #login .row img, #login .row span {
   vertical-align: middle; }
 #login .row input {
   max-width: 420px;
@@ -1086,7 +1085,7 @@ aside {
       float: none; } }
 
 #content {
-  margin-top: 90px; }
+  margin-top: 100px; }
   #content > h2 {
     margin-top: 0; }
   @media (max-width: 48em) {

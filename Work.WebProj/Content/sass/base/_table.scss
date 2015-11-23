@@ -8,14 +8,14 @@ $font-size-th: 19px !default;
 $font-size-td: 17px !default;
 
 $table-color: (
-    table-bg:               #e7e7e7,
+    table-bg:               $brand-primary,
     table-bg-accent:        #f9f9f9,
     table-bg-hover:         #fff,
     table-bg-active:        #D6FAFC,
     table-border:           lighten($brand-primary,50%),
-    table-th:               $brand-primary,
+    table-th:               #fff,
     table-td:               $text-color,
-    table-caption:          #fff,
+    table-caption:          darken($brand-primary,5%),
 );
 
 // 合併配色
@@ -79,7 +79,6 @@ tr:hover {
 }
 
 caption {
-    background: color(table-bg);
     padding-top: nth($table-padding, 1);
     padding-bottom: nth($table-padding, 1);
 

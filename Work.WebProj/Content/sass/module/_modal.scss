@@ -117,7 +117,7 @@ $modal-min-width: 320px;
     input { line-height: 2; }
     .btn { font-size: em(19px); margin-top: 0; }
     .row {
-        input, button, img { vertical-align: middle; }
+        input, button, img, span { vertical-align: middle; }
         input {
             max-width: 420px;
             margin: 0;
