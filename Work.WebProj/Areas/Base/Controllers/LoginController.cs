@@ -349,7 +349,7 @@ namespace DotWeb.Areas.Base.Controllers
             }
             #endregion
             var db0 = getDB0();
-            var get_user = db0.Member.Where(x => (x.member_account == obj.act || x.email == obj.act) && x.member_password == obj.pwd).FirstOrDefault();
+            var get_user = db0.Member.Where(x => (x.member_account == obj.act || (x.email == obj.act & x.email != null)) && x.member_password == obj.pwd).FirstOrDefault();
 
             if (get_user != null)
             {

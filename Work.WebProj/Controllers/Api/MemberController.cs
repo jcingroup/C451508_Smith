@@ -33,7 +33,7 @@ namespace DotWeb.Api
             using (db0 = getDB0())
             {
                 var items = db0.Member
-                    .OrderBy(x => x.member_name)
+                    .OrderBy(x => x.member_id)
                     .Select(x => new m_Member()
                     {
                         member_id = x.member_id,
