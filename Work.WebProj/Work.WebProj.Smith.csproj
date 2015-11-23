@@ -833,8 +833,8 @@
     <TypeScriptCompile Include="Scripts\src\tsx\m-orders.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-product_category.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\m-product.tsx" />
-    <TypeScriptCompile Include="Scripts\src\tsx\w-order.tsx" />
     <TypeScriptCompile Include="Scripts\src\tsx\w-member.ts" />
+    <TypeScriptCompile Include="Scripts\src\tsx\w-order.tsx" />
     <TypeScriptCompile Include="Scripts\ts-def\commfunc.ts" />
     <TypeScriptCompile Include="Scripts\ts-def\commupload.ts" />
     <TypeScriptCompile Include="Scripts\ts-def\commwww.ts" />

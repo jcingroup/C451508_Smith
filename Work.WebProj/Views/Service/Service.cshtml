@@ -12,12 +12,14 @@
             var tel = $("#m_tel").val();
             var email = $("#m_email").val();
             var content = $("#m_content").val();
+            var validate = $("#m_Service_validate").val();
 
             var data = {
                 "contact_person": contact_person,
                 "tel": tel,
                 "email": email,
-                "content": content
+                "content": content,
+                "validate": validate
             };
 
             $.ajax({
@@ -45,16 +47,20 @@
     <input type="tel" id="m_tel" placeholder="請輸入聯絡電話" required>
     <input type="email" id="m_email" placeholder="請輸入E-mail" required>
     <textarea name="" id="m_content" cols="30" rows="10" placeholder="請輸入諮詢內容"></textarea>
+    <img alt="驗證碼" id="m_Service_img" src="~/_Code/Ashx/ValidateCode.ashx?vn=ServiceCheck" />
+    <input type="text" id="m_Service_validate" placeholder="請輸入驗證碼" required>
+
     <button class="btn">送出</button>
-@*     <p>
-        <label>名稱：</label>
-    </p>
-    <p>
-        <label>聯絡電話</label>
-        <input type="text">
-    </p>
-    <p>
-        <label>E-mail</label>
-        <input type="text">
-    </p>
- *@</form>
+    @*     <p>
+            <label>名稱：</label>
+        </p>
+        <p>
+            <label>聯絡電話</label>
+            <input type="text">
+        </p>
+        <p>
+            <label>E-mail</label>
+            <input type="text">
+        </p>
+    *@
+</form>
