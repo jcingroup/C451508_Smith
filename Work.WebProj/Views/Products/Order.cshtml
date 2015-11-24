@@ -8,32 +8,566 @@
 @section breadCrumb {
     <li><a href="~/Products">產品介紹</a></li>
 }
-@section Scripts{
+@* @section Scripts{
     <script src="~/Scripts/build/commincx.js"></script>
     <script src="~/Scripts/app/codrops/modalEffects.js"></script>
     <script src="~/Scripts/build/func/w-order.js"></script>
-}
+} *@
 <h2>產品下單 <small>Order</small></h2>
-<div id="page_content"></div>
+@* <div id="page_content"></div> *@
 
-@*@section overlay {
-    <div class="md-modal md-effect-7" id="buy">
-        <form class="md-content">
-            <h3>產品下單</h3>
-            <table>
-                <tr>
-                    <th>產品名稱</th>
-                    <th>數量</th>
-                </tr>
-                <tr>
-                    <td>藍光DVD播放機【BD-320】</td>
-                    <td>1</td>
-                </tr>
-            </table>
-            <button class="btn btn-primary">下單</button>
-            <button class="md-close" type="button">X</button>
-        </form>
-    </div>
-}
+<form class="order-list">
+    <table class="full">
+        <tr>
+            <th>產品名稱</th>
+            <th>型號</th>
+            <th>數量</th>
+            <th>我要購買</th>
+        </tr>
+        <tr>
+            <td rowspan="2">藍光DVD播放機</td>
+            <td class="text-left">【BD-320】</td>
+            <td>
+                <input type="number">
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b1">
+                <label for="b1"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【BD-350】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b2">
+                <label for="b2"></label>
+            </td>
+        </tr>
 
-<button class="btn md-trigger" data-modal="buy">sss</button>*@
+        <tr>
+            <td rowspan="2">數位影音光碟機</td>
+            <td class="text-left">【DVD-835U】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b3">
+                <label for="b3"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【DV-R8】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b4">
+                <label for="b4"></label>
+            </td>
+        </tr>
+
+        <tr>
+            <td rowspan="3">數位電視接收機</td>
+            <td class="text-left">【TC-528HD】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b5">
+                <label for="b5"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【TC-8000HD】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b6">
+                <label for="b6"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【TC-538HD】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b7">
+                <label for="b7"></label>
+            </td>
+        </tr>
+
+        <tr>
+            <td rowspan="5">數位天線</td>
+            <td class="text-left">【T2】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b8">
+                <label for="b8"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【T6】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b9">
+                <label for="b9"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【T5A】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b10">
+                <label for="b10"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【T14B】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b11">
+                <label for="b11"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【T800】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b12">
+                <label for="b12"></label>
+            </td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">手提音響</td>
+            <td class="text-left">【A-501】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b13">
+                <label for="b13"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【A-503】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b14">
+                <label for="b14"></label>
+            </td>
+        </tr>
+
+        <tr>
+            <td rowspan="4">行動型多媒體音響</td>
+            <td class="text-left">【A-15】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b15">
+                <label for="b15"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【A-16】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b16">
+                <label for="b16"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【A-17】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b17">
+                <label for="b17"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【M5】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b18">
+                <label for="b18"></label>
+            </td>
+        </tr>
+
+        <tr>
+            <td rowspan="11">電視壁掛架</td>
+            <td class="text-left">【LP-2032】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b19">
+                <label for="b19"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【LP-2342】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b20">
+                <label for="b20"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【LP-2042】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b21">
+                <label for="b21"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【LP-2042B】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b22">
+                <label for="b22"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【LP-2342B】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b23">
+                <label for="b23"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【LA-11】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b24">
+                <label for="b24"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【PLB-2742】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b25">
+                <label for="b25"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【LP-2546B】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b26">
+                <label for="b26"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【LP-3746】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b27">
+                <label for="b27"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【LP-3255】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b28">
+                <label for="b28"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【PLB-4363】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b29">
+                <label for="b29"></label>
+            </td>
+        </tr>
+
+        <tr>
+            <td>可充式電蚊拍</td>
+            <td class="text-left">【W5】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b30">
+                <label for="b30"></label>
+            </td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">充電式探照燈</td>
+            <td class="text-left">【F-102】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b31">
+                <label for="b31"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-left">【F-105】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b32">
+                <label for="b32"></label>
+            </td>
+        </tr>
+
+        <tr>
+            <td>紫外線烘碗機</td>
+            <td class="text-left">【TCG-855】</td>
+            <td>
+                <select name="num" id="">
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </td>
+            <td>
+                <input type="checkbox" name="buy" value="buy" id="b33">
+                <label for="b33"></label>
+            </td>
+        </tr>
+    </table>
+    <p class="text-center">
+        <button class="btn">確認訂單</button>
+        <a class="btn" href="~/Products">繼續購買</a>
+    </p>
+</form>
