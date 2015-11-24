@@ -193,7 +193,7 @@
             this.setState(newState);
         }
         insertType() {
-            this.setState({ edit_type: 1, fieldData: { news_type: 1, i_Hide: false, is_top: false, news_date: format_Date(getNowDate()) } });
+            this.setState({ edit_type: 1, fieldData: { news_type: NewsType.general, i_Hide: false, is_top: false, news_date: format_Date(getNowDate()) } });
         }
         updateType(id: number | string) {
 
@@ -320,7 +320,7 @@
 
                 let fieldData = this.state.fieldData;
                 var outDetailHtml: JSX.Element = null;
-                if (this.state.edit_type == 2 && fieldData.news_type == 3) {
+                if (this.state.edit_type == 2 && fieldData.news_type == NewsType.assign) {
                     outDetailHtml = (<GridNofM ref="SubFrom" main_id={fieldData.news_id} />);
                 } else if (this.state.edit_type == 1) {
                     outDetailHtml = (
@@ -329,7 +329,7 @@
                             <h4 className="title">會員對應設定</h4>
                             <div className="alert alert-warning">請先按上方的 <strong>存檔確認</strong>，再進行設定。</div>
                             </div>);
-                } else if (fieldData.news_type != 3) {
+                } else if (fieldData.news_type != NewsType.assign) {
                     outDetailHtml = (
                         <div>
                             <hr className="condensed" />
@@ -382,7 +382,7 @@
                             <input type="radio"
                                 name="news_type"
                                 value={1}
-                                checked={fieldData.news_type == 1}
+                                checked={fieldData.news_type == NewsType.general}
                                 onChange={this.changeCorrespondVal.bind(this, 'news_type') }
                                 />
                             <span>非會員</span>
@@ -393,7 +393,7 @@
                             <input type="radio"
                                 name="news_type"
                                 value={2}
-                                checked={fieldData.news_type == 2}
+                                checked={fieldData.news_type == NewsType.member}
                                 onChange={this.changeCorrespondVal.bind(this, 'news_type') }
                                 />
                             <span>限會員</span>
@@ -404,7 +404,7 @@
                             <input type="radio"
                                 name="news_type"
                                 value={3}
-                                checked={fieldData.news_type == 3}
+                                checked={fieldData.news_type == NewsType.assign}
                                 onChange={this.changeCorrespondVal.bind(this, 'news_type') }
                                 />
                             <span>指定會員</span>

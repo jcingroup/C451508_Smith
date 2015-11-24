@@ -153,29 +153,29 @@ function jqDelete(url: string, data: any): JQueryXHR {
     });
 }
 function tosMessage(title: string, message: string, type: emToastrType) {
-    //if (type == emToastrType.success)
-    //    toastr.success(message, title);
-
-    //if (type == emToastrType.error)
-    //    toastr.error(message, title);
-
-    //if (type == emToastrType.warning)
-    //    toastr.warning(message, title);
-
-    //if (type == emToastrType.info)
-    //    toastr.info(message, title);
-
-    if (type == 1)
+    if (type == emToastrType.success)
         toastr.success(message, title);
 
-    if (type == 3)
+    if (type == emToastrType.error)
         toastr.error(message, title);
 
-    if (type == 2)
+    if (type == emToastrType.warning)
         toastr.warning(message, title);
 
-    if (type == 0)
+    if (type == emToastrType.info)
         toastr.info(message, title);
+
+    //if (type == 1)
+    //    toastr.success(message, title);
+
+    //if (type == 3)
+    //    toastr.error(message, title);
+
+    //if (type == 2)
+    //    toastr.warning(message, title);
+
+    //if (type == 0)
+    //    toastr.info(message, title);
 }
 function formatFileSize(byte_size: number): string {
     var get_size = byte_size;
