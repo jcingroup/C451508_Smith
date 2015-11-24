@@ -33,15 +33,15 @@ namespace DotWeb.Api
             using (db0 = getDB0())
             {
                 var items = db0.News
-                            .OrderByDescending(x => new { x.news_date, x.news_id })
+                            .OrderByDescending(x => new { x.is_top, x.news_date, x.news_id })
                             .Select(x => new m_News()
                             {
-                                news_id=x.news_id,
-                                news_title=x.news_title,
-                                news_date=x.news_date,
-                                news_type=x.news_type,
-                                is_top=x.is_top,
-                                i_Hide=x.i_Hide
+                                news_id = x.news_id,
+                                news_title = x.news_title,
+                                news_date = x.news_date,
+                                news_type = x.news_type,
+                                is_top = x.is_top,
+                                i_Hide = x.i_Hide
                             }).AsQueryable();
 
                 if (q.name != null)

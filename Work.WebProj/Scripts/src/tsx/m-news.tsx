@@ -5,6 +5,7 @@
         news_title: string;
         news_date: Date;
         news_type: number;
+        is_top: boolean;
         i_Hide: boolean;
     }
     interface SearchData {
@@ -45,6 +46,7 @@
                     <td>{this.props.itemData.news_title}</td>
                     <td>{moment(this.props.itemData.news_date).format('YYYY/MM/DD') }</td>
                     <td><StateForGrid stateData={dt.newsType} id={this.props.itemData.news_type} /></td>
+                    <td>{this.props.itemData.is_top ? <span className="label label-primary">置頂</span> : <span className="label label-default">不置頂</span>}</td>
                     <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
                 </tr>;
         }
@@ -283,7 +285,8 @@
                         <th className="col-xs-3">標題</th>
                         <th className="col-xs-2">日期</th>
                         <th className="col-xs-2">最新消息分類</th>
-                        <th className="col-xs-2">狀態</th>
+                        <th className="col-xs-1">置頂</th>
+                        <th className="col-xs-1">狀態</th>
                         </tr>
                     </thead>
                 <tbody>
