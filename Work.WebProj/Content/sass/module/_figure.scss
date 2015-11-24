@@ -5,9 +5,9 @@ $figure-text-align:     center !default;
 
 $figure-min-width:      310px !default;
 $figure-max-width:      480px !default;
-$figure-max-height:     360px !default;
 $figure-width:          32% !default;
-$figure-margin:         0 0 100px 7px!default;
+$figure-height:         220px !default;
+$figure-margin:         0 0 85px 7px!default;
 
 // common
 figure {
@@ -18,7 +18,7 @@ figure {
     margin: $figure-margin;
     min-width: $figure-min-width;
     // max-width: $figure-max-width;
-    // max-height: $figure-max-height;
+    // max-height: $figure-height;
     width: $figure-width;
 
     background: $figure-bg;
@@ -56,27 +56,27 @@ figcaption {
 // theme
 figure {
     float: left;
-    height: 180px;
+    height: $figure-height;
     border: 1px solid #EBEBEB;
 
-    @include middle(img);
+    @include middle(img) { max-height: $figure-height; }
 
     figcaption {
         height: 0;
         &, h3 { transition: all .5s ease; }
-        > a { line-height: 180px; }
+        > a { line-height: $figure-height; }
     }
 
     h3 {
         color: #323232;
         font-size: em(18px);
-        margin-top: $gutter;
+        margin-top: 10px;
     }
     small {
         color: #656565;
         font-size: em(16px,18px);
         display: block;
-        margin-top: 10px;
+        margin-top: 8px;
     }
 
     &:hover, &:active {
@@ -102,5 +102,6 @@ figure {
     }
     @include mq($max:phone) {
         width: 100%;
+        min-width: auto;
     }
 }

@@ -50,8 +50,11 @@ main {
 }
 
 #slider {
-    @include absolute(top 0 left 265px);
     z-index: -1;
+    @include absolute(top 0 left 265px);
+    @include mq($max:tablet) {
+        left: 0;
+    }
 }
 #slider, .swiper-slide {
     width: 100%;
@@ -64,10 +67,15 @@ main {
 .swiper-slide {
     background-position: 0;
     background-repeat: no-repeat;
+
+    @include mq($max:tablet) {
+        background-position: center 0;
+    }
 }
 @for $i from 1 through 4 {
     .i#{$i} {
         background-image: url(#{$img-path}/banner#{$i}.jpg);
+
         @include mq($max: tablet) {
             background-image: url(#{$img-path}/banner#{$i}_m.jpg);
         }
@@ -130,9 +138,11 @@ aside {
             position: absolute;
             z-index: z(dropdown);
             transition: all .3s;
-            opacity: 0;
 
-            &.open { opacity: 1; }
+            opacity: 0;
+            visibility: hidden;
+
+            &.open { opacity: 1; visibility: visible; }
 
             a {
                 &:hover, &:active, &.current { background: lighten($gray,63%);}
@@ -202,6 +212,7 @@ aside {
     @include middle(img) {
         width: 90%;
         max-width: 500px;
+        max-height: 300px;
     }
     @include mq($max:mobile) {
         height: 180px;
@@ -232,34 +243,40 @@ aside {
     }
 }
 .order-list {
-    table { margin-bottom: 30px; }
-}
-select {
-    background: #E5E5E5 url(#{$img-path}/icon_select.gif) right center no-repeat;
-    border: 1px solid #fff;
-    outline: 0;
-    -webkit-appearance: none;
-
-    color: $brand-secondary;
-    font-weight: bold;
-    padding: 5px 35px 5px 10px;
-    border-radius: 5px;
-
-    &.sel1 {
-        float: left;
-        width: 65%;
-    }
-    &.sel2 {
-        float: right;
-        width: 32%;
-        &, option {
-            text-align: center;
+    table, textarea { margin-bottom: 30px; }
+    tr th, tr td {
+        &:nth-child(3), &:nth-child(4) {
+            width: cp(180px);
+            max-width: 150px;
         }
     }
-    @include mq($max:tablet) {
-        margin-bottom: 20px;
-    }
 }
+// select {
+//     background: #E5E5E5 url(#{$img-path}/icon_select.gif) right center no-repeat;
+//     border: 1px solid #fff;
+//     outline: 0;
+//     -webkit-appearance: none;
+
+//     color: $brand-secondary;
+//     font-weight: bold;
+//     padding: 5px 35px 5px 10px;
+//     border-radius: 5px;
+
+//     &.sel1 {
+//         float: left;
+//         width: 65%;
+//     }
+//     &.sel2 {
+//         float: right;
+//         width: 32%;
+//         &, option {
+//             text-align: center;
+//         }
+//     }
+//     @include mq($max:tablet) {
+//         margin-bottom: 20px;
+//     }
+// }
 input[type="checkbox"] {
     position: absolute;
     margin-left: -9999px;
@@ -288,7 +305,10 @@ input[type="checkbox"]:hover + label {
 input[type="checkbox"]:checked + label {
     background-position: center -48px;
 }
-
+input[type="number"] {
+    width: 80px;
+    margin: auto;
+}
 .other {
     margin-top: 40px;
     @include mq($max:tablet) {
@@ -319,7 +339,7 @@ input[type="checkbox"]:checked + label {
         @extend .btn;
         background: #fff;
         box-shadow:  1px 1px 1px #ccc;
-        margin: 0 8px;
+        margin: 0 8px; margin-bottom: 12px;
         padding: 0;
 
         a {

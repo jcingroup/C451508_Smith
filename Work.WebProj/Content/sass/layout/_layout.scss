@@ -92,9 +92,12 @@ $goTop:                 (bottom 10px), (right 15px) !default;
         @include text-pic($logo-img, nth($logo-size,1),  nth($logo-size,2));
         @include absolute(left 0 top 55px);
 
+        @include mq($max: tablet) {
+            background-image: url(#{$img-path}/logo2.gif);
+            background-size: contain;
+        }
         @include mq($max: phone) {
             left: 0; right: 0;
-            background-size: contain;
             width: 100%;
         }
     }
@@ -153,7 +156,7 @@ body, #menu {
 
     &:hover { color: $brand-primary; }
 
-    @include mq($max:tablet) { display: block; }
+    @include mq($max: 959px) { display: block; }
 }
 body {
     position: relative;
@@ -205,7 +208,7 @@ body {
         @include mq($max:desktop) { font-size: em(19px,21px); width: 95px; }
     }
 
-    @include mq($max:tablet) {
+    @include mq($max: 959px) {
         background: $brand-primary;
         width: $menu-trigger-width;
         height: 100%;

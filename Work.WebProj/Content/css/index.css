@@ -474,11 +474,14 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
     position: absolute;
     top: 55px;
     left: 0; }
+    @media (max-width: 48em) {
+      #header h1 {
+        background-image: url(../images/logo2.gif);
+        background-size: contain; } }
     @media (max-width: 30em) {
       #header h1 {
         left: 0;
         right: 0;
-        background-size: contain;
         width: 100%; } }
 
 .top-nav {
@@ -528,7 +531,7 @@ body, #menu {
   left: 0; }
   .menu-trigger:hover {
     color: #0662A3; }
-  @media (max-width: 48em) {
+  @media (max-width: 59.9375em) {
     .menu-trigger {
       display: block; } }
 
@@ -580,7 +583,7 @@ body {
       #menu a {
         font-size: 0.90476em;
         width: 95px; } }
-  @media (max-width: 48em) {
+  @media (max-width: 59.9375em) {
     #menu {
       background: #0662A3;
       width: 250px;
@@ -713,7 +716,7 @@ footer {
   border-color: #0662A3; }
 
 .md-modal {
-  width: 60%;
+  width: 65%;
   max-width: 630px;
   min-width: 320px;
   height: auto;
@@ -779,7 +782,7 @@ footer {
     font-size: 2em;
     font-weight: 300;
     background: #0646A3; }
-    @media (max-width: 20em) {
+    @media (max-width: 30em) {
       .md-content h3 {
         font-size: 1.625em; } }
 
@@ -817,16 +820,22 @@ footer {
 #login .btn {
   font-size: 1.1875em;
   margin-top: 0; }
-#login .row input, #login .row button, #login .row img, #login .row span {
-  vertical-align: middle; }
-#login .row input {
-  max-width: 420px;
-  margin: 0; }
-  @media (max-width: 20em) {
-    #login .row input {
-      max-width: 172px; } }
-#login .row img {
-  margin-top: 6px; }
+#login .row {
+  text-align: center; }
+  #login .row input, #login .row button, #login .row img, #login .row span {
+    vertical-align: middle; }
+  #login .row input {
+    width: 100%;
+    max-width: 420px;
+    margin: 0; }
+    @media (max-width: 48em) {
+      #login .row input {
+        max-width: 344px; } }
+    @media (max-width: 20em) {
+      #login .row input {
+        max-width: 172px; } }
+  #login .row img {
+    margin-top: 6px; }
 #login span {
   display: inline-block; }
 

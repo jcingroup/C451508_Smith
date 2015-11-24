@@ -4,7 +4,7 @@ $modal-max-width: 630px;
 $modal-min-width: 320px;
 
 .md-modal {
-    width: 60%;
+    width: 65%;
     max-width: $modal-max-width;
     min-width: $modal-min-width;
     height: auto;
@@ -65,7 +65,7 @@ $modal-min-width: 320px;
         font-size: em(32px);
         font-weight: 300;
         background: #0646A3;
-        @include mq($max: mobile) {
+        @include mq($max: phone) {
             font-size: em(26px);
         }
     }
@@ -117,15 +117,21 @@ $modal-min-width: 320px;
     input { line-height: 2; }
     .btn { font-size: em(19px); margin-top: 0; }
     .row {
+        text-align: center;
         input, button, img, span { vertical-align: middle; }
         input {
+            width: 100%;
             max-width: 420px;
             margin: 0;
+
+            @include mq($max: tablet) {
+                max-width: 344px;
+            }
             @include mq($max: mobile) {
                 max-width: 172px;
             }
         }
-        img {margin-top: 6px;}
+        img { margin-top: 6px; }
     }
     span { display: inline-block; }
 }

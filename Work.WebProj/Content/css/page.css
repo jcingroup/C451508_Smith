@@ -512,11 +512,14 @@ figure::before, .pro-pic::before {
     position: absolute;
     top: 55px;
     left: 0; }
+    @media (max-width: 48em) {
+      #header h1 {
+        background-image: url(../images/logo2.gif);
+        background-size: contain; } }
     @media (max-width: 30em) {
       #header h1 {
         left: 0;
         right: 0;
-        background-size: contain;
         width: 100%; } }
 
 .top-nav {
@@ -566,7 +569,7 @@ body, #menu {
   left: 0; }
   .menu-trigger:hover {
     color: #0662A3; }
-  @media (max-width: 48em) {
+  @media (max-width: 59.9375em) {
     .menu-trigger {
       display: block; } }
 
@@ -618,7 +621,7 @@ body {
       #menu a {
         font-size: 0.90476em;
         width: 95px; } }
-  @media (max-width: 48em) {
+  @media (max-width: 59.9375em) {
     #menu {
       background: #0662A3;
       width: 250px;
@@ -753,7 +756,7 @@ footer {
 figure {
   position: relative;
   cursor: pointer;
-  margin: 0 0 100px 7px;
+  margin: 0 0 85px 7px;
   min-width: 310px;
   width: 32%;
   background: #fff;
@@ -783,25 +786,26 @@ figcaption {
 
 figure {
   float: left;
-  height: 180px;
+  height: 220px;
   border: 1px solid #EBEBEB; }
   figure img {
-    display: inline-block; }
+    display: inline-block;
+    max-height: 220px; }
   figure figcaption {
     height: 0; }
     figure figcaption, figure figcaption h3 {
       transition: all .5s ease; }
     figure figcaption > a {
-      line-height: 180px; }
+      line-height: 220px; }
   figure h3 {
     color: #323232;
     font-size: 1.125em;
-    margin-top: 15px; }
+    margin-top: 10px; }
   figure small {
     color: #656565;
     font-size: 0.88889em;
     display: block;
-    margin-top: 10px; }
+    margin-top: 8px; }
   figure:hover h3, figure:active h3 {
     color: #0662A3; }
   figure:hover small, figure:active small {
@@ -821,10 +825,11 @@ figure {
       width: 49.6%; } }
   @media (max-width: 30em) {
     figure {
-      width: 100%; } }
+      width: 100%;
+      min-width: auto; } }
 
 .md-modal {
-  width: 60%;
+  width: 65%;
   max-width: 630px;
   min-width: 320px;
   height: auto;
@@ -890,7 +895,7 @@ figure {
     font-size: 2em;
     font-weight: 300;
     background: #0646A3; }
-    @media (max-width: 20em) {
+    @media (max-width: 30em) {
       .md-content h3 {
         font-size: 1.625em; } }
 
@@ -928,16 +933,22 @@ figure {
 #login .btn, #login .tabs li, .tabs #login li {
   font-size: 1.1875em;
   margin-top: 0; }
-#login .row input, #login .row button, #login .row img, #login .row span {
-  vertical-align: middle; }
-#login .row input {
-  max-width: 420px;
-  margin: 0; }
-  @media (max-width: 20em) {
-    #login .row input {
-      max-width: 172px; } }
-#login .row img {
-  margin-top: 6px; }
+#login .row {
+  text-align: center; }
+  #login .row input, #login .row button, #login .row img, #login .row span {
+    vertical-align: middle; }
+  #login .row input {
+    width: 100%;
+    max-width: 420px;
+    margin: 0; }
+    @media (max-width: 48em) {
+      #login .row input {
+        max-width: 344px; } }
+    @media (max-width: 20em) {
+      #login .row input {
+        max-width: 172px; } }
+  #login .row img {
+    margin-top: 6px; }
 #login span {
   display: inline-block; }
 
@@ -956,10 +967,13 @@ main {
   z-index: 3; }
 
 #slider {
+  z-index: -1;
   position: absolute;
   top: 0;
-  left: 265px;
-  z-index: -1; }
+  left: 265px; }
+  @media (max-width: 48em) {
+    #slider {
+      left: 0; } }
 
 #slider, .swiper-slide {
   width: 100%;
@@ -971,6 +985,9 @@ main {
 .swiper-slide {
   background-position: 0;
   background-repeat: no-repeat; }
+  @media (max-width: 48em) {
+    .swiper-slide {
+      background-position: center 0; } }
 
 .i1 {
   background-image: url(../images/banner1.jpg); }
@@ -1056,9 +1073,11 @@ aside {
         position: absolute;
         z-index: 80;
         transition: all .3s;
-        opacity: 0; }
+        opacity: 0;
+        visibility: hidden; }
         aside nav.open {
-          opacity: 1; }
+          opacity: 1;
+          visibility: visible; }
         aside nav a:hover, aside nav a:active, aside nav a.current {
           background: #f6f6f6; } }
 
@@ -1116,7 +1135,8 @@ aside {
   .pro-pic img {
     display: inline-block;
     width: 90%;
-    max-width: 500px; }
+    max-width: 500px;
+    max-height: 300px; }
   @media (max-width: 20em) {
     .pro-pic {
       height: 180px; }
@@ -1145,29 +1165,11 @@ aside {
       .pro-info h3 {
         margin-bottom: 20px; } }
 
-.order-list table {
+.order-list table, .order-list textarea {
   margin-bottom: 30px; }
-
-select {
-  background: #E5E5E5 url(../images/icon_select.gif) right center no-repeat;
-  border: 1px solid #fff;
-  outline: 0;
-  -webkit-appearance: none;
-  color: #068BAE;
-  font-weight: bold;
-  padding: 5px 35px 5px 10px;
-  border-radius: 5px; }
-  select.sel1 {
-    float: left;
-    width: 65%; }
-  select.sel2 {
-    float: right;
-    width: 32%; }
-    select.sel2, select.sel2 option {
-      text-align: center; }
-  @media (max-width: 48em) {
-    select {
-      margin-bottom: 20px; } }
+.order-list tr th:nth-child(3), .order-list tr th:nth-child(4), .order-list tr td:nth-child(3), .order-list tr td:nth-child(4) {
+  width: 13%;
+  max-width: 150px; }
 
 input[type="checkbox"] {
   position: absolute;
@@ -1196,6 +1198,10 @@ input[type="checkbox"]:hover + label {
 input[type="checkbox"]:checked + label {
   background-position: center -48px; }
 
+input[type="number"] {
+  width: 80px;
+  margin: auto; }
+
 .other {
   margin-top: 40px; }
   @media (max-width: 48em) {
@@ -1220,6 +1226,7 @@ input[type="checkbox"]:checked + label {
   background: #fff;
   box-shadow: 1px 1px 1px #ccc;
   margin: 0 8px;
+  margin-bottom: 12px;
   padding: 0; }
   .tabs li a {
     display: block;
