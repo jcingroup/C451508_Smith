@@ -162,6 +162,7 @@ namespace DotWeb.WebApp.Controllers
         public class MailContent
         {
             public List<ODetail> order_list { get; set; }
+            public string memo { get; set; }
             public string member_name { get; set; }
             public int member_id { get; set; }
         }

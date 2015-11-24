@@ -131,7 +131,6 @@
         isFirst?: boolean;
         qty?: number;
         is_buy?: boolean;
-
     }
     interface OrderDetailList extends BaseEntityTable {
         p_id?: number;
