@@ -38,9 +38,9 @@ namespace DotWeb.WebApp.Controllers
                     }
 
                     bool vildate = Session["ServiceCheck"].Equals(md.validate) ? true : false;
-//#if DEBUG
-//                    vildate = true;
-//#endif
+                    //#if DEBUG
+                    //                    vildate = true;
+                    //#endif
                     if (!vildate)
                     {
                         Session["ServiceCheck"] = Guid.NewGuid(); //只要有錯先隨意產生唯一碼 以防暴力破解，新的CheckCode會在Validate產生。
@@ -58,7 +58,9 @@ namespace DotWeb.WebApp.Controllers
                     #region 信件發送
                     string Body = getMailBody("ServerEmail", md);//套用信件版面
                     Boolean mail;
-                    mail = Mail_Send(md.email, //寄信人
+                    string mailfrom = md.contact_person + ":" + md.email;
+
+                    mail = Mail_Send(mailfrom, //寄信人
                                     openLogic().getReceiveMails(), //收信人
                                     CommWebSetup.MailTitle, //信件標題
                                     Body, //信件內容

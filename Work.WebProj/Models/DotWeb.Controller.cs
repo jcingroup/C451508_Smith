@@ -1031,7 +1031,8 @@ namespace DotWeb.Controller
             }
         }
 
-        public void postOrderContent(WebApp.Controllers.ProductsController.MailContent md) {
+        public void postOrderContent(WebApp.Controllers.ProductsController.MailContent md)
+        {
             try
             {
                 using (var db0 = getDB0())
@@ -1040,18 +1041,19 @@ namespace DotWeb.Controller
                     {
                         order_id = GetNewId(CodeTable.Order),
                         member_id = int.Parse(this.MemberId),
-                        order_day=DateTime.Now,
+                        order_day = DateTime.Now,
                         i_InsertDateTime = DateTime.Now,
                         i_Lang = "zh-TW"
                     };
                     List<OrderDetail> details = new List<OrderDetail>();
-                    foreach (var i in md.order_list) {
+                    foreach (var i in md.order_list)
+                    {
                         var detail = new OrderDetail
                         {
                             order_id = item.order_id,
-                            order_detail_id= GetNewId(CodeTable.OrderDetail),
+                            order_detail_id = GetNewId(CodeTable.OrderDetail),
                             product_id = i.p_id,
-                            model_type=i.m_type,
+                            model_type = i.m_type,
                             qty = i.qty,
                             i_InsertDateTime = DateTime.Now,
                             i_Lang = "zh-TW"
@@ -1146,7 +1148,19 @@ namespace DotWeb.Controller
             {
                 //建立MailMessage物件
                 MailMessage mms = new MailMessage();
-                mms.From = new MailAddress(MailFrom);//寄件人
+                if (MailFrom != null)
+                {
+                    var mf = MailFrom.Split(':');
+                    if (mf.Length == 2)
+                    {
+                        mms.From = new MailAddress(mf[1], mf[0]);//寄件人
+                    }
+                    else if (mf.Length == 1)
+                    {
+                        mms.From = new MailAddress(mf[0]);//寄件人
+                    }
+                }
+                //mms.From = new MailAddress(MailFrom);//寄件人
                 mms.Subject = MailSub;//信件主旨
                 mms.Body = MailBody;//信件內容
                 mms.IsBodyHtml = isBodyHtml;//判斷是否採用html格式

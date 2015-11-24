@@ -113,11 +113,11 @@ namespace DotWeb.WebApp.Controllers
                         Boolean mail;
                         #region 收信人及寄信人
                         string sendMail = openLogic().getReceiveMails()[0];
-                        if (sendMail != "")
-                        {
-                            var m = sendMail.Split(':');
-                            sendMail = m[m.Length - 1];
-                        }
+                        //if (sendMail != "")
+                        //{
+                        //    var m = sendMail.Split(':');
+                        //    sendMail = m[m.Length - 1];
+                        //}
 
                         List<string> r_mails = openLogic().getReceiveMails().ToList();
                         if (!r_mails.Any(x => x == getMember.email) & getMember.email != null) { r_mails.Add(getMember.member_name + ":" + getMember.email); }
