@@ -47,7 +47,8 @@ namespace DotWeb.Areas.Active.Controllers
             {
                 if (filekind == "Photo1")
                     handleImageSave(filename, id, ImageFileUpParm.Product, filekind, "ProductData", "Photo");
-
+                if (filekind == "category1")
+                    handleImageSave(filename, id, ImageFileUpParm.ProductCategory, filekind, "ProductData", "Photo");
                 r.result = true;
                 r.file_name = filename;
             }
@@ -88,7 +89,10 @@ namespace DotWeb.Areas.Active.Controllers
         public string axFDelete(int id, string filekind, string filename)
         {
             ResultInfo r = new ResultInfo();
-            DeleteSysFile(id, filekind, filename, ImageFileUpParm.Product, "ProductData", "Photo");
+            if (filekind == "Photo1")
+                DeleteSysFile(id, filekind, filename, ImageFileUpParm.Product, "ProductData", "Photo");
+            if (filekind == "category1")
+                DeleteSysFile(id, filekind, filename, ImageFileUpParm.ProductCategory, "ProductData", "Photo");
             r.result = true;
             return defJSON(r);
         }

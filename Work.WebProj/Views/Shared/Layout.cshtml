@@ -117,11 +117,11 @@
                         {
                             if (ViewBag.C_id == item.product_category_id)
                             {
-                                <a href="~/Products?id=@item.product_category_id" class="current">@item.category_name</a>
+                                <a href="~/Products/list?id=@item.product_category_id" class="current">@item.category_name</a>
                             }
                             else
                             {
-                                <a href="~/Products?id=@item.product_category_id">@item.category_name</a>
+                                <a href="~/Products/list?id=@item.product_category_id">@item.category_name</a>
                             }
                         }
                     </nav>

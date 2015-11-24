@@ -12,7 +12,26 @@ namespace DotWeb.WebApp.Controllers
     public class ProductsController : WebUserController
     {
         // GET: Products
-        public ActionResult Index(int? id)
+        public ActionResult Index()
+        {
+            List<m_ProductCategory> items = new List<m_ProductCategory>();
+            using (var db0 = getDB0())
+            {
+                items = db0.ProductCategory.Where(x => !x.i_Hide).OrderByDescending(x => x.sort)
+                                                             .Select(x => new m_ProductCategory()
+                                                             {
+                                                                 product_category_id = x.product_category_id,
+                                                                 category_name = x.category_name
+                                                             }).ToList();
+
+                foreach (var i in items)
+                {
+                    i.imgsrc = GetImg(i.product_category_id, "category1", "ProductData", "Photo", null);//顯示圖片
+                }
+            }
+            return View("categorylist", items);
+        }
+        public ActionResult list(int? id)
         {
             List<m_Product> items = new List<m_Product>();
             string c_name = string.Empty;
@@ -47,9 +66,8 @@ namespace DotWeb.WebApp.Controllers
             }
             ViewBag.C_id = id;
             ViewBag.C_name = c_name;
-            return View("list", items);
+            return View(items);
         }
-
         public ActionResult content(int? id)
         {
 

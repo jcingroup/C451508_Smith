@@ -258,6 +258,17 @@ namespace DotWeb.CommSetup
                 return imUp;
             }
         }
+        public static ImageUpScope ProductCategory
+        {
+            get
+            {
+                ImageUpScope imUp = new ImageUpScope() { keepOrigin = true, limitCount = 1, limitSize = 1024 * 1024 * 5 };
+                imUp.Parm = new ImageSizeParm[] {
+                    new ImageSizeParm(){  width=300}
+                };
+                return imUp;
+            }
+        }
         public static ImageUpScope TEST
         {
             get

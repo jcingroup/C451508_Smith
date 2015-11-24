@@ -1,0 +1,21 @@
+﻿@model List<ProcCore.Business.DB0.m_ProductCategory>
+@{
+    ViewBag.Title = ViewBag.C_name;
+    ViewBag.BodyClass = "Products";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@section breadCrumb {
+    <li><a href="~/Products">產品介紹</a></li>
+}
+@foreach (var i in Model)
+{
+    <figure>
+        <img src="@i.imgsrc" alt="@i.category_name">
+        <h3>@i.category_name</h3>
+        <figcaption>
+            <a href="~/Products/list?id=@i.product_category_id">READ MORE</a>
+        </figcaption>
+    </figure>
+}
+

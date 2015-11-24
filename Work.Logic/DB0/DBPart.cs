@@ -215,6 +215,10 @@ namespace ProcCore.Business.DB0
     {
         public string member_name { get; set; }
     }
+    public partial class m_ProductCategory : BaseEntityTable
+    {
+        public string imgsrc { get; set; }
+    }
     public partial class m_Product : BaseEntityTable
     {
         public string category_name { get; set; }

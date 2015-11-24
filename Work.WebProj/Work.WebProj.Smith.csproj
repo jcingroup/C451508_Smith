@@ -782,6 +782,7 @@
     <Content Include="Views\Products\Order.cshtml" />
     <Content Include="Views\Shared\ApplyMemberEmail.cshtml" />
     <Content Include="Views\Shared\OrderEmail.cshtml" />
+    <Content Include="Views\Products\categorylist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

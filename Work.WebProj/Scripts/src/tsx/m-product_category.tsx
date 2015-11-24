@@ -12,7 +12,7 @@
         category_name?: string
     }
     interface ProductCategoryState<G, F, S> extends BaseDefine.GirdFormStateBase<G, F, S> {
-       //額外擴充 表單 State參數
+        //額外擴充 表單 State參數
     }
     interface CallResult extends IResultBase {
         //定義 回傳結果參數
@@ -305,6 +305,22 @@
     <h3 className="title"> { this.props.caption } 基本資料維護</h3>
     <form className="form-horizontal" onSubmit={this.handleSubmit}>
         <div className="col-xs-12">
+
+                    <div className="form-group">
+                        <label className="col-xs-2 control-label">代表圖</label>
+                        <div className="col-xs-4">
+                            <MasterImageUpload
+                                FileKind="category1"
+                                MainId={fieldData.product_category_id}
+                                ParentEditType={this.state.edit_type}
+                                url_upload={gb_approot + 'Active/ProductData/axFUpload'}
+                                url_list={gb_approot + 'Active/ProductData/axFList'}
+                                url_delete={gb_approot + 'Active/ProductData/axFDelete'}
+                                url_sort={gb_approot + 'Active/ProductData/axFSort'}
+                                />
+                            </div>
+                        <small className="help-inline col-xs-4 text-danger">限 1 張圖片，檔案大小不可超過4.8MB</small>
+                        </div>
 
             <div className="form-group">
                 <label className="col-xs-2 control-label">分類名稱</label>
