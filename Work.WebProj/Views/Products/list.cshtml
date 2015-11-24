@@ -20,3 +20,12 @@
     </figure>
 }
 
+@* 分類列表
+<figure>
+    <img src="@item.imgsrc" alt=@(item.category_name+"-"+item.model_type) >
+    <h3>分類名稱</h3>
+    <figcaption>
+        <a href="~/Products/Content?id=@item.product_id">READ MORE</a>
+    </figcaption>
+</figure>
+ *@
