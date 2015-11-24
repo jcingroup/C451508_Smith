@@ -92,8 +92,9 @@
         member_id?: number;
         member_name?: string;
         email?: string;
-        tel?: string;
-        mobile?: string;
+        tel_1?: string;
+        tel_2?: string;
+        line_id?: string;
         tw_zip?: string;
         tw_city?: string;
         tw_country?: string;
@@ -109,6 +110,7 @@
         news_title?: string;
         news_content?: string;
         news_date?: any;
+        is_top?: boolean;
         i_Hide?: boolean;
         newsOfMember?: server.NewsOfMember[];
     }

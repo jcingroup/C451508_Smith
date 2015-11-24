@@ -38,8 +38,8 @@ namespace DotWeb.Api
                     {
                         member_id = x.member_id,
                         member_name = x.member_name,
-                        tel = x.tel,
-                        mobile = x.mobile,
+                        tel_1 = x.tel_1,
+                        tel_2 = x.tel_2,
                         email = x.email,
                         is_approve=x.is_approve
                     }).AsQueryable();
@@ -76,8 +76,9 @@ namespace DotWeb.Api
                 item.member_name = md.member_name;
                 item.member_account = md.member_account;
                 item.member_password = md.member_password;
-                item.tel = md.tel;
-                item.mobile= md.mobile;
+                item.tel_1 = md.tel_1;
+                item.tel_2 = md.tel_2;
+                item.line_id= md.line_id;
                 item.email = md.email;
                 item.tw_zip = md.tw_zip;
                 item.tw_city = md.tw_city;

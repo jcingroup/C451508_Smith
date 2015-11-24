@@ -24,8 +24,9 @@ namespace ProcCore.Business.DB0
         public int member_id { get; set; }
         public string member_name { get; set; }
         public string email { get; set; }
-        public string tel { get; set; }
-        public string mobile { get; set; }
+        public string tel_1 { get; set; }
+        public string tel_2 { get; set; }
+        public string line_id { get; set; }
         public string tw_zip { get; set; }
         public string tw_city { get; set; }
         public string tw_country { get; set; }

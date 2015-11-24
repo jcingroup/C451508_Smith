@@ -33,8 +33,8 @@ namespace ProcCore.Business.DB0
         public string i_Lang { get; set; }
     
     	[JsonIgnore]
-        public virtual Member Member { get; set; }
-    	[JsonIgnore]
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
+    	[JsonIgnore]
+        public virtual Member Member { get; set; }
     }
 }

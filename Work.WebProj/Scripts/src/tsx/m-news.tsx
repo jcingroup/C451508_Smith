@@ -191,7 +191,7 @@
             this.setState(newState);
         }
         insertType() {
-            this.setState({ edit_type: 1, fieldData: { news_type: 1, i_Hide: false, news_date: format_Date(getNowDate()) } });
+            this.setState({ edit_type: 1, fieldData: { news_type: 1, i_Hide: false, is_top: false, news_date: format_Date(getNowDate()) } });
         }
         updateType(id: number | string) {
 
@@ -439,6 +439,33 @@
                                 onChange={this.changeFDValue.bind(this, 'i_Hide') }
                                 />
                             <span>顯示</span>
+                           </label>
+                       </div>
+                    </div>
+                </div>
+            <div className="form-group">
+                <label className="col-xs-2 control-label">是否置頂</label>
+                <div className="col-xs-4">
+                   <div className="radio-inline">
+                       <label>
+                            <input type="radio"
+                                name="is_top"
+                                value={true}
+                                checked={fieldData.is_top === true}
+                                onChange={this.changeFDValue.bind(this, 'is_top') }
+                                />
+                            <span>置頂</span>
+                           </label>
+                       </div>
+                   <div className="radio-inline">
+                       <label>
+                            <input type="radio"
+                                name="is_top"
+                                value={false}
+                                checked={fieldData.is_top === false}
+                                onChange={this.changeFDValue.bind(this, 'is_top') }
+                                />
+                            <span>不置頂</span>
                            </label>
                        </div>
                     </div>

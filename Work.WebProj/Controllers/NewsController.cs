@@ -19,27 +19,16 @@ namespace DotWeb.WebApp.Controllers
                 if (this.MemberId != null)
                 {
                     int member_id = int.Parse(this.MemberId);
+                    List<int> news_id = new List<int>();
                     //有對應
-                    items = db0.News.Where(x => !x.i_Hide & x.news_type == (byte)NewsType.assign & x.NewsOfMember.Any(y => y.member_id == member_id & y.news_id == x.news_id)).OrderByDescending(x => x.news_date)
-                                                                                .Select(x => new m_News()
-                                                                                {
-                                                                                    news_id = x.news_id,
-                                                                                    news_title = x.news_title,
-                                                                                    news_date = x.news_date,
-                                                                                    news_content = x.news_content
-                                                                                }).ToList();
+                    news_id = db0.News.Where(x => !x.i_Hide & x.news_type == (byte)NewsType.assign & x.NewsOfMember.Any(y => y.member_id == member_id & y.news_id == x.news_id)).OrderByDescending(x => x.news_date)
+                                                                                .Select(x => x.news_id).ToList();
 
                     //未對應&一般
-                    List<m_News> getNews = db0.News.Where(x => !x.i_Hide & x.news_type != (byte)NewsType.assign).OrderByDescending(x => x.news_date)
-                                                                     .Select(x => new m_News()
-                                                                     {
-                                                                         news_id = x.news_id,
-                                                                         news_title = x.news_title,
-                                                                         news_date = x.news_date,
-                                                                         news_content = x.news_content
-                                                                     }).ToList();
-                    items.AddRange(getNews);
-                    items = items.OrderByDescending(x => x.news_date)
+                    List<int> getNews = db0.News.Where(x => !x.i_Hide & x.news_type != (byte)NewsType.assign).OrderByDescending(x => x.news_date)
+                                                                     .Select(x => x.news_id).ToList();
+                    news_id.AddRange(getNews);
+                    items = db0.News.Where(x => news_id.Contains(x.news_id)).OrderByDescending(x => new { x.is_top, x.news_date })
                                  .Select(x => new m_News()
                                  {
                                      news_id = x.news_id,
@@ -51,7 +40,7 @@ namespace DotWeb.WebApp.Controllers
                 else
                 {
                     //一般
-                    items = db0.News.Where(x => !x.i_Hide & x.news_type == (byte)NewsType.general).OrderByDescending(x => x.news_date)
+                    items = db0.News.Where(x => !x.i_Hide & x.news_type == (byte)NewsType.general).OrderByDescending(x => new { x.is_top, x.news_date })
                                                                                 .Select(x => new m_News()
                                                                                 {
                                                                                     news_id = x.news_id,

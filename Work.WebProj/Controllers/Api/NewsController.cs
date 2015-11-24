@@ -40,6 +40,7 @@ namespace DotWeb.Api
                                 news_title=x.news_title,
                                 news_date=x.news_date,
                                 news_type=x.news_type,
+                                is_top=x.is_top,
                                 i_Hide=x.i_Hide
                             }).AsQueryable();
 
@@ -81,6 +82,7 @@ namespace DotWeb.Api
                 item.news_date = md.news_date;
                 item.news_type = md.news_type;
                 item.i_Hide = md.i_Hide;
+                item.is_top = md.is_top;
                 item.news_content = md.news_content;
 
                 md.i_UpdateDateTime = DateTime.Now;
@@ -156,6 +158,12 @@ namespace DotWeb.Api
                 foreach (var id in ids)
                 {
                     item = new News() { news_id = id };
+                    Boolean check_detail = db0.NewsOfMember.Any(x => x.news_id == id);
+                    if (check_detail)
+                    {
+                        var getDeatil = db0.NewsOfMember.Where(x => x.news_id == id);
+                        db0.NewsOfMember.RemoveRange(getDeatil);
+                    }
                     db0.News.Attach(item);
                     db0.News.Remove(item);
                 }

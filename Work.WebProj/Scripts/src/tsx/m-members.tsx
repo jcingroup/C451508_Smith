@@ -2,7 +2,8 @@
     interface Rows {
         check_del: boolean,
         member_id: number;
-        tel: string;
+        tel_1: string;
+        tel_2: string;
         member_name: string;
         email: string;
         is_approve: boolean;
@@ -355,12 +356,23 @@
                     </div>
 
              <div className="form-group">
-                <label className="col-xs-2 control-label">電話</label>
+                <label className="col-xs-2 control-label">電話1</label>
                 <div className="col-xs-5">
                     <input type="text"
                         className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'tel') }
-                        value={fieldData.tel}
+                        onChange={this.changeFDValue.bind(this, 'tel_1') }
+                        value={fieldData.tel_1}
+                        maxLength={10} />
+                    </div>
+                   <small className="help-inline col-xs-5">最多10個字</small>
+                 </div>
+             <div className="form-group">
+                <label className="col-xs-2 control-label">電話2</label>
+                <div className="col-xs-5">
+                    <input type="text"
+                        className="form-control"
+                        onChange={this.changeFDValue.bind(this, 'tel_2') }
+                        value={fieldData.tel_2}
                         maxLength={10} />
                     </div>
                    <small className="help-inline col-xs-5">最多10個字</small>
@@ -380,6 +392,17 @@
                          country_field="tw_country"
                          address_field="tw_address" />
                      </div>
+
+             <div className="form-group">
+                <label className="col-xs-2 control-label">Line ID</label>
+                <div className="col-xs-5">
+                    <input type="text"
+                        className="form-control"
+                        onChange={this.changeFDValue.bind(this, 'line_id') }
+                        value={fieldData.line_id}
+                        maxLength={50} />
+                    </div>
+                 </div>
 
             <div className="form-group">
                 <label className="col-xs-2 control-label">會員帳號</label>
@@ -403,7 +426,7 @@
                         required />
                     </div>
                    <small className="help-inline col-xs-5"><span className="text-danger">(必填) </span></small>
-              </div>
+                 </div>
 
             {/*<div className="form-group">
                 <label className="col-xs-2 control-label">狀態</label>
