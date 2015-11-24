@@ -349,6 +349,11 @@
                     </div>
                    <small className="help-inline col-xs-5">最多256個字<span className="text-danger"></span></small>
                 </div>
+
+                <div className="form-group">
+                    <small className="col-xs-10 col-xs-offset-2 help-inline">建議會員填寫email信箱，在產品下單時才可以收到email以便確認下單內容</small>
+                    </div>
+
              <div className="form-group">
                 <label className="col-xs-2 control-label">電話</label>
                 <div className="col-xs-5">

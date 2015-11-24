@@ -355,6 +355,9 @@ namespace DotWeb.Areas.Base.Controllers
             {
                 Response.Cookies.Add(new HttpCookie(CommWebSetup.WebCookiesId + ".member_id", Server.UrlEncode(EncryptString.desEncryptBase64(get_user.member_id.ToString()))));
                 Response.Cookies.Add(new HttpCookie(CommWebSetup.WebCookiesId + ".member_name", Server.UrlEncode(get_user.member_name)));
+                //設定過期時間1天
+                //Response.Cookies[CommWebSetup.WebCookiesId + ".member_id"].Expires = DateTime.Now.AddDays(1);
+                //Response.Cookies[CommWebSetup.WebCookiesId + ".member_name"].Expires = DateTime.Now.AddDays(1);
 
                 rAjaxResult.result = true;
                 rAjaxResult.url = Url.Content("~/News");
