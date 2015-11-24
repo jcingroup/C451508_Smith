@@ -68,6 +68,9 @@ main {
 @for $i from 1 through 4 {
     .i#{$i} {
         background-image: url(#{$img-path}/banner#{$i}.jpg);
+        @include mq($max: tablet) {
+            background-image: url(#{$img-path}/banner#{$i}_m.jpg);
+        }
     }
 }
 

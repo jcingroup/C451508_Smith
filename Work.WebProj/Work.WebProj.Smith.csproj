@@ -280,9 +280,13 @@
     <Content Include="Content\font\MElleHK.ttf" />
     <Content Include="Content\font\MElleHK.woff" />
     <Content Include="Content\images\banner1.jpg" />
+    <Content Include="Content\images\banner1_m.jpg" />
     <Content Include="Content\images\banner2.jpg" />
+    <Content Include="Content\images\banner2_m.jpg" />
     <Content Include="Content\images\banner3.jpg" />
+    <Content Include="Content\images\banner3_m.jpg" />
     <Content Include="Content\images\banner4.jpg" />
+    <Content Include="Content\images\banner4_m.jpg" />
     <Content Include="Content\images\bg.gif" />
     <Content Include="Content\images\bg2.gif" />
     <Content Include="Content\images\ContactUs\banner.jpg" />
