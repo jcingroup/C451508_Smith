@@ -27,6 +27,8 @@ namespace ProcCore.Business.DB0
         public string tel_1 { get; set; }
         public string tel_2 { get; set; }
         public string line_id { get; set; }
+        public string member_joe { get; set; }
+        public string content_person { get; set; }
         public string tw_zip { get; set; }
         public string tw_city { get; set; }
         public string tw_country { get; set; }

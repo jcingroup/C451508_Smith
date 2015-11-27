@@ -52,9 +52,16 @@ namespace DotWeb.Api
                 {
                     items = items.Where(x => x.issue_category_id == q.issue_category_id);
                 }
+                int PageSize = 10;//預設10頁
+                if (q.page_size != null)
+                {
+                    try { PageSize = q.page_size == "All" ? items.Count() : int.Parse(q.page_size); }
+                    catch (Exception) { PageSize = 10; }
+                }
+
                 int page = (q.page == null ? 1 : (int)q.page);
-                int startRecord = PageCount.PageInfo(page, this.defPageSize, items.Count());
-                var resultItems = await items.Skip(startRecord).Take(this.defPageSize).ToListAsync();
+                int startRecord = PageCount.PageInfo(page, PageSize, items.Count());
+                var resultItems = await items.Skip(startRecord).Take(PageSize).ToListAsync();
 
                 return Ok(new GridInfo<m_Issue>()
                 {
@@ -194,5 +201,6 @@ namespace DotWeb.Api
     {
         public string name { get; set; }
         public int? issue_category_id { get; set; }
+        public string page_size { get; set; }
     }
 }

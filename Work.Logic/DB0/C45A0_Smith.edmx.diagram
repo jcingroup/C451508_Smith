@@ -29,11 +29,11 @@
         <EntityTypeShape EntityType="C45A0_SmithModel.OrderDetail" Width="1.5" PointX="14.875" PointY="11.5" />
         <AssociationConnector Association="C45A0_SmithModel.FK_OrderDetail_Order" />
         <AssociationConnector Association="C45A0_SmithModel.FK_OrderDetail_Product" />
-        <EntityTypeShape EntityType="C45A0_SmithModel.Member" Width="1.5" PointX="10.375" PointY="11.875" />
-        <AssociationConnector Association="C45A0_SmithModel.FK_NewsOfMember_Member" />
-        <AssociationConnector Association="C45A0_SmithModel.FK_Order_Member" />
         <EntityTypeShape EntityType="C45A0_SmithModel.News" Width="1.5" PointX="10.375" PointY="1" />
         <AssociationConnector Association="C45A0_SmithModel.FK_NewsOfMember_News" />
+        <EntityTypeShape EntityType="C45A0_SmithModel.Member" Width="1.5" PointX="10.375" PointY="12.75" />
+        <AssociationConnector Association="C45A0_SmithModel.FK_NewsOfMember_Member" />
+        <AssociationConnector Association="C45A0_SmithModel.FK_Order_Member" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

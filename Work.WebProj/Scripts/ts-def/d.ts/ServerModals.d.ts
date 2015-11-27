@@ -91,6 +91,8 @@
     interface Member extends BaseEntityTable {
         member_id?: number;
         member_name?: string;
+        member_joe?: string;
+        content_person?: string;
         email?: string;
         tel_1?: string;
         tel_2?: string;

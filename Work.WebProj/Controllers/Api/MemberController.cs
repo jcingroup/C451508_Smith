@@ -41,17 +41,24 @@ namespace DotWeb.Api
                         tel_1 = x.tel_1,
                         tel_2 = x.tel_2,
                         email = x.email,
-                        is_approve=x.is_approve
+                        is_approve = x.is_approve
                     }).AsQueryable();
 
                 if (q.name != null)
                 {
                     items = items.Where(x => x.member_name.Contains(q.name));
                 }
+                int PageSize = 10;//預設10頁
+                if (q.page_size != null)
+                {
+                    try { PageSize = q.page_size == "All" ? items.Count() : int.Parse(q.page_size); }
+                    catch (Exception) { PageSize = 10; }
+                }
+
 
                 int page = (q.page == null ? 1 : (int)q.page);
-                int startRecord = PageCount.PageInfo(page, this.defPageSize, items.Count());
-                var resultItems = await items.Skip(startRecord).Take(this.defPageSize).ToListAsync();
+                int startRecord = PageCount.PageInfo(page, PageSize, items.Count());
+                var resultItems = await items.Skip(startRecord).Take(PageSize).ToListAsync();
 
                 return Ok(new GridInfo<m_Member>()
                 {
@@ -78,12 +85,14 @@ namespace DotWeb.Api
                 item.member_password = md.member_password;
                 item.tel_1 = md.tel_1;
                 item.tel_2 = md.tel_2;
-                item.line_id= md.line_id;
+                item.line_id = md.line_id;
                 item.email = md.email;
                 item.tw_zip = md.tw_zip;
                 item.tw_city = md.tw_city;
                 item.tw_country = md.tw_country;
                 item.tw_address = md.tw_address;
+                item.member_joe = md.member_joe;
+                item.content_person = md.content_person;
                 //item.is_approve = md.is_approve;
 
                 md.i_UpdateDateTime = DateTime.Now;
@@ -198,5 +207,6 @@ namespace DotWeb.Api
     public class q_Member : QueryBase
     {
         public string name { get; set; }
+        public string page_size { get; set; }
     }
 }

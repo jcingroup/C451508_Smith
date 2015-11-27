@@ -27,8 +27,8 @@ namespace ProcCore.Business.DB0
         public string i_Lang { get; set; }
     
     	[JsonIgnore]
-        public virtual Member Member { get; set; }
-    	[JsonIgnore]
         public virtual News News { get; set; }
+    	[JsonIgnore]
+        public virtual Member Member { get; set; }
     }
 }

@@ -10,7 +10,8 @@
     }
     interface SearchData {
         //搜尋 參數
-        name?: string
+        name?: string;
+        page_size?: string;
     }
     interface MembersDataState<G, F, S> extends BaseDefine.GirdFormStateBase<G, F, S> {
         //額外擴充 表單 State參數
@@ -67,6 +68,7 @@
             this.componentDidMount = this.componentDidMount.bind(this);
             this.insertType = this.insertType.bind(this);
             this.setFDValue = this.setFDValue.bind(this);
+            this.changePageSize = this.changePageSize.bind(this);
             this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, searchData: {} }
 
         }
@@ -235,6 +237,13 @@
             obj[fieldName] = value;
             this.setState({ fieldData: obj });
         }
+        changePageSize(e: React.SyntheticEvent) {
+            let input: HTMLInputElement = e.target as HTMLInputElement;
+            let obj = this.state.searchData;
+            obj.page_size = input.value;
+            this.queryGridData(1);
+            this.setState({ searchData: obj });
+        }
         render() {
 
             var outHtml: JSX.Element = null;
@@ -251,13 +260,25 @@
             <div className="table-header">
                 <div className="table-filter">
                     <div className="form-inline">
-                        <div className="form-group">
+                        <div className="form-group col-md-4">
                             <label>會員名稱</label> { }
                             <input type="text" className="form-control"
                                 value={searchData.name}
                                 onChange={this.changeGDValue.bind(this, 'name') }
                                 placeholder="請輸入關鍵字..." /> { }
                             <button className="btn-primary" type="submit"><i className="fa-search"></i> 搜尋</button>
+                            </div>
+                        <div className="form-group col-md-offset-6">
+                            <label>顯示</label> { }
+                            <select className="form-control input-sm"
+                                value={searchData.page_size}
+                                onChange={this.changePageSize}>
+                                <option>10</option>
+                                <option>20</option>
+                                <option>30</option>
+                                <option>All</option>
+                                </select> {  }
+                            <label>筆</label>
                             </div>
                         </div>
                     </div>
@@ -326,6 +347,18 @@
                         disabled />
                     </div>
                 </div>
+             <div className="form-group">
+                <label className="col-xs-2 control-label">業務</label>
+                <div className="col-xs-5">
+                    <input type="text"
+                        className="form-control"
+                        onChange={this.changeFDValue.bind(this, 'member_joe') }
+                        value={fieldData.member_joe}
+                        maxLength={50} />
+                    </div>
+                    <small className="help-inline col-xs-5">最多50個字</small>
+                 </div>
+
             <div className="form-group">
                 <label className="col-xs-2 control-label">會員姓名</label>
                 <div className="col-xs-5">
@@ -339,6 +372,17 @@
                    <small className="help-inline col-xs-5">最多64個字<span className="text-danger">(必填) </span></small>
                 </div>
 
+             <div className="form-group">
+                <label className="col-xs-2 control-label">聯絡人</label>
+                <div className="col-xs-5">
+                    <input type="text"
+                        className="form-control"
+                        onChange={this.changeFDValue.bind(this, 'content_person') }
+                        value={fieldData.content_person}
+                        maxLength={50} />
+                    </div>
+                    <small className="help-inline col-xs-5">最多50個字</small>
+                 </div>
             <div className="form-group">
                 <label className="col-xs-2 control-label">E-Mail</label>
                 <div className="col-xs-5">
@@ -393,17 +437,6 @@
                          address_field="tw_address" />
                      </div>
 
-             <div className="form-group">
-                <label className="col-xs-2 control-label">Line ID</label>
-                <div className="col-xs-5">
-                    <input type="text"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'line_id') }
-                        value={fieldData.line_id}
-                        maxLength={50} />
-                    </div>
-                 </div>
-
             <div className="form-group">
                 <label className="col-xs-2 control-label">會員帳號</label>
                 <div className="col-xs-5">
@@ -426,6 +459,18 @@
                         required />
                     </div>
                    <small className="help-inline col-xs-5"><span className="text-danger">(必填) </span></small>
+                 </div>
+
+             <div className="form-group">
+                <label className="col-xs-2 control-label">Line ID</label>
+                <div className="col-xs-5">
+                    <input type="text"
+                        className="form-control"
+                        onChange={this.changeFDValue.bind(this, 'line_id') }
+                        value={fieldData.line_id}
+                        maxLength={50} />
+                    </div>
+                    <small className="help-inline col-xs-5">最多50個字</small>
                  </div>
 
             {/*<div className="form-group">

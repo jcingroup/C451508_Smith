@@ -14,6 +14,7 @@
         //搜尋 參數
         name?: string
         product_category_id?: number;
+        page_size?: string;
     }
     interface ProductCategory {
         product_category_id: number
@@ -77,6 +78,7 @@
             this.componentDidMount = this.componentDidMount.bind(this);
             this.componentDidUpdate = this.componentDidUpdate.bind(this);
             this.insertType = this.insertType.bind(this);
+            this.changePageSize = this.changePageSize.bind(this);
             this.state = { fieldData: null, gridData: { rows: [], page: 1 }, edit_type: 0, category_option: [], searchData: {} }
 
         }
@@ -258,7 +260,13 @@
             }
             this.setState({ fieldData: obj });
         }
-
+        changePageSize(e: React.SyntheticEvent) {
+            let input: HTMLInputElement = e.target as HTMLInputElement;
+            let obj = this.state.searchData;
+            obj.page_size = input.value;
+            this.queryGridData(1);
+            this.setState({ searchData: obj });
+        }
         render() {
 
             var outHtml: JSX.Element = null;
@@ -277,7 +285,7 @@
             <div className="table-header">
                 <div className="table-filter">
                     <div className="form-inline">
-                        <div className="form-group">
+                        <div className="form-group col-md-6">
                             <label>產品名稱</label> { }
                             <input type="text" className="form-control"
                                 value={searchData.name}
@@ -297,6 +305,18 @@
                                     </select> { }
 
                             <button className="btn-primary" type="submit"><i className="fa-search"></i> 搜尋</button>
+                            </div>
+                        <div className="form-group col-md-offset-4">
+                            <label>顯示</label> { }
+                            <select className="form-control input-sm"
+                                value={searchData.page_size}
+                                onChange={this.changePageSize}>
+                                <option>10</option>
+                                <option>20</option>
+                                <option>30</option>
+                                <option>All</option>
+                                </select> {  }
+                            <label>筆</label>
                             </div>
                         </div>
                     </div>
