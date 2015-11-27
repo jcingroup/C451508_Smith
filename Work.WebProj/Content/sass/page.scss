@@ -210,7 +210,7 @@ aside {
     height: 320px;
 
     @include middle(img) {
-        max-width: 540px;
+        max-width: 94%;
         max-height: 300px;
     }
     @include mq-max(mobile) {

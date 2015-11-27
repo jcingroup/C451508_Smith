@@ -1138,7 +1138,7 @@ aside {
   height: 320px; }
   .pro-pic img {
     display: inline-block;
-    max-width: 540px;
+    max-width: 94%;
     max-height: 300px; }
   @media (max-width: 20em) {
     .pro-pic {
