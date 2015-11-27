@@ -34,8 +34,8 @@ figure {
 }
 figcaption {
     text-transform: uppercase;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+
+    @include prefix(backface-visibility, hidden, webkit);
 
     &::before, &::after { pointer-events: none; }
 
@@ -59,7 +59,18 @@ figure {
     height: $figure-height;
     border: 1px solid #EBEBEB;
 
-    @include middle(img) { max-height: $figure-height; }
+    @include middle(img) { max-height: $figure-height - 20px; }
+
+    @include mq-max(tablet) {
+        display: inline-block;
+        float: none;
+        margin-left: 0;
+        width: 49.6%;
+        min-width: auto;
+    }
+    @include mq-max(phone) {
+        width: 100%;
+    }
 
     figcaption {
         height: 0;
@@ -93,15 +104,5 @@ figure {
                 font-size: em(22px);
             }
         }
-    }
-    @include mq($max:tablet) {
-        display: inline-block;
-        float: none;
-        margin-left: 0;
-        width: 49.6%;
-    }
-    @include mq($max:phone) {
-        width: 100%;
-        min-width: auto;
     }
 }

@@ -57,7 +57,7 @@ $goTop:                 (bottom 10px), (right 15px) !default;
     padding-bottom: $footer-height + $content-spacing; // 內容與footer間距
     // background: $wrapper-bg;
 
-    @include mq($max: phone) {
+    @include mq-max(phone) {
         padding-bottom: $footer-height-sm + $content-spacing;
     }
 }
@@ -92,11 +92,11 @@ $goTop:                 (bottom 10px), (right 15px) !default;
         @include text-pic($logo-img, nth($logo-size,1),  nth($logo-size,2));
         @include absolute(left 0 top 55px);
 
-        @include mq($max: tablet) {
+        @include mq-max(tablet) {
             background-image: url(#{$img-path}/logo2.gif);
             background-size: contain;
         }
-        @include mq($max: phone) {
+        @include mq-max(phone) {
             left: 0; right: 0;
             width: 100%;
         }
@@ -156,7 +156,7 @@ body, #menu {
 
     &:hover { color: $brand-primary; }
 
-    @include mq($max: 959px) { display: block; }
+    @include mq-max(959px) { display: block; }
 }
 body {
     position: relative;
@@ -205,10 +205,10 @@ body {
             }
         }
         @include mq(wide) { width: 140px; }
-        @include mq($max:desktop) { font-size: em(19px,21px); width: 95px; }
+        @include mq-max(desktop) { font-size: em(19px,21px); width: 95px; }
     }
 
-    @include mq($max: 959px) {
+    @include mq-max(959px) {
         background: $brand-primary;
         width: $menu-trigger-width;
         height: 100%;
@@ -291,7 +291,7 @@ footer {
             margin-right: 6px;
         }
     }
-    @include mq($max: phone) {
+    @include mq-max(phone) {
         ul { margin-top: 20px; }
     }
 }
@@ -302,11 +302,16 @@ footer {
     margin-top: 15px;
 
     em {
-        @include text-pic("#{$img-path}/logo_s.gif",120px,33px);
+        @include text-pic("logo_s.gif",120px,33px);
         display: inline-block;
         margin-right: 10px;
         margin-bottom: -3px;
         vertical-align: bottom;
+
+        @include mq-max(break(tablet,-1)) {
+            background-image: url(#{$img-path}/logo_s2.gif);
+            background-size: contain;
+        }
     }
 }
 

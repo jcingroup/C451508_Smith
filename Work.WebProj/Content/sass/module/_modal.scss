@@ -12,8 +12,7 @@ $modal-min-width: 320px;
     visibility: hidden;
     @include fixed(top 50% left 50%);
     @include prefix(backface-visibility,hidden);
-    -ms-transform: translateX(-50%) translateY(-50%);
-    @include prefix(transform,translateX(-50%) translateY(-50%));
+    @include prefix-add(transform,translateX(-50%) translateY(-50%), ms);
 }
 
 .md-show {
@@ -65,7 +64,7 @@ $modal-min-width: 320px;
         font-size: em(32px);
         font-weight: 300;
         background: #0646A3;
-        @include mq($max: phone) {
+        @include mq-max(phone) {
             font-size: em(26px);
         }
     }
@@ -91,8 +90,8 @@ $modal-min-width: 320px;
 
 .md-effect-7 {
     top: 0;
-    -ms-transform: translateX(-50%);
-    @include prefix(transform,translateX(-50%));
+
+    @include prefix-add(transform,translateX(-50%), ms);
 
     .md-content {
         @include prefix(transform,translateY(-200%));
@@ -124,10 +123,10 @@ $modal-min-width: 320px;
             max-width: 420px;
             margin: 0;
 
-            @include mq($max: tablet) {
+            @include mq-max(tablet) {
                 max-width: 344px;
             }
-            @include mq($max: mobile) {
+            @include mq-max(mobile) {
                 max-width: 172px;
             }
         }

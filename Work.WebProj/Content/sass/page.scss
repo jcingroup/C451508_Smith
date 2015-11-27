@@ -52,7 +52,7 @@ main {
 #slider {
     z-index: -1;
     @include absolute(top 0 left 265px);
-    @include mq($max:tablet) {
+    @include mq-max(tablet) {
         left: 0;
     }
 }
@@ -68,7 +68,7 @@ main {
     background-position: 0;
     background-repeat: no-repeat;
 
-    @include mq($max:tablet) {
+    @include mq-max(tablet) {
         background-position: center 0;
     }
 }
@@ -76,7 +76,7 @@ main {
     .i#{$i} {
         background-image: url(#{$img-path}/banner#{$i}.jpg);
 
-        @include mq($max: tablet) {
+        @include mq-max(tablet) {
             background-image: url(#{$img-path}/banner#{$i}_m.jpg);
         }
     }
@@ -124,7 +124,7 @@ aside {
         }
     }
 
-    @include mq($max:tablet) {
+    @include mq-max(tablet) {
         width: 270px;
         margin-top: 0;
 
@@ -177,7 +177,7 @@ aside {
         width: auto;
         margin-left: 95px;
     }
-    @include mq($max:tablet) {
+    @include mq-max(tablet) {
         text-align: right;
         width: auto;
         @include absolute(right 10px top 120px);
@@ -189,7 +189,7 @@ aside {
     margin-top: 100px;
     > h2 { margin-top: 0; }
 
-    @include mq($max:tablet) {
+    @include mq-max(tablet) {
         margin-top: 130px;
         width: 100%;
         float: none;
@@ -207,14 +207,13 @@ aside {
     background: #fff;
     border: 1px solid #EBEBEB;
     text-align: center;
-    height: 300px;
+    height: 320px;
 
     @include middle(img) {
-        width: 90%;
-        max-width: 500px;
+        max-width: 540px;
         max-height: 300px;
     }
-    @include mq($max:mobile) {
+    @include mq-max(mobile) {
         height: 180px;
         img { max-height: 170px; }
     }
@@ -237,7 +236,7 @@ aside {
     button { clear: both; }
     select { margin-bottom: 35px; }
 
-    @include mq($max:tablet) {
+    @include mq-max(tablet) {
         padding-left: 0;
         h3 { margin-bottom: 20px; }
     }
@@ -311,7 +310,7 @@ input[type="number"] {
 }
 .other {
     margin-top: 40px;
-    @include mq($max:tablet) {
+    @include mq-max(tablet) {
         img { max-width: 100%; }
     }
 }
@@ -423,7 +422,7 @@ input[type="number"] {
 // == Contact Us
 #map-canvas, .contacts { height: 460px; }
 #map-canvas {
-    @include mq($max:tablet) { height: 300px; }
+    @include mq-max(tablet) { height: 300px; }
 }
 .contacts {
     background: rgba(#1C2851,.7);
@@ -432,7 +431,7 @@ input[type="number"] {
     padding: $gutter;
 
     @include absolute(top 52px right 0);
-    @include mq($max:tablet) {
+    @include mq-max(tablet) {
         position: relative;
         top: $gutter; left: 0;
         height: auto;

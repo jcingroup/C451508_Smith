@@ -20,8 +20,6 @@
         $deg: center;
     }
     background: nth(nth($colors, 1), 1);
-    background: -webkit-radial-gradient($deg, $colors);
-    background: -o-radial-gradient($deg, $colors);
-    background: -ms-radial-gradient($deg, $colors);
-    background: radial-gradient($deg, $colors);
+
+    @include prefix-v(background, radial-gradient($deg, $colors), webkit o ms);
 }

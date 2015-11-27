@@ -50,7 +50,7 @@ footer {
     background: url(#{$img-path2}/bg.png) center 0 no-repeat;
     padding-top: 17px;
 
-    @include mq($max:tablet) { background-size: cover 100%; }
+    @include mq-max(tablet) { background-size: cover 100%; }
 }
 #banner, .swiper-slide {
     height: 520px;
@@ -67,7 +67,7 @@ footer {
     padding-top: 35px;
     padding-bottom: 30px;
 
-    @include mq($max:tablet) {
+    @include mq-max(tablet) {
         padding-bottom: 130px;
         background-size: auto cover;
     }
@@ -96,7 +96,7 @@ footer {
             left: 1%;
             margin-left: 0;
         }
-        @include mq($max:tablet) {
+        @include mq-max(tablet) {
             margin-left: 0;
             margin-top: 20px;
             left: 0; right: 0;
@@ -118,7 +118,7 @@ footer {
                 background-position: (97px - (86px * $i)) 0;
             }
         }
-        @include mq($max: break(tablet,-1)) {
+        @include mq-max(break(tablet,-1)) {
             background-image: url(#{$img-banner}1_icon2.png);
             background-size: auto 72px;
         }
@@ -129,14 +129,14 @@ footer {
         header { float: left; }
     }
     .pic {
-        @include mq($max: wide) {
+        @include mq-max(wide) {
             @include absolute(right 1% top 30px);
         }
-        @include mq($max: tablet) {
+        @include mq-max(tablet) {
             right: 0; left: 0;
             bottom: 115px; top: auto;
         }
-        @include mq($max: phone) {
+        @include mq-max(phone) {
             bottom: 215px;
         }
     }
@@ -146,7 +146,7 @@ footer {
 
     header {
         margin-top: 35px;
-        @include mq($max: break(tablet,-1)) {
+        @include mq-max(break(tablet,-1)) {
             background-image: url(#{$img-banner}1_title2.png);
             height: 225px;
             margin-top: 0;
@@ -154,13 +154,13 @@ footer {
     }
     .pic {
         margin-top: 60px;
-        @include mq($max: break(tablet,-1)) {
+        @include mq-max(break(tablet,-1)) {
             background-image: url(#{$img-banner}1_pic2.png);
             height: 235px;
             margin-top: 0;
         }
-        // @include mq($max: phone) { height: 200px; }
-        @include mq($max: phone) { height: 138px; }
+        // @include mq-max(phone) { height: 200px; }
+        @include mq-max(phone) { height: 138px; }
     }
 }
 .i2 {
@@ -174,15 +174,15 @@ footer {
         background-image: url(#{$img-banner}2_pic.png);
         width: 519px; height: 339px;
 
-        @include mq($max:tablet) {
+        @include mq-max(tablet) {
             background-image: url(#{$img-banner}2_pic2.png);
             height: 167px;
         }
-        @include mq($max:phone) { height: 100px; }
+        @include mq-max(phone) { height: 100px; }
     }
     li {
         background-image: url(#{$img-banner}2_icon.png);
-        @include mq($max: break(tablet,-1)) {
+        @include mq-max(break(tablet,-1)) {
             background-image: url(#{$img-banner}2_icon2.png);
         }
     }
@@ -191,7 +191,7 @@ footer {
     background-image: url(#{$img-banner}3_bg.gif);
     padding-top: 10px;
 
-    @include mq($max: tablet) { background-position: center bottom; }
+    @include mq-max(tablet) { background-position: center bottom; }
 
     header {
         background-image: url(#{$img-banner}3_title.png);
@@ -199,7 +199,7 @@ footer {
         margin-top: 85px;
         margin-right: 20px;
 
-        @include mq($max:tablet) {
+        @include mq-max(tablet) {
             background-image: url(#{$img-banner}3_title2.png);
             height: 185px;
             margin: 0;
@@ -209,10 +209,10 @@ footer {
         background-image: url(#{$img-banner}3_pic.png);
         width: 401px; height: 435px;
 
-        @include mq($max: tablet) {
+        @include mq-max(tablet) {
             @include absolute(bottom 115px left 0 right 0)
         }
-        @include mq($max: phone) {
+        @include mq-max(phone) {
             height: 240px;
             bottom: 200px;
         }
@@ -220,13 +220,13 @@ footer {
     li {
         background-image: url(#{$img-banner}3_icon.png);
 
-        @include mq($max: break(tablet,-1)) {
+        @include mq-max(break(tablet,-1)) {
             background-image: url(#{$img-banner}3_icon2.png);
         }
     }
 }
 
-@include mq($max:tablet) {
+@include mq-max(tablet) {
     .swiper-slide {
         header, .pic {
             background-size: contain;
@@ -254,7 +254,7 @@ footer {
         line-height: 2.2;
         margin-bottom: 20px;
 
-        @include mq($max: tablet) { line-height: 1.7; }
+        @include mq-max(tablet) { line-height: 1.7; }
     }
     nav a {
         display: block;
@@ -263,7 +263,7 @@ footer {
         &:hover, &:active {
             color: lighten($brand-secondary,40%);
         }
-        // @include mq($max: tablet) {
+        // @include mq-max(tablet) {
         //     float: left;
         //     padding-right: $gutter;
         //     font-size: em(21px);
@@ -273,7 +273,7 @@ footer {
         margin-top: 20px;
         float: right;
 
-        @include mq($max: tablet) { margin-top: 0; }
+        @include mq-max(tablet) { margin-top: 0; }
     }
     .col-3 {
         min-width: 245px;
@@ -284,7 +284,7 @@ footer {
     .btn {
         @include mq(wide) { margin-top: 52px; }
     }
-    @include mq($max: tablet) { margin-bottom: 30px; }
+    @include mq-max(tablet) { margin-bottom: 30px; }
 }
 
 #map-canvas {

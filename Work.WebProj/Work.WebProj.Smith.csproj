@@ -318,6 +318,7 @@
     <Content Include="Content\images\logo.gif" />
     <Content Include="Content\images\logo2.gif" />
     <Content Include="Content\images\logo_s.gif" />
+    <Content Include="Content\images\logo_s2.gif" />
     <Content Include="Content\images\products\check.png" />
     <Content Include="Content\images\products\info.gif" />
     <Content Include="Content\images\products\pro.jpg" />

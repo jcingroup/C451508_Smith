@@ -57,8 +57,6 @@
     @keyframes #{$animationName} {
         @content;
     }
-    -webkit-animation: $animationName $animations;
-    // -moz-animation: $animationName $animations;
-    // -o-animation: $animationName $animations;
-    animation: $animationName $animations;
+
+    @include prefix(animation, $animationName $animations, webkit)
 }

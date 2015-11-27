@@ -74,7 +74,7 @@
   // }
 }
 
-@include media(sm-min) {
+@include mq(phone) {
     .navbar-right {
         .dropdown-menu {
             right: 0; left: auto;

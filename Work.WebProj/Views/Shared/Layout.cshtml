@@ -45,7 +45,7 @@
             <button class="md-close" type="button">X</button>
         </form>
     </div>
-    <!-- <div class="md-modal md-effect-7" id="join">
+    @* <div class="md-modal md-effect-7" id="join">
         <form class="md-content" id="MApply">
             <h3>JOIN US 加入會員</h3>
             <input type="text" name="member" id="ma_member_name" placeholder="請輸入會員名稱" required>
@@ -60,7 +60,7 @@
             <p>感謝您的加入，我們將盡快作業，請等候通知</p>
             <button class="md-close" type="button">X</button>
         </form>
-    </div> -->
+    </div> *@
     @RenderSection("overlay", required: false)
 
     <div id="wrapper">
@@ -176,8 +176,6 @@
         function uniqid() {
             var newDate = new Date(); return newDate.getTime();
         }
-    </script>
-    <script>
         var mySwiper = new Swiper('#slider', {
             loop: true,
             autoplay: 4000,

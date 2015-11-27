@@ -72,13 +72,13 @@ $one_col: (100% - (cp($gutter) * ($cols - 1))) / $cols;
 }
 
 @include make-cols(md); // 預設: md
-@include mq($max: break(tablet,-1))  { @include make-cols(xs); }
-@include mq($max: break(desktop,-1)) { @include make-cols(sm); }
-@include mq(wide)                    { @include make-cols(lg); }
-@include mq(wider)                   { @include make-cols(xl); }
+@include mq-max(break(tablet,-1))  { @include make-cols(xs); }
+@include mq-max(break(desktop,-1)) { @include make-cols(sm); }
+@include mq(wide)                  { @include make-cols(lg); }
+@include mq(wider)                 { @include make-cols(xl); }
 
 @include make-offset(md); // 預設: md
-@include mq($max: break(tablet,-1))  { @include make-offset(xs); }
-@include mq($max: break(desktop,-1)) { @include make-offset(sm); }
-@include mq(wide)                    { @include make-offset(lg); }
-@include mq(wider)                   { @include make-offset(xl); }
+@include mq-max(break(tablet,-1))  { @include make-offset(xs); }
+@include mq-max(break(desktop,-1)) { @include make-offset(sm); }
+@include mq(wide)                  { @include make-offset(lg); }
+@include mq(wider)                 { @include make-offset(xl); }

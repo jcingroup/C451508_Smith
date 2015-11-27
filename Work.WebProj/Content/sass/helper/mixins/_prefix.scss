@@ -1,10 +1,61 @@
 @charset "UTF-8";
 
+$prefixes: webkit, o;
+
 // prefixes
 // -----------------------------------------------------------------
-@mixin prefix($property, $value...) {
-    -webkit-#{$property}: unquote('#{$value}');
-    // -moz-#{$property}: unquote('#{$value}');
-    -o-#{$property}: unquote('#{$value}');
-    #{$property}: unquote('#{$value}');
+// 用法
+// @include prefix(transform, translateX(-50%), ms);
+// @include prefix(transform, translateX(-50%), moz ms);
+
+// $pres不給值時，用預設變數，有給值的話就取代原變數
+@mixin prefix($property, $value, $pres: $prefixes) {
+
+    @each $prefix in $pres {
+        -#{$prefix}-#{$property}: #{$value};
+    }
+    #{$property}: #{$value};
 }
+
+// 追加 prefix 值
+@mixin prefix-add($property, $value, $pres) {
+
+    $prelist: append($prefixes, $pres);
+
+    @include prefix($property, $value, $prelist)
+}
+
+// 給 value值 加 prefix
+@mixin prefix-v($property, $value, $pres: $prefixes) {
+
+    @each $prefix in $pres {
+        #{$property}: -#{$prefix}-#{$value};
+    }
+    #{$property}: #{$value};
+}
+    // @each $prefix in $prelist {
+    //     @if $prefix == "webkit" {
+    //         -webkit-#{$property}: #{$value};
+    //     } @else if $prefix == "moz" {
+    //         -moz-#{$property}: #{$value};
+    //     } @else if $prefix == "o" {
+    //         -o-#{$property}: #{$value};
+    //     } @else if $prefix == "ms" {
+    //         -ms-#{$property}: #{$value};
+    //     }
+    // }
+
+// old
+// @mixin prefix($property, $value...) {
+//     -webkit-#{$property}: unquote('#{$value}');
+//     -moz-#{$property}: unquote('#{$value}');
+//     -o-#{$property}: unquote('#{$value}');
+//     -ms-#{$property}: unquote('#{$value}');
+//     #{$property}: unquote('#{$value}');
+// }
+
+// @mixin prefix($property, $value) {
+//     @each $prefix in $prefixes {
+//         #{$prefix}#{$property}: #{$value};
+//     }
+// }

@@ -657,13 +657,17 @@ footer {
   .copyright em {
     font: 0/0 a;
     text-indent: -9999px;
-    background: url(../images/../images/logo_s.gif) 0 0 no-repeat;
+    background: url(../images/logo_s.gif) 0 0 no-repeat;
     width: 120px;
     height: 33px;
     display: inline-block;
     margin-right: 10px;
     margin-bottom: -3px;
     vertical-align: bottom; }
+    @media (max-width: 47.9375em) {
+      .copyright em {
+        background-image: url(../images/logo_s2.gif);
+        background-size: contain; } }
 
 .goTop {
   position: fixed;
@@ -728,9 +732,9 @@ footer {
   -webkit-backface-visibility: hidden;
   -o-backface-visibility: hidden;
   backface-visibility: hidden;
-  -ms-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   -o-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%); }
 
 .md-show {
@@ -788,9 +792,9 @@ footer {
 
 .md-effect-7 {
   top: 0;
-  -ms-transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
   transform: translateX(-50%); }
   .md-effect-7 .md-content {
     -webkit-transform: translateY(-200%);

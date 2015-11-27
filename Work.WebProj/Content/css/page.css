@@ -695,13 +695,17 @@ footer {
   .copyright em {
     font: 0/0 a;
     text-indent: -9999px;
-    background: url(../images/../images/logo_s.gif) 0 0 no-repeat;
+    background: url(../images/logo_s.gif) 0 0 no-repeat;
     width: 120px;
     height: 33px;
     display: inline-block;
     margin-right: 10px;
     margin-bottom: -3px;
     vertical-align: bottom; }
+    @media (max-width: 47.9375em) {
+      .copyright em {
+        background-image: url(../images/logo_s2.gif);
+        background-size: contain; } }
 
 .goTop {
   position: fixed;
@@ -790,7 +794,17 @@ figure {
   border: 1px solid #EBEBEB; }
   figure img {
     display: inline-block;
-    max-height: 220px; }
+    max-height: 200px; }
+  @media (max-width: 48em) {
+    figure {
+      display: inline-block;
+      float: none;
+      margin-left: 0;
+      width: 49.6%;
+      min-width: auto; } }
+  @media (max-width: 30em) {
+    figure {
+      width: 100%; } }
   figure figcaption {
     height: 0; }
     figure figcaption, figure figcaption h3 {
@@ -817,16 +831,6 @@ figure {
       opacity: 1;
       color: #fff;
       font-size: 1.375em; }
-  @media (max-width: 48em) {
-    figure {
-      display: inline-block;
-      float: none;
-      margin-left: 0;
-      width: 49.6%; } }
-  @media (max-width: 30em) {
-    figure {
-      width: 100%;
-      min-width: auto; } }
 
 .md-modal {
   width: 65%;
@@ -841,9 +845,9 @@ figure {
   -webkit-backface-visibility: hidden;
   -o-backface-visibility: hidden;
   backface-visibility: hidden;
-  -ms-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   -o-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%); }
 
 .md-show {
@@ -901,9 +905,9 @@ figure {
 
 .md-effect-7 {
   top: 0;
-  -ms-transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
   transform: translateX(-50%); }
   .md-effect-7 .md-content {
     -webkit-transform: translateY(-200%);
@@ -1131,11 +1135,10 @@ aside {
   background: #fff;
   border: 1px solid #EBEBEB;
   text-align: center;
-  height: 300px; }
+  height: 320px; }
   .pro-pic img {
     display: inline-block;
-    width: 90%;
-    max-width: 500px;
+    max-width: 540px;
     max-height: 300px; }
   @media (max-width: 20em) {
     .pro-pic {
