@@ -91,6 +91,7 @@ namespace DotWeb.Api
                 item.model_type = md.model_type;
                 item.price = md.price;
                 item.sort = md.sort;
+                item.i_Hide = md.i_Hide;
 
                 md.i_UpdateDateTime = DateTime.Now;
                 md.i_UpdateDeptID = this.departmentId;
