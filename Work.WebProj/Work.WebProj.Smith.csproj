@@ -828,6 +828,14 @@
     <Content Include="_Code\Maindoor\body\images\login_out.gif" />
     <Content Include="_Code\Maindoor\body\images\topBg.gif" />
     <Content Include="_Code\SysDoc\Doc.xml" />
+    <Content Include="_Code\SysDoc\member.html" />
+    <Content Include="_Code\SysDoc\newsAdd.html" />
+    <Content Include="_Code\SysDoc\newsEdit.html" />
+    <Content Include="_Code\SysDoc\ProAdd.html" />
+    <Content Include="_Code\SysDoc\ProEdit.html" />
+    <Content Include="_Code\SysDoc\ProKind.html" />
+    <Content Include="_Code\SysDoc\QA.html" />
+    <Content Include="_Code\SysDoc\QAKind.html" />
     <Content Include="_Code\SysUpFiles\memo.txt" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />

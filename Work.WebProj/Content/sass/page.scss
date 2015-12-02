@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-// var 變數，需放在 @import "helper/var" 之上才能覆蓋掉
-// ------------------------------------------------------------
-
-
-// import
-// ------------------------------------------------------------
 @import "helper/function";
 @import "helper/var";
 @import "helper/mixins";

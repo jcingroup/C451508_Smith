@@ -1,16 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <document>
+
   <file>
-    <sort>2</sort>
-    <name>申報進度與統計.docx</name>
-    <!--須和檔名相同*/-->
-    <memo>文件說明，補充說明2。</memo>
+    <sort>1</sort>
+    <name>proAdd.html</name>
+    <memo>【產品資料維護】產品資料 - 新增</memo>
   </file>
 
   <file>
-    <name>資料庫使用說明.docx</name>
-    <sort>1</sort>
-    <memo>文件說明，補充說明1testtest。</memo>
+    <sort>2</sort>
+    <!--須和檔名相同*/-->
+    <name>proEdit.html</name>
+    <memo>【產品資料維護】產品資料 - 修改.刪除</memo>
+  </file>
+
+  <file>
+    <sort>3</sort>
+    <name>proKind.html</name>
+    <memo>【產品資料維護】產品分類 - 新增.修改.刪除</memo>
+  </file>
+
+  <file>
+    <sort>4</sort>
+    <name>QA.html</name>
+    <memo>【Q&A資料維護】Q&A資料 - 新增.修改.刪除</memo>
+  </file>
+
+  <file>
+    <sort>5</sort>
+    <name>QAKind.html</name>
+    <memo>【Q&A資料維護】Q&A分類 - 新增.修改.刪除</memo>
+  </file>
+
+  <file>
+    <sort>6</sort>
+    <name>member.html</name>
+    <memo>【會員資料管理】會員資料 - 新增.修改.刪除</memo>
+  </file>
+
+  <file>
+    <sort>7</sort>
+    <name>newsAdd.html</name>
+    <memo>【會員資料管理】會員最新消息 - 新增</memo>
+  </file>
+
+  <file>
+    <sort>7</sort>
+    <name>newsEdit.html</name>
+    <memo>【會員資料管理】會員最新消息 - 修改.刪除</memo>
   </file>
 
 </document>
