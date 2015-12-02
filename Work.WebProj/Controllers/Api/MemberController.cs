@@ -135,6 +135,15 @@ namespace DotWeb.Api
                 #region working
                 db0 = getDB0();
 
+                #region 帳號不重複驗證
+                bool check_account = db0.Member.Any(x => x.member_account == md.member_account);
+                if (check_account) {
+                    r.result = false;
+                    r.message = Resources.Res.Log_Err_Add_MemberAccountExist;
+                    return Ok(r);
+                }
+                #endregion
+
                 db0.Member.Add(md);
                 await db0.SaveChangesAsync();
 

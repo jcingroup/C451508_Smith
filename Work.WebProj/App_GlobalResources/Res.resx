@@ -352,4 +352,7 @@
   <data name="Log_Err_Delete_Close" xml:space="preserve">
     <value>此筆資料已結案!無法刪除!!</value>
   </data>
+  <data name="Log_Err_Add_MemberAccountExist" xml:space="preserve">
+    <value>此會員帳號已被使用~!!</value>
+  </data>
 </root>
