@@ -529,6 +529,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查詢類似 此會員帳號已被使用~!! 的當地語系化字串。
+        /// </summary>
+        internal static string Log_Err_Add_MemberAccountExist {
+            get {
+                return ResourceManager.GetString("Log_Err_Add_MemberAccountExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 此檔案類型不在充許範圍。 的當地語系化字串。
         /// </summary>
         internal static string Log_Err_AllowFileType {
