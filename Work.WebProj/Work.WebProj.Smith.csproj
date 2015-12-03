@@ -269,6 +269,7 @@
     </Compile>
     <Content Include="Content\backstageCss\backstage_page.css" />
     <Content Include="Content\backstageCss\bootstrap-datetimepicker-build.css" />
+    <Content Include="Content\backstageCss\learn.css" />
     <Content Include="Content\backstageCss\toastr.css" />
     <Content Include="Content\css\grid.css" />
     <Content Include="Content\css\index.css" />

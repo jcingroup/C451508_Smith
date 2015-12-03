@@ -4,50 +4,50 @@
   <file>
     <sort>1</sort>
     <name>proAdd.html</name>
-    <memo>【產品資料維護】產品資料 - 新增</memo>
+    <memo>【產品資料】新增資料</memo>
   </file>
 
   <file>
     <sort>2</sort>
     <!--須和檔名相同*/-->
     <name>proEdit.html</name>
-    <memo>【產品資料維護】產品資料 - 修改.刪除</memo>
+    <memo>【產品資料】修改.刪除資料</memo>
   </file>
 
   <file>
     <sort>3</sort>
     <name>proKind.html</name>
-    <memo>【產品資料維護】產品分類 - 新增.修改.刪除</memo>
+    <memo>【產品子分類】新增.修改.刪除</memo>
   </file>
 
   <file>
     <sort>4</sort>
     <name>QA.html</name>
-    <memo>【Q&A資料維護】Q&A資料 - 新增.修改.刪除</memo>
+    <memo>【問與答資料】新增.修改.刪除</memo>
   </file>
 
   <file>
     <sort>5</sort>
     <name>QAKind.html</name>
-    <memo>【Q&A資料維護】Q&A分類 - 新增.修改.刪除</memo>
+    <memo>【問與答子分類】新增.修改.刪除</memo>
   </file>
 
   <file>
     <sort>6</sort>
     <name>member.html</name>
-    <memo>【會員資料管理】會員資料 - 新增.修改.刪除</memo>
+    <memo>【會員資料】新增.修改.刪除</memo>
   </file>
 
   <file>
     <sort>7</sort>
     <name>newsAdd.html</name>
-    <memo>【會員資料管理】會員最新消息 - 新增</memo>
+    <memo>【最新消息】新增</memo>
   </file>
 
   <file>
-    <sort>7</sort>
+    <sort>8</sort>
     <name>newsEdit.html</name>
-    <memo>【會員資料管理】會員最新消息 - 修改.刪除</memo>
+    <memo>【最新消息】修改.刪除</memo>
   </file>
 
 </document>

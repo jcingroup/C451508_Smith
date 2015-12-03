@@ -1,0 +1,44 @@
+﻿/*      basic elements
+-----------------------------------------------------------------------*/
+body {
+    background: #fff;
+    color: #4F4F4F;
+    font: .9em/125% Helvetica, Arial, 'Microsoft JhengHei', sans-serif;
+    }
+html,body {
+    text-align:center;
+    }
+
+/*      layout
+-----------------------------------------------------------------------*/
+#container {
+    text-align: left;
+    /*height:100%;*/
+    margin: auto 20px;
+    /*overflow: hidden;*/
+    }
+body>#container {
+    height:auto;
+    min-height: 100%;
+    }
+#main {
+    width:100%;
+    position: relative;
+    /*height:750px;*/
+    /*overflow:auto;*/
+}
+
+/* title */
+h1 {
+    font-size:1.6em;
+    font-weight: bold;
+    line-height: 140%;
+    margin:15px 0;
+    }
+h1 span {
+    margin-left:20px;
+    padding-left:20px;
+    color:#999;
+    font-weight:normal;
+    border-left:1px solid #ddd;
+}
