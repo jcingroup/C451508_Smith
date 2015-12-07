@@ -80,6 +80,17 @@ namespace DotWeb.Api
                 db0 = getDB0();
 
                 item = await db0.Member.FindAsync(md.member_id);
+
+                #region 帳號不重複驗證
+                bool check_account = db0.Member.Any(x => x.member_account == md.member_account & x.member_id != md.member_id);
+                if (check_account)
+                {
+                    r.result = false;
+                    r.message = Resources.Res.Log_Err_Add_MemberAccountExist;
+                    return Ok(r);
+                }
+                #endregion
+
                 item.member_name = md.member_name;
                 item.member_account = md.member_account;
                 item.member_password = md.member_password;
@@ -137,7 +148,8 @@ namespace DotWeb.Api
 
                 #region 帳號不重複驗證
                 bool check_account = db0.Member.Any(x => x.member_account == md.member_account);
-                if (check_account) {
+                if (check_account)
+                {
                     r.result = false;
                     r.message = Resources.Res.Log_Err_Add_MemberAccountExist;
                     return Ok(r);
