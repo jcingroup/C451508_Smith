@@ -1,14 +1,8 @@
 @charset "UTF-8";
 
-// 文字隱藏
-@mixin text-hide {
-    font: 0/0 a;
-    text-indent: -9999px;
-}
-
 // 字換圖
 @mixin text-pic($img, $width, $height, $pic: false, $position: 0 0) {
-    @include text-hide;
+    @extend %text-hide;
     @if $pic == fixed {
         background-attachment: fixed;
     }

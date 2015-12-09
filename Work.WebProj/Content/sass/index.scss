@@ -36,16 +36,14 @@ $btn-padding:       12px 20px;
 @import "module/modal";
 
 
-// main
+// layout
 // ----------------------------------------------------------------------
-#wrapper {
-    padding-bottom: 0;
-}
+#wrapper { padding-bottom: 0; }
 
-footer {
-    background: rgba(232,235,237,.8);
-}
+footer { background: rgba(232,235,237,.8); }
 
+
+// == banner
 #banner {
     background: url(#{$img-path2}/bg.png) center 0 no-repeat;
     padding-top: 17px;
@@ -63,7 +61,8 @@ footer {
     margin-bottom: 0;
 }
 .swiper-slide {
-    background: url(#{$img-banner}1_bg.png) center center no-repeat;
+    background-position: center center;
+    background-repeat: no-repeat;
     padding-top: 35px;
     padding-bottom: 30px;
 
@@ -73,6 +72,9 @@ footer {
     }
 
     header, .pic {
+        @extend %text-hide;
+        background-position: center 0;
+        background-repeat: no-repeat;
         display: inline-block;
         vertical-align: top;
     }
@@ -80,11 +82,8 @@ footer {
         margin-right: 10px;
         position: relative;
         z-index: 20;
-
-        @include text-pic('index/banner1_title.png',530px,237px,$position: center 0);
     }
     .pic {
-        @include text-pic('index/banner1_pic.png',551px,269px,$position: center 0);
         margin-top: 30px;
     }
     ol {
@@ -142,10 +141,14 @@ footer {
     }
 }
 .i1 {
+    background-image: url(#{$img-banner}1_bg.png);
     padding-top: 10px;
 
     header {
+        background-image: url(#{$img-banner}1_title.png);
         margin-top: 35px;
+        width: 530px; height: 237px;
+
         @include mq-max(break(tablet,-1)) {
             background-image: url(#{$img-banner}1_title2.png);
             height: 225px;
@@ -153,7 +156,10 @@ footer {
         }
     }
     .pic {
+        background-image: url(#{$img-banner}1_pic.png);
         margin-top: 60px;
+        width: 551px; height: 269px;
+
         @include mq-max(break(tablet,-1)) {
             background-image: url(#{$img-banner}1_pic2.png);
             height: 235px;
@@ -182,6 +188,7 @@ footer {
     }
     li {
         background-image: url(#{$img-banner}2_icon.png);
+
         @include mq-max(break(tablet,-1)) {
             background-image: url(#{$img-banner}2_icon2.png);
         }
@@ -222,6 +229,118 @@ footer {
 
         @include mq-max(break(tablet,-1)) {
             background-image: url(#{$img-banner}3_icon2.png);
+        }
+    }
+}
+.i4 {
+    background-position: center 0;
+    background-image: url(#{$img-banner}4_bg.gif);
+
+    header {
+        background-image: url(#{$img-banner}4_title.gif);
+        width: 545px; height: 214px;
+        margin-top: 50px;
+
+        @include mq-max(tablet) {
+            background-image: url(#{$img-banner}4_title2.gif);
+            max-width: 85%;
+        }
+    }
+    .pic {
+        background-image: url(#{$img-banner}4_pic.gif);
+        width: 336px; height: 434px;
+        margin-top: 0; margin-left: 20px;
+
+        @include mq-max(tablet) {
+            background-image: url(#{$img-banner}4_pic2.gif);
+            max-height: 240px;
+            margin-left: 0;
+        }
+        @include mq-max(break(phone-plus,-1)) {
+            @include absolute(top 30% left 0 right 0);
+        }
+    }
+    ol {
+        @include mq(wide) {
+            margin-left: -500px;
+        }
+    }
+    li {
+        background-image: url(#{$img-banner}4_icon.gif);
+        background-position: 3px 0;
+        min-width: 100px;
+        padding-top: 95px;
+
+        @for $i from 2 through 6 {
+            &:nth-child(#{$i}) {
+                background-position: (114px - (110px * $i)) 0;
+            }
+        }
+
+        @include mq(phone-plus,break(tablet,-1)) {
+            background-size: auto;
+        }
+        @include mq-max(break(phone-plus,-1)) {
+            background-position: 11px 0;
+            padding-top: 80px;
+            min-width: 90px;
+            @for $i from 2 through 6 {
+                &:nth-child(#{$i}) {
+                    background-position: (97px - (88px * $i)) 0;
+                }
+            }
+        }
+    }
+}
+.i5 {
+    background-position: center 0;
+    background-image: url(#{$img-banner}5_bg.gif);
+
+    @include mq-max(tablet) { padding-top: 15px; }
+
+    header {
+        background-image: url(#{$img-banner}5_title.gif);
+        width: 484px; height: 199px;
+
+        @include mq-max(tablet) {
+            background-image: url(#{$img-banner}5_title2.gif);
+            width: 90%;
+            max-width: 600px;
+            max-height: 130px;
+        }
+        @include mq-max(phone) {
+            max-height: 100px;
+        }
+        @include mq(break(tablet,+1),break(desktop,-1)) {
+            margin-left: -415px;
+        }
+    }
+    .pic {
+        background-image: url(#{$img-banner}5_pic.gif);
+        width: 462px; height: 331px;
+        margin-top: 55px;
+
+        @include mq-max(tablet) {
+            margin-top: 0;
+            max-height: 248px;
+        }
+        @include mq(break(tablet,+1),break(desktop,-1)) {
+            @include absolute(right 10px top 45px);
+        }
+    }
+    p {
+        @include text-pic('index/banner5_icon.gif',467px,177px,$position: center bottom);
+        @include absolute(left 50% bottom 40px);
+        margin-left: -480px;
+
+        @include mq-max(tablet) {
+            max-width: 90%;
+            background-size: contain;
+            margin: auto;
+            left: 0; right: 0; bottom: 10px;
+        }
+        @include mq(break(tablet,+1),break(desktop,-1)) {
+            margin-left: -450px;
         }
     }
 }
