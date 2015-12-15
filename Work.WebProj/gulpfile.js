@@ -1,4 +1,4 @@
-/// <binding ProjectOpened='default, commHdlX, reactIncHdl, tsxHdl' />
+/// <binding />
 /// <vs SolutionOpened='default' />
 var gulp = require('gulp');
 //var jshint = require('gulp-jshint');
