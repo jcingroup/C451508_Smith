@@ -11,7 +11,7 @@ CKEDITOR.editorConfig = function (config) {
     config.toolbar = [
         {
             name: "basicstyles",
-            items: ["FontSize", "Bold", "Italic", "-", "JustifyLeft", "JustifyCenter", "JustifyRight"]
+            items: ["FontSize", "Bold", "Italic", "Underline", "-", "JustifyLeft", "JustifyCenter", "JustifyRight"]
         },
         {
             name: "paragraph",
