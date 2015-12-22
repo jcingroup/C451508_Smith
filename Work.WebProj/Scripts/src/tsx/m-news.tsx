@@ -80,8 +80,8 @@
             this.queryGridData(1);
         }
         componentDidUpdate(prevProps, prevState) {
-            if (prevState.edit_type == 0 && this.state.edit_type == 1) {
-                CKEDITOR.replace('editor1', {});
+            if (prevState.edit_type == 0 && this.state.edit_type == 1) {            
+                CKEDITOR.replace('editor1', { contentsCss: '../../Content/css/editor.css'});
             }
         }
         gridData(page: number) {
@@ -200,7 +200,7 @@
             jqGet(this.props.apiPath, { id: id })
                 .done((data, textStatus, jqXHRdata) => {
                     this.setState({ edit_type: 2, fieldData: data.data });
-                    CKEDITOR.replace('editor1', {});
+                    CKEDITOR.replace('editor1', { contentsCss: '../../Content/css/editor.css'});
                 })
                 .fail((jqXHR, textStatus, errorThrown) => {
                     showAjaxError(errorThrown);
