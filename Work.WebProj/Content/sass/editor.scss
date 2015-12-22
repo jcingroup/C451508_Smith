@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+$body-bg: #f5f5f5;
+
+// import
+// ------------------------------------------------------------
+@import "helper/function";
+@import "helper/var";
+@import "helper/mixins";
+
+@import "base/basic";
+@import "base/table";
+
+p, ul, ol, li { text-align: left; }
+
+p { line-height: 2; }
+
+tbody { border: none; }
+
+li { margin-left: 20px; }

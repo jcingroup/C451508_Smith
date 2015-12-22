@@ -271,6 +271,7 @@
     <Content Include="Content\backstageCss\bootstrap-datetimepicker-build.css" />
     <Content Include="Content\backstageCss\learn.css" />
     <Content Include="Content\backstageCss\toastr.css" />
+    <Content Include="Content\css\editor.css" />
     <Content Include="Content\css\grid.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\page.css" />
@@ -390,6 +391,7 @@
     <Content Include="Content\font\fontAwesome\fontawesome-webfont.eot" />
     <Content Include="Content\font\fontAwesome\fontawesome-webfont.woff" />
     <Content Include="Content\font\fontAwesome\FontAwesome.otf" />
+    <Content Include="Content\sass\editor.scss" />
     <None Include="gulpfile.js" />
     <Content Include="Content\images\noIE\bg.gif" />
     <Content Include="Content\images\noIE\brow.gif" />

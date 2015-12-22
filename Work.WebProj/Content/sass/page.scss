@@ -31,16 +31,6 @@ main {
     text-align: left;
     padding-top: 10px;
     z-index: z(main);
-
-    // background: url(#{$img-path}/AboutUs/banner.jpg) 285px 0 no-repeat;
-    // @for $i from 2 through length($pages) {
-    //     $item: nth($pages, $i);
-
-    //     .#{$item} & {
-    //         background-image: url(#{$img-path}/#{$item}/banner.jpg);
-    //     }
-    // }
-    // @include mq($max:tablet) { background-position: center 0; }
 }
 
 #slider {
@@ -244,32 +234,7 @@ aside {
         }
     }
 }
-// select {
-//     background: #E5E5E5 url(#{$img-path}/icon_select.gif) right center no-repeat;
-//     border: 1px solid #fff;
-//     outline: 0;
-//     -webkit-appearance: none;
 
-//     color: $brand-secondary;
-//     font-weight: bold;
-//     padding: 5px 35px 5px 10px;
-//     border-radius: 5px;
-
-//     &.sel1 {
-//         float: left;
-//         width: 65%;
-//     }
-//     &.sel2 {
-//         float: right;
-//         width: 32%;
-//         &, option {
-//             text-align: center;
-//         }
-//     }
-//     @include mq($max:tablet) {
-//         margin-bottom: 20px;
-//     }
-// }
 input[type="checkbox"] {
     position: absolute;
     margin-left: -9999px;
@@ -307,6 +272,7 @@ input[type="number"] {
     @include mq-max(tablet) {
         img { max-width: 100%; }
     }
+    li { margin-left: 20px; }
 }
 
 // == News & QA
@@ -347,7 +313,7 @@ input[type="number"] {
 // == News
 .News {
     .text-list {
-        span {
+        dt span {
             display: block;
             margin-bottom: $gutter;
             font-size: em(13px);
