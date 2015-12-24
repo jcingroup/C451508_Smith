@@ -445,6 +445,8 @@
                                 value={fieldData.issue_ans}
                                 onChange={this.changeFDValue.bind(this, 'issue_ans') }
                                 maxLength={512}></textarea>
+                        <p className="text-danger">※ 檔案尺寸寬度超過 1600 或 高度超過1200 的圖片會被壓縮(PNG透明背景會變成不透明) </p>
+                        <p className="text-danger">※ 上傳圖片的尺寸設定，請將高度值刪除，行動裝置才能等比例縮小，而不會圖片變胖</p>
                             </div>
                      </div>
 
