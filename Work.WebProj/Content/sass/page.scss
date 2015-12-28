@@ -386,9 +386,11 @@ input[type="number"] {
 }
 
 // == Contact Us
-#map-canvas, .contacts { height: 460px; }
-#map-canvas {
+.contacts, .map { height: 460px; }
+.map {
     @include mq-max(tablet) { height: 300px; }
+
+    iframe { width: 100%; height: 100%; }
 }
 .contacts {
     background: rgba(#1C2851,.7);

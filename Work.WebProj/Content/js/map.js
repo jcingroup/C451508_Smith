@@ -22,7 +22,7 @@ function init() {
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(24.940420, 121.241319),
         map: map,
-        title: 'Snazzy!'
+        title: '統城科技股份有限公司'
     });
 
 }
