@@ -1130,6 +1130,11 @@ aside {
       .Products #content {
         margin-top: 150px; } }
 
+.AboutUs #content h3 {
+  color: #172087; }
+.AboutUs #content strong {
+  color: #008CA5; }
+
 .pro-pic {
   background: #fff;
   border: 1px solid #EBEBEB;
