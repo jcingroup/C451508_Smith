@@ -75,7 +75,10 @@ figure {
     figcaption {
         height: 0;
         &, h3 { transition: all .5s ease; }
-        > a { line-height: $figure-height; }
+        > a {
+            line-height: $figure-height;
+            height: $figure-height + 55px;
+        }
     }
 
     h3 {

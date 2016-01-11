@@ -813,7 +813,8 @@ figure {
     figure figcaption, figure figcaption h3 {
       transition: all .5s ease; }
     figure figcaption > a {
-      line-height: 220px; }
+      line-height: 220px;
+      height: 275px; }
   figure h3 {
     color: #323232;
     font-size: 1.125em;
