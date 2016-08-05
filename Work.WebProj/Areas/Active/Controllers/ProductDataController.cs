@@ -32,7 +32,7 @@ namespace DotWeb.Areas.Active.Controllers
 
             using (var db0 = getDB0())
             {
-                var category_option = db0.ProductCategory.Where(x => !x.i_Hide).OrderByDescending(x => x.sort).Select(x => new { x.category_name, x.product_category_id });
+                var category_option = db0.ProductCategory.OrderByDescending(x => x.sort).Select(x => new { x.category_name, x.product_category_id });
                 return defJSON(category_option);
             }
         }
