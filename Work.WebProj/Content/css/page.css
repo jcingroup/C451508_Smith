@@ -1075,7 +1075,7 @@ aside {
         width: 100%;
         max-width: 270px;
         position: absolute;
-        z-index: 80;
+        z-index: 1001;
         transition: all .3s;
         opacity: 0;
         visibility: hidden; }
