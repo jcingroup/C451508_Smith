@@ -93,7 +93,7 @@
             this.getInitData();
         }
         componentDidUpdate(prevProps, prevState) {
-            if (prevState.edit_type == 0 && this.state.edit_type == 1) {
+            if (prevState.edit_type == 0 && (this.state.edit_type == 1 || this.state.edit_type == 2)) {
                 CKEDITOR.replace('editor1', {});
             }
         }
@@ -225,7 +225,7 @@
             jqGet(this.props.apiPath, { id: id })
                 .done((data, textStatus, jqXHRdata) => {
                     this.setState({ edit_type: 2, fieldData: data.data });
-                    CKEDITOR.replace('editor1', {});
+                    //CKEDITOR.replace('editor1', {});
                 })
                 .fail((jqXHR, textStatus, errorThrown) => {
                     showAjaxError(errorThrown);

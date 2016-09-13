@@ -221,3 +221,7 @@ Scripts/src/ts-controller/*.js
 */Scripts/ts-def/d.ts/*.js
 */Scripts/ts-def/def/*.js
 Work.WebProj/ckfinder/*
+/Work.WebProj/ckeditor/skins
+/Work.WebProj/_Code/SysUpFiles/**/
+/Work.WebProj/_Code/Log/*.txt
+/Work.WebProj/ckeditor/plugins
