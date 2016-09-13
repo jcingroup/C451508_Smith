@@ -42,19 +42,19 @@
 
         render() {
             return <tr>
-                    <td className="text-center">
-                         <GridCheckDel iKey={this.props.ikey}
-                             chd={this.props.itemData.check_del}
-                             delCheck={this.delCheck} />
-                        </td>
-                    <td className="text-center">
-                        <GridButtonModify modify={this.modify}/>
-                        </td>
-                    <td>{this.props.itemData.category_name}</td>
-                    <td>{this.props.itemData.issue_q}</td>
-                    <td>{this.props.itemData.sort}</td>
-                    <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
-                </tr>;
+                <td className="text-center">
+                    <GridCheckDel iKey={this.props.ikey}
+                        chd={this.props.itemData.check_del}
+                        delCheck={this.delCheck} />
+                </td>
+                <td className="text-center">
+                    <GridButtonModify modify={this.modify}/>
+                </td>
+                <td>{this.props.itemData.category_name}</td>
+                <td>{this.props.itemData.issue_q}</td>
+                <td>{this.props.itemData.sort}</td>
+                <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
+            </tr>;
         }
     }
     export class GirdForm extends React.Component<BaseDefine.GridFormPropsBase, IssueState<Rows, server.Issue, SearchData>>{
@@ -91,7 +91,7 @@
         componentDidUpdate(prevProps, prevState) {
             if (prevState.edit_type == 0 && (this.state.edit_type == 1 || this.state.edit_type == 2)) {
                 var newDate = new Date();
-                CKEDITOR.replace('editor1', { customConfig: '../ckeditor/config.js?v=' + newDate.getTime()});
+                CKEDITOR.replace('editor1', { customConfig: '../ckeditor/config.js?v=' + newDate.getTime() });
             }
         }
         getInitData() {
@@ -271,94 +271,94 @@
             if (this.state.edit_type == 0) {
                 var searchData = this.state.searchData;
                 outHtml =
-                (
-                    <div>
+                    (
+                        <div>
 
-    <h3 className="title" dangerouslySetInnerHTML={{ __html: this.props.caption }}>
-        </h3>
-    <form onSubmit={this.handleSearch}>
-        <div className="table-responsive">
-            <div className="table-header">
-                <div className="table-filter">
-                    <div className="form-inline">
-                        <div className="form-group">
-                            <label>Q & A 標題</label> { }
-                            <input type="text" className="form-control"
-                                value={searchData.name}
-                                onChange={this.changeGDValue.bind(this, 'name') }
-                                placeholder="請輸入關鍵字..." /> { }
+                            <h3 className="title" dangerouslySetInnerHTML={{ __html: this.props.caption }}>
+                            </h3>
+                            <form onSubmit={this.handleSearch}>
+                                <div className="table-responsive">
+                                    <div className="table-header">
+                                        <div className="table-filter">
+                                            <div className="form-inline">
+                                                <div className="form-group">
+                                                    <label>Q & A 標題</label> { }
+                                                    <input type="text" className="form-control"
+                                                        value={searchData.name}
+                                                        onChange={this.changeGDValue.bind(this, 'name') }
+                                                        placeholder="請輸入關鍵字..." /> { }
 
-                             <label>問題分類</label> { }
-                                <select className="form-control"
-                                    value={searchData.issue_category_id}
-                                    onChange={this.changeGDValue.bind(this, 'issue_category_id') }>
-                                    <option  value="">全部分類</option>
-                                    {
-                                    this.state.category_option.map((itemData, i) =>
-                                        <option key={itemData.issue_category_id} value={itemData.issue_category_id.toString() }>{itemData.category_name}</option>
-                                    )
-                                    }
-                                </select>
+                                                    <label>問題分類</label> { }
+                                                    <select className="form-control"
+                                                        value={searchData.issue_category_id}
+                                                        onChange={this.changeGDValue.bind(this, 'issue_category_id') }>
+                                                        <option  value="">全部分類</option>
+                                                        {
+                                                            this.state.category_option.map((itemData, i) =>
+                                                                <option key={itemData.issue_category_id} value={itemData.issue_category_id.toString() }>{itemData.category_name}</option>
+                                                            )
+                                                        }
+                                                    </select>
 
-                            <button className="btn-primary" type="submit"><i className="fa-search"></i> 搜尋</button>
-                            </div>
-                        <div className="form-group col-md-offset-4">
-                            <label>顯示</label> { }
-                            <select className="form-control input-sm"
-                                value={searchData.page_size}
-                                onChange={this.changePageSize}>
-                                <option>10</option>
-                                <option>20</option>
-                                <option>30</option>
-                                <option>All</option>
-                                </select> {  }
-                            <label>筆</label>
-                            </div>
+                                                    <button className="btn-primary" type="submit"><i className="fa-search"></i> 搜尋</button>
+                                                </div>
+                                                <div className="form-group col-md-offset-4">
+                                                    <label>顯示</label> { }
+                                                    <select className="form-control input-sm"
+                                                        value={searchData.page_size}
+                                                        onChange={this.changePageSize}>
+                                                        <option>10</option>
+                                                        <option>20</option>
+                                                        <option>30</option>
+                                                        <option>All</option>
+                                                    </select> {  }
+                                                    <label>筆</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th className="col-xs-1 text-center">
+                                                    <label className="cbox">
+                                                        <input type="checkbox" checked={this.state.checkAll} onChange={this.checkAll} />
+                                                        <i className="fa-check"></i>
+                                                    </label>
+                                                </th>
+                                                <th className="col-xs-1 text-center">修改</th>
+                                                <th className="col-xs-2">Q & A 分類</th>
+                                                <th className="col-xs-4">Q & A 標題</th>
+                                                <th className="col-xs-1">排序</th>
+                                                <th className="col-xs-1">狀態</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                this.state.gridData.rows.map(
+                                                    (itemData, i) =>
+                                                        <GridRow key={i}
+                                                            ikey={i}
+                                                            primKey={itemData.issue_id}
+                                                            itemData={itemData}
+                                                            delCheck={this.delCheck}
+                                                            updateType={this.updateType} />
+                                                )
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <GridNavPage startCount={this.state.gridData.startcount}
+                                    endCount={this.state.gridData.endcount}
+                                    recordCount={this.state.gridData.records}
+                                    totalPage={this.state.gridData.total}
+                                    nowPage={this.state.gridData.page}
+                                    onQueryGridData={this.queryGridData}
+                                    InsertType={this.insertType}
+                                    deleteSubmit={this.deleteSubmit} />
+                            </form>
                         </div>
-                    </div>
-                </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th className="col-xs-1 text-center">
-                            <label className="cbox">
-                                <input type="checkbox" checked={this.state.checkAll} onChange={this.checkAll} />
-                                <i className="fa-check"></i>
-                                </label>
-                            </th>
-                        <th className="col-xs-1 text-center">修改</th>
-                        <th className="col-xs-2">Q & A 分類</th>
-                        <th className="col-xs-4">Q & A 標題</th>
-                        <th className="col-xs-1">排序</th>
-                        <th className="col-xs-1">狀態</th>
-                        </tr>
-                    </thead>
-                <tbody>
-                    {
-                    this.state.gridData.rows.map(
-                        (itemData, i) =>
-                            <GridRow key={i}
-                                ikey={i}
-                                primKey={itemData.issue_id}
-                                itemData={itemData}
-                                delCheck={this.delCheck}
-                                updateType={this.updateType} />
-                    )
-                    }
-                    </tbody>
-                </table>
-            </div>
-        <GridNavPage startCount={this.state.gridData.startcount}
-            endCount={this.state.gridData.endcount}
-            recordCount={this.state.gridData.records}
-            totalPage={this.state.gridData.total}
-            nowPage={this.state.gridData.page}
-            onQueryGridData={this.queryGridData}
-            InsertType={this.insertType}
-            deleteSubmit={this.deleteSubmit} />
-        </form>
-                        </div>
-                );
+                    );
             }
             else if (this.state.edit_type == 1 || this.state.edit_type == 2) {
 
@@ -367,101 +367,101 @@
                 outHtml = (
                     <div>
 
-    <h3 className="title" dangerouslySetInnerHTML={{ __html: this.props.caption + ' 基本資料維護' }}></h3>
-    <form className="form-horizontal" onSubmit={this.handleSubmit}>
-        <div className="col-xs-12">
+                        <h3 className="title" dangerouslySetInnerHTML={{ __html: this.props.caption + ' 基本資料維護' }}></h3>
+                        <form className="form-horizontal" onSubmit={this.handleSubmit}>
+                            <div className="col-xs-12">
 
-            <div className="form-group">
-                <label className="col-xs-2 control-label">問題分類</label>
-                <div className="col-xs-4">
-                    <select className="form-control"
-                        value={fieldData.issue_category_id}
-                        onChange={this.changeFDValue.bind(this, 'issue_category_id') }>
-                        {
-                        this.state.category_option.map((itemData, i) =>
-                            <option key={itemData.issue_category_id} value={itemData.issue_category_id.toString() }>{itemData.category_name}</option>
-                        )
-                        }
-                        </select>
-                    </div>
-                    <small className="help-inline col-xs-2"><span className="text-danger">(必填) </span></small>
-                </div>
+                                <div className="form-group">
+                                    <label className="col-xs-2 control-label">問題分類</label>
+                                    <div className="col-xs-4">
+                                        <select className="form-control"
+                                            value={fieldData.issue_category_id}
+                                            onChange={this.changeFDValue.bind(this, 'issue_category_id') }>
+                                            {
+                                                this.state.category_option.map((itemData, i) =>
+                                                    <option key={itemData.issue_category_id} value={itemData.issue_category_id.toString() }>{itemData.category_name}</option>
+                                                )
+                                            }
+                                        </select>
+                                    </div>
+                                    <small className="help-inline col-xs-2"><span className="text-danger">(必填) </span></small>
+                                </div>
 
-            <div className="form-group">
-                <label className="col-xs-2 control-label">排序</label>
-                <div className="col-xs-4">
-                    <input type="number"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'sort') }
-                        value={fieldData.sort} />
-                    </div>
-                <small className="col-xs-2 help-inline">數字越大越前面</small>
-                </div>
+                                <div className="form-group">
+                                    <label className="col-xs-2 control-label">排序</label>
+                                    <div className="col-xs-4">
+                                        <input type="number"
+                                            className="form-control"
+                                            onChange={this.changeFDValue.bind(this, 'sort') }
+                                            value={fieldData.sort} />
+                                    </div>
+                                    <small className="col-xs-2 help-inline">數字越大越前面</small>
+                                </div>
 
-            <div className="form-group">
-                <label className="col-xs-2 control-label">狀態</label>
-                <div className="col-xs-4">
-                   <div className="radio-inline">
-                       <label>
-                            <input type="radio"
-                                name="i_Hide"
-                                value={true}
-                                checked={fieldData.i_Hide === true}
-                                onChange={this.changeFDValue.bind(this, 'i_Hide') }
-                                />
-                            <span>隱藏</span>
-                           </label>
-                       </div>
-                   <div className="radio-inline">
-                       <label>
-                            <input type="radio"
-                                name="i_Hide"
-                                value={false}
-                                checked={fieldData.i_Hide === false}
-                                onChange={this.changeFDValue.bind(this, 'i_Hide') }
-                                />
-                            <span>顯示</span>
-                           </label>
-                       </div>
-                    </div>
-                </div>
+                                <div className="form-group">
+                                    <label className="col-xs-2 control-label">狀態</label>
+                                    <div className="col-xs-4">
+                                        <div className="radio-inline">
+                                            <label>
+                                                <input type="radio"
+                                                    name="i_Hide"
+                                                    value={true}
+                                                    checked={fieldData.i_Hide === true}
+                                                    onChange={this.changeFDValue.bind(this, 'i_Hide') }
+                                                    />
+                                                <span>隱藏</span>
+                                            </label>
+                                        </div>
+                                        <div className="radio-inline">
+                                            <label>
+                                                <input type="radio"
+                                                    name="i_Hide"
+                                                    value={false}
+                                                    checked={fieldData.i_Hide === false}
+                                                    onChange={this.changeFDValue.bind(this, 'i_Hide') }
+                                                    />
+                                                <span>顯示</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
 
-            <div className="form-group">
-                <label className="col-xs-2 control-label">Q</label>
-                <div className="col-xs-8">
-                    <input type="text"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'issue_q') }
-                        value={fieldData.issue_q}
-                        maxLength={128}
-                        required />
-                    </div>
-                    <small className="help-inline col-xs-2">最多128個字<span className="text-danger">(必填) </span></small>
-                </div>
+                                <div className="form-group">
+                                    <label className="col-xs-2 control-label">Q</label>
+                                    <div className="col-xs-8">
+                                        <input type="text"
+                                            className="form-control"
+                                            onChange={this.changeFDValue.bind(this, 'issue_q') }
+                                            value={fieldData.issue_q}
+                                            maxLength={128}
+                                            required />
+                                    </div>
+                                    <small className="help-inline col-xs-2">最多128個字<span className="text-danger">(必填) </span></small>
+                                </div>
 
-                 <div className="form-group">
-                     <label className="col-xs-2 control-label">A</label>
-                        <div className="col-xs-8">
-                            <textarea cols={30} rows={3} className="form-control" id="editor1"
-                                value={fieldData.issue_ans}
-                                onChange={this.changeFDValue.bind(this, 'issue_ans') }
-                                maxLength={512}></textarea>
-                        <p className="text-danger">※ 檔案尺寸寬度超過 1600 或 高度超過1200 的圖片會被壓縮(PNG透明背景會變成不透明) </p>
-                        <p className="text-danger">※ 上傳圖片的尺寸設定，請將高度值刪除，行動裝置才能等比例縮小，而不會圖片變胖</p>
+                                <div className="form-group">
+                                    <label className="col-xs-2 control-label">A</label>
+                                    <div className="col-xs-8">
+                                        <textarea cols={30} rows={3} className="form-control" id="editor1"
+                                            value={fieldData.issue_ans}
+                                            onChange={this.changeFDValue.bind(this, 'issue_ans') }
+                                            maxLength={512}></textarea>
+                                        <p className="text-danger">※ 檔案尺寸寬度超過 1600 或 高度超過1200 的圖片會被壓縮(PNG透明背景會變成不透明) </p>
+                                        <p className="text-danger">※ 上傳圖片的尺寸設定，請將高度值刪除，行動裝置才能等比例縮小，而不會圖片變胖</p>
+                                    </div>
+                                </div>
+
+
+
+                                <div className="form-action text-right">
+                                    <div className="col-xs-5">
+                                        <button type="submit" className="btn-primary"><i className="fa-check"></i> 儲存</button> { }
+                                        <button type="button" onClick={this.noneType}><i className="fa-times"></i> 回前頁</button>
+                                    </div>
+                                </div>
                             </div>
-                     </div>
-
-
-
-            <div className="form-action text-right">
-                <div className="col-xs-5">
-                    <button type="submit" className="btn-primary"><i className="fa-check"></i> 儲存</button> { }
-                    <button type="button" onClick={this.noneType}><i className="fa-times"></i> 回前頁</button>
+                        </form>
                     </div>
-                </div>
-            </div>
-        </form>
-                        </div>
                 );
             }
 

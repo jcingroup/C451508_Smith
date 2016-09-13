@@ -44,21 +44,21 @@
 
         render() {
             return <tr>
-                    <td className="text-center">
-                         <GridCheckDel iKey={this.props.ikey}
-                             chd={this.props.itemData.check_del}
-                             delCheck={this.delCheck} />
-                        </td>
-                    <td className="text-center">
-                        <GridButtonModify modify={this.modify}/>
-                        </td>
-                    <td>{this.props.itemData.category_name}</td>
-                    <td>{this.props.itemData.model_type}</td>
-                    <td>{this.props.itemData.product_name}</td>
-                    <td>{this.props.itemData.price}</td>
-                    <td>{this.props.itemData.sort}</td>
-                    <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
-                </tr>;
+                <td className="text-center">
+                    <GridCheckDel iKey={this.props.ikey}
+                        chd={this.props.itemData.check_del}
+                        delCheck={this.delCheck} />
+                </td>
+                <td className="text-center">
+                    <GridButtonModify modify={this.modify}/>
+                </td>
+                <td>{this.props.itemData.category_name}</td>
+                <td>{this.props.itemData.model_type}</td>
+                <td>{this.props.itemData.product_name}</td>
+                <td>{this.props.itemData.price}</td>
+                <td>{this.props.itemData.sort}</td>
+                <td>{this.props.itemData.i_Hide ? <span className="label label-default">隱藏</span> : <span className="label label-primary">顯示</span>}</td>
+            </tr>;
         }
     }
     export class GirdForm extends React.Component<BaseDefine.GridFormPropsBase, ProductState<Rows, server.Product, SearchData>>{
@@ -274,97 +274,96 @@
             if (this.state.edit_type == 0) {
                 var searchData = this.state.searchData;
                 outHtml =
-                (
-                    <div>
+                    (
+                        <div>
 
-    <h3 className="title">
-        {this.props.caption}
-        </h3>
-    <form onSubmit={this.handleSearch}>
-        <div className="table-responsive">
-            <div className="table-header">
-                <div className="table-filter">
-                    <div className="form-inline">
-                        <div className="form-group col-md-6">
-                            <label>產品名稱</label> { }
-                            <input type="text" className="form-control"
-                                value={searchData.name}
-                                onChange={this.changeGDValue.bind(this, 'name') }
-                                placeholder="請輸入關鍵字..." /> { }
+                            <h3 className="title">
+                                {this.props.caption}
+                            </h3>
+                            <form onSubmit={this.handleSearch}>
+                                <div className="table-responsive">
+                                    <div className="table-header">
+                                        <div className="table-filter">
+                                            <div className="form-inline">
+                                                <div className="form-group">
+                                                    <label>產品名稱</label> { }
+                                                    <input type="text" className="form-control"
+                                                        value={searchData.name}
+                                                        onChange={this.changeGDValue.bind(this, 'name') }
+                                                        placeholder="請輸入關鍵字..." /> { }
 
-                             <label>產品分類</label> { }
-                                <select className="form-control"
-                                    value={searchData.product_category_id}
-                                    onChange={this.changeGDValue.bind(this, 'product_category_id') }>
-                                    <option  value="">全部分類</option>
-                                    {
-                                    this.state.category_option.map((itemData, i) =>
-                                        <option key={itemData.product_category_id} value={itemData.product_category_id.toString() }>{itemData.category_name}</option>
-                                    )
-                                    }
-                                    </select> { }
-
-                            <button className="btn-primary" type="submit"><i className="fa-search"></i> 搜尋</button>
-                            </div>
-                        <div className="form-group col-md-offset-4">
-                            <label>顯示</label> { }
-                            <select className="form-control input-sm"
-                                value={searchData.page_size}
-                                onChange={this.changePageSize}>
-                                <option>10</option>
-                                <option>20</option>
-                                <option>30</option>
-                                <option>All</option>
-                                </select> {  }
-                            <label>筆</label>
-                            </div>
+                                                    <label>產品分類</label> { }
+                                                    <select className="form-control"
+                                                        value={searchData.product_category_id}
+                                                        onChange={this.changeGDValue.bind(this, 'product_category_id') }>
+                                                        <option  value="">全部分類</option>
+                                                        {
+                                                            this.state.category_option.map((itemData, i) =>
+                                                                <option key={itemData.product_category_id} value={itemData.product_category_id.toString() }>{itemData.category_name}</option>
+                                                            )
+                                                        }
+                                                    </select> { }
+                                                    <button className="btn-primary" type="submit"><i className="fa-search"></i> 搜尋</button>
+                                                </div>
+                                                <div className="form-group col-md-offset-4">
+                                                    <label>顯示</label> { }
+                                                    <select className="form-control input-sm"
+                                                        value={searchData.page_size}
+                                                        onChange={this.changePageSize}>
+                                                        <option>10</option>
+                                                        <option>20</option>
+                                                        <option>30</option>
+                                                        <option>All</option>
+                                                    </select> {  }
+                                                    <label>筆</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th className="col-xs-1 text-center">
+                                                    <label className="cbox">
+                                                        <input type="checkbox" checked={this.state.checkAll} onChange={this.checkAll} />
+                                                        <i className="fa-check"></i>
+                                                    </label>
+                                                </th>
+                                                <th className="col-xs-1 text-center">修改</th>
+                                                <th className="col-xs-2">產品分類</th>
+                                                <th className="col-xs-2">產品型號</th>
+                                                <th className="col-xs-3">產品名稱</th>
+                                                <th className="col-xs-1">單價</th>
+                                                <th className="col-xs-1">排序</th>
+                                                <th className="col-xs-1">狀態</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                this.state.gridData.rows.map(
+                                                    (itemData, i) =>
+                                                        <GridRow key={i}
+                                                            ikey={i}
+                                                            primKey={itemData.product_id}
+                                                            itemData={itemData}
+                                                            delCheck={this.delCheck}
+                                                            updateType={this.updateType} />
+                                                )
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <GridNavPage startCount={this.state.gridData.startcount}
+                                    endCount={this.state.gridData.endcount}
+                                    recordCount={this.state.gridData.records}
+                                    totalPage={this.state.gridData.total}
+                                    nowPage={this.state.gridData.page}
+                                    onQueryGridData={this.queryGridData}
+                                    InsertType={this.insertType}
+                                    deleteSubmit={this.deleteSubmit} />
+                            </form>
                         </div>
-                    </div>
-                </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th className="col-xs-1 text-center">
-                            <label className="cbox">
-                                <input type="checkbox" checked={this.state.checkAll} onChange={this.checkAll} />
-                                <i className="fa-check"></i>
-                                </label>
-                            </th>
-                        <th className="col-xs-1 text-center">修改</th>
-                        <th className="col-xs-2">產品分類</th>
-                        <th className="col-xs-2">產品型號</th>
-                        <th className="col-xs-3">產品名稱</th>
-                        <th className="col-xs-1">單價</th>
-                        <th className="col-xs-1">排序</th>
-                        <th className="col-xs-1">狀態</th>
-                        </tr>
-                    </thead>
-                <tbody>
-                    {
-                    this.state.gridData.rows.map(
-                        (itemData, i) =>
-                            <GridRow key={i}
-                                ikey={i}
-                                primKey={itemData.product_id}
-                                itemData={itemData}
-                                delCheck={this.delCheck}
-                                updateType={this.updateType} />
-                    )
-                    }
-                    </tbody>
-                </table>
-            </div>
-        <GridNavPage startCount={this.state.gridData.startcount}
-            endCount={this.state.gridData.endcount}
-            recordCount={this.state.gridData.records}
-            totalPage={this.state.gridData.total}
-            nowPage={this.state.gridData.page}
-            onQueryGridData={this.queryGridData}
-            InsertType={this.insertType}
-            deleteSubmit={this.deleteSubmit} />
-        </form>
-                        </div>
-                );
+                    );
             }
             else if (this.state.edit_type == 1 || this.state.edit_type == 2) {
 
@@ -373,140 +372,140 @@
                 outHtml = (
                     <div>
 
-    <h3 className="title"> { this.props.caption } 基本資料維護</h3>
-    <form className="form-horizontal" onSubmit={this.handleSubmit}>
-        <div className="col-xs-12">
+                        <h3 className="title"> { this.props.caption } 基本資料維護</h3>
+                        <form className="form-horizontal" onSubmit={this.handleSubmit}>
+                            <div className="col-xs-12">
 
-                    <div className="form-group">
-                        <label className="col-xs-2 control-label">代表圖</label>
-                        <div className="col-xs-4">
-                            <MasterImageUpload
-                                FileKind="Photo1"
-                                MainId={fieldData.product_id}
-                                ParentEditType={this.state.edit_type}
-                                url_upload={gb_approot + 'Active/ProductData/axFUpload'}
-                                url_list={gb_approot + 'Active/ProductData/axFList'}
-                                url_delete={gb_approot + 'Active/ProductData/axFDelete'}
-                                url_sort={gb_approot + 'Active/ProductData/axFSort'}
-                                />
+                                <div className="form-group">
+                                    <label className="col-xs-2 control-label">代表圖</label>
+                                    <div className="col-xs-4">
+                                        <MasterImageUpload
+                                            FileKind="Photo1"
+                                            MainId={fieldData.product_id}
+                                            ParentEditType={this.state.edit_type}
+                                            url_upload={gb_approot + 'Active/ProductData/axFUpload'}
+                                            url_list={gb_approot + 'Active/ProductData/axFList'}
+                                            url_delete={gb_approot + 'Active/ProductData/axFDelete'}
+                                            url_sort={gb_approot + 'Active/ProductData/axFSort'}
+                                            />
+                                    </div>
+                                    <small className="help-inline col-xs-4 text-danger">限 1 張圖片，檔案大小不可超過4.8MB</small>
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="col-xs-2 control-label">產品分類</label>
+                                    <div className="col-xs-4">
+                                        <select className="form-control"
+                                            value={fieldData.category_id}
+                                            onChange={this.changeFDValue.bind(this, 'category_id') }>
+                                            {
+                                                this.state.category_option.map((itemData, i) =>
+                                                    <option key={itemData.product_category_id} value={itemData.product_category_id.toString() }>{itemData.category_name}</option>
+                                                )
+                                            }
+                                        </select>
+                                    </div>
+                                    <small className="help-inline col-xs-6"><span className="text-danger">(必填) </span></small>
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="col-xs-2 control-label">產品名稱</label>
+                                    <div className="col-xs-4">
+                                        <input type="text"
+                                            className="form-control"
+                                            onChange={this.changeFDValue.bind(this, 'product_name') }
+                                            value={fieldData.product_name}
+                                            maxLength={64}
+                                            required />
+                                    </div>
+                                    <small className="help-inline col-xs-6">最多64個字<span className="text-danger">(必填) </span></small>
+                                </div>
+                                <div className="form-group">
+                                    <label className="col-xs-2 control-label">產品型號</label>
+                                    <div className="col-xs-4">
+                                        <input type="text"
+                                            className="form-control"
+                                            onChange={this.changeFDValue.bind(this, 'model_type') }
+                                            value={fieldData.model_type}
+                                            maxLength={16}
+                                            required />
+                                    </div>
+                                    <small className="help-inline col-xs-6">最多16個字<span className="text-danger">(必填) </span></small>
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="col-xs-2 control-label">單價</label>
+                                    <div className="col-xs-4">
+                                        <input type="number"
+                                            className="form-control"
+                                            onChange={this.changeFDValue.bind(this, 'price') }
+                                            value={fieldData.price}
+                                            required />
+                                    </div>
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="col-xs-2 control-label">排序</label>
+                                    <div className="col-xs-4">
+                                        <input type="number"
+                                            className="form-control"
+                                            onChange={this.changeFDValue.bind(this, 'sort') }
+                                            value={fieldData.sort} />
+                                    </div>
+                                    <small className="col-xs-2 help-inline">數字越大越前面</small>
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="col-xs-2 control-label">狀態</label>
+                                    <div className="col-xs-4">
+                                        <div className="radio-inline">
+                                            <label>
+                                                <input type="radio"
+                                                    name="i_Hide"
+                                                    value={true}
+                                                    checked={fieldData.i_Hide === true}
+                                                    onChange={this.changeFDValue.bind(this, 'i_Hide') }
+                                                    />
+                                                <span>隱藏</span>
+                                            </label>
+                                        </div>
+                                        <div className="radio-inline">
+                                            <label>
+                                                <input type="radio"
+                                                    name="i_Hide"
+                                                    value={false}
+                                                    checked={fieldData.i_Hide === false}
+                                                    onChange={this.changeFDValue.bind(this, 'i_Hide') }
+                                                    />
+                                                <span>顯示</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="col-xs-2 control-label">產品內容</label>
+                                    <div className="col-xs-8">
+                                        <textarea cols={30} rows={3} className="form-control"  id="editor1"
+                                            value={fieldData.product_content}
+                                            onChange={this.changeFDValue.bind(this, 'product_content') }
+                                            maxLength={256}></textarea>
+                                        <p className="text-danger">※ 檔案尺寸寬度超過 1600 或 高度超過1200 的圖片會被壓縮(PNG透明背景會變成不透明) </p>
+                                        <p className="text-danger">※ 上傳圖片的尺寸設定，請將高度值刪除，行動裝置才能等比例縮小，而不會圖片變胖</p>
+                                    </div>
+                                </div>
+
+
+
+                                <div className="form-action text-right">
+                                    <div className="col-xs-5">
+                                        <button type="submit" className="btn-primary"><i className="fa-check"></i> 儲存</button> { }
+                                        <button type="button" onClick={this.noneType}><i className="fa-times"></i> 回前頁</button>
+                                    </div>
+                                </div>
                             </div>
-                        <small className="help-inline col-xs-4 text-danger">限 1 張圖片，檔案大小不可超過4.8MB</small>
-                        </div>
-
-            <div className="form-group">
-                <label className="col-xs-2 control-label">產品分類</label>
-                <div className="col-xs-4">
-                    <select className="form-control"
-                        value={fieldData.category_id}
-                        onChange={this.changeFDValue.bind(this, 'category_id') }>
-                        {
-                        this.state.category_option.map((itemData, i) =>
-                            <option key={itemData.product_category_id} value={itemData.product_category_id.toString() }>{itemData.category_name}</option>
-                        )
-                        }
-                        </select>
+                        </form>
                     </div>
-                    <small className="help-inline col-xs-6"><span className="text-danger">(必填) </span></small>
-                </div>
-
-            <div className="form-group">
-                <label className="col-xs-2 control-label">產品名稱</label>
-                <div className="col-xs-4">
-                    <input type="text"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'product_name') }
-                        value={fieldData.product_name}
-                        maxLength={64}
-                        required />
-                    </div>
-                    <small className="help-inline col-xs-6">最多64個字<span className="text-danger">(必填) </span></small>
-                </div>
-            <div className="form-group">
-                <label className="col-xs-2 control-label">產品型號</label>
-                <div className="col-xs-4">
-                    <input type="text"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'model_type') }
-                        value={fieldData.model_type}
-                        maxLength={16}
-                        required />
-                    </div>
-                    <small className="help-inline col-xs-6">最多16個字<span className="text-danger">(必填) </span></small>
-                </div>
-
-            <div className="form-group">
-                <label className="col-xs-2 control-label">單價</label>
-                <div className="col-xs-4">
-                    <input type="number"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'price') }
-                        value={fieldData.price}
-                        required />
-                    </div>
-                </div>
-
-            <div className="form-group">
-                <label className="col-xs-2 control-label">排序</label>
-                <div className="col-xs-4">
-                    <input type="number"
-                        className="form-control"
-                        onChange={this.changeFDValue.bind(this, 'sort') }
-                        value={fieldData.sort} />
-                    </div>
-                <small className="col-xs-2 help-inline">數字越大越前面</small>
-                </div>
-
-            <div className="form-group">
-                <label className="col-xs-2 control-label">狀態</label>
-                <div className="col-xs-4">
-                   <div className="radio-inline">
-                       <label>
-                            <input type="radio"
-                                name="i_Hide"
-                                value={true}
-                                checked={fieldData.i_Hide === true}
-                                onChange={this.changeFDValue.bind(this, 'i_Hide') }
-                                />
-                            <span>隱藏</span>
-                           </label>
-                       </div>
-                   <div className="radio-inline">
-                       <label>
-                            <input type="radio"
-                                name="i_Hide"
-                                value={false}
-                                checked={fieldData.i_Hide === false}
-                                onChange={this.changeFDValue.bind(this, 'i_Hide') }
-                                />
-                            <span>顯示</span>
-                           </label>
-                       </div>
-                    </div>
-                </div>
-
-                <div className="form-group">
-                     <label className="col-xs-2 control-label">產品內容</label>
-                        <div className="col-xs-8">
-                            <textarea cols={30} rows={3} className="form-control"  id="editor1"
-                                value={fieldData.product_content}
-                                onChange={this.changeFDValue.bind(this, 'product_content') }
-                                maxLength={256}></textarea>
-                        <p className="text-danger">※ 檔案尺寸寬度超過 1600 或 高度超過1200 的圖片會被壓縮(PNG透明背景會變成不透明) </p>
-                        <p className="text-danger">※ 上傳圖片的尺寸設定，請將高度值刪除，行動裝置才能等比例縮小，而不會圖片變胖</p>
-                            </div>
-                    </div>
-
-
-
-            <div className="form-action text-right">
-                <div className="col-xs-5">
-                    <button type="submit" className="btn-primary"><i className="fa-check"></i> 儲存</button> { }
-                    <button type="button" onClick={this.noneType}><i className="fa-times"></i> 回前頁</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-                        </div>
                 );
             }
 
