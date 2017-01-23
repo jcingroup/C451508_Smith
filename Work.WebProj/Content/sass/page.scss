@@ -298,6 +298,37 @@ input[type="number"] {
     }
     img { max-width: 90%; }
 }
+
+// 伸縮特效
+.collapse {
+    dt {
+        cursor: pointer; cursor: hand;
+        transition: all .3s;
+
+        &::after {
+            @include circle(23px);
+            content: '+';
+            background: #ddd;
+            color: #fff;
+            font-weight: normal;
+            text-indent: 0;
+            margin-left: 10px;
+            padding-top: 0;
+            transition: all .5s;
+        }
+
+        &:hover, &:active {
+            color: $gray-light;
+            &::after { background: #EC8278; }
+        }
+        &.current {
+            color: $brand-secondary;
+            &::after { content: '-' }
+        }
+    }
+}
+
+// 頁籤特效
 .tabs {
     @extend %list-inline;
     li {
@@ -325,29 +356,7 @@ input[type="number"] {
             font-size: em(13px);
             color: $gray-light;
         }
-        dd { display: none; }
-        dt {
-            cursor: pointer; cursor: hand;
-            transition: all .3s;
-            font-size: em(18px);
-            &::after {
-                @include circle(28px);
-                content: '+';
-                background: $brand-secondary;
-                color: #fff;
-                font-weight: normal;
-                margin-left: 10px;
-                transition: all .5s;
-            }
-            &:hover, &:active {
-                color: $gray-light;
-                &::after { background: #EC8278; }
-            }
-            &.current {
-                color: $brand-secondary;
-                &::after { content: '-' }
-            }
-        }
+        dt { font-size: em(18px); }
     }
 }
 

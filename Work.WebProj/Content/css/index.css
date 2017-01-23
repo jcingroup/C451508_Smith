@@ -147,39 +147,30 @@ td, th {
     color: #000 !important;
     box-shadow: none !important;
     text-shadow: none !important; }
-
   a, a:visited {
     text-decoration: underline; }
-
   a[href]:after {
     content: " (" attr(href) ")"; }
-
   abbr[title]:after {
     content: " (" attr(title) ")"; }
-
   a[href^="#"]:after,
   a[href^="javascript:"]:after {
     content: ""; }
-
   pre, blockquote {
     border: 1px solid #999;
     page-break-inside: avoid; }
-
   thead {
     display: table-header-group; }
-
   tr, img {
     page-break-inside: avoid; }
-
   img {
     max-width: 100% !important; }
-
   p, h2, h3 {
     orphans: 3;
     widows: 3; }
-
   h2, h3 {
     page-break-after: avoid; } }
+
 /*      basic elements
 -----------------------------------------------------------------------*/
 h1, h2, h3, h4, h5, h6, p, figure, form, blockquote {
@@ -337,7 +328,7 @@ output {
   line-height: 1.25;
   color: #555555; }
 
-.form-element, input:not([type]), input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"], textarea {
+.form-element, input, select, textarea {
   display: block;
   width: 100%;
   padding: 2px 10px;
@@ -348,18 +339,26 @@ output {
   border-radius: 5px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; }
-  .form-element::-moz-placeholder, input:not([type])::-moz-placeholder, input[type="text"]::-moz-placeholder, input[type="password"]::-moz-placeholder, input[type="date"]::-moz-placeholder, input[type="datetime"]::-moz-placeholder, input[type="datetime-local"]::-moz-placeholder, input[type="month"]::-moz-placeholder, input[type="week"]::-moz-placeholder, input[type="email"]::-moz-placeholder, input[type="number"]::-moz-placeholder, input[type="search"]::-moz-placeholder, input[type="tel"]::-moz-placeholder, input[type="time"]::-moz-placeholder, input[type="url"]::-moz-placeholder, input[type="color"]::-moz-placeholder, textarea::-moz-placeholder, .form-element:-ms-input-placeholder, input:-ms-input-placeholder:not([type]), input[type="text"]:-ms-input-placeholder, input[type="password"]:-ms-input-placeholder, input[type="date"]:-ms-input-placeholder, input[type="datetime"]:-ms-input-placeholder, input[type="datetime-local"]:-ms-input-placeholder, input[type="month"]:-ms-input-placeholder, input[type="week"]:-ms-input-placeholder, input[type="email"]:-ms-input-placeholder, input[type="number"]:-ms-input-placeholder, input[type="search"]:-ms-input-placeholder, input[type="tel"]:-ms-input-placeholder, input[type="time"]:-ms-input-placeholder, input[type="url"]:-ms-input-placeholder, input[type="color"]:-ms-input-placeholder, textarea:-ms-input-placeholder, .form-element::-webkit-input-placeholder, input:not([type])::-webkit-input-placeholder, input[type="text"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder, input[type="date"]::-webkit-input-placeholder, input[type="datetime"]::-webkit-input-placeholder, input[type="datetime-local"]::-webkit-input-placeholder, input[type="month"]::-webkit-input-placeholder, input[type="week"]::-webkit-input-placeholder, input[type="email"]::-webkit-input-placeholder, input[type="number"]::-webkit-input-placeholder, input[type="search"]::-webkit-input-placeholder, input[type="tel"]::-webkit-input-placeholder, input[type="time"]::-webkit-input-placeholder, input[type="url"]::-webkit-input-placeholder, input[type="color"]::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  .form-element::-moz-placeholder, input::-moz-placeholder, select::-moz-placeholder, textarea::-moz-placeholder, .form-element:-ms-input-placeholder, input:-ms-input-placeholder, select:-ms-input-placeholder, textarea:-ms-input-placeholder, .form-element::-webkit-input-placeholder, input::-webkit-input-placeholder, select::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     color: #999; }
-  .form-element::-moz-placeholder, input:not([type])::-moz-placeholder, input[type="text"]::-moz-placeholder, input[type="password"]::-moz-placeholder, input[type="date"]::-moz-placeholder, input[type="datetime"]::-moz-placeholder, input[type="datetime-local"]::-moz-placeholder, input[type="month"]::-moz-placeholder, input[type="week"]::-moz-placeholder, input[type="email"]::-moz-placeholder, input[type="number"]::-moz-placeholder, input[type="search"]::-moz-placeholder, input[type="tel"]::-moz-placeholder, input[type="time"]::-moz-placeholder, input[type="url"]::-moz-placeholder, input[type="color"]::-moz-placeholder, textarea::-moz-placeholder {
+  .form-element::-moz-placeholder, input::-moz-placeholder, select::-moz-placeholder, textarea::-moz-placeholder {
     opacity: 1; }
-  .form-element:focus, input:focus:not([type]), input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="color"]:focus, textarea:focus {
+  .form-element:focus, input:focus, select:focus, textarea:focus {
     border-color: #66afe9;
     outline: 0;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }
-  .form-element[disabled], input[disabled]:not([type]), input[disabled][type="text"], input[disabled][type="password"], input[disabled][type="date"], input[disabled][type="datetime"], input[disabled][type="datetime-local"], input[disabled][type="month"], input[disabled][type="week"], input[disabled][type="email"], input[disabled][type="number"], input[disabled][type="search"], input[disabled][type="tel"], input[disabled][type="time"], input[disabled][type="url"], input[disabled][type="color"], textarea[disabled], .form-element[readonly], input[readonly]:not([type]), input[readonly][type="text"], input[readonly][type="password"], input[readonly][type="date"], input[readonly][type="datetime"], input[readonly][type="datetime-local"], input[readonly][type="month"], input[readonly][type="week"], input[readonly][type="email"], input[readonly][type="number"], input[readonly][type="search"], input[readonly][type="tel"], input[readonly][type="time"], input[readonly][type="url"], input[readonly][type="color"], textarea[readonly], fieldset[disabled] .form-element, fieldset[disabled] input:not([type]), fieldset[disabled] input[type="text"], fieldset[disabled] input[type="password"], fieldset[disabled] input[type="date"], fieldset[disabled] input[type="datetime"], fieldset[disabled] input[type="datetime-local"], fieldset[disabled] input[type="month"], fieldset[disabled] input[type="week"], fieldset[disabled] input[type="email"], fieldset[disabled] input[type="number"], fieldset[disabled] input[type="search"], fieldset[disabled] input[type="tel"], fieldset[disabled] input[type="time"], fieldset[disabled] input[type="url"], fieldset[disabled] input[type="color"], fieldset[disabled] textarea {
+  .form-element[disabled], input[disabled], select[disabled], textarea[disabled], .form-element[readonly], input[readonly], select[readonly], textarea[readonly],
+  [disabled] .form-element,
+  [disabled] input,
+  [disabled] select,
+  [disabled] textarea {
     background-color: #eeeeee;
     opacity: 1; }
-  .form-element[disabled], input[disabled]:not([type]), input[disabled][type="text"], input[disabled][type="password"], input[disabled][type="date"], input[disabled][type="datetime"], input[disabled][type="datetime-local"], input[disabled][type="month"], input[disabled][type="week"], input[disabled][type="email"], input[disabled][type="number"], input[disabled][type="search"], input[disabled][type="tel"], input[disabled][type="time"], input[disabled][type="url"], input[disabled][type="color"], textarea[disabled], fieldset[disabled] .form-element, fieldset[disabled] input:not([type]), fieldset[disabled] input[type="text"], fieldset[disabled] input[type="password"], fieldset[disabled] input[type="date"], fieldset[disabled] input[type="datetime"], fieldset[disabled] input[type="datetime-local"], fieldset[disabled] input[type="month"], fieldset[disabled] input[type="week"], fieldset[disabled] input[type="email"], fieldset[disabled] input[type="number"], fieldset[disabled] input[type="search"], fieldset[disabled] input[type="tel"], fieldset[disabled] input[type="time"], fieldset[disabled] input[type="url"], fieldset[disabled] input[type="color"], fieldset[disabled] textarea {
+  .form-element[disabled], input[disabled], select[disabled], textarea[disabled],
+  [disabled] .form-element,
+  [disabled] input,
+  [disabled] select,
+  [disabled] textarea {
     cursor: not-allowed; }
 
 .form-element-inline {
@@ -372,16 +371,25 @@ output {
       display: block;
       margin-left: 0; } }
 
-input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"] {
+input {
   height: 37px; }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
     line-height: 24px; }
-    input[type="date"].input-sm, .input-group-sm input[type="date"], input[type="time"].input-sm, .input-group-sm input[type="time"], input[type="datetime-local"].input-sm, .input-group-sm input[type="datetime-local"], input[type="month"].input-sm, .input-group-sm input[type="month"] {
+    input[type="date"].input-sm,
+    .input-group-sm input[type="date"], input[type="time"].input-sm,
+    .input-group-sm input[type="time"], input[type="datetime-local"].input-sm,
+    .input-group-sm input[type="datetime-local"], input[type="month"].input-sm,
+    .input-group-sm input[type="month"] {
       line-height: 22px; }
-    input[type="date"].input-lg, .input-group-lg input[type="date"], input[type="time"].input-lg, .input-group-lg input[type="time"], input[type="datetime-local"].input-lg, .input-group-lg input[type="datetime-local"], input[type="month"].input-lg, .input-group-lg input[type="month"] {
+    input[type="date"].input-lg,
+    .input-group-lg input[type="date"], input[type="time"].input-lg,
+    .input-group-lg input[type="time"], input[type="datetime-local"].input-lg,
+    .input-group-lg input[type="datetime-local"], input[type="month"].input-lg,
+    .input-group-lg input[type="month"] {
       line-height: 37px; } }
+
 *[disabled], .disabled {
   cursor: not-allowed; }
 
@@ -403,7 +411,7 @@ input[type="text"], input[type="password"], input[type="date"], input[type="date
 .hidden {
   display: none; }
 
-.circle, .goTop {
+.circle {
   border-radius: 50%; }
 
 .list-inline, .list-unstyled, .swiper-wrapper {
@@ -565,11 +573,13 @@ body {
     width: 100px;
     padding: 12px 0;
     color: #001B23; }
-    #menu a:hover, #menu a:active, .AboutUs #menu a:nth-of-type(1), .News #menu a:nth-of-type(2), .Products #menu a:nth-of-type(3), .FAQ #menu a:nth-of-type(4), .Service #menu a:nth-of-type(5), .ContactUs #menu a:nth-of-type(6) {
+    #menu a:hover, #menu a:active,
+    .AboutUs #menu a:nth-of-type(1), .News #menu a:nth-of-type(2), .Products #menu a:nth-of-type(3), .FAQ #menu a:nth-of-type(4), .Service #menu a:nth-of-type(5), .ContactUs #menu a:nth-of-type(6) {
       background: #0646A3;
       border-radius: 5px;
       color: #fff; }
-      #menu a:hover::after, #menu a:active::after, .AboutUs #menu a:nth-of-type(1)::after, .News #menu a:nth-of-type(2)::after, .Products #menu a:nth-of-type(3)::after, .FAQ #menu a:nth-of-type(4)::after, .Service #menu a:nth-of-type(5)::after, .ContactUs #menu a:nth-of-type(6)::after {
+      #menu a:hover::after, #menu a:active::after,
+      .AboutUs #menu a:nth-of-type(1)::after, .News #menu a:nth-of-type(2)::after, .Products #menu a:nth-of-type(3)::after, .FAQ #menu a:nth-of-type(4)::after, .Service #menu a:nth-of-type(5)::after, .ContactUs #menu a:nth-of-type(6)::after {
         content: '';
         display: block;
         border: 8px solid transparent;
@@ -618,10 +628,12 @@ body {
         text-align: left;
         width: 100%;
         padding: 15px; }
-        #menu a:hover, #menu a:active, .AboutUs #menu a:nth-of-type(1), .News #menu a:nth-of-type(2), .Products #menu a:nth-of-type(3), .FAQ #menu a:nth-of-type(4), .Service #menu a:nth-of-type(5), .ContactUs #menu a:nth-of-type(6) {
+        #menu a:hover, #menu a:active,
+        .AboutUs #menu a:nth-of-type(1), .News #menu a:nth-of-type(2), .Products #menu a:nth-of-type(3), .FAQ #menu a:nth-of-type(4), .Service #menu a:nth-of-type(5), .ContactUs #menu a:nth-of-type(6) {
           background: #0683a4;
           border-radius: 0; }
-          #menu a:hover::after, #menu a:active::after, .AboutUs #menu a:nth-of-type(1)::after, .News #menu a:nth-of-type(2)::after, .Products #menu a:nth-of-type(3)::after, .FAQ #menu a:nth-of-type(4)::after, .Service #menu a:nth-of-type(5)::after, .ContactUs #menu a:nth-of-type(6)::after {
+          #menu a:hover::after, #menu a:active::after,
+          .AboutUs #menu a:nth-of-type(1)::after, .News #menu a:nth-of-type(2)::after, .Products #menu a:nth-of-type(3)::after, .FAQ #menu a:nth-of-type(4)::after, .Service #menu a:nth-of-type(5)::after, .ContactUs #menu a:nth-of-type(6)::after {
             display: none; } }
 
 footer {
@@ -677,6 +689,7 @@ footer {
   right: 10px;
   bottom: 10px;
   display: inline-block;
+  border-radius: 50%;
   width: 50px;
   height: 50px;
   text-align: center;
@@ -818,13 +831,17 @@ footer {
 
 #login input, #login .btn, #login .row {
   margin: 30px auto; }
+
 #login input, #login .row {
   width: 85%; }
+
 #login input {
   line-height: 2; }
+
 #login .btn {
   font-size: 1.1875em;
   margin-top: 0; }
+
 #login .row {
   text-align: center; }
   #login .row input, #login .row button, #login .row img, #login .row span {
@@ -841,6 +858,7 @@ footer {
         max-width: 172px; } }
   #login .row img {
     margin-top: 6px; }
+
 #login span {
   display: inline-block; }
 
@@ -928,17 +946,20 @@ footer {
 @media (min-width: 48.0625em) and (max-width: 75em) {
   .i1 header, .i2 header {
     float: left; } }
+
 @media (max-width: 75em) {
   .i1 .pic, .i2 .pic {
     position: absolute;
     top: 30px;
     right: 1%; } }
+
 @media (max-width: 48em) {
   .i1 .pic, .i2 .pic {
     right: 0;
     left: 0;
     bottom: 115px;
     top: auto; } }
+
 @media (max-width: 30em) {
   .i1 .pic, .i2 .pic {
     bottom: 215px; } }
@@ -1159,6 +1180,7 @@ footer {
     margin: 0; }
   .swiper-slide header {
     margin: 0; } }
+
 .about {
   background: #407E8F url(../images/index/infoBg.jpg) center 0 no-repeat fixed;
   padding: 40px 0;
@@ -1193,6 +1215,7 @@ footer {
 @media (min-width: 75em) {
   .col-8 .btn {
     margin-top: 52px; } }
+
 @media (max-width: 48em) {
   .col-8 {
     margin-bottom: 30px; } }

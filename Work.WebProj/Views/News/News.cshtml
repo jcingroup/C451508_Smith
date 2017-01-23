@@ -15,8 +15,8 @@
     @foreach (var i in Model)
     {
         <dt><span>@i.news_date.ToString("yyyy/MM/dd")</span>@i.news_title</dt>
-            <dd>
-                @Html.Raw(i.news_content)
-            </dd>
+        <dd>
+            @Html.Raw(i.news_content)
+        </dd>
     }
 </dl>

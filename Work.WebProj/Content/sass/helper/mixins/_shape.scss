@@ -9,8 +9,8 @@
 // 做圓形
 @mixin circle($size, $align:center, $display:inline-block) {
     display: $display;
+    border-radius: 50%;
 
-    @extend %circle;
     @include size($size);
 
     @if $align == "center" {

@@ -1,20 +1,13 @@
-$(".collapse dt").click(function() {
-    $header = $(this);
+var $collapse = $(".collapse dt");
+var fall = '.collapse dd';
 
-    // 取得要收合的元素，緊臨 .collapse dt 旁(此元素須 display:none
-    $content = $header.next();
+$(fall).css({display:"none"});
 
-    // 按下要顯示的元素後(其他的收合)
-    if (!($content.is(":visible"))) {
-
-        // 收合
-        $(".collapse dd").slideUp("fast", function(){
-            $(".collapse dt").removeClass('current');
-        });
-
-        // 開啟
-        $content.slideToggle(300, function () {
-            $header.addClass('current');
-        });
-    }
+$collapse.click(function () {
+    $(this).next(fall).slideToggle("fast");
+    // $(this).parent().siblings().children().next().slideUp(150);
+    $(this).siblings().next(fall).slideUp("fast");
+    $(this).toggleClass("current"),
+            $collapse.not(this).removeClass("current");
+    return false;
 });

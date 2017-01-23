@@ -6,6 +6,7 @@
 }
 @section Scripts {
     <script src="~/Content/js/tab.js"></script>
+    <script src="~/Content/js/collapse.js"></script>
 }
 
 <h2>常見問題 <small>FAQ</small></h2>
@@ -20,7 +21,7 @@
 <section class="tabs-content">
     @foreach (var item in Model)
     {
-        <dl id=@("QA"+item.c_id) class="text-list">
+        <dl id=@("QA"+item.c_id) class="text-list collapse">
             @foreach (var issue in item.issue)
             {
                 <dt>@issue.issue_q</dt>

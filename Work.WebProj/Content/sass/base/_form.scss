@@ -53,7 +53,6 @@ $color: map-extend($color, $form-color);
     }
 
     @return $return;
-
 }
 
 // 聚焦樣式(WebKit)
@@ -146,13 +145,13 @@ output {
 
     &[disabled],
     &[readonly],
-    fieldset[disabled] & {
+    [disabled] & {
         background-color: color(input-bg-disabled);
         opacity: 1; // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655
     }
 
     &[disabled],
-    fieldset[disabled] & {
+    [disabled] & {
         cursor: $cursor-disabled;
     }
 }
@@ -165,11 +164,13 @@ output {
     @include mq(phone) { display:block; margin-left:0; }
 }
 
-input:not([type]), #{text-inputs(all)} {
+// input:not([type]), #{text-inputs(all)} {
+input, select, textarea {
     @extend .form-element;
 }
 
-#{text-inputs(input)} {
+// #{text-inputs(input)} {
+input {
     height: $input-height-large; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
 }
 
