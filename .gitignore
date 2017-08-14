@@ -225,3 +225,5 @@ Work.WebProj/ckfinder/*
 /Work.WebProj/_Code/SysUpFiles/**/
 /Work.WebProj/_Code/Log/*.txt
 /Work.WebProj/ckeditor/plugins
+/Work.WebProj/Properties/SysUpFiles
+/Work.WebProj/_Code/SysDoc
