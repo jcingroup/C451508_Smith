@@ -70,73 +70,99 @@ footer { background: rgba(232,235,237,.8); }
         padding-bottom: 130px;
         background-size: auto cover;
     }
+}
+.title, .pic {
+    max-width: 100%;
 
-    header, .pic {
-        @extend %text-hide;
-        background-position: center 0;
-        background-repeat: no-repeat;
+    @include mq(break(tablet, +1)) {
         display: inline-block;
         vertical-align: top;
     }
-    header {
+}
+.title {
+    position: relative;
+    z-index: 20;
+
+    @include mq(break(tablet, +1)) {
         margin-right: 10px;
-        position: relative;
-        z-index: 20;
     }
-    .pic {
+}
+.pic {
+    @include mq(break(tablet, +1)) {
         margin-top: 30px;
     }
-    ol {
-        margin-left: -590px;
-
-        @include absolute(left 50% bottom 30px);
-
-        @include mq(break(tablet,+1), wide) {
-            left: 1%;
-            margin-left: 0;
-        }
-        @include mq-max(tablet) {
-            margin-left: 0;
-            margin-top: 20px;
-            left: 0; right: 0;
-            bottom: 15px;
-        }
+}
+// for title,pic
+.desktop-hide {
+    @include mq(break(tablet,+1)) {
+        display: none;
     }
+}
+.mobile-hide {
+    @include mq-max(tablet) {
+        display: none;
+    }
+}
+.spec {
+    @include absolute(left 0 bottom 30px);
+
+    @include mq-max(tablet) {
+        margin-top: 20px;
+        right: 0;
+        bottom: 15px;
+    }
+    @include mq(break(tablet,+1), wide) {
+        left: 1%;
+    }
+    @include mq(break(wide,+1)) {
+        left: 50%;
+        margin-left: -590px;
+    }
+
     li {
-        background-attachment: fixed;
-        background: url(#{$img-banner}1_icon.png) 11px 0 no-repeat;
+        text-align: center;
         min-width: 90px;
         padding-top: 80px;
 
+        // background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: 11px 0;
         color: #4C4C4C;
         font-size: em(14px);
-        text-align: center;
 
         @for $i from 2 through 6 {
             &:nth-child(#{$i}) {
-                background-position: (97px - (86px * $i)) 0;
+                background-position: (95px - (86px * $i)) 0;
             }
         }
-        @include mq-max(break(tablet,-1)) {
-            background-image: url(#{$img-banner}1_icon2.png);
+        @include mq-max(break(tablet, -1)) {
             background-size: auto 72px;
+            padding-top: 74px;
+            margin-bottom: 10px;
         }
     }
 }
 .i1, .i2 {
-    @include mq(break(tablet,+1), wide) {
-        header { float: left; }
+    @include mq(break(tablet, +1), 1300px) {
+        .title { float: left; }
     }
     .pic {
-        @include mq-max(wide) {
-            @include absolute(right 1% top 30px);
+        @include mq-max(1300px) {
+            position: absolute;
         }
         @include mq-max(tablet) {
-            right: 0; left: 0;
-            bottom: 115px; top: auto;
+            right: 0;
+            left: 0;
+            bottom: 115px;
+            // top: auto;
+            margin: auto;
         }
-        @include mq-max(phone) {
+        @include mq-max(585px) {
             bottom: 215px;
+        }
+        @include mq(break(tablet, +1), 1300px) {
+            right: 1%;
+            top: 30px;
         }
     }
 }
@@ -144,46 +170,29 @@ footer { background: rgba(232,235,237,.8); }
     background-image: url(#{$img-banner}1_bg.png);
     padding-top: 10px;
 
-    header {
-        background-image: url(#{$img-banner}1_title.png);
-        margin-top: 35px;
-        width: 530px; height: 237px;
-
-        @include mq-max(break(tablet,-1)) {
-            background-image: url(#{$img-banner}1_title2.png);
-            height: 225px;
-            margin-top: 0;
+    @include mq(break(tablet,+1)) {
+        .title {
+            margin-top: 35px;
+        }
+        .pic {
+            margin-top: 60px;
         }
     }
     .pic {
-        background-image: url(#{$img-banner}1_pic.png);
-        margin-top: 60px;
-        width: 551px; height: 269px;
+        @include mq-max(phone) { height: 138px; }
+    }
+    li {
+        background-image: url(#{$img-banner}1_icon.png);
 
         @include mq-max(break(tablet,-1)) {
-            background-image: url(#{$img-banner}1_pic2.png);
-            height: 235px;
-            margin-top: 0;
+            background-image: url(#{$img-banner}1_icon2.png);
         }
-        // @include mq-max(phone) { height: 200px; }
-        @include mq-max(phone) { height: 138px; }
     }
 }
 .i2 {
     background-image: url(#{$img-banner}2_bg.jpg);
 
-    header {
-        background-image: url(#{$img-banner}2_title.png);
-        width: 705px; height: 321px;
-    }
     .pic {
-        background-image: url(#{$img-banner}2_pic.png);
-        width: 519px; height: 339px;
-
-        @include mq-max(tablet) {
-            background-image: url(#{$img-banner}2_pic2.png);
-            height: 167px;
-        }
         @include mq-max(phone) { height: 100px; }
     }
     li {
@@ -200,24 +209,24 @@ footer { background: rgba(232,235,237,.8); }
 
     @include mq-max(tablet) { background-position: center bottom; }
 
-    header {
-        background-image: url(#{$img-banner}3_title.png);
-        width: 436px; height: 218px;
-        margin-top: 85px;
-        margin-right: 20px;
-
-        @include mq-max(tablet) {
-            background-image: url(#{$img-banner}3_title2.png);
-            height: 185px;
-            margin: 0;
+    .title {
+        @include mq(break(tablet, +1), desktop) {
+            float: left;
+        }
+        @include mq(break(tablet, +1)) {
+            margin-top: 85px;
+            margin-right: 20px;
         }
     }
     .pic {
-        background-image: url(#{$img-banner}3_pic.png);
-        width: 401px; height: 435px;
-
+        @include mq-max(desktop) {
+            position: absolute;
+            right: 0;
+        }
         @include mq-max(tablet) {
-            @include absolute(bottom 115px left 0 right 0)
+            top: 100px;
+            left: 0;
+            margin: auto;
         }
         @include mq-max(phone) {
             height: 240px;
@@ -233,129 +242,95 @@ footer { background: rgba(232,235,237,.8); }
     }
 }
 .i4 {
-    background-position: center 0;
-    background-image: url(#{$img-banner}4_bg.gif);
+    background: url(#{$img-banner}4_bg.gif) center 0/cover no-repeat;
 
-    header {
-        background-image: url(#{$img-banner}4_title.gif);
-        width: 545px; height: 214px;
-        margin-top: 50px;
-
+    .title {
         @include mq-max(tablet) {
-            background-image: url(#{$img-banner}4_title2.gif);
             max-width: 85%;
+        }
+        @include mq(break(tablet, +1)) {
+            margin-top: 50px;
+        }
+        @include mq(break(tablet, +1), break(desktop, -1)) {
+            float: left;
         }
     }
     .pic {
-        background-image: url(#{$img-banner}4_pic.gif);
-        width: 336px; height: 434px;
-        margin-top: 0; margin-left: 20px;
-
-        @include mq-max(tablet) {
-            background-image: url(#{$img-banner}4_pic2.gif);
-            max-height: 240px;
-            margin-left: 0;
+        @include mq-max(break(desktop, -1)) {
+            @include absolute(top 20px right 10px);
         }
-        @include mq-max(break(phone-plus,-1)) {
-            @include absolute(top 30% left 0 right 0);
+        @include mq-max(tablet) {
+            top: 28%;
+            right: 0;
+            left: 0;
+            margin: auto;
+        }
+        @include mq-max(phone) {
+            max-height: 240px;
+        }
+        @include mq(desktop) {
+            margin-left: 30px;
         }
     }
-    ol {
-        @include mq(wide) {
-            margin-left: -500px;
+    .spec {
+        @include mq(break(wide,+1)) {
+            margin-left: -476px;
+            bottom: 70px;
         }
     }
     li {
-        background-image: url(#{$img-banner}4_icon.gif);
-        background-position: 3px 0;
-        min-width: 100px;
-        padding-top: 95px;
+        background-image: url(#{$img-banner}4_icon.png);
 
-        @for $i from 2 through 6 {
-            &:nth-child(#{$i}) {
-                background-position: (114px - (110px * $i)) 0;
-            }
-        }
-
-        @include mq(phone-plus,break(tablet,-1)) {
-            background-size: auto;
-        }
-        @include mq-max(break(phone-plus,-1)) {
-            background-position: 11px 0;
-            padding-top: 80px;
-            min-width: 90px;
-            @for $i from 2 through 6 {
-                &:nth-child(#{$i}) {
-                    background-position: (97px - (88px * $i)) 0;
-                }
-            }
+        @include mq-max(break(tablet,-1)) {
+            background-image: url(#{$img-banner}4_icon2.png);
         }
     }
 }
 .i5 {
-    background-position: center 0;
+    background-position: center bottom;
     background-image: url(#{$img-banner}5_bg.gif);
 
     @include mq-max(tablet) { padding-top: 15px; }
 
-    header {
-        background-image: url(#{$img-banner}5_title.gif);
-        width: 484px; height: 199px;
-
-        @include mq-max(tablet) {
-            background-image: url(#{$img-banner}5_title2.gif);
-            width: 90%;
-            max-width: 600px;
-            max-height: 130px;
+    .title {
+        @include mq-max(break(desktop, -1)) {
+            max-width: 90%;
+            margin-top: 20px;
         }
-        @include mq-max(phone) {
-            max-height: 100px;
+        @include mq(break(tablet, +1),desktop) {
         }
-        @include mq(break(tablet,+1),break(desktop,-1)) {
-            margin-left: -415px;
+        @include mq(desktop) {
+            margin-top: 42px;
         }
     }
     .pic {
-        background-image: url(#{$img-banner}5_pic.gif);
-        width: 462px; height: 331px;
-        margin-top: 55px;
+        margin-top: 10px;
 
         @include mq-max(tablet) {
-            margin-top: 0;
-            max-height: 248px;
+            max-height: 252px;
         }
-        @include mq(break(tablet,+1),break(desktop,-1)) {
-            @include absolute(right 10px top 45px);
+        @include mq(break(tablet, +1), break(desktop, -1)) {
+            @include absolute(right 10px top 20px);
         }
     }
-    p {
-        @include text-pic('index/banner5_icon.gif',467px,177px,$position: center bottom);
-        @include absolute(left 50% bottom 40px);
-        margin-left: -480px;
+    // p {
+    //     @include text-pic('index/banner5_icon.gif',467px,177px,$position: center bottom);
+    //     @include absolute(left 50% bottom 40px);
+    //     margin-left: -480px;
 
-        @include mq-max(tablet) {
-            max-width: 90%;
-            background-size: contain;
-            margin: auto;
-            left: 0; right: 0; bottom: 10px;
-        }
-        @include mq(break(tablet,+1),break(desktop,-1)) {
-            margin-left: -450px;
-        }
-    }
+    //     @include mq-max(tablet) {
+    //         max-width: 90%;
+    //         background-size: contain;
+    //         margin: auto;
+    //         left: 0; right: 0; bottom: 10px;
+    //     }
+    //     @include mq(break(tablet,+1),break(desktop,-1)) {
+    //         margin-left: -450px;
+    //     }
+    // }
 }
 
-@include mq-max(tablet) {
-    .swiper-slide {
-        header, .pic {
-            background-size: contain;
-            width: 100%;
-            margin: 0;
-        }
-        header { margin: 0; }
-    }
-}
-
+// == content
 .about {
     background: #407E8F url(#{$img-path2}/infoBg.jpg) center 0 no-repeat fixed;
     padding: 40px 0;
@@ -382,11 +357,6 @@ footer { background: rgba(232,235,237,.8); }
         &:hover, &:active {
             color: lighten($brand-secondary,40%);
         }
-        // @include mq-max(tablet) {
-        //     float: left;
-        //     padding-right: $gutter;
-        //     font-size: em(21px);
-        // }
     }
     .btn {
         margin-top: 20px;

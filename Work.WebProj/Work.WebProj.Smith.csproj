@@ -30,6 +30,7 @@
     <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
     <UseGlobalApplicationHostFile />
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -318,16 +319,17 @@
     <Content Include="Content\images\index\banner3_title2.png" />
     <Content Include="Content\images\index\banner4_bg.gif" />
     <Content Include="Content\images\index\banner4_icon.gif" />
-    <Content Include="Content\images\index\banner4_pic.gif" />
+    <Content Include="Content\images\index\banner4_icon.png" />
+    <Content Include="Content\images\index\banner4_icon2.png" />
+    <Content Include="Content\images\index\banner4_pic.png" />
     <Content Include="Content\images\index\banner4_pic2.gif" />
-    <Content Include="Content\images\index\banner4_title.gif" />
+    <Content Include="Content\images\index\banner4_title.png" />
     <Content Include="Content\images\index\banner4_title2.gif" />
     <Content Include="Content\images\index\banner5_bg.gif" />
-    <Content Include="Content\images\index\banner5_icon.gif" />
     <Content Include="Content\images\index\banner5_icon2.gif" />
-    <Content Include="Content\images\index\banner5_pic.gif" />
+    <Content Include="Content\images\index\banner5_pic.png" />
     <Content Include="Content\images\index\banner5_pic2.gif" />
-    <Content Include="Content\images\index\banner5_title.gif" />
+    <Content Include="Content\images\index\banner5_title.png" />
     <Content Include="Content\images\index\banner5_title2.gif" />
     <Content Include="Content\images\index\bg.png" />
     <Content Include="Content\images\index\infoBg.jpg" />
