@@ -297,8 +297,6 @@ footer { background: rgba(232,235,237,.8); }
             max-width: 90%;
             margin-top: 20px;
         }
-        @include mq(break(tablet, +1),desktop) {
-        }
         @include mq(desktop) {
             margin-top: 42px;
         }
