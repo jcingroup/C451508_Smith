@@ -179,7 +179,9 @@ footer { background: rgba(232,235,237,.8); }
         }
     }
     .pic {
-        @include mq-max(phone) { height: 138px; }
+        @include mq-max(phone) {
+            height: 138px;
+        }
     }
     li {
         background-image: url(#{$img-banner}1_icon.png);
@@ -193,7 +195,9 @@ footer { background: rgba(232,235,237,.8); }
     background-image: url(#{$img-banner}2_bg.jpg);
 
     .pic {
-        @include mq-max(phone) { height: 100px; }
+        @include mq-max(phone) {
+            height: 100px;
+        }
     }
     li {
         background-image: url(#{$img-banner}2_icon.png);
@@ -224,13 +228,13 @@ footer { background: rgba(232,235,237,.8); }
             right: 0;
         }
         @include mq-max(tablet) {
-            top: 100px;
+            top: 135px;
             left: 0;
             margin: auto;
         }
         @include mq-max(phone) {
-            height: 240px;
-            bottom: 200px;
+            max-height: 240px;
+            // bottom: 200px;
         }
     }
     li {
@@ -311,21 +315,6 @@ footer { background: rgba(232,235,237,.8); }
             @include absolute(right 10px top 20px);
         }
     }
-    // p {
-    //     @include text-pic('index/banner5_icon.gif',467px,177px,$position: center bottom);
-    //     @include absolute(left 50% bottom 40px);
-    //     margin-left: -480px;
-
-    //     @include mq-max(tablet) {
-    //         max-width: 90%;
-    //         background-size: contain;
-    //         margin: auto;
-    //         left: 0; right: 0; bottom: 10px;
-    //     }
-    //     @include mq(break(tablet,+1),break(desktop,-1)) {
-    //         margin-left: -450px;
-    //     }
-    // }
 }
 
 // == content

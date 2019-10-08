@@ -1298,15 +1298,14 @@ footer {
 }
 @media (max-width: 48em) {
   .i3 .pic {
-    top: 100px;
+    top: 135px;
     left: 0;
     margin: auto;
   }
 }
 @media (max-width: 30em) {
   .i3 .pic {
-    height: 240px;
-    bottom: 200px;
+    max-height: 240px;
   }
 }
 .i3 li {
